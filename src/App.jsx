@@ -1,195 +1,318 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import "./style.css";
 
 const API_BASE = "";
 
-const AI_FEATURES = [
-  {
-    id: "aiko",
-    name: "Aiko",
-    category: "AI",
-    endpoint: "/api/ai/aiko",
-    description: "AI assistant untuk percakapan."
+const DOWNLOAD_APIS = {
+  tiktok: {
+    name: "TikTok",
+    endpoint: "/api/tiktok"
   },
-  {
-    id: "aicoder",
-    name: "AI Coder",
-    category: "AI",
-    endpoint: "/api/tools/aicoder",
-    description: "AI untuk membantu membuat dan menjelaskan kode."
+  instagram: {
+    name: "Instagram",
+    endpoint: "/api/instagram"
   },
-  {
-    id: "lyricsgen",
-    name: "LyricsGen",
-    category: "AI",
-    endpoint: "/api/ai/lyricsgen",
-    description: "Membuat lirik menggunakan AI."
+  applemusic: {
+    name: "Apple Music",
+    endpoint: "/api/applemusic"
   },
-  {
-    id: "ai4chat",
-    name: "AI4Chat",
-    category: "AI",
-    endpoint: "/api/ai/ai4chat",
-    description: "AI chat."
+  capcut: {
+    name: "CapCut",
+    endpoint: "/api/capcut"
   },
-  {
-    id: "azbryai",
-    name: "Azbry AI",
-    category: "AI",
-    endpoint: "/api/ai/azbryai",
-    description: "AI assistant."
+  douyin: {
+    name: "Douyin",
+    endpoint: "/api/douyin"
   },
-  {
-    id: "chatday",
-    name: "ChatDay",
-    category: "AI",
-    endpoint: "/api/ai/chatday",
-    description: "AI conversation."
+  dramabox: {
+    name: "DramaBox",
+    endpoint: "/api/dramabox"
   },
-  {
-    id: "chatmusic",
-    name: "ChatMusic",
-    category: "AI",
-    endpoint: "/api/ai/chatmusic",
-    description: "AI untuk kebutuhan musik."
+  facebook: {
+    name: "Facebook",
+    endpoint: "/api/facebook"
   },
-  {
-    id: "claude",
-    name: "Claude",
-    category: "AI",
-    endpoint: "/api/ai/claude",
-    description: "AI assistant."
+  mediafire: {
+    name: "MediaFire",
+    endpoint: "/api/mediafire"
   },
-  {
-    id: "deepseek",
-    name: "DeepSeek",
-    category: "AI",
-    endpoint: "/api/ai/deepseek",
-    description: "AI assistant."
+  pinterest: {
+    name: "Pinterest",
+    endpoint: "/api/pinterest"
   },
-  {
-    id: "oriper",
-    name: "Oriper",
-    category: "AI",
-    endpoint: "/api/ai/oriper",
-    description: "AI assistant."
+  spotify: {
+    name: "Spotify",
+    endpoint: "/api/spotify"
   },
-  {
-    id: "generateprompt",
-    name: "Generate Prompt",
-    category: "AI",
-    endpoint: "/api/ai/generateprompt",
-    description: "Membuat prompt dengan AI."
+  soundcloud: {
+    name: "SoundCloud",
+    endpoint: "/api/soundcloud"
   },
-  {
-    id: "pollinations",
-    name: "Pollinations",
-    category: "AI",
-    endpoint: "/api/ai/pollinations",
-    description: "AI generation."
+  tiktokslide: {
+    name: "TikTok Slide",
+    endpoint: "/api/tiktokslide"
   },
-  {
-    id: "gpt4o",
-    name: "GPT-4o",
-    category: "AI",
-    endpoint: "/api/ai/gpt4o",
-    description: "AI assistant."
+  x: {
+    name: "X",
+    endpoint: "/api/x"
   },
-  {
-    id: "gptfree",
-    name: "GPT Free",
-    category: "AI",
-    endpoint: "/api/ai/gptfree",
-    description: "AI assistant."
+  ytmp3: {
+    name: "YouTube MP3",
+    endpoint: "/api/ytmp3"
   },
-  {
-    id: "iask",
-    name: "iAsk",
-    category: "AI",
-    endpoint: "/api/ai/iask",
-    description: "AI question answering."
-  },
-  {
-    id: "imagegen",
-    name: "ImageGen",
-    category: "AI",
-    endpoint: "/api/ai/imagegen",
-    description: "AI image generation."
-  },
-  {
-    id: "ustadz",
-    name: "Ustadz",
-    category: "AI",
-    endpoint: "/api/ai/ustadz",
-    description: "AI assistant."
-  },
-  {
-    id: "qwen",
-    name: "Qwen",
-    category: "AI",
-    endpoint: "/api/ai/qwen",
-    description: "AI assistant."
-  },
-  {
-    id: "text2img",
-    name: "Text2Img",
-    category: "AI",
-    endpoint: "/api/ai/text2img",
-    description: "Mengubah teks menjadi gambar."
+  ytplay: {
+    name: "YouTube",
+    endpoint: "/api/ytplay"
   }
-];
+};
 
-function App() {
-  const [selected, setSelected] = useState(AI_FEATURES[0]);
-  const [search, setSearch] = useState("");
-  const [prompt, setPrompt] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState("");
+function findLinks(value) {
+  const links = [];
 
-  const filteredFeatures = useMemo(() => {
-    const value = search.toLowerCase().trim();
+  function scan(data) {
+    if (!data) return;
 
-    if (!value) return AI_FEATURES;
+    if (typeof data === "string") {
+      const matches = data.match(
+        /https?:\/\/[^\s"'<>]+/gi
+      );
 
-    return AI_FEATURES.filter((item) =>
-      `${item.name} ${item.endpoint} ${item.description}`
-        .toLowerCase()
-        .includes(value)
-    );
-  }, [search]);
+      if (matches) {
+        matches.forEach((url) => {
+          if (!links.includes(url)) {
+            links.push(url);
+          }
+        });
+      }
 
-  function selectFeature(feature) {
-    setSelected(feature);
-    setResult(null);
-    setError("");
+      return;
+    }
+
+    if (Array.isArray(data)) {
+      data.forEach(scan);
+      return;
+    }
+
+    if (typeof data === "object") {
+      Object.values(data).forEach(scan);
+    }
   }
 
-  async function testAPI() {
-    if (!prompt.trim()) {
-      setError("Masukkan prompt terlebih dahulu.");
+  scan(value);
+
+  return links;
+}
+
+function getTitle(data, fallback) {
+  if (!data || typeof data !== "object") {
+    return fallback;
+  }
+
+  return (
+    data.title ||
+    data.name ||
+    data.caption ||
+    data.description ||
+    fallback
+  );
+}
+
+function ResultViewer({ data }) {
+  if (!data) return null;
+
+  const result =
+    data.result !== undefined
+      ? data.result
+      : data;
+
+  const links = findLinks(result);
+
+  const imageLinks = links.filter((url) =>
+    /\.(jpg|jpeg|png|webp|gif)(\?|$)/i.test(url)
+  );
+
+  const videoLinks = links.filter((url) =>
+    /\.(mp4|m3u8|webm|mov)(\?|$)/i.test(url)
+  );
+
+  const audioLinks = links.filter((url) =>
+    /\.(mp3|m4a|wav|aac|ogg)(\?|$)/i.test(url)
+  );
+
+  return (
+    <div className="result-card">
+
+      <div className="result-header">
+        <div>
+          <span className="result-label">
+            RESPONSE
+          </span>
+
+          <h2>
+            {getTitle(result, "Download berhasil")}
+          </h2>
+        </div>
+
+        <div
+          className={
+            data.status
+              ? "status success"
+              : "status error"
+          }
+        >
+          {data.status ? "SUCCESS" : "FAILED"}
+        </div>
+      </div>
+
+      {imageLinks.length > 0 && (
+        <div className="media-section">
+          <h3>Images</h3>
+
+          <div className="media-grid">
+            {imageLinks.map((url, index) => (
+              <div
+                className="media-item"
+                key={index}
+              >
+                <img
+                  src={url}
+                  alt={`Result ${index + 1}`}
+                />
+
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="download-btn"
+                >
+                  Download
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {videoLinks.length > 0 && (
+        <div className="media-section">
+          <h3>Videos</h3>
+
+          <div className="media-list">
+            {videoLinks.map((url, index) => (
+              <div
+                className="download-item"
+                key={index}
+              >
+                <div>
+                  <strong>
+                    Video {index + 1}
+                  </strong>
+
+                  <span>
+                    MP4 / Video
+                  </span>
+                </div>
+
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="download-btn"
+                >
+                  Download
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {audioLinks.length > 0 && (
+        <div className="media-section">
+          <h3>Audio</h3>
+
+          <div className="media-list">
+            {audioLinks.map((url, index) => (
+              <div
+                className="download-item"
+                key={index}
+              >
+                <div>
+                  <strong>
+                    Audio {index + 1}
+                  </strong>
+
+                  <span>
+                    MP3 / Audio
+                  </span>
+                </div>
+
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="download-btn"
+                >
+                  Download
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <details className="raw-response">
+        <summary>
+          Lihat Response JSON
+        </summary>
+
+        <pre>
+          {JSON.stringify(data, null, 2)}
+        </pre>
+      </details>
+    </div>
+  );
+}
+
+export default function App() {
+  const [selected, setSelected] =
+    useState("tiktok");
+
+  const [url, setUrl] = useState("");
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
+
+  const [response, setResponse] =
+    useState(null);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!url.trim()) {
+      setError("Masukkan URL terlebih dahulu.");
       return;
     }
 
     setLoading(true);
     setError("");
-    setResult(null);
+    setResponse(null);
 
     try {
-      const url = new URL(
-        `${API_BASE}${selected.endpoint}`,
-        window.location.origin
-      );
+      const api =
+        DOWNLOAD_APIS[selected];
 
-      url.searchParams.set("prompt", prompt.trim());
+      const requestUrl =
+        `${API_BASE}${api.endpoint}?url=${encodeURIComponent(
+          url.trim()
+        )}`;
 
-      const response = await fetch(url.toString(), {
-        method: "GET",
-        headers: {
-          Accept: "application/json"
-        }
-      });
+      const res = await fetch(requestUrl);
 
-      const text = await response.text();
+      const text = await res.text();
 
       let data;
 
@@ -197,197 +320,150 @@ function App() {
         data = JSON.parse(text);
       } catch {
         throw new Error(
-          `Server tidak mengirim JSON. Response: ${text.slice(0, 300)}`
+          "Server tidak mengirim JSON."
         );
       }
 
-      if (!response.ok) {
+      if (!res.ok || data.status === false) {
         throw new Error(
-          data?.message ||
-            data?.error ||
-            `Request gagal (${response.status})`
+          data.message ||
+          "Gagal memproses URL."
         );
       }
 
-      setResult(data);
+      setResponse(data);
+
     } catch (err) {
-      setError(err.message || "Terjadi kesalahan.");
+      setError(
+        err.message ||
+        "Terjadi kesalahan."
+      );
     } finally {
       setLoading(false);
     }
   }
 
-  function copyEndpoint() {
-    navigator.clipboard?.writeText(selected.endpoint);
-  }
-
   return (
-    <div className="app">
-      <header className="topbar">
-        <div className="brand">
-          <div className="brand-logo">D</div>
+    <main className="app">
 
-          <div>
-            <div className="brand-name">DINSTORE</div>
-            <div className="brand-subtitle">AI API PLATFORM</div>
-          </div>
+      <section className="hero">
+
+        <div className="badge">
+          DINSTORE API
         </div>
 
-        <div className="top-status">
-          <span className="status-dot" />
-          API ONLINE
+        <h1>
+          Download Anything.
+          <br />
+          <span>Simple & Fast.</span>
+        </h1>
+
+        <p>
+          Masukkan link dan pilih layanan
+          yang ingin digunakan.
+        </p>
+
+      </section>
+
+      <section className="panel">
+
+        <div className="tabs">
+          {Object.entries(
+            DOWNLOAD_APIS
+          ).map(([id, item]) => (
+            <button
+              key={id}
+              type="button"
+              className={
+                selected === id
+                  ? "tab active"
+                  : "tab"
+              }
+              onClick={() => {
+                setSelected(id);
+                setResponse(null);
+                setError("");
+              }}
+            >
+              {item.name}
+            </button>
+          ))}
         </div>
-      </header>
 
-      <main className="layout">
-        <aside className="sidebar">
-          <div className="sidebar-heading">
-            <span>AI SERVICES</span>
-            <span className="count">{AI_FEATURES.length}</span>
-          </div>
+        <form
+          className="download-form"
+          onSubmit={handleSubmit}
+        >
 
-          <div className="search-box">
-            <span>⌕</span>
+          <div className="input-wrap">
+
+            <span className="input-icon">
+              🔗
+            </span>
 
             <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari fitur..."
-            />
-          </div>
-
-          <div className="feature-list">
-            {filteredFeatures.map((feature) => (
-              <button
-                key={feature.id}
-                className={`feature-item ${
-                  selected.id === feature.id ? "active" : ""
-                }`}
-                onClick={() => selectFeature(feature)}
-              >
-                <span className="feature-icon">✦</span>
-
-                <span className="feature-info">
-                  <strong>{feature.name}</strong>
-                  <small>{feature.endpoint}</small>
-                </span>
-              </button>
-            ))}
-          </div>
-        </aside>
-
-        <section className="content">
-          <div className="hero">
-            <div className="eyebrow">DINSTORE / AI</div>
-
-            <h1>
-              AI API
-              <span> Platform</span>
-            </h1>
-
-            <p>
-              Gunakan berbagai layanan AI melalui satu platform API
-              DINSTORE.
-            </p>
-          </div>
-
-          <div className="endpoint-card">
-            <div className="endpoint-header">
-              <div>
-                <div className="label">SELECTED ENDPOINT</div>
-                <h2>{selected.name}</h2>
-              </div>
-
-              <button
-                className="copy-button"
-                onClick={copyEndpoint}
-                title="Copy endpoint"
-              >
-                Copy
-              </button>
-            </div>
-
-            <div className="endpoint-url">
-              <span className="method">GET</span>
-              <code>{selected.endpoint}</code>
-            </div>
-
-            <p className="description">
-              {selected.description}
-            </p>
-          </div>
-
-          <div className="tester-card">
-            <div className="card-title">
-              <div>
-                <span className="label">API TESTER</span>
-                <h2>Test {selected.name}</h2>
-              </div>
-
-              <span className="live-badge">LIVE</span>
-            </div>
-
-            <label htmlFor="prompt">Prompt</label>
-
-            <textarea
-              id="prompt"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder={`Tulis prompt untuk ${selected.name}...`}
+              type="url"
+              value={url}
+              onChange={(e) =>
+                setUrl(e.target.value)
+              }
+              placeholder={
+                `Masukkan link ${DOWNLOAD_APIS[selected].name}...`
+              }
             />
 
-            <div className="action-row">
+            {url && (
               <button
-                className="send-button"
-                onClick={testAPI}
-                disabled={loading}
+                type="button"
+                className="clear-btn"
+                onClick={() => setUrl("")}
               >
-                {loading ? "Mengirim..." : "Kirim Request"}
-                <span>→</span>
+                ×
               </button>
-
-              <button
-                className="clear-button"
-                onClick={() => {
-                  setPrompt("");
-                  setResult(null);
-                  setError("");
-                }}
-              >
-                Clear
-              </button>
-            </div>
-
-            {error && (
-              <div className="error-box">
-                <strong>Request Error</strong>
-                <pre>{error}</pre>
-              </div>
             )}
 
-            {result && (
-              <div className="result-box">
-                <div className="result-header">
-                  <span>RESPONSE</span>
-                  <span className="success-badge">SUCCESS</span>
-                </div>
-
-                <pre>
-                  {JSON.stringify(result, null, 2)}
-                </pre>
-              </div>
-            )}
           </div>
 
-          <footer className="footer">
-            <span>DINSTORE AI</span>
-            <span>•</span>
-            <span>API Platform</span>
-          </footer>
-        </section>
-      </main>
-    </div>
+          <button
+            className="submit-btn"
+            disabled={loading}
+          >
+            {loading
+              ? "Memproses..."
+              : `Download ${DOWNLOAD_APIS[selected].name}`}
+          </button>
+
+        </form>
+
+        {error && (
+          <div className="error-box">
+            <strong>Gagal</strong>
+            <span>{error}</span>
+          </div>
+        )}
+
+        {loading && (
+          <div className="loading-box">
+            <div className="spinner" />
+            <span>
+              Mengambil data dari API...
+            </span>
+          </div>
+        )}
+
+        {response && !loading && (
+          <ResultViewer
+            data={response}
+          />
+        )}
+
+      </section>
+
+      <footer>
+        <span>© {new Date().getFullYear()} DINSTORE</span>
+        <span>API Downloader</span>
+      </footer>
+
+    </main>
   );
 }
-
-export default App;
