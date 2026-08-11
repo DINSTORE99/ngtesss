@@ -27,7 +27,6 @@ export default async function handler(req, res) {
     target.searchParams.set("url", url);
 
     const response = await fetch(target.toString());
-
     const text = await response.text();
 
     let data;
@@ -40,32 +39,19 @@ export default async function handler(req, res) {
         source: "CapCut — DINSTORE",
         status: false,
         message: "Provider tidak mengirim JSON",
-        response: text.slice(0, 500)
+        response: text
       });
     }
 
-    // Provider gagal
-    if (data.status === false) {
-      return res.status(200).json({
-        creator: "DINSTORE",
-        source: "CapCut — DINSTORE",
-        status: false,
-        message: data.message || data.result?.message || "Gagal memproses URL",
-        result: data.result ?? null
-      });
-    }
-
-    // Provider berhasil
     return res.status(200).json({
       creator: "DINSTORE",
       source: "CapCut — DINSTORE",
-      status: true,
-      result: data.result ?? data
+      status: data.status === true,
+      message: data.message ?? data.result?.message ?? null,
+      result: data.result ?? null
     });
 
   } catch (error) {
-    console.error(error);
-
     return res.status(500).json({
       creator: "DINSTORE",
       source: "CapCut — DINSTORE",
