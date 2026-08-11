@@ -8,14 +8,14 @@ export default async function handler(req, res) {
     });
   }
 
-  const { prompt } = req.query;
+  const { q } = req.query;
 
-  if (!prompt) {
+  if (!q) {
     return res.status(400).json({
       creator: "DINSTORE",
       source: "AI — DINSTORE",
       status: false,
-      message: "Parameter prompt wajib diisi"
+      message: "Parameter q wajib diisi"
     });
   }
 
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       "https://api.azbry.com/api/ai/aiko"
     );
 
-    target.searchParams.set("prompt", prompt);
+    target.searchParams.set("q", q);
 
     const response = await fetch(target.toString());
     const text = await response.text();
