@@ -3,18 +3,15 @@ export default function App() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#111",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        gap: "10px",
-        fontFamily: "Arial"
+        background: "#08080b",
+        color: "#ffffff",
+        padding: "40px",
+        boxSizing: "border-box",
+        fontFamily: "Arial, sans-serif"
       }}
     >
       <h1>DINSTORE AI</h1>
-      <p>Website berhasil tampil.</p>
+      <p>React berhasil berjalan.</p>
     </div>
   );
 }
