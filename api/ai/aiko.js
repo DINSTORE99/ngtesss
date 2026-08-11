@@ -27,6 +27,7 @@ export default async function handler(req, res) {
     target.searchParams.set("q", q);
 
     const response = await fetch(target.toString());
+
     const text = await response.text();
 
     let data;
@@ -35,15 +36,15 @@ export default async function handler(req, res) {
       data = JSON.parse(text);
     } catch {
       data = {
-        data: text
+        response: text
       };
     }
 
     return res.status(response.status).json({
       creator: "DINSTORE",
       source: "AI — DINSTORE",
-      status: response.ok,
-      result: data.result || data
+      status: response.ok && data.status !== false,
+      response: data.response ?? data
     });
 
   } catch (error) {
