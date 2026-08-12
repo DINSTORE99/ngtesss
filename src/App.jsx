@@ -39,18 +39,36 @@ const API_CATEGORIES = [
         ],
       },
       {
-        name: "Lyrics Generator",
-        path: "/api/ai/lyricsgen",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "Buat lirik lagu tentang persahabatan",
-            required: true,
-          },
-        ],
-      },
+  name: "Lyrics Generator",
+  path: "/api/ai/lyricsgen",
+  method: "GET",
+  params: [
+    {
+      name: "theme",
+      label: "Theme",
+      placeholder: "Contoh: cinta, persahabatan, perpisahan",
+      required: true,
+    },
+    {
+      name: "genre",
+      label: "Genre",
+      placeholder: "Contoh: Pop, Rock, Hip Hop",
+      required: false,
+    },
+    {
+      name: "emotion",
+      label: "Emotion",
+      placeholder: "Contoh: Sedih, Bahagia, Galau",
+      required: false,
+    },
+    {
+      name: "lang",
+      label: "Lang",
+      placeholder: "Contoh: Indonesia",
+      required: false,
+    },
+  ],
+},
       {
         name: "AI4Chat",
         path: "/api/ai/ai4chat",
