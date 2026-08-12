@@ -13,7 +13,7 @@ const API_CATEGORIES = [
     name: "AI",
     icon: "✦",
     color: "mint",
-    path: "/docs/ai",
+    path: "/api/ai",
     endpoints: [
       {
         name: "AI Aiko",
@@ -91,7 +91,7 @@ const API_CATEGORIES = [
     name: "ADMIN",
     icon: "◇",
     color: "pink",
-    path: "/docs/admin",
+    path: "/api/admin",
     endpoints: [
       {
         name: "Admin Status",
@@ -117,7 +117,7 @@ const API_CATEGORIES = [
     name: "CACHE",
     icon: "▣",
     color: "blue",
-    path: "/docs/cache",
+    path: "/api/cache",
     endpoints: [
       {
         name: "Cache Get",
@@ -143,7 +143,7 @@ const API_CATEGORIES = [
     name: "DOWNLOAD",
     icon: "⇩",
     color: "purple",
-    path: "/docs/download",
+    path: "/api/download",
     endpoints: [
       {
         name: "TikTok Downloader",
@@ -225,7 +225,7 @@ const API_CATEGORIES = [
     name: "FUN",
     icon: "🎮",
     color: "pink",
-    path: "/docs/fun",
+    path: "/api/fun",
     endpoints: [
       {
         name: "Fun",
@@ -244,7 +244,7 @@ const API_CATEGORIES = [
     name: "LEADERBOARD",
     icon: "🏆",
     color: "orange",
-    path: "/docs/leaderboard",
+    path: "/api/leaderboard",
     endpoints: [
       {
         name: "Leaderboard",
@@ -263,7 +263,7 @@ const API_CATEGORIES = [
     name: "LIBRARY",
     icon: "▤",
     color: "orange",
-    path: "/docs/library",
+    path: "/api/library",
     endpoints: [
       {
         name: "Library",
@@ -282,7 +282,7 @@ const API_CATEGORIES = [
     name: "MAKER",
     icon: "✿",
     color: "pink",
-    path: "/docs/maker",
+    path: "/api/maker",
     endpoints: [
       {
         name: "Maker",
@@ -301,7 +301,7 @@ const API_CATEGORIES = [
     name: "NEWS",
     icon: "▤",
     color: "blue",
-    path: "/docs/news",
+    path: "/api/news",
     endpoints: [
       {
         name: "News",
@@ -320,7 +320,7 @@ const API_CATEGORIES = [
     name: "RANDOM",
     icon: "◈",
     color: "purple",
-    path: "/docs/random",
+    path: "/api/random",
     endpoints: [
       {
         name: "Random",
@@ -339,7 +339,7 @@ const API_CATEGORIES = [
     name: "SEARCH",
     icon: "⌕",
     color: "mint",
-    path: "/docs/search",
+    path: "/api/search",
     endpoints: [
       {
         name: "Search",
@@ -365,7 +365,7 @@ const API_CATEGORIES = [
     name: "STALK",
     icon: "◉",
     color: "purple",
-    path: "/docs/stalk",
+    path: "/api/stalk",
     endpoints: [
       {
         name: "Stalk",
@@ -391,7 +391,7 @@ const API_CATEGORIES = [
     name: "TOOLS",
     icon: "⌘",
     color: "orange",
-    path: "/docs/tools",
+    path: "/api/tools",
     endpoints: [
       {
         name: "Domain Info",
