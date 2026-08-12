@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import "./style.css";
+import "./style.cs";
 
 /*
 |--------------------------------------------------------------------------
