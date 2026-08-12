@@ -739,6 +739,20 @@ const API_CATEGORIES = [
         ],
       },
       {
+  name: "Domain Info",
+  path: "/api/tools/domaininfo",
+  method: "GET",
+  description: "Mengecek informasi domain menggunakan RDAP.",
+  params: [
+    {
+      name: "domain",
+      label: "Domain",
+      placeholder: "dinn.my.id",
+      required: true,
+    },
+  ],
+},
+      {
         name: "QRIS Generator",
         path: "/api/tools/qrisgen",
         method: "GET",
