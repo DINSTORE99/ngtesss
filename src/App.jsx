@@ -148,7 +148,7 @@ const API_CATEGORIES = [
       {
         name: "TikTok Downloader",
         method: "GET",
-        path: "/api/tiktok",
+        path: "/api/download/tiktok",
         description: "Download video TikTok",
         params: [
           {
