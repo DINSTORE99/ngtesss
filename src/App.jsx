@@ -1,19 +1,23 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./style.css";
 
-const API_BASE = "https://api.azbry.com";
+/* =========================================================
+   DATA API
+   ========================================================= */
 
-const categories = [
+const API_CATEGORIES = [
   {
-    id: "ai",
     name: "AI",
     icon: "✦",
-    color: "purple",
+    count: 3,
+    path: "/docs/ai",
+    color: "mint",
     endpoints: [
       {
-        name: "Aiko AI",
-        path: "/api/ai/aiko",
+        name: "AI Aiko",
         method: "GET",
+        path: "/api/ai/aiko",
+        description: "AI chat assistant",
         params: [
           {
             name: "q",
@@ -29,23 +33,12 @@ const categories = [
           },
         ],
       },
-      {
-        name: "AI4Chat",
-        path: "/api/ai/ai4chat",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Halo",
-            required: true,
-          },
-        ],
-      },
+
       {
         name: "AI Lyrics Generator",
-        path: "/api/ai/lyricsgen",
         method: "GET",
+        path: "/api/ai/lyricsgen",
+        description: "Generate lyrics menggunakan AI",
         params: [
           {
             name: "theme",
@@ -62,7 +55,7 @@ const categories = [
           {
             name: "emotion",
             label: "Emotion",
-            placeholder: "bahagia",
+            placeholder: "happy",
             required: false,
           },
           {
@@ -73,238 +66,12 @@ const categories = [
           },
         ],
       },
-    ],
-  },
 
-  {
-    id: "admin",
-    name: "ADMIN",
-    icon: "◇",
-    color: "red",
-    endpoints: [
-      {
-        name: "API Status",
-        path: "/api/health",
-        method: "GET",
-        params: [],
-      },
-      {
-        name: "Server Information",
-        path: "/api/info",
-        method: "GET",
-        params: [],
-      },
-    ],
-  },
-
-  {
-    id: "cache",
-    name: "CACHE",
-    icon: "▣",
-    color: "cyan",
-    endpoints: [
-      {
-        name: "Cache",
-        path: "/api/cache",
-        method: "GET",
-        params: [],
-      },
-      {
-        name: "Clear Cache",
-        path: "/api/cache/clear",
-        method: "GET",
-        params: [],
-      },
-    ],
-  },
-
-  {
-    id: "download",
-    name: "DOWNLOAD",
-    icon: "⇩",
-    color: "blue",
-    endpoints: [
-      {
-        name: "TikTok Downloader",
-        path: "/api/tiktok",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "https://www.tiktok.com/...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Instagram Downloader",
-        path: "/api/instagram",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "https://www.instagram.com/...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "CapCut Downloader",
-        path: "/api/d/capcut",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "https://www.capcut.com/...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Apple Music Downloader",
-        path: "/api/download/applemusic",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "Apple Music URL",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Douyin Downloader",
-        path: "/api/downloader/douyin",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "Douyin URL",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Facebook Downloader",
-        path: "/api/download/facebook",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "Facebook URL",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "MediaFire Downloader",
-        path: "/api/download/mediafire",
-        method: "GET",
-        params: [
-          {
-            name: "url",
-            label: "URL",
-            placeholder: "MediaFire URL",
-            required: true,
-          },
-        ],
-      },
-    ],
-  },
-
-  {
-    id: "fun",
-    name: "FUN",
-    icon: "●",
-    color: "pink",
-    endpoints: [],
-  },
-
-  {
-    id: "leaderboard",
-    name: "LEADERBOARD",
-    icon: "♛",
-    color: "yellow",
-    endpoints: [],
-  },
-
-  {
-    id: "library",
-    name: "LIBRARY",
-    icon: "▤",
-    color: "orange",
-    endpoints: [],
-  },
-
-  {
-    id: "maker",
-    name: "MAKER",
-    icon: "●",
-    color: "pink",
-    endpoints: [],
-  },
-
-  {
-    id: "news",
-    name: "NEWS",
-    icon: "▤",
-    color: "cyan",
-    endpoints: [],
-  },
-
-  {
-    id: "random",
-    name: "RANDOM",
-    icon: "✣",
-    color: "purple",
-    endpoints: [],
-  },
-
-  {
-    id: "search",
-    name: "SEARCH",
-    icon: "⌕",
-    color: "green",
-    endpoints: [],
-  },
-
-  {
-    id: "stalk",
-    name: "STALK",
-    icon: "◉",
-    color: "violet",
-    endpoints: [],
-  },
-
-  {
-    id: "tools",
-    name: "TOOLS",
-    icon: "⌕",
-    color: "orange",
-    endpoints: [
-      {
-        name: "Domain Information",
-        path: "/api/tools/domaininfo",
-        method: "GET",
-        params: [
-          {
-            name: "domain",
-            label: "Domain",
-            placeholder: "dinns.my.id",
-            required: true,
-          },
-        ],
-      },
       {
         name: "AI Coder",
-        path: "/api/tools/aicoder",
         method: "GET",
+        path: "/api/tools/aicoder",
+        description: "Generate kode menggunakan AI",
         params: [
           {
             name: "prompt",
@@ -316,337 +83,308 @@ const categories = [
       },
     ],
   },
+
+  {
+    name: "ADMIN",
+    icon: "◇",
+    count: 2,
+    path: "/docs/admin",
+    color: "pink",
+    endpoints: [
+      {
+        name: "Admin Status",
+        method: "GET",
+        path: "/api/admin/status",
+        description: "Check admin status",
+        params: [],
+      },
+
+      {
+        name: "Admin Info",
+        method: "GET",
+        path: "/api/admin/info",
+        description: "Get information",
+        params: [],
+      },
+    ],
+  },
+
+  {
+    name: "CACHE",
+    icon: "▣",
+    count: 2,
+    path: "/docs/cache",
+    color: "blue",
+    endpoints: [
+      {
+        name: "Cache Get",
+        method: "GET",
+        path: "/api/cache/get",
+        description: "Get cached data",
+        params: [],
+      },
+
+      {
+        name: "Cache Clear",
+        method: "GET",
+        path: "/api/cache/clear",
+        description: "Clear cache",
+        params: [],
+      },
+    ],
+  },
+
+  {
+    name: "DOWNLOAD",
+    icon: "⇩",
+    count: 5,
+    path: "/docs/download",
+    color: "purple",
+    endpoints: [
+      {
+        name: "TikTok Downloader",
+        method: "GET",
+        path: "/api/tiktok",
+        description: "Download video TikTok",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://vt.tiktok.com/...",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "Instagram Downloader",
+        method: "GET",
+        path: "/api/instagram",
+        description: "Download media Instagram",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://instagram.com/...",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "CapCut Downloader",
+        method: "GET",
+        path: "/api/d/capcut",
+        description: "Download CapCut",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://www.capcut.com/...",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "Facebook Downloader",
+        method: "GET",
+        path: "/api/download/facebook",
+        description: "Download Facebook media",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://facebook.com/...",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "MediaFire Downloader",
+        method: "GET",
+        path: "/api/download/mediafire",
+        description: "Download MediaFire",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://mediafire.com/...",
+            required: true,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: "TOOLS",
+    icon: "⌘",
+    count: 3,
+    path: "/docs/tools",
+    color: "orange",
+    endpoints: [
+      {
+        name: "Domain Info",
+        method: "GET",
+        path: "/api/tools/domaininfo",
+        description: "Check information domain",
+        params: [
+          {
+            name: "domain",
+            label: "Domain",
+            placeholder: "dinns.my.id",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "QR Generator",
+        method: "GET",
+        path: "/api/tools/qr",
+        description: "Generate QR code",
+        params: [
+          {
+            name: "text",
+            label: "Text",
+            placeholder: "Hello World",
+            required: true,
+          },
+        ],
+      },
+
+      {
+        name: "Short URL",
+        method: "GET",
+        path: "/api/tools/shorturl",
+        description: "Shorten URL",
+        params: [
+          {
+            name: "url",
+            label: "URL",
+            placeholder: "https://example.com",
+            required: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
 
-function App() {
+/* =========================================================
+   APP
+   ========================================================= */
+
+export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [openCategory, setOpenCategory] = useState(null);
-  const [selectedEndpoint, setSelectedEndpoint] = useState(null);
-  const [testerOpen, setTesterOpen] = useState(false);
 
-  const [params, setParams] = useState({});
-  const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [responseTime, setResponseTime] = useState(null);
-
-  const totalEndpoints = categories.reduce(
+  const totalEndpoints = API_CATEGORIES.reduce(
     (total, category) => total + category.endpoints.length,
     0
   );
 
   const filteredCategories = useMemo(() => {
-    const value = search.toLowerCase().trim();
+    const keyword = search.trim().toLowerCase();
 
-    if (!value) return categories;
+    if (!keyword) return API_CATEGORIES;
 
-    return categories
-      .map((category) => ({
-        ...category,
-        endpoints: category.endpoints.filter(
-          (endpoint) =>
-            category.name.toLowerCase().includes(value) ||
-            endpoint.name.toLowerCase().includes(value) ||
-            endpoint.path.toLowerCase().includes(value)
-        ),
-      }))
-      .filter(
-        (category) =>
-          category.name.toLowerCase().includes(value) ||
-          category.endpoints.length > 0
-      );
+    return API_CATEGORIES
+      .map((category) => {
+        const categoryMatch = category.name
+          .toLowerCase()
+          .includes(keyword);
+
+        const endpoints = category.endpoints.filter((endpoint) => {
+          return (
+            endpoint.name.toLowerCase().includes(keyword) ||
+            endpoint.path.toLowerCase().includes(keyword) ||
+            endpoint.description.toLowerCase().includes(keyword)
+          );
+        });
+
+        if (categoryMatch) {
+          return category;
+        }
+
+        if (endpoints.length > 0) {
+          return {
+            ...category,
+            endpoints,
+            count: endpoints.length,
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
   }, [search]);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  const scrollToCategory = (id) => {
+  const scrollToCategory = (categoryName) => {
     setMenuOpen(false);
 
     setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const element = document.getElementById(
+        `category-${categoryName.toLowerCase()}`
+      );
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     }, 100);
-  };
-
-  const openTester = (category, endpoint) => {
-    setSelectedEndpoint({ category, endpoint });
-
-    const initial = {};
-
-    endpoint.params.forEach((param) => {
-      initial[param.name] = "";
-    });
-
-    setParams(initial);
-    setResponse(null);
-    setResponseTime(null);
-    setTesterOpen(true);
-  };
-
-  const buildUrl = () => {
-    if (!selectedEndpoint) return "";
-
-    const { endpoint } = selectedEndpoint;
-
-    const query = new URLSearchParams();
-
-    endpoint.params.forEach((param) => {
-      const value = params[param.name];
-
-      if (value !== undefined && value !== "") {
-        query.append(param.name, value);
-      }
-    });
-
-    const queryString = query.toString();
-
-    return `${API_BASE}${endpoint.path}${
-      queryString ? `?${queryString}` : ""
-    }`;
-  };
-
-  const executeRequest = async () => {
-    if (!selectedEndpoint) return;
-
-    const requiredMissing = selectedEndpoint.endpoint.params.find(
-      (param) => param.required && !params[param.name]
-    );
-
-    if (requiredMissing) {
-      setResponse({
-        error: `Parameter "${requiredMissing.name}" wajib diisi.`,
-      });
-      return;
-    }
-
-    const url = buildUrl();
-    const started = performance.now();
-
-    setLoading(true);
-    setResponse(null);
-
-    try {
-      const res = await fetch(url);
-      const elapsed = Math.round(performance.now() - started);
-
-      setResponseTime(elapsed);
-
-      const contentType = res.headers.get("content-type") || "";
-
-      if (contentType.includes("application/json")) {
-        const data = await res.json();
-
-        setResponse({
-          statusCode: res.status,
-          data,
-        });
-      } else {
-        const text = await res.text();
-
-        setResponse({
-          statusCode: res.status,
-          data: text,
-        });
-      }
-    } catch (error) {
-      setResponse({
-        statusCode: "ERROR",
-        error: error.message,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const copyUrl = async () => {
-    const url = buildUrl();
-
-    if (!url) return;
-
-    await navigator.clipboard.writeText(url);
   };
 
   return (
     <div className="app">
-      <div className="particles">
-        {Array.from({ length: 45 }).map((_, index) => (
-          <span
-            key={index}
-            className="particle"
-            style={{
-              "--x": `${Math.random() * 100}%`,
-              "--y": `${Math.random() * 100}%`,
-              "--delay": `${Math.random() * 8}s`,
-              "--duration": `${5 + Math.random() * 8}s`,
-            }}
-          />
-        ))}
-      </div>
 
-      <div className="grid-background" />
+      {/* =========================================
+          HEADER
+      ========================================= */}
 
-      {/* HEADER */}
-<header className="header">
-  <div className="header-inner">
+      <header className="header">
+        <div className="header-inner">
 
-    <button
-      className="menu-button"
-      onClick={() => setMenuOpen(true)}
-      aria-label="Open navigation"
-    >
-      <span />
-      <span />
-      <span />
-    </button>
+          <button
+            className={`menu-button ${menuOpen ? "active" : ""}`}
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
-  </div>
-</header>
+        </div>
+      </header>
 
-      <main>
-        <section className="hero">
-          <div className="status">
-            <span className="status-dot" />
-            API SYSTEM ONLINE
-          </div>
 
-          <h1>
-            DINSTORE <em>API</em>
-          </h1>
-
-          <p>
-            API downloader, AI, tools, search dan utilities
-            <br />
-            untuk kebutuhan aplikasi kamu.
-          </p>
-
-          <div className="stats">
-            <div className="stat-card">
-              <strong>{categories.length}</strong>
-              <span>CATEGORIES</span>
-            </div>
-
-            <div className="stat-card">
-              <strong>{totalEndpoints}</strong>
-              <span>ENDPOINTS</span>
-            </div>
-
-            <div className="stat-card">
-              <strong>JSON</strong>
-              <span>RESPONSE</span>
-            </div>
-          </div>
-
-          <div className="search-box">
-            <span>⌕</span>
-
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search endpoint atau category..."
-            />
-
-            {search && (
-              <button onClick={() => setSearch("")}>×</button>
-            )}
-          </div>
-        </section>
-
-        {/* CATEGORIES */}
-
-        <section className="categories">
-          {filteredCategories.map((category) => {
-            const isOpen = openCategory === category.id;
-
-            return (
-              <article
-                className={`category-card ${
-                  isOpen ? "category-open" : ""
-                }`}
-                id={category.id}
-                key={category.id}
-              >
-                <button
-                  className="category-header"
-                  onClick={() =>
-                    setOpenCategory(isOpen ? null : category.id)
-                  }
-                >
-                  <div className={`category-icon ${category.color}`}>
-                    {category.icon}
-                  </div>
-
-                  <div className="category-info">
-                    <h2>{category.name}</h2>
-
-                    <span>
-                      {category.endpoints.length} ENDPOINT
-                      {category.endpoints.length !== 1 ? "S" : ""}
-                    </span>
-                  </div>
-
-                  <span className={`arrow ${isOpen ? "rotate" : ""}`}>
-                   ⌄
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div className="endpoint-list">
-                    {category.endpoints.length === 0 ? (
-                      <div className="empty-category">
-                        <span>✦</span>
-                        Endpoint akan segera tersedia.
-                      </div>
-                    ) : (
-                      category.endpoints.map((endpoint) => (
-                        <button
-                          className="endpoint-item"
-                          key={endpoint.path}
-                          onClick={() =>
-                            openTester(category, endpoint)
-                          }
-                        >
-                          <span className="method">
-                            {endpoint.method}
-                          </span>
-
-                          <div className="endpoint-info">
-                            <strong>{endpoint.name}</strong>
-                            <code>{endpoint.path}</code>
-                          </div>
-
-                          <span className="endpoint-arrow">
-                            →
-                          </span>
-                        </button>
-                      ))
-                    )}
-                  </div>
-                )}
-              </article>
-            );
-          })}
-        </section>
-      </main>
-
-      {/* NAVIGATION DRAWER */}
+      {/* =========================================
+          NAVIGATION DRAWER
+      ========================================= */}
 
       <div
-        className={`drawer-overlay ${menuOpen ? "show" : ""}`}
+        className={`nav-overlay ${menuOpen ? "show" : ""}`}
         onClick={() => setMenuOpen(false)}
       />
 
-      <aside className={`drawer ${menuOpen ? "open" : ""}`}>
-        <div className="drawer-header">
+      <aside className={`side-nav ${menuOpen ? "open" : ""}`}>
+
+        <div className="side-nav-header">
+
           <div>
-            <span>DINSTORE</span>
-            <strong>NAVIGATION</strong>
+            <span className="nav-label">
+              NAVIGATION
+            </span>
+
+            <h2>
+              DINSTORE API
+            </h2>
           </div>
 
           <button
@@ -655,10 +393,14 @@ function App() {
           >
             ×
           </button>
+
         </div>
 
-        <div className="drawer-home">
+
+        <div className="nav-items">
+
           <button
+            className="nav-item home"
             onClick={() => {
               setMenuOpen(false);
 
@@ -669,138 +411,432 @@ function App() {
             }}
           >
             <span>⌂</span>
-            <div>
-              <strong>HOME</strong>
-              <small>Documentation overview</small>
-            </div>
+            <b>HOME</b>
           </button>
-        </div>
 
-        <div className="drawer-label">CATEGORIES</div>
 
-        <nav className="drawer-nav">
-          {categories.map((category) => (
+          {API_CATEGORIES.map((category, index) => (
             <button
-              key={category.id}
-              onClick={() => scrollToCategory(category.id)}
+              key={category.name}
+              className="nav-item"
+              onClick={() =>
+                scrollToCategory(category.name)
+              }
             >
-              <span className={`drawer-icon ${category.color}`}>
+              <span>
                 {category.icon}
               </span>
 
-              <span>{category.name}</span>
+              <b>
+                {category.name}
+              </b>
 
-              <small>{category.endpoints.length}</small>
+              <small>
+                {String(index + 1).padStart(2, "0")}
+              </small>
             </button>
           ))}
-        </nav>
+
+        </div>
+
       </aside>
 
-      {/* API TESTER */}
 
-      {testerOpen && selectedEndpoint && (
-        <div className="tester-overlay">
-          <div className="tester">
-            <div className="tester-header">
-              <div>
-                <span className="tester-category">
-                  {selectedEndpoint.category.name}
-                </span>
+      {/* =========================================
+          MAIN
+      ========================================= */}
 
-                <h2>{selectedEndpoint.endpoint.name}</h2>
-              </div>
+      <main className="main">
 
+        {/* HERO */}
+
+        <section className="hero">
+
+          <div className="terminal-badge">
+            <span />
+            TERMINAL ACTIVE
+          </div>
+
+
+          <div className="hero-title">
+
+            <h1>
+              ZEL API
+            </h1>
+
+            <span>
+              3.0.0
+            </span>
+
+          </div>
+
+
+          <p className="hero-description">
+            A comprehensive and user friendly API
+            solution for modern applications.
+          </p>
+
+
+          {/* STATS */}
+
+          <div className="stats">
+
+            <div className="stat">
+              <span>
+                CATEGORIES
+              </span>
+
+              <strong>
+                {API_CATEGORIES.length}
+              </strong>
+            </div>
+
+
+            <div className="stat">
+              <span>
+                ENDPOINTS
+              </span>
+
+              <strong className="mint">
+                {totalEndpoints}
+              </strong>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* SEARCH */}
+
+        <section className="search-section">
+
+          <div className="search-box">
+
+            <span className="search-icon">
+              ⌕
+            </span>
+
+            <input
+              type="text"
+              value={search}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
+              placeholder="Search endpoint atau category..."
+            />
+
+            {search && (
               <button
-                className="tester-close"
-                onClick={() => setTesterOpen(false)}
+                className="clear-search"
+                onClick={() => setSearch("")}
               >
                 ×
               </button>
-            </div>
-
-            <div className="endpoint-url">
-              <span className="get-badge">
-                {selectedEndpoint.endpoint.method}
-              </span>
-
-              <code>{selectedEndpoint.endpoint.path}</code>
-            </div>
-
-            {selectedEndpoint.endpoint.params.length > 0 && (
-              <div className="request-section">
-                <h3>REQUEST PARAMETERS</h3>
-
-                {selectedEndpoint.endpoint.params.map((param) => (
-                  <div className="param" key={param.name}>
-                    <div className="param-label">
-                      <label>{param.label}</label>
-
-                      {param.required && (
-                        <span>REQ</span>
-                      )}
-                    </div>
-
-                    <input
-                      value={params[param.name] || ""}
-                      onChange={(e) =>
-                        setParams((prev) => ({
-                          ...prev,
-                          [param.name]: e.target.value,
-                        }))
-                      }
-                      placeholder={param.placeholder}
-                    />
-                  </div>
-                ))}
-              </div>
             )}
 
-            <button
-              className="execute-button"
-              onClick={executeRequest}
-              disabled={loading}
-            >
-              {loading ? "EXECUTING..." : "EXECUTE REQUEST"}
-            </button>
+          </div>
 
-            <div className="generated-url">
-              <code>{buildUrl()}</code>
+        </section>
 
-              <button onClick={copyUrl}>▣</button>
-            </div>
 
-            {response && (
-              <div className="response">
-                <div className="response-header">
+        {/* CATEGORIES */}
+
+        <section className="categories">
+
+          {filteredCategories.map((category) => {
+
+            const isOpen =
+              openCategory === category.name;
+
+            return (
+              <article
+                className={`category-card ${
+                  isOpen ? "opened" : ""
+                }`}
+                id={`category-${category.name.toLowerCase()}`}
+                key={category.name}
+              >
+
+                {/* CATEGORY HEADER */}
+
+                <button
+                  className="category-top"
+                  onClick={() =>
+                    setOpenCategory(
+                      isOpen
+                        ? null
+                        : category.name
+                    )
+                  }
+                >
+
                   <div
-                    className={
-                      response.statusCode === 200
-                        ? "success"
-                        : "error"
-                    }
+                    className={`category-icon ${category.color}`}
                   >
-                    {response.statusCode || "ERROR"}
+                    {category.icon}
                   </div>
 
-                  {responseTime && (
-                    <span>{responseTime}ms</span>
-                  )}
+
+                  <div className="category-info">
+
+                    <h2>
+                      {category.name}
+                    </h2>
+
+                    <span>
+                      {category.endpoints.length} ENDPOINTS
+                    </span>
+
+                  </div>
+
+
+                  <span className="open-label">
+                    {isOpen ? "CLOSE" : "OPEN"} →
+                  </span>
+
+                </button>
+
+
+                {/* PATH */}
+
+                <div className="category-path">
+                  {category.path}
                 </div>
 
-                <pre>
-                  {JSON.stringify(
-                    response.data ?? response.error,
-                    null,
-                    2
+
+                {/* ENDPOINTS */}
+
+                <div
+                  className={`endpoint-list ${
+                    isOpen ? "visible" : ""
+                  }`}
+                >
+
+                  {category.endpoints.map(
+                    (endpoint) => (
+                      <EndpointCard
+                        endpoint={endpoint}
+                        key={endpoint.path}
+                      />
+                    )
                   )}
-                </pre>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+
+                </div>
+
+              </article>
+            );
+          })}
+
+
+          {filteredCategories.length === 0 && (
+            <div className="empty">
+              <strong>
+                Endpoint tidak ditemukan
+              </strong>
+
+              <span>
+                Coba kata kunci lain.
+              </span>
+            </div>
+          )}
+
+        </section>
+
+      </main>
+
     </div>
   );
 }
 
-export default App;
+
+/* =========================================================
+   ENDPOINT CARD
+   ========================================================= */
+
+function EndpointCard({ endpoint }) {
+  const [expanded, setExpanded] = useState(false);
+
+  const [values, setValues] = useState({});
+
+  const [response, setResponse] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const updateValue = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+
+  const execute = async () => {
+    setLoading(true);
+    setResponse(null);
+
+    try {
+
+      const query = new URLSearchParams();
+
+      endpoint.params.forEach((param) => {
+        if (values[param.name]) {
+          query.append(
+            param.name,
+            values[param.name]
+          );
+        }
+      });
+
+      /*
+       * Jika API kamu berada di domain yang sama:
+       *
+       * /api/ai/aiko
+       *
+       * maka request akan otomatis menuju domain
+       * website kamu.
+       */
+
+      const url =
+        `${endpoint.path}` +
+        (query.toString()
+          ? `?${query.toString()}`
+          : "");
+
+      const res = await fetch(url);
+
+      const data = await res.json();
+
+      setResponse(data);
+
+    } catch (error) {
+
+      setResponse({
+        status: false,
+        message: error.message,
+      });
+
+    } finally {
+
+      setLoading(false);
+
+    }
+  };
+
+
+  return (
+    <div className="endpoint">
+
+      <button
+        className="endpoint-header"
+        onClick={() =>
+          setExpanded(!expanded)
+        }
+      >
+
+        <div className="method">
+          {endpoint.method}
+        </div>
+
+
+        <div className="endpoint-main">
+
+          <strong>
+            {endpoint.name}
+          </strong>
+
+          <span>
+            {endpoint.path}
+          </span>
+
+        </div>
+
+
+        <span className="endpoint-chevron">
+          {expanded ? "−" : "+"}
+        </span>
+
+      </button>
+
+
+      {expanded && (
+        <div className="endpoint-body">
+
+          <p className="endpoint-description">
+            {endpoint.description}
+          </p>
+
+
+          {endpoint.params.length > 0 && (
+            <div className="params">
+
+              {endpoint.params.map((param) => (
+                <label
+                  className="param"
+                  key={param.name}
+                >
+
+                  <div className="param-label">
+
+                    <span>
+                      {param.label}
+                    </span>
+
+                    {param.required && (
+                      <small>
+                        REQUIRED
+                      </small>
+                    )}
+
+                  </div>
+
+
+                  <input
+                    value={
+                      values[param.name] || ""
+                    }
+                    onChange={(e) =>
+                      updateValue(
+                        param.name,
+                        e.target.value
+                      )
+                    }
+                    placeholder={
+                      param.placeholder
+                    }
+                  />
+
+                </label>
+              ))}
+
+            </div>
+          )}
+
+
+          <button
+            className="execute-button"
+            onClick={execute}
+            disabled={loading}
+          >
+            {loading
+              ? "EXECUTING..."
+              : "EXECUTE →"}
+          </button>
+
+
+          {response && (
+            <pre className="response">
+              {JSON.stringify(
+                response,
+                null,
+                2
+              )}
+            </pre>
+          )}
+
+        </div>
+      )}
+
+    </div>
+  );
+}
