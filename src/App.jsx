@@ -1,22 +1,5 @@
 import React, { useMemo, useState } from "react";
-import "./style.cs";
-
-/*
-|--------------------------------------------------------------------------
-| DINSTORE API PLAYGROUND
-|--------------------------------------------------------------------------
-| Frontend documentation + endpoint tester
-|
-| Semua request frontend diarahkan ke:
-|   /api/...
-|
-| Contoh:
-|   /api/tiktok
-|   /api/instagram
-|   /api/download/capcut
-|
-|--------------------------------------------------------------------------
-*/
+import "./style.css";
 
 const API_CATEGORIES = [
   {
