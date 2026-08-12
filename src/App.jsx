@@ -319,7 +319,7 @@ const API_CATEGORIES = [
     endpoints: [
       {
         name: "TikTok Downloader",
-        path: "/api/tiktok",
+        path: "/api/download/tiktok",
         method: "GET",
         params: [
           {
@@ -332,7 +332,7 @@ const API_CATEGORIES = [
       },
       {
         name: "Instagram Downloader",
-        path: "/api/instagram",
+        path: "/api/download/instagram",
         method: "GET",
         params: [
           {
@@ -358,7 +358,7 @@ const API_CATEGORIES = [
       },
       {
         name: "CapCut Downloader",
-        path: "/api/capcut",
+        path: "/api/download/capcut",
         method: "GET",
         params: [
           {
