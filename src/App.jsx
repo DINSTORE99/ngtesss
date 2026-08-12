@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import "./style.css";
 
-const API_CATEGORIES = [
+const categories = [
   {
     id: "ai",
     name: "AI",
@@ -12,250 +12,64 @@ const API_CATEGORIES = [
         name: "Aiko AI",
         path: "/api/ai/aiko",
         method: "GET",
+        description: "Chat dengan Aiko AI.",
         params: [
           {
             name: "q",
             label: "Question",
-            placeholder: "Halo, siapa kamu?",
+            placeholder: "Tes Aiko...",
             required: true,
+          },
+          {
+            name: "reset",
+            label: "Reset",
+            placeholder: "oke",
+            required: false,
           },
         ],
       },
       {
-  name: "Lyrics Generator",
-  path: "/api/ai/lyricsgen",
-  method: "GET",
-  params: [
-    {
-      name: "theme",
-      label: "Theme",
-      placeholder: "Contoh: cinta, persahabatan, perpisahan",
-      required: true,
-    },
-    {
-      name: "genre",
-      label: "Genre",
-      placeholder: "Contoh: Pop, Rock, Hip Hop",
-      required: false,
-    },
-    {
-      name: "emotion",
-      label: "Emotion",
-      placeholder: "Contoh: Sedih, Bahagia, Galau",
-      required: false,
-    },
-    {
-      name: "lang",
-      label: "Lang",
-      placeholder: "Contoh: Indonesia",
-      required: false,
-    },
-  ],
-},
+        name: "AI Lyrics Generator",
+        path: "/api/ai/lyricsgen",
+        method: "GET",
+        description: "Generate lirik lagu berdasarkan tema, genre dan emosi.",
+        params: [
+          {
+            name: "theme",
+            label: "Theme",
+            placeholder: "Cinta, persahabatan, perpisahan...",
+            required: true,
+          },
+          {
+            name: "genre",
+            label: "Genre",
+            placeholder: "Pop, Rock, Hip Hop...",
+            required: false,
+          },
+          {
+            name: "emotion",
+            label: "Emotion",
+            placeholder: "Sedih, bahagia, galau...",
+            required: false,
+          },
+          {
+            name: "lang",
+            label: "Lang",
+            placeholder: "Indonesia",
+            required: false,
+          },
+        ],
+      },
       {
         name: "AI4Chat",
         path: "/api/ai/ai4chat",
         method: "GET",
+        description: "AI chat menggunakan endpoint AI4Chat.",
         params: [
           {
             name: "q",
             label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Azbry AI",
-        path: "/api/ai/azbryai",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "ChatDay",
-        path: "/api/ai/chatday",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Chat Music",
-        path: "/api/ai/chatmusic",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Claude AI",
-        path: "/api/ai/claude",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "DeepSeek AI",
-        path: "/api/ai/deepseek",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Oriper AI",
-        path: "/api/ai/oriper",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pesan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Generate Prompt",
-        path: "/api/ai/generateprompt",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "Buat prompt...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Pollinations AI",
-        path: "/api/ai/pollinations",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "Tulis prompt...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "GPT-4o",
-        path: "/api/ai/gpt4o",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "GPT Free",
-        path: "/api/ai/gptfree",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "IAsk AI",
-        path: "/api/ai/iask",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Image Generator",
-        path: "/api/ai/imagegen",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "A futuristic city...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Ustadz AI",
-        path: "/api/ai/ustadz",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Qwen AI",
-        path: "/api/ai/qwen",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Question",
-            placeholder: "Tulis pertanyaan...",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Text2Img",
-        path: "/api/ai/text2img",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "A beautiful landscape...",
+            placeholder: "Tanyakan sesuatu...",
             required: true,
           },
         ],
@@ -267,21 +81,8 @@ const API_CATEGORIES = [
     id: "admin",
     name: "ADMIN",
     icon: "◇",
-    color: "pink",
-    endpoints: [
-      {
-        name: "Admin Status",
-        path: "/api/admin/status",
-        method: "GET",
-        params: [],
-      },
-      {
-        name: "Admin Info",
-        path: "/api/admin/info",
-        method: "GET",
-        params: [],
-      },
-    ],
+    color: "red",
+    endpoints: [],
   },
 
   {
@@ -289,27 +90,7 @@ const API_CATEGORIES = [
     name: "CACHE",
     icon: "▣",
     color: "cyan",
-    endpoints: [
-      {
-        name: "PlayRelay Cache",
-        path: "/api/cache/playrelay",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Query",
-            placeholder: "timeless",
-            required: true,
-          },
-        ],
-      },
-      {
-        name: "Cache Status",
-        path: "/api/cache/status",
-        method: "GET",
-        params: [],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -320,21 +101,23 @@ const API_CATEGORIES = [
     endpoints: [
       {
         name: "TikTok Downloader",
-        path: "/api/download/tiktok",
+        path: "/api/tiktok",
         method: "GET",
+        description: "Download video TikTok.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://vt.tiktok.com/...",
+            placeholder: "https://www.tiktok.com/...",
             required: true,
           },
         ],
       },
       {
         name: "Instagram Downloader",
-        path: "/api/download/instagram",
+        path: "/api/instagram",
         method: "GET",
+        description: "Download media dari Instagram.",
         params: [
           {
             name: "url",
@@ -348,11 +131,12 @@ const API_CATEGORIES = [
         name: "Apple Music Downloader",
         path: "/api/download/applemusic",
         method: "GET",
+        description: "Apple Music downloader.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "Apple Music URL",
+            placeholder: "https://music.apple.com/...",
             required: true,
           },
         ],
@@ -361,6 +145,7 @@ const API_CATEGORIES = [
         name: "CapCut Downloader",
         path: "/api/download/capcut",
         method: "GET",
+        description: "Retrieve comprehensive metadata for a CapCut video.",
         params: [
           {
             name: "url",
@@ -374,11 +159,12 @@ const API_CATEGORIES = [
         name: "Douyin Downloader",
         path: "/api/downloader/douyin",
         method: "GET",
+        description: "Download video dari Douyin.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "Douyin URL",
+            placeholder: "https://www.douyin.com/...",
             required: true,
           },
         ],
@@ -387,11 +173,12 @@ const API_CATEGORIES = [
         name: "DramaBox Downloader",
         path: "/api/download/dramabox",
         method: "GET",
+        description: "DramaBox downloader.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "DramaBox URL",
+            placeholder: "Masukkan URL DramaBox...",
             required: true,
           },
         ],
@@ -400,11 +187,12 @@ const API_CATEGORIES = [
         name: "Facebook Downloader",
         path: "/api/download/facebook",
         method: "GET",
+        description: "Download video Facebook.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "Facebook URL",
+            placeholder: "https://www.facebook.com/...",
             required: true,
           },
         ],
@@ -413,11 +201,12 @@ const API_CATEGORIES = [
         name: "MediaFire Downloader",
         path: "/api/download/mediafire",
         method: "GET",
+        description: "Download file dari MediaFire.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "MediaFire URL",
+            placeholder: "https://www.mediafire.com/...",
             required: true,
           },
         ],
@@ -426,11 +215,12 @@ const API_CATEGORIES = [
         name: "Pinterest Downloader",
         path: "/api/download/pinterest",
         method: "GET",
+        description: "Download media Pinterest.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "Pinterest URL",
+            placeholder: "https://pin.it/...",
             required: true,
           },
         ],
@@ -439,11 +229,12 @@ const API_CATEGORIES = [
         name: "Spotify Downloader",
         path: "/api/download/spotify",
         method: "GET",
+        description: "Spotify downloader.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "Spotify URL",
+            placeholder: "https://open.spotify.com/...",
             required: true,
           },
         ],
@@ -452,24 +243,26 @@ const API_CATEGORIES = [
         name: "SoundCloud Downloader",
         path: "/api/download/soundcloud",
         method: "GET",
+        description: "Download audio dari SoundCloud.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "SoundCloud URL",
+            placeholder: "https://soundcloud.com/...",
             required: true,
           },
         ],
       },
       {
-        name: "TikTok Slide",
+        name: "TikTok Slide Downloader",
         path: "/api/download/tiktokslide",
         method: "GET",
+        description: "TikTok slide downloader.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "TikTok URL",
+            placeholder: "https://www.tiktok.com/...",
             required: true,
           },
         ],
@@ -478,11 +271,12 @@ const API_CATEGORIES = [
         name: "X Downloader",
         path: "/api/download/x",
         method: "GET",
+        description: "Download media dari X.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "X/Twitter URL",
+            placeholder: "https://x.com/...",
             required: true,
           },
         ],
@@ -491,11 +285,12 @@ const API_CATEGORIES = [
         name: "YouTube MP3",
         path: "/api/download/ytmp3",
         method: "GET",
+        description: "Convert YouTube video menjadi MP3.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "YouTube URL",
+            placeholder: "https://www.youtube.com/watch?v=...",
             required: true,
           },
         ],
@@ -504,11 +299,12 @@ const API_CATEGORIES = [
         name: "YouTube Play",
         path: "/api/download/ytplay",
         method: "GET",
+        description: "YouTube downloader.",
         params: [
           {
-            name: "q",
-            label: "Search / URL",
-            placeholder: "Timeless atau YouTube URL",
+            name: "url",
+            label: "URL",
+            placeholder: "https://www.youtube.com/watch?v=...",
             required: true,
           },
         ],
@@ -521,14 +317,7 @@ const API_CATEGORIES = [
     name: "FUN",
     icon: "✿",
     color: "pink",
-    endpoints: [
-      {
-        name: "Fun Random",
-        path: "/api/fun/random",
-        method: "GET",
-        params: [],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -536,14 +325,7 @@ const API_CATEGORIES = [
     name: "LEADERBOARD",
     icon: "♛",
     color: "yellow",
-    endpoints: [
-      {
-        name: "Leaderboard",
-        path: "/api/leaderboard",
-        method: "GET",
-        params: [],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -551,62 +333,15 @@ const API_CATEGORIES = [
     name: "LIBRARY",
     icon: "▤",
     color: "orange",
-    endpoints: [
-      {
-        name: "Library Search",
-        path: "/api/library/search",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Query",
-            placeholder: "Cari...",
-            required: true,
-          },
-        ],
-      },
-    ],
+    endpoints: [],
   },
 
   {
     id: "maker",
     name: "MAKER",
-    icon: "✺",
+    icon: "✿",
     color: "pink",
-    endpoints: [
-      {
-        name: "Code To Image",
-        path: "/api/maker/code2img",
-        method: "POST",
-        params: [
-          {
-            name: "code",
-            label: "Code",
-            placeholder: "console.log('Hello World')",
-            required: true,
-            type: "textarea",
-          },
-          {
-            name: "lang",
-            label: "Language",
-            placeholder: "javascript",
-            required: false,
-          },
-          {
-            name: "title",
-            label: "Title",
-            placeholder: "terminal",
-            required: false,
-          },
-          {
-            name: "mode",
-            label: "Mode",
-            placeholder: "code",
-            required: false,
-          },
-        ],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -614,48 +349,15 @@ const API_CATEGORIES = [
     name: "NEWS",
     icon: "▥",
     color: "cyan",
-    endpoints: [
-      {
-        name: "Latest News",
-        path: "/api/news",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Query",
-            placeholder: "technology",
-            required: false,
-          },
-        ],
-      },
-    ],
+    endpoints: [],
   },
 
   {
     id: "random",
     name: "RANDOM",
-    icon: "❖",
+    icon: "◆",
     color: "purple",
-    endpoints: [
-      {
-        name: "Random Image",
-        path: "/api/random/image",
-        method: "GET",
-        params: [],
-      },
-      {
-        name: "Random Quote",
-        path: "/api/random/quote",
-        method: "GET",
-        params: [],
-      },
-      {
-        name: "Random Fact",
-        path: "/api/random/fact",
-        method: "GET",
-        params: [],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -663,21 +365,7 @@ const API_CATEGORIES = [
     name: "SEARCH",
     icon: "⌕",
     color: "green",
-    endpoints: [
-      {
-        name: "Web Search",
-        path: "/api/search",
-        method: "GET",
-        params: [
-          {
-            name: "q",
-            label: "Query",
-            placeholder: "OpenAI",
-            required: true,
-          },
-        ],
-      },
-    ],
+    endpoints: [],
   },
 
   {
@@ -685,71 +373,39 @@ const API_CATEGORIES = [
     name: "STALK",
     icon: "◉",
     color: "purple",
-    endpoints: [
-      {
-        name: "TikTok Stalk",
-        path: "/api/stalk/tiktok",
-        method: "GET",
-        params: [
-          {
-            name: "username",
-            label: "Username",
-            placeholder: "username",
-            required: true,
-          },
-        ],
-      },
-    ],
+    endpoints: [],
   },
 
   {
     id: "tools",
     name: "TOOLS",
-    icon: "⌁",
+    icon: "⚒",
     color: "orange",
     endpoints: [
       {
         name: "AI Coder",
         path: "/api/tools/aicoder",
         method: "GET",
+        description: "Generate code dari prompt.",
         params: [
           {
-            name: "q",
+            name: "prompt",
             label: "Prompt",
-            placeholder: "Buatkan kode React...",
+            placeholder: "Buat landing page portfolio modern...",
             required: true,
           },
         ],
       },
       {
-  name: "Domain Info",
-  path: "/api/tools/domaininfo",
-  method: "GET",
-  description: "Mengecek informasi domain menggunakan RDAP.",
-  params: [
-    {
-      name: "domain",
-      label: "Domain",
-      placeholder: "dinn.my.id",
-      required: true,
-    },
-  ],
-},
-      {
-        name: "QRIS Generator",
-        path: "/api/tools/qrisgen",
+        name: "Domain Info",
+        path: "/api/tools/domaininfo",
         method: "GET",
+        description: "Mengecek informasi domain menggunakan RDAP.",
         params: [
           {
-            name: "url",
-            label: "QRIS Image URL",
-            placeholder: "https://...",
-            required: true,
-          },
-          {
-            name: "nominal",
-            label: "Nominal",
-            placeholder: "10000",
+            name: "domain",
+            label: "Domain",
+            placeholder: "dinn.my.id",
             required: true,
           },
         ],
@@ -758,676 +414,675 @@ const API_CATEGORIES = [
   },
 ];
 
-function formatJson(data) {
-  try {
-    return JSON.stringify(data, null, 2);
-  } catch {
-    return String(data);
-  }
-}
-
-function buildQuery(params, values) {
-  const search = new URLSearchParams();
-
-  params.forEach((param) => {
-    const value = values[param.name];
-
-    if (
-      value !== undefined &&
-      value !== null &&
-      String(value).trim() !== ""
-    ) {
-      search.set(param.name, value);
-    }
-  });
-
-  return search.toString();
-}
-
-function EndpointTester({ endpoint }) {
-  const [values, setValues] = useState({});
-  const [response, setResponse] = useState(null);
-  const [responseText, setResponseText] = useState("");
-  const [headers, setHeaders] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("preview");
-  const [elapsed, setElapsed] = useState(null);
-
-  const requestUrl = useMemo(() => {
-    const query = buildQuery(endpoint.params || [], values);
-
-    return query
-      ? `${endpoint.path}?${query}`
-      : endpoint.path;
-  }, [endpoint, values]);
-
-  const curl = useMemo(() => {
-    const method = endpoint.method || "GET";
-
-    if (method === "GET") {
-      return `curl -X GET "${window.location.origin}${requestUrl}"`;
-    }
-
-    return `curl -X ${method} "${window.location.origin}${endpoint.path}" \\
-  -H "Content-Type: application/json" \\
-  -d '${JSON.stringify(values, null, 2)}'`;
-  }, [endpoint, requestUrl, values]);
-
-  async function executeRequest() {
-    for (const param of endpoint.params || []) {
-      if (
-        param.required &&
-        !String(values[param.name] || "").trim()
-      ) {
-        setResponse({
-          status: false,
-          message: `${param.label || param.name} wajib diisi.`,
-        });
-        setResponseText("");
-        return;
-      }
-    }
-
-    setLoading(true);
-    setResponse(null);
-    setResponseText("");
-    setHeaders({});
-    setElapsed(null);
-
-    const started = performance.now();
-
-    try {
-      let res;
-
-      if (endpoint.method === "POST") {
-        res = await fetch(endpoint.path, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        });
-      } else {
-        res = await fetch(requestUrl, {
-          method: "GET",
-        });
-      }
-
-      const time = Math.round(performance.now() - started);
-      setElapsed(time);
-
-      const headerObject = {};
-
-      res.headers.forEach((value, key) => {
-        headerObject[key] = value;
-      });
-
-      setHeaders(headerObject);
-
-      const contentType =
-        res.headers.get("content-type") || "";
-
-      if (contentType.includes("application/json")) {
-        const data = await res.json();
-
-        setResponse(data);
-        setResponseText(formatJson(data));
-      } else {
-        const text = await res.text();
-
-        setResponse({
-          status: res.ok,
-          statusCode: res.status,
-          response: text,
-        });
-
-        setResponseText(text);
-      }
-    } catch (error) {
-      setElapsed(Math.round(performance.now() - started));
-
-      const errorData = {
-        status: false,
-        message: error.message || "Request gagal.",
-      };
-
-      setResponse(errorData);
-      setResponseText(formatJson(errorData));
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function clearTester() {
-    setValues({});
-    setResponse(null);
-    setResponseText("");
-    setHeaders({});
-    setElapsed(null);
-    setActiveTab("preview");
-  }
-
-  async function copyCurl() {
-    try {
-      await navigator.clipboard.writeText(curl);
-    } catch {
-      // ignore
-    }
-  }
-
+function ParticleBackground() {
   return (
-    <div className="tester">
-      <div className="tester-description">
-        Test endpoint <strong>{endpoint.name}</strong> langsung
-        dari playground.
-      </div>
-
-      <div className="method-switch">
-        <button
-          className={
-            endpoint.method === "GET"
-              ? "method-button active"
-              : "method-button"
-          }
-        >
-          GET
-        </button>
-
-        {endpoint.method === "POST" && (
-          <button className="method-button active-post">
-            POST
-          </button>
-        )}
-      </div>
-
-      <div className="request-title">
-        REQUEST PARAMETERS
-      </div>
-
-      <div className="params">
-        {(endpoint.params || []).length === 0 ? (
-          <div className="no-params">
-            Endpoint ini tidak membutuhkan parameter.
-          </div>
-        ) : (
-          endpoint.params.map((param) => (
-            <label className="param" key={param.name}>
-              <span>
-                {param.label || param.name}
-                {param.required && (
-                  <b className="required">*</b>
-                )}
-              </span>
-
-              {param.type === "textarea" ? (
-                <textarea
-                  value={values[param.name] || ""}
-                  placeholder={param.placeholder || ""}
-                  onChange={(e) =>
-                    setValues((old) => ({
-                      ...old,
-                      [param.name]: e.target.value,
-                    }))
-                  }
-                />
-              ) : (
-                <input
-                  value={values[param.name] || ""}
-                  placeholder={param.placeholder || ""}
-                  onChange={(e) =>
-                    setValues((old) => ({
-                      ...old,
-                      [param.name]: e.target.value,
-                    }))
-                  }
-                />
-              )}
-            </label>
-          ))
-        )}
-      </div>
-
-      <div className="request-preview">
-        <span>REQUEST</span>
-        <code>{requestUrl}</code>
-      </div>
-
-      <button
-        className="execute-button"
-        onClick={executeRequest}
-        disabled={loading}
-      >
-        {loading ? (
-          <>
-            <span className="spinner" />
-            PROCESSING...
-          </>
-        ) : (
-          <>▶ EXECUTE REQUEST</>
-        )}
-      </button>
-
-      <button
-        className="clear-button"
-        onClick={clearTester}
-      >
-        ↻ CLEAR
-      </button>
-
-      {response !== null && (
-        <div className="response-box">
-          <div className="response-top">
-            <div className="response-tabs">
-              <button
-                className={
-                  activeTab === "preview"
-                    ? "active"
-                    : ""
-                }
-                onClick={() => setActiveTab("preview")}
-              >
-                PREVIEW
-              </button>
-
-              <button
-                className={
-                  activeTab === "headers"
-                    ? "active"
-                    : ""
-                }
-                onClick={() => setActiveTab("headers")}
-              >
-                HEADERS
-              </button>
-
-              <button
-                className={
-                  activeTab === "curl"
-                    ? "active"
-                    : ""
-                }
-                onClick={() => setActiveTab("curl")}
-              >
-                CURL
-              </button>
-            </div>
-
-            <div className="response-status">
-              <span
-                className={
-                  response?.status === false
-                    ? "error-status"
-                    : "success-status"
-                }
-              >
-                {response?.status === false
-                  ? "ERROR"
-                  : "SUCCESS"}
-              </span>
-
-              {elapsed !== null && (
-                <small>{elapsed}ms</small>
-              )}
-            </div>
-          </div>
-
-          <div className="response-content">
-            {activeTab === "preview" && (
-              <pre>
-                {responseText || formatJson(response)}
-              </pre>
-            )}
-
-            {activeTab === "headers" && (
-              <pre>
-                {formatJson(headers)}
-              </pre>
-            )}
-
-            {activeTab === "curl" && (
-              <>
-                <button
-                  className="copy-button"
-                  onClick={copyCurl}
-                >
-                  COPY
-                </button>
-
-                <pre>{curl}</pre>
-              </>
-            )}
-          </div>
-        </div>
-      )}
+    <div className="particles" aria-hidden="true">
+      {Array.from({ length: 35 }).map((_, index) => (
+        <span
+          key={index}
+          className={`particle p-${index + 1}`}
+        />
+      ))}
     </div>
   );
 }
 
-function CategoryCard({
-  category,
-  open,
-  onToggle,
-  selectedEndpoint,
-  setSelectedEndpoint,
-}) {
-  return (
-    <section
-      id={`category-${category.id}`}
-      className={`category-card ${
-        open ? "category-open" : ""
-      }`}
-    >
-      <button
-        className="category-header"
-        onClick={onToggle}
-      >
-        <div className={`category-icon ${category.color}`}>
-          {category.icon}
-        </div>
-
-        <div className="category-info">
-          <h2>{category.name}</h2>
-          <span>
-            {category.endpoints.length} ENDPOINT
-            {category.endpoints.length !== 1
-              ? "S"
-              : ""}
-          </span>
-        </div>
-
-        <span className="category-chevron">
-          {open ? "⌃" : "⌄"}
-        </span>
-      </button>
-
-      {open && (
-        <div className="endpoint-list">
-          {category.endpoints.map((endpoint) => {
-            const selected =
-              selectedEndpoint?.path === endpoint.path;
-
-            return (
-              <div
-                className={`endpoint-wrapper ${
-                  selected ? "selected" : ""
-                }`}
-                key={endpoint.path}
-              >
-                <button
-                  className="endpoint-row"
-                  onClick={() =>
-                    setSelectedEndpoint(
-                      selected ? null : endpoint
-                    )
-                  }
-                >
-                  <span className="endpoint-method">
-                    {endpoint.method}
-                  </span>
-
-                  <div className="endpoint-text">
-                    <strong>{endpoint.name}</strong>
-                    <span>{endpoint.path}</span>
-                  </div>
-
-                  <span className="endpoint-open">
-                    {selected ? "⌃" : "→"}
-                  </span>
-                </button>
-
-                {selected && (
-                  <EndpointTester
-                    endpoint={endpoint}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </section>
-  );
-}
-
-export default function App() {
+function App() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedEndpoint, setSelectedEndpoint] = useState(null);
   const [search, setSearch] = useState("");
-  const [openCategories, setOpenCategories] = useState({
-    download: true,
-  });
-  const [selectedEndpoint, setSelectedEndpoint] =
-    useState(null);
+  const [values, setValues] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(null);
+  const [statusCode, setStatusCode] = useState(null);
+  const [elapsed, setElapsed] = useState(null);
+  const [activeTab, setActiveTab] = useState("preview");
+  const [copied, setCopied] = useState(false);
 
-  const filteredCategories = useMemo(() => {
-    const query = search.trim().toLowerCase();
-
-    if (!query) return API_CATEGORIES;
-
-    return API_CATEGORIES.map((category) => {
-      const categoryMatch =
-        category.name.toLowerCase().includes(query);
-
-      const endpoints = category.endpoints.filter(
-        (endpoint) =>
-          endpoint.name.toLowerCase().includes(query) ||
-          endpoint.path.toLowerCase().includes(query)
-      );
-
-      if (categoryMatch) {
-        return category;
-      }
-
-      if (endpoints.length) {
-        return {
-          ...category,
-          endpoints,
-        };
-      }
-
-      return null;
-    }).filter(Boolean);
-  }, [search]);
-
-  const totalEndpoints = API_CATEGORIES.reduce(
-    (total, category) =>
-      total + category.endpoints.length,
+  const totalEndpoints = categories.reduce(
+    (total, category) => total + category.endpoints.length,
     0
   );
 
-  function toggleCategory(id) {
-    setOpenCategories((old) => ({
-      ...old,
-      [id]: !old[id],
-    }));
+  const filteredCategories = useMemo(() => {
+    const keyword = search.trim().toLowerCase();
 
+    if (!keyword) return categories;
+
+    return categories
+      .map((category) => ({
+        ...category,
+        endpoints: category.endpoints.filter(
+          (endpoint) =>
+            category.name.toLowerCase().includes(keyword) ||
+            endpoint.name.toLowerCase().includes(keyword) ||
+            endpoint.path.toLowerCase().includes(keyword)
+        ),
+      }))
+      .filter(
+        (category) =>
+          category.name.toLowerCase().includes(keyword) ||
+          category.endpoints.length > 0
+      );
+  }, [search]);
+
+  const openCategory = (category) => {
+    setSelectedCategory(category);
     setSelectedEndpoint(null);
-  }
+    setResponse(null);
+    setSearch("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-  function scrollToCategory(id) {
-    const element = document.getElementById(
-      `category-${id}`
-    );
+  const openEndpoint = (category, endpoint) => {
+    setSelectedCategory(category);
+    setSelectedEndpoint(endpoint);
+    setResponse(null);
+    setStatusCode(null);
+    setElapsed(null);
+    setValues({});
+    setActiveTab("preview");
 
-    if (!element) return;
+    setTimeout(() => {
+      document
+        .getElementById("endpoint-tester")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    }, 80);
+  };
 
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+  const goHome = () => {
+    setSelectedCategory(null);
+    setSelectedEndpoint(null);
+    setResponse(null);
+    setSearch("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const updateValue = (name, value) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const buildUrl = () => {
+    if (!selectedEndpoint) return "";
+
+    const base =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "";
+
+    const query = new URLSearchParams();
+
+    selectedEndpoint.params?.forEach((param) => {
+      const value = values[param.name];
+
+      if (value !== undefined && value !== "") {
+        query.set(param.name, value);
+      }
     });
 
-    setOpenCategories((old) => ({
-      ...old,
-      [id]: true,
-    }));
-  }
+    const queryString = query.toString();
+
+    return `${base}${selectedEndpoint.path}${
+      queryString ? `?${queryString}` : ""
+    }`;
+  };
+
+  const executeRequest = async () => {
+    if (!selectedEndpoint) return;
+
+    for (const param of selectedEndpoint.params || []) {
+      if (param.required && !values[param.name]?.trim()) {
+        setResponse({
+          error: `Parameter "${param.name}" wajib diisi.`,
+        });
+        setStatusCode(400);
+        setElapsed(0);
+        setActiveTab("preview");
+        return;
+      }
+    }
+
+    const url = buildUrl();
+    const started = performance.now();
+
+    setLoading(true);
+    setResponse(null);
+    setStatusCode(null);
+
+    try {
+      const result = await fetch(url, {
+        method: selectedEndpoint.method || "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      const time = Math.round(performance.now() - started);
+      setElapsed(time);
+      setStatusCode(result.status);
+
+      const contentType = result.headers.get("content-type") || "";
+
+      let data;
+
+      if (contentType.includes("application/json")) {
+        data = await result.json();
+      } else {
+        const text = await result.text();
+
+        try {
+          data = JSON.parse(text);
+        } catch {
+          data = {
+            response: text,
+          };
+        }
+      }
+
+      setResponse(data);
+      setActiveTab("preview");
+    } catch (error) {
+      const time = Math.round(performance.now() - started);
+
+      setElapsed(time);
+      setStatusCode(500);
+      setResponse({
+        status: false,
+        creator: "DINSTORE",
+        message: "Request gagal.",
+        error: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearTester = () => {
+    setValues({});
+    setResponse(null);
+    setStatusCode(null);
+    setElapsed(null);
+  };
+
+  const copyUrl = async () => {
+    const url = buildUrl();
+
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+    } catch {
+      //
+    }
+  };
+
+  const curlCommand = selectedEndpoint
+    ? `curl -X ${selectedEndpoint.method || "GET"} "${buildUrl()}"`
+    : "";
 
   return (
     <div className="app">
-      <div className="particles">
-        {Array.from({ length: 45 }).map((_, i) => (
-          <span
-            key={i}
-            className="particle"
-            style={{
-              left: `${(i * 37) % 100}%`,
-              top: `${(i * 61) % 100}%`,
-              animationDelay: `${(i % 10) * 0.7}s`,
-              animationDuration: `${
-                7 + (i % 8)
-              }s`,
-            }}
-          />
-        ))}
-      </div>
+      <ParticleBackground />
 
       <header className="topbar">
-        <div className="brand">
+        <button className="menu-button" type="button">
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div
+          className="brand"
+          onClick={goHome}
+          role="button"
+          tabIndex={0}
+        >
           <div className="brand-logo">D</div>
 
           <div>
             <strong>DINSTORE API</strong>
-            <span>Developer Playground</span>
+            <small>Developer Documentation</small>
           </div>
         </div>
 
-        <div className="header-actions">
-          <button
-            className="header-button"
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              })
-            }
-          >
-            ☀
+        <div className="top-actions">
+          <button className="icon-button" type="button">
+            ☼
           </button>
 
-          <button
-            className="header-button"
-            onClick={() =>
-              document
-                .querySelector(".category-card")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                })
-            }
-          >
+          <button className="icon-button" type="button">
             ☰
           </button>
         </div>
       </header>
 
-      <nav className="nav">
-        {[
-          "random",
-          "search",
-          "stalk",
-          "tools",
-          "download",
-          "ai",
-        ].map((id) => (
+      <nav className="navigation">
+        <button onClick={goHome}>HOME</button>
+
+        {categories.slice(0, 5).map((category) => (
           <button
-            key={id}
-            onClick={() => scrollToCategory(id)}
+            key={category.id}
+            onClick={() => openCategory(category)}
           >
-            {id.toUpperCase()}
+            {category.name}
           </button>
         ))}
+
+        <button
+          onClick={() =>
+            document
+              .getElementById("categories")
+              ?.scrollIntoView({
+                behavior: "smooth",
+              })
+          }
+        >
+          ALL
+        </button>
       </nav>
 
-      <main className="main">
-        <section className="hero">
-          <div className="online-pill">
-            <span />
-            API SYSTEM ONLINE
-          </div>
+      <main className="container">
+        {!selectedCategory && (
+          <>
+            <section className="hero">
+              <div className="status-pill">
+                <span className="status-dot" />
+                TERMINAL ACTIVE
+              </div>
 
-          <h1>
-            DINSTORE <em>API</em>
-          </h1>
+              <div className="hero-title-row">
+                <h1>DINSTORE API</h1>
+                <span>1.0.0</span>
+              </div>
 
-          <p>
-            API downloader, AI, tools, search dan
-            utilities untuk kebutuhan aplikasi kamu.
-          </p>
+              <p>
+                A comprehensive and user friendly API solution
+                for modern applications.
+              </p>
+            </section>
 
-          <div className="stats">
-            <div>
-              <strong>{API_CATEGORIES.length}</strong>
-              <span>CATEGORIES</span>
-            </div>
+            <section className="stats">
+              <div className="stat">
+                <small>CATEGORIES</small>
+                <strong>{categories.length}</strong>
+              </div>
 
-            <div>
-              <strong>{totalEndpoints}</strong>
-              <span>ENDPOINTS</span>
-            </div>
+              <div className="stat">
+                <small>ENDPOINTS</small>
+                <strong>{totalEndpoints}</strong>
+              </div>
+            </section>
 
-            <div>
-              <strong>JSON</strong>
-              <span>RESPONSE</span>
-            </div>
-          </div>
-        </section>
+            <div className="search-box">
+              <span>⌕</span>
 
-        <div className="search-box">
-          <span>⌕</span>
-
-          <input
-            value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
-            placeholder="Search endpoint atau category..."
-          />
-
-          {search && (
-            <button
-              onClick={() => setSearch("")}
-            >
-              ×
-            </button>
-          )}
-        </div>
-
-        <div className="categories">
-          {filteredCategories.length === 0 ? (
-            <div className="empty">
-              <strong>Endpoint tidak ditemukan</strong>
-              <span>
-                Coba cari nama endpoint atau path
-                lainnya.
-              </span>
-            </div>
-          ) : (
-            filteredCategories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                category={category}
-                open={
-                  !!openCategories[category.id] ||
-                  search.length > 0
+              <input
+                value={search}
+                onChange={(event) =>
+                  setSearch(event.target.value)
                 }
-                onToggle={() =>
-                  toggleCategory(category.id)
-                }
-                selectedEndpoint={
-                  selectedEndpoint
-                }
-                setSelectedEndpoint={
-                  setSelectedEndpoint
-                }
+                placeholder="Filter by category or endpoint..."
               />
-            ))
-          )}
-        </div>
 
-        <footer>
-          <strong>DINSTORE API</strong>
-          <span>
-            Developer Playground • JSON REST API
-          </span>
-        </footer>
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  type="button"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+
+            <section id="categories" className="category-grid">
+              {filteredCategories.map((category) => (
+                <article
+                  className={`category-card ${category.color}`}
+                  key={category.id}
+                  onClick={() => openCategory(category)}
+                >
+                  <div className="category-icon">
+                    {category.icon}
+                  </div>
+
+                  <div className="category-content">
+                    <h2>{category.name}</h2>
+
+                    <span>
+                      {category.endpoints.length} ENDPOINT
+                      {category.endpoints.length !== 1
+                        ? "S"
+                        : ""}
+                    </span>
+
+                    <code>/docs/{category.id}</code>
+                  </div>
+
+                  <div className="category-open">
+                    OPEN <span>→</span>
+                  </div>
+                </article>
+              ))}
+            </section>
+          </>
+        )}
+
+        {selectedCategory && (
+          <section className="documentation">
+            <button
+              className="back-button"
+              onClick={goHome}
+              type="button"
+            >
+              ← BACK TO DOCUMENTATION
+            </button>
+
+            <div className="doc-heading">
+              <div
+                className={`large-category-icon ${selectedCategory.color}`}
+              >
+                {selectedCategory.icon}
+              </div>
+
+              <div>
+                <div className="eyebrow">
+                  CATEGORY
+                </div>
+
+                <h1>{selectedCategory.name}</h1>
+
+                <p>
+                  {selectedCategory.endpoints.length}{" "}
+                  endpoints available.
+                </p>
+              </div>
+            </div>
+
+            {selectedCategory.endpoints.length === 0 ? (
+              <div className="empty-card">
+                <div>◌</div>
+                <h2>No endpoints available</h2>
+                <p>
+                  Endpoint untuk kategori ini belum
+                  dimasukkan ke konfigurasi frontend.
+                </p>
+              </div>
+            ) : (
+              <div className="endpoint-list">
+                {selectedCategory.endpoints
+                  .filter((endpoint) => {
+                    if (!search) return true;
+
+                    return (
+                      endpoint.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      endpoint.path
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                    );
+                  })
+                  .map((endpoint) => {
+                    const isOpen =
+                      selectedEndpoint?.path === endpoint.path;
+
+                    return (
+                      <article
+                        className={`endpoint-card ${
+                          isOpen ? "open" : ""
+                        }`}
+                        key={endpoint.path}
+                      >
+                        <button
+                          className="endpoint-head"
+                          onClick={() =>
+                            openEndpoint(
+                              selectedCategory,
+                              endpoint
+                            )
+                          }
+                          type="button"
+                        >
+                          <span className="method">
+                            {endpoint.method}
+                          </span>
+
+                          <div className="endpoint-info">
+                            <strong>{endpoint.name}</strong>
+                            <code>{endpoint.path}</code>
+                          </div>
+
+                          <span className="endpoint-arrow">
+                            {isOpen ? "⌃" : "→"}
+                          </span>
+                        </button>
+
+                        {isOpen && (
+                          <div
+                            id="endpoint-tester"
+                            className="tester"
+                          >
+                            <p className="description">
+                              {endpoint.description}
+                            </p>
+
+                            <div className="request-line">
+                              <span className="method large">
+                                {endpoint.method}
+                              </span>
+
+                              <code>
+                                {endpoint.path}
+                              </code>
+                            </div>
+
+                            {endpoint.params?.length > 0 && (
+                              <div className="parameters">
+                                <div className="section-label">
+                                  REQUEST PARAMETERS
+                                </div>
+
+                                {endpoint.params.map(
+                                  (param) => (
+                                    <div
+                                      className="parameter"
+                                      key={param.name}
+                                    >
+                                      <div className="parameter-label">
+                                        <span>
+                                          {param.label ||
+                                            param.name}
+                                        </span>
+
+                                        {param.required && (
+                                          <b>REQ</b>
+                                        )}
+                                      </div>
+
+                                      <input
+                                        value={
+                                          values[
+                                            param.name
+                                          ] || ""
+                                        }
+                                        onChange={(event) =>
+                                          updateValue(
+                                            param.name,
+                                            event.target.value
+                                          )
+                                        }
+                                        placeholder={
+                                          param.placeholder
+                                        }
+                                      />
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            )}
+
+                            <div className="tester-actions">
+                              <button
+                                className="execute"
+                                onClick={executeRequest}
+                                disabled={loading}
+                                type="button"
+                              >
+                                {loading
+                                  ? "EXECUTING..."
+                                  : "EXECUTE REQUEST"}
+                              </button>
+
+                              <button
+                                className="clear"
+                                onClick={clearTester}
+                                type="button"
+                              >
+                                CLEAR
+                              </button>
+                            </div>
+
+                            {selectedEndpoint && (
+                              <div className="generated-url">
+                                <div>
+                                  <span>↗</span>
+                                  <code>{buildUrl()}</code>
+                                </div>
+
+                                <button
+                                  onClick={copyUrl}
+                                  type="button"
+                                >
+                                  {copied ? "✓" : "▣"}
+                                </button>
+                              </div>
+                            )}
+
+                            {response !== null && (
+                              <div className="response-panel">
+                                <div className="response-head">
+                                  <div className="tabs">
+                                    <button
+                                      className={
+                                        activeTab === "preview"
+                                          ? "active"
+                                          : ""
+                                      }
+                                      onClick={() =>
+                                        setActiveTab(
+                                          "preview"
+                                        )
+                                      }
+                                      type="button"
+                                    >
+                                      PREVIEW
+                                    </button>
+
+                                    <button
+                                      className={
+                                        activeTab ===
+                                        "headers"
+                                          ? "active"
+                                          : ""
+                                      }
+                                      onClick={() =>
+                                        setActiveTab(
+                                          "headers"
+                                        )
+                                      }
+                                      type="button"
+                                    >
+                                      HEADERS
+                                    </button>
+
+                                    <button
+                                      className={
+                                        activeTab === "curl"
+                                          ? "active"
+                                          : ""
+                                      }
+                                      onClick={() =>
+                                        setActiveTab("curl")
+                                      }
+                                      type="button"
+                                    >
+                                      CURL
+                                    </button>
+                                  </div>
+
+                                  <div className="response-meta">
+                                    <span
+                                      className={
+                                        statusCode >= 200 &&
+                                        statusCode < 300
+                                          ? "success"
+                                          : "error"
+                                      }
+                                    >
+                                      {statusCode || 500}
+                                    </span>
+
+                                    <small>
+                                      {elapsed ?? 0}ms
+                                    </small>
+                                  </div>
+                                </div>
+
+                                <div className="response-body">
+                                  {activeTab ===
+                                    "preview" && (
+                                    <pre>
+                                      {JSON.stringify(
+                                        response,
+                                        null,
+                                        2
+                                      )}
+                                    </pre>
+                                  )}
+
+                                  {activeTab ===
+                                    "headers" && (
+                                    <pre>
+{`Content-Type: application/json
+Accept: application/json
+X-Powered-By: DINSTORE API`}
+                                    </pre>
+                                  )}
+
+                                  {activeTab === "curl" && (
+                                    <pre>
+                                      {curlCommand}
+                                    </pre>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </article>
+                    );
+                  })}
+              </div>
+            )}
+          </section>
+        )}
       </main>
+
+      <footer>
+        <span>DINSTORE API</span>
+        <span>Developer Playground</span>
+      </footer>
     </div>
   );
 }
+
+export default App;
