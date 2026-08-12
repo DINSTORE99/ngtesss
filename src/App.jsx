@@ -9,14 +9,17 @@ const API_CATEGORIES = [
   {
     name: "AI",
     icon: "✦",
+    count: 3,
     path: "/docs/ai",
-    color: "purple",
+    color: "mint",
+
     endpoints: [
       {
         name: "AI Aiko",
         method: "GET",
         path: "/api/ai/aiko",
         description: "AI chat assistant",
+
         params: [
           {
             name: "q",
@@ -38,6 +41,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/ai/lyricsgen",
         description: "Generate lyrics menggunakan AI",
+
         params: [
           {
             name: "theme",
@@ -71,6 +75,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/tools/aicoder",
         description: "Generate kode menggunakan AI",
+
         params: [
           {
             name: "prompt",
@@ -83,11 +88,17 @@ const API_CATEGORIES = [
     ],
   },
 
+  /* =======================================================
+     ADMIN
+  ======================================================= */
+
   {
     name: "ADMIN",
     icon: "◇",
+    count: 2,
     path: "/docs/admin",
     color: "pink",
+
     endpoints: [
       {
         name: "Admin Status",
@@ -96,6 +107,7 @@ const API_CATEGORIES = [
         description: "Check admin status",
         params: [],
       },
+
       {
         name: "Admin Info",
         method: "GET",
@@ -106,11 +118,17 @@ const API_CATEGORIES = [
     ],
   },
 
+  /* =======================================================
+     CACHE
+  ======================================================= */
+
   {
     name: "CACHE",
     icon: "▣",
+    count: 2,
     path: "/docs/cache",
     color: "blue",
+
     endpoints: [
       {
         name: "Cache Get",
@@ -119,6 +137,7 @@ const API_CATEGORIES = [
         description: "Get cached data",
         params: [],
       },
+
       {
         name: "Cache Clear",
         method: "GET",
@@ -129,17 +148,24 @@ const API_CATEGORIES = [
     ],
   },
 
+  /* =======================================================
+     DOWNLOAD
+  ======================================================= */
+
   {
     name: "DOWNLOAD",
     icon: "⇩",
+    count: 5,
     path: "/docs/download",
-    color: "cyan",
+    color: "purple",
+
     endpoints: [
       {
         name: "TikTok Downloader",
         method: "GET",
         path: "/api/tiktok",
         description: "Download video TikTok",
+
         params: [
           {
             name: "url",
@@ -155,6 +181,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/instagram",
         description: "Download media Instagram",
+
         params: [
           {
             name: "url",
@@ -170,6 +197,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/d/capcut",
         description: "Download CapCut",
+
         params: [
           {
             name: "url",
@@ -185,6 +213,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/download/facebook",
         description: "Download Facebook media",
+
         params: [
           {
             name: "url",
@@ -200,6 +229,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/download/mediafire",
         description: "Download MediaFire",
+
         params: [
           {
             name: "url",
@@ -212,85 +242,24 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =====================================================
-     CATEGORY YANG BELUM ADA ENDPOINT
-     ===================================================== */
-
-  {
-    name: "FUN",
-    icon: "🎮",
-    path: "/docs/fun",
-    color: "pink",
-    endpoints: [],
-  },
-
-  {
-    name: "LEADERBOARD",
-    icon: "🏆",
-    path: "/docs/leaderboard",
-    color: "orange",
-    endpoints: [],
-  },
-
-  {
-    name: "LIBRARY",
-    icon: "▤",
-    path: "/docs/library",
-    color: "yellow",
-    endpoints: [],
-  },
-
-  {
-    name: "MAKER",
-    icon: "✦",
-    path: "/docs/maker",
-    color: "pink",
-    endpoints: [],
-  },
-
-  {
-    name: "NEWS",
-    icon: "▣",
-    path: "/docs/news",
-    color: "cyan",
-    endpoints: [],
-  },
-
-  {
-    name: "RANDOM",
-    icon: "◈",
-    path: "/docs/random",
-    color: "purple",
-    endpoints: [],
-  },
-
-  {
-    name: "SEARCH",
-    icon: "⌕",
-    path: "/docs/search",
-    color: "green",
-    endpoints: [],
-  },
-
-  {
-    name: "STALK",
-    icon: "◉",
-    path: "/docs/stalk",
-    color: "blue",
-    endpoints: [],
-  },
+  /* =======================================================
+     TOOLS
+  ======================================================= */
 
   {
     name: "TOOLS",
     icon: "⌘",
+    count: 3,
     path: "/docs/tools",
     color: "orange",
+
     endpoints: [
       {
         name: "Domain Info",
         method: "GET",
         path: "/api/tools/domaininfo",
         description: "Check information domain",
+
         params: [
           {
             name: "domain",
@@ -306,6 +275,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/tools/qr",
         description: "Generate QR code",
+
         params: [
           {
             name: "text",
@@ -321,6 +291,7 @@ const API_CATEGORIES = [
         method: "GET",
         path: "/api/tools/shorturl",
         description: "Shorten URL",
+
         params: [
           {
             name: "url",
@@ -334,15 +305,20 @@ const API_CATEGORIES = [
   },
 ];
 
-
 /* =========================================================
    APP
 ========================================================= */
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+
   const [search, setSearch] = useState("");
+
   const [openCategory, setOpenCategory] = useState(null);
+
+  /* =======================================================
+     TOTAL ENDPOINT
+  ======================================================= */
 
   const totalEndpoints = API_CATEGORIES.reduce(
     (total, category) =>
@@ -350,9 +326,9 @@ export default function App() {
     0
   );
 
-  /* =====================================================
+  /* =======================================================
      SEARCH
-  ===================================================== */
+  ======================================================= */
 
   const filteredCategories = useMemo(() => {
     const keyword = search.trim().toLowerCase();
@@ -374,9 +350,11 @@ export default function App() {
               endpoint.name
                 .toLowerCase()
                 .includes(keyword) ||
+
               endpoint.path
                 .toLowerCase()
                 .includes(keyword) ||
+
               endpoint.description
                 .toLowerCase()
                 .includes(keyword)
@@ -391,6 +369,7 @@ export default function App() {
           return {
             ...category,
             endpoints,
+            count: endpoints.length,
           };
         }
 
@@ -399,10 +378,9 @@ export default function App() {
       .filter(Boolean);
   }, [search]);
 
-
-  /* =====================================================
-     NAVIGATION
-  ===================================================== */
+  /* =======================================================
+     SCROLL CATEGORY
+  ======================================================= */
 
   const scrollToCategory = (categoryName) => {
     setMenuOpen(false);
@@ -421,6 +399,9 @@ export default function App() {
     }, 150);
   };
 
+  /* =======================================================
+     HOME
+  ======================================================= */
 
   const goHome = () => {
     setMenuOpen(false);
@@ -431,7 +412,6 @@ export default function App() {
     });
   };
 
-
   return (
     <div className="app">
 
@@ -439,24 +419,23 @@ export default function App() {
           HEADER
       ================================================= */}
 
-      <header className="top-header">
+      <header className="header">
+        <div className="header-inner">
 
-        <button
-          className={`nav-button ${
-            menuOpen ? "active" : ""
-          }`}
-          onClick={() =>
-            setMenuOpen(true)
-          }
-          aria-label="Open navigation"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <button
+            className={`menu-button ${
+              menuOpen ? "active" : ""
+            }`}
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
+        </div>
       </header>
-
 
       {/* =================================================
           OVERLAY
@@ -466,11 +445,8 @@ export default function App() {
         className={`nav-overlay ${
           menuOpen ? "show" : ""
         }`}
-        onClick={() =>
-          setMenuOpen(false)
-        }
+        onClick={() => setMenuOpen(false)}
       />
-
 
       {/* =================================================
           SIDE NAVIGATION
@@ -482,24 +458,23 @@ export default function App() {
         }`}
       >
 
-        <div className="nav-top">
+        {/* NAV HEADER */}
+
+        <div className="side-nav-header">
 
           <div>
-            <small>
+            <span className="nav-label">
               NAVIGATION
-            </small>
+            </span>
 
             <h2>
               DINSTORE API
             </h2>
           </div>
 
-
           <button
-            className="close-nav"
-            onClick={() =>
-              setMenuOpen(false)
-            }
+            className="close-button"
+            onClick={() => setMenuOpen(false)}
             aria-label="Close navigation"
           >
             ×
@@ -507,30 +482,26 @@ export default function App() {
 
         </div>
 
+        {/* NAV ITEMS */}
 
-        <div className="nav-list">
+        <div className="nav-items">
 
           {/* HOME */}
 
           <button
-            className="nav-item home-item"
+            className="nav-item home"
             onClick={goHome}
           >
-            <span className="nav-icon">
+            <span>
               ⌂
             </span>
 
-            <strong>
+            <b>
               HOME
-            </strong>
-
-            <small>
-              —
-            </small>
+            </b>
           </button>
 
-
-          {/* ALL CATEGORY */}
+          {/* CATEGORIES */}
 
           {API_CATEGORIES.map(
             (category, index) => (
@@ -544,13 +515,13 @@ export default function App() {
                 }
               >
 
-                <span className="nav-icon">
+                <span>
                   {category.icon}
                 </span>
 
-                <strong>
+                <b>
                   {category.name}
-                </strong>
+                </b>
 
                 <small>
                   {String(index + 1).padStart(
@@ -567,12 +538,11 @@ export default function App() {
 
       </aside>
 
-
       {/* =================================================
-          MAIN CONTENT
+          MAIN
       ================================================= */}
 
-      <main className="content">
+      <main className="main">
 
         {/* =================================================
             HERO
@@ -580,74 +550,70 @@ export default function App() {
 
         <section className="hero">
 
-          <div className="status">
+          {/* TERMINAL */}
+
+          <div className="terminal-badge">
+
             <span />
-            API SYSTEM ONLINE
+
+            TERMINAL ACTIVE
+
           </div>
 
+          {/* TITLE */}
 
-          <h1>
-            DINSTORE{" "}
-            <strong>
-              API
-            </strong>
-          </h1>
+          <div className="hero-title">
 
+            <h1>
+              ZEL API
+            </h1>
 
-          <p>
-            API downloader, AI, tools,
-            search dan utilities
-            <br />
-            untuk kebutuhan aplikasi kamu.
+            <span>
+              3.0.0
+            </span>
+
+          </div>
+
+          {/* DESCRIPTION */}
+
+          <p className="hero-description">
+            A comprehensive and user friendly API
+            solution for modern applications.
           </p>
 
-
-          {/* STATS */}
+          {/* =================================================
+              STATS
+          ================================================= */}
 
           <div className="stats">
 
             <div className="stat">
 
-              <strong>
-                {API_CATEGORIES.length}
-              </strong>
-
               <span>
                 CATEGORIES
               </span>
 
+              <strong>
+                {API_CATEGORIES.length}
+              </strong>
+
             </div>
 
-
             <div className="stat">
-
-              <strong>
-                {totalEndpoints}
-              </strong>
 
               <span>
                 ENDPOINTS
               </span>
 
-            </div>
-
-
-            <div className="stat">
-
-              <strong>
-                JSON
+              <strong className="mint">
+                {totalEndpoints}
               </strong>
-
-              <span>
-                RESPONSE
-              </span>
 
             </div>
 
           </div>
 
         </section>
-
 
         {/* =================================================
             SEARCH
@@ -664,9 +630,9 @@ export default function App() {
             <input
               type="text"
               value={search}
-              onChange={(e) =>
+              onChange={(event) =>
                 setSearch(
-                  e.target.value
+                  event.target.value
                 )
               }
               placeholder="Search endpoint atau category..."
@@ -678,6 +644,7 @@ export default function App() {
                 onClick={() =>
                   setSearch("")
                 }
+                aria-label="Clear search"
               >
                 ×
               </button>
@@ -687,12 +654,11 @@ export default function App() {
 
         </section>
 
-
         {/* =================================================
-            CATEGORY LIST
+            CATEGORIES
         ================================================= */}
 
-        <section className="category-container">
+        <section className="categories">
 
           {filteredCategories.map(
             (category) => {
@@ -703,19 +669,21 @@ export default function App() {
 
               return (
                 <article
-                  key={category.name}
-                  id={`category-${category.name.toLowerCase()}`}
-                  className={`category-section ${
+                  className={`category-card ${
                     isOpen
                       ? "opened"
                       : ""
                   }`}
+                  id={`category-${category.name.toLowerCase()}`}
+                  key={category.name}
                 >
 
-                  {/* CATEGORY HEADER */}
+                  {/* ======================================
+                      CATEGORY HEADER
+                  ====================================== */}
 
                   <button
-                    className="category-header"
+                    className="category-top"
                     onClick={() =>
                       setOpenCategory(
                         isOpen
@@ -725,65 +693,47 @@ export default function App() {
                     }
                   >
 
-                    <div className="category-left">
-
-                      <div
-                        className={`category-icon ${category.color}`}
-                      >
-                        {category.icon}
-                      </div>
-
-
-                      <div>
-
-                        <h2>
-                          {category.name}
-                        </h2>
-
-                        <span>
-                          {category.endpoints.length} ENDPOINTS
-                        </span>
-
-                      </div>
-
+                    <div
+                      className={`category-icon ${category.color}`}
+                    >
+                      {category.icon}
                     </div>
 
+                    <div className="category-info">
 
-                    <div className="category-right">
+                      <h2>
+                        {category.name}
+                      </h2>
 
-                      <span className="endpoint-count">
-                        {String(
+                      <span>
+                        {
                           category.endpoints.length
-                        ).padStart(
-                          2,
-                          "0"
-                        )}{" "}
-                        EP
-                      </span>
-
-                      <span
-                        className={`category-chevron ${
-                          isOpen
-                            ? "rotate"
-                            : ""
-                        }`}
-                      >
-                       ⌄
+                        }{" "}
+                        ENDPOINTS
                       </span>
 
                     </div>
+
+                    <span className="open-label">
+                      {isOpen
+                        ? "CLOSE"
+                        : "OPEN"}{" "}
+                      →
+                    </span>
 
                   </button>
 
-
-                  {/* API PATH */}
+                  {/* ======================================
+                      DOCUMENTATION PATH
+                  ====================================== */}
 
                   <div className="category-path">
                     {category.path}
                   </div>
 
-
-                  {/* ENDPOINTS */}
+                  {/* ======================================
+                      ENDPOINT LIST
+                  ====================================== */}
 
                   <div
                     className={`endpoint-list ${
@@ -793,43 +743,13 @@ export default function App() {
                     }`}
                   >
 
-                    {category.endpoints.length >
-                    0 ? (
-
-                      category.endpoints.map(
-                        (endpoint) => (
-                          <EndpointCard
-                            key={
-                              endpoint.path
-                            }
-                            endpoint={
-                              endpoint
-                            }
-                          />
-                        )
+                    {category.endpoints.map(
+                      (endpoint) => (
+                        <EndpointCard
+                          endpoint={endpoint}
+                          key={endpoint.path}
+                        />
                       )
-
-                    ) : (
-
-                      <div className="no-endpoint">
-
-                        <span>
-                          ◌
-                        </span>
-
-                        <div>
-                          <strong>
-                            Belum ada endpoint
-                          </strong>
-
-                          <small>
-                            Endpoint untuk kategori ini
-                            belum ditambahkan.
-                          </small>
-                        </div>
-
-                      </div>
-
                     )}
 
                   </div>
@@ -839,12 +759,11 @@ export default function App() {
             }
           )}
 
+          {/* =================================================
+              EMPTY SEARCH
+          ================================================= */}
 
-          {/* EMPTY SEARCH */}
-
-          {filteredCategories.length ===
-            0 && (
-
+          {filteredCategories.length === 0 && (
             <div className="empty">
 
               <strong>
@@ -856,7 +775,6 @@ export default function App() {
               </span>
 
             </div>
-
           )}
 
         </section>
@@ -866,7 +784,6 @@ export default function App() {
     </div>
   );
 }
-
 
 /* =========================================================
    ENDPOINT CARD
@@ -886,25 +803,28 @@ function EndpointCard({ endpoint }) {
   const [loading, setLoading] =
     useState(false);
 
+  /* =======================================================
+     UPDATE PARAMETER
+  ======================================================= */
 
   const updateValue = (
     name,
     value
   ) => {
-    setValues((prev) => ({
-      ...prev,
+    setValues((previous) => ({
+      ...previous,
       [name]: value,
     }));
   };
 
-
-  /* =====================================================
+  /* =======================================================
      EXECUTE API
-  ===================================================== */
+  ======================================================= */
 
   const execute = async () => {
 
     setLoading(true);
+
     setResponse(null);
 
     try {
@@ -920,6 +840,7 @@ function EndpointCard({ endpoint }) {
 
           if (
             value !== undefined &&
+            value !== null &&
             value !== ""
           ) {
             query.append(
@@ -927,60 +848,65 @@ function EndpointCard({ endpoint }) {
               value
             );
           }
-
         }
       );
 
+      /* =========================================
+         BUILD URL
+      ========================================= */
 
       const url =
-        endpoint.path +
+        `${endpoint.path}` +
         (
           query.toString()
             ? `?${query.toString()}`
             : ""
         );
 
+      /* =========================================
+         REQUEST
+      ========================================= */
 
       const res =
         await fetch(url);
 
+      /* =========================================
+         CHECK RESPONSE
+      ========================================= */
 
       const contentType =
         res.headers.get(
           "content-type"
-        );
+        ) || "";
 
+      let data;
 
       if (
-        contentType &&
         contentType.includes(
           "application/json"
         )
       ) {
-
-        const data =
+        data =
           await res.json();
-
-        setResponse(data);
-
       } else {
-
         const text =
           await res.text();
 
-        setResponse({
+        data = {
           status: res.ok,
+          statusCode: res.status,
           response: text,
-        });
-
+        };
       }
+
+      setResponse(data);
 
     } catch (error) {
 
       setResponse({
         status: false,
         message:
-          error.message ||
+          error?.message ||
           "Request gagal",
       });
 
@@ -991,11 +917,16 @@ function EndpointCard({ endpoint }) {
     }
   };
 
+  /* =======================================================
+     ENDPOINT CARD
+  ======================================================= */
 
   return (
     <div className="endpoint">
 
-      {/* HEADER */}
+      {/* ===================================================
+          HEADER
+      =================================================== */}
 
       <button
         className="endpoint-header"
@@ -1010,7 +941,6 @@ function EndpointCard({ endpoint }) {
           {endpoint.method}
         </div>
 
-
         <div className="endpoint-main">
 
           <strong>
@@ -1023,7 +953,6 @@ function EndpointCard({ endpoint }) {
 
         </div>
 
-
         <span className="endpoint-chevron">
           {expanded
             ? "−"
@@ -1032,33 +961,31 @@ function EndpointCard({ endpoint }) {
 
       </button>
 
-
-      {/* BODY */}
+      {/* ===================================================
+          BODY
+      =================================================== */}
 
       {expanded && (
-
         <div className="endpoint-body">
+
+          {/* DESCRIPTION */}
 
           <p className="endpoint-description">
             {endpoint.description}
           </p>
 
+          {/* =================================================
+              PARAMETERS
+          ================================================= */}
 
-          {/* PARAMETERS */}
-
-          {endpoint.params.length >
-            0 && (
-
+          {endpoint.params.length > 0 && (
             <div className="params">
 
               {endpoint.params.map(
                 (param) => (
-
                   <label
                     className="param"
-                    key={
-                      param.name
-                    }
+                    key={param.name}
                   >
 
                     <div className="param-label">
@@ -1075,7 +1002,6 @@ function EndpointCard({ endpoint }) {
 
                     </div>
 
-
                     <input
                       type="text"
                       value={
@@ -1083,10 +1009,10 @@ function EndpointCard({ endpoint }) {
                           param.name
                         ] || ""
                       }
-                      onChange={(e) =>
+                      onChange={(event) =>
                         updateValue(
                           param.name,
-                          e.target.value
+                          event.target.value
                         )
                       }
                       placeholder={
@@ -1095,34 +1021,31 @@ function EndpointCard({ endpoint }) {
                     />
 
                   </label>
-
                 )
               )}
 
             </div>
-
           )}
 
-
-          {/* EXECUTE */}
+          {/* =================================================
+              EXECUTE
+          ================================================= */}
 
           <button
             className="execute-button"
             onClick={execute}
             disabled={loading}
           >
-
             {loading
               ? "EXECUTING..."
               : "EXECUTE →"}
-
           </button>
 
+          {/* =================================================
+              RESPONSE
+          ================================================= */}
 
-          {/* RESPONSE */}
-
-          {response && (
-
+          {response !== null && (
             <pre className="response">
               {JSON.stringify(
                 response,
@@ -1130,11 +1053,9 @@ function EndpointCard({ endpoint }) {
                 2
               )}
             </pre>
-
           )}
 
         </div>
-
       )}
 
     </div>
