@@ -493,41 +493,21 @@ function App() {
       <div className="grid-background" />
 
       {/* HEADER */}
+<header className="header">
+  <div className="header-inner">
 
-      <header className="header">
-        <div className="header-inner">
-          <button
-            className="menu-button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open navigation"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
+    <button
+      className="menu-button"
+      onClick={() => setMenuOpen(true)}
+      aria-label="Open navigation"
+    >
+      <span />
+      <span />
+      <span />
+    </button>
 
-          <div className="brand">
-            <div className="brand-logo">D</div>
-
-            <div className="brand-text">
-              <strong>DINSTORE API</strong>
-              <span>Developer Documentation</span>
-            </div>
-          </div>
-
-          <button
-            className="menu-button desktop-menu"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open navigation"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
-
-      {/* HERO */}
+  </div>
+</header>
 
       <main>
         <section className="hero">
