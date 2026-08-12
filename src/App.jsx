@@ -402,7 +402,7 @@ const API_CATEGORIES = [
           {
             name: "domain",
             label: "Domain",
-            placeholder: "dinns.my.id",
+            placeholder: "domainmu.com",
             required: true,
           },
         ],
