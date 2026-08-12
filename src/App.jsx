@@ -737,7 +737,7 @@ export default function App() {
             </span>
 
             <h2>
-              ZEL API
+              DIN API🔥 
             </h2>
           </div>
 
