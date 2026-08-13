@@ -214,7 +214,7 @@ const API_CATEGORIES = [
       {
         name: "CapCut Downloader",
         method: "GET",
-        path: "/api/d/capcut",
+        path: "/api/download/capcut",
         description: "Download CapCut",
         params: [
           {
