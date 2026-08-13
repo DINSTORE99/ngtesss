@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "./style.css";
 
 /* =========================================================
-   ZEL API 3.0.0
+   DIN API 3.0.0
    ROBOT / TRANSFORMER 3D DOCUMENTATION
 ========================================================= */
 
@@ -1137,7 +1137,7 @@ export default function App() {
         <footer className="footer">
 
           <div>
-            <strong>ZEL API 3.0.0</strong>
+            <strong>Documentation v3.0.0</strong>
             <span>
               ROBOTIC API SYSTEM
             </span>
