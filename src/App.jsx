@@ -910,7 +910,7 @@ export default function App() {
 
             <div className="hero-title">
 
-              <h1>DOCUMENTATION</h1>
+              <h1>DOCS</h1>
 
               <span>v3.0.0</span>
 
