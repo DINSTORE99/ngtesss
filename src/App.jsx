@@ -910,9 +910,9 @@ export default function App() {
 
             <div className="hero-title">
 
-              <h1>ZEL API</h1>
+              <h1>DOCUMENTATION</h1>
 
-              <span>3.0.0</span>
+              <span>v3.0.0</span>
 
             </div>
 
