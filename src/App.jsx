@@ -762,7 +762,7 @@ export default function App() {
             <RobotIcon />
 
             <div>
-              <strong>ZEL API</strong>
+              <strong>DIN API🔥</strong>
               <small>ROBOT SYSTEM</small>
             </div>
           </div>
@@ -777,7 +777,7 @@ export default function App() {
           </div>
 
           <div className="version">
-            v3.0.0
+            v1.0.0
           </div>
 
         </div>
@@ -809,7 +809,7 @@ export default function App() {
 
           <div>
             <small>NAVIGATION</small>
-            <h2>ZEL API</h2>
+            <h2>DIN API🔥</h2>
           </div>
 
           <button
