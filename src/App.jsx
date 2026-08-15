@@ -43,9 +43,7 @@ const API_CATEGORIES = [
       required: false,
     },
   ],
-},
-
-   
+},  
   {
     name: "AI",
     icon: "✦",
