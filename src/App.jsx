@@ -12,6 +12,9 @@ const TURNSTILE_SITE_KEY =
 ========================================================= */
 
 const API_CATEGORIES = [ 
+   /* =========================================================
+   AI
+========================================================= */
   {
     name: "AI",
     icon: "✦",
@@ -132,7 +135,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   ADMIN
+========================================================= */
   {
     name: "ADMIN",
     icon: "◇",
@@ -162,7 +167,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   CACHE
+========================================================= */
   {
     name: "CACHE",
     icon: "▣",
@@ -192,7 +199,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   DOWNLOAD 
+========================================================= */
   {
     name: "DOWNLOAD",
     icon: "⇩",
@@ -300,7 +309,9 @@ const API_CATEGORIES = [
     ],
   },
 
-   
+  /* =========================================================
+   FUN
+========================================================= */ 
   {
     name: "FUN",
     icon: "🎮",
@@ -330,7 +341,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   LEADERBOARD 
+========================================================= */
   {
     name: "LEADERBOARD",
     icon: "🏆",
@@ -346,7 +359,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   LIBARY
+========================================================= */
   {
     name: "LIBRARY",
     icon: "▤",
@@ -397,7 +412,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   MAKER
+========================================================= */
   {
     name: "MAKER",
     icon: "🎨",
@@ -434,51 +451,59 @@ const API_CATEGORIES = [
       },
     ],
   },
+/* =========================================================
+   NEWS
+========================================================= */
+{
+  name: "NEWS",
+  icon: "▤",
+  color: "cyan",
+  path: "/docs/news",
 
-  {
-    name: "NEWS",
-    icon: "▤",
-    color: "cyan",
-    path: "/docs/news",
-    endpoints: [
-      {
-        name: "Latest News",
-        method: "GET",
-        path: "/api/news/latest",
-        description: "Get latest news.",
-        params: [],
-      },
-   {
-    name: "Kompas News",
-    method: "GET",
-    path: "/api/news/kompas",
-    description: "Mengambil berita terbaru dari Kompas.com",
-    params: [],
-  },   
-  {
-    name: "Detik News",
-    method: "GET",
-    path: "/api/news/detik",
-    description: "Mengambil berita terbaru dari Detik.com",
-    params: [],
-  }, 
-      {
-        name: "Search News",
-        method: "GET",
-        path: "/api/news/search",
-        description: "Search news.",
-        params: [
-          {
-            name: "q",
-            label: "Query",
-            placeholder: "teknologi",
-            required: true,
-          },
-        ],
-      },
-    ],
-  },
+  endpoints: [
+    {
+      name: "Latest News",
+      method: "GET",
+      path: "/api/news/latest",
+      description: "Get latest news.",
+      params: [],
+    },
 
+    {
+      name: "Kompas News",
+      method: "GET",
+      path: "/api/news/kompas",
+      description: "Mengambil berita terbaru dari Kompas.com",
+      params: [],
+    },
+
+    {
+      name: "Detik News",
+      method: "GET",
+      path: "/api/news/detik",
+      description: "Mengambil berita terbaru dari Detik.com",
+      params: [],
+    },
+
+    {
+      name: "Search News",
+      method: "GET",
+      path: "/api/news/search",
+      description: "Search news.",
+      params: [
+        {
+          name: "q",
+          label: "Query",
+          placeholder: "teknologi",
+          required: true,
+        },
+      ],
+    },
+  ],
+},
+/* =========================================================
+   RANDOM
+========================================================= */
   {
     name: "RANDOM",
     icon: "◆",
@@ -514,7 +539,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   SEARCH 
+========================================================= */
   {
     name: "SEARCH",
     icon: "⌕",
@@ -551,7 +578,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   STALK 
+========================================================= */
   {
     name: "STALK",
     icon: "◉",
@@ -588,7 +617,9 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+/* =========================================================
+   TOOLS 
+========================================================= */
   {
     name: "TOOLS",
     icon: "⌘",
