@@ -448,7 +448,13 @@ const API_CATEGORIES = [
         description: "Get latest news.",
         params: [],
       },
-      
+   {
+    name: "Kompas News",
+    method: "GET",
+    path: "/api/news/kompas",
+    description: "Mengambil berita terbaru dari Kompas.com",
+    params: [],
+  },   
   {
     name: "Detik News",
     method: "GET",
