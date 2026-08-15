@@ -11,8 +11,34 @@ const TURNSTILE_SITE_KEY =
    API DATA
 ========================================================= */
 
-const API_CATEGORIES = [
-{
+const API_CATEGORIES = [ 
+  {
+    name: "AI",
+    icon: "✦",
+    color: "mint",
+    path: "/docs/ai",
+    endpoints: [
+      {
+        name: "AI Aiko",
+        method: "GET",
+        path: "/api/ai/aiko",
+        description: "AI chat assistant.",
+        params: [
+          {
+            name: "q",
+            label: "Prompt",
+            placeholder: "Halo, apa kabar?",
+            required: true,
+          },
+          {
+            name: "reset",
+            label: "Reset",
+            placeholder: "false",
+            required: false,
+          },
+        ],
+      },
+      {
   name: "Flixier AI Image",
   method: "GET",
   path: "/api/ai/flixier",
@@ -43,33 +69,7 @@ const API_CATEGORIES = [
       required: false,
     },
   ],
-},  
-  {
-    name: "AI",
-    icon: "✦",
-    color: "mint",
-    path: "/docs/ai",
-    endpoints: [
-      {
-        name: "AI Aiko",
-        method: "GET",
-        path: "/api/ai/aiko",
-        description: "AI chat assistant.",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "Halo, apa kabar?",
-            required: true,
-          },
-          {
-            name: "reset",
-            label: "Reset",
-            placeholder: "false",
-            required: false,
-          },
-        ],
-      },
+}, 
       {
         name: "AI Lyrics Generator",
         method: "GET",
