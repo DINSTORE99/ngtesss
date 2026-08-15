@@ -170,7 +170,7 @@ const API_CATEGORIES = [
       {
         name: "TikTok Downloader",
         method: "GET",
-        path: "/api/tiktok",
+        path: "/api/download/tiktok",
         description: "Download video TikTok.",
         params: [
           {
@@ -184,7 +184,7 @@ const API_CATEGORIES = [
       {
         name: "Instagram Downloader",
         method: "GET",
-        path: "/api/instagram",
+        path: "/api/download/instagram",
         description: "Download Instagram media.",
         params: [
           {
@@ -198,7 +198,7 @@ const API_CATEGORIES = [
       {
         name: "CapCut Downloader",
         method: "GET",
-        path: "/api/d/capcut",
+        path: "/api/download/capcut",
         description: "Download CapCut media.",
         params: [
           {
@@ -543,7 +543,7 @@ const API_CATEGORIES = [
           {
             name: "domain",
             label: "Domain",
-            placeholder: "example.com",
+            placeholder: "domainmu.com",
             required: true,
           },
         ],
