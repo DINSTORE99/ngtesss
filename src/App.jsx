@@ -1185,7 +1185,7 @@ function TurnstileGate({ ready, onVerified }) {
 
           <div>
             <strong>DIN API🔥</strong>
-            <span>ROBOT SYSTEM</span>
+            <span>API SYSTEM</span>
           </div>
         </div>
 
