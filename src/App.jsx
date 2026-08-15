@@ -581,7 +581,7 @@ const API_CATEGORIES = [
 ];
 
 /* =========================================================
-   APP
+   APP / TURNSTILE GATE
 ========================================================= */
 
 export default function App() {
@@ -589,36 +589,46 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [openCategory, setOpenCategory] = useState(null);
   const [turnstileReady, setTurnstileReady] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   const totalEndpoints = API_CATEGORIES.reduce(
     (total, category) => total + category.endpoints.length,
     0
   );
 
-  /* Load Cloudflare Turnstile */
-
+  /* Load Cloudflare Turnstile once, before the documentation is shown. */
   useEffect(() => {
     if (window.turnstile) {
       setTurnstileReady(true);
       return;
     }
 
-    const script = document.createElement("script");
+    const existing = document.querySelector(
+      'script[src*="challenges.cloudflare.com/turnstile"]'
+    );
 
-    script.src =
-      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    const script =
+      existing ||
+      document.createElement("script");
 
-    script.async = true;
-    script.defer = true;
+    if (!existing) {
+      script.src =
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
 
-    script.onload = () => {
+    const onLoad = () => setTurnstileReady(true);
+
+    if (window.turnstile) {
       setTurnstileReady(true);
-    };
-
-    document.head.appendChild(script);
+    } else {
+      script.addEventListener("load", onLoad);
+    }
 
     return () => {
-      script.remove();
+      script.removeEventListener?.("load", onLoad);
     };
   }, []);
 
@@ -687,14 +697,19 @@ export default function App() {
     );
   };
 
+  /* The whole documentation stays locked until Turnstile succeeds. */
+  if (!verified) {
+    return (
+      <TurnstileGate
+        ready={turnstileReady}
+        onVerified={() => setVerified(true)}
+      />
+    );
+  }
+
   return (
     <div className="app">
-
-      {/* BACKGROUND GRID */}
-
       <div className="grid-background" />
-
-      {/* ROBOT */}
 
       <div className="robot-decoration robot-one">
         <span />
@@ -702,15 +717,12 @@ export default function App() {
         <span />
       </div>
 
-      {/* HEADER */}
-
       <header className="header">
-
         <div className="header-inner">
-
           <button
             className="menu-button"
             onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
           >
             <span />
             <span />
@@ -718,9 +730,7 @@ export default function App() {
           </button>
 
           <div className="brand">
-            <div className="brand-core">
-              D
-            </div>
+            <div className="brand-core">D</div>
 
             <div>
               <strong>DINSTORE</strong>
@@ -732,33 +742,18 @@ export default function App() {
             <span />
             ONLINE
           </div>
-
         </div>
-
       </header>
 
-      {/* SIDEBAR */}
-
       <div
-        className={`nav-overlay ${
-          menuOpen ? "show" : ""
-        }`}
+        className={`nav-overlay ${menuOpen ? "show" : ""}`}
         onClick={() => setMenuOpen(false)}
       />
 
-      <aside
-        className={`side-nav ${
-          menuOpen ? "open" : ""
-        }`}
-      >
-
+      <aside className={`side-nav ${menuOpen ? "open" : ""}`}>
         <div className="side-nav-header">
-
           <div>
-            <span className="nav-label">
-              NAVIGATION
-            </span>
-
+            <span className="nav-label">NAVIGATION</span>
             <h2>DINSTORE API</h2>
           </div>
 
@@ -768,16 +763,13 @@ export default function App() {
           >
             ×
           </button>
-
         </div>
 
         <div className="nav-items">
-
           <button
             className="nav-item home"
             onClick={() => {
               setMenuOpen(false);
-
               window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -786,51 +778,37 @@ export default function App() {
           >
             <span>⌂</span>
             <b>HOME</b>
+            <small>00</small>
           </button>
 
-          {API_CATEGORIES.map(
-            (category, index) => (
-              <button
-                className="nav-item"
-                key={category.name}
-                onClick={() =>
-                  scrollToCategory(
-                    category.name
-                  )
-                }
-              >
-                <span>
-                  {category.icon}
-                </span>
+          {API_CATEGORIES.map((category, index) => (
+            <button
+              className="nav-item"
+              key={category.name}
+              onClick={() => scrollToCategory(category.name)}
+            >
+              <span className={category.color}>
+                {category.icon}
+              </span>
 
-                <b>
-                  {category.name}
-                </b>
+              <b>{category.name}</b>
 
-                <small>
-                  {String(index + 1).padStart(
-                    2,
-                    "0"
-                  )}
-                </small>
-              </button>
-            )
-          )}
-
+              <small>
+                {String(index + 1).padStart(2, "0")}
+              </small>
+            </button>
+          ))}
         </div>
 
+        <div className="side-footer">
+          <span>SYSTEM STATUS</span>
+          <strong>● OPERATIONAL</strong>
+        </div>
       </aside>
 
-      {/* MAIN */}
-
       <main className="main">
-
-        {/* HERO */}
-
         <section className="hero">
-
           <div className="hero-machine">
-
             <div className="machine-ring" />
 
             <div className="machine-core">
@@ -838,7 +816,6 @@ export default function App() {
               <div className="eye eye-right" />
               <div className="machine-mouth" />
             </div>
-
           </div>
 
           <div className="terminal-badge">
@@ -847,11 +824,8 @@ export default function App() {
           </div>
 
           <div className="hero-title">
-
             <h1>DINSTORE</h1>
-
             <span>3.0.0</span>
-
           </div>
 
           <p className="hero-description">
@@ -860,220 +834,120 @@ export default function App() {
           </p>
 
           <div className="stats">
-
             <div className="stat">
-
-              <span>
-                CATEGORIES
-              </span>
-
-              <strong>
-                {API_CATEGORIES.length}
-              </strong>
-
+              <span>CATEGORIES</span>
+              <strong>{API_CATEGORIES.length}</strong>
             </div>
 
             <div className="stat green">
-
-              <span>
-                ENDPOINTS
-              </span>
-
-              <strong>
-                {totalEndpoints}
-              </strong>
-
+              <span>ENDPOINTS</span>
+              <strong>{totalEndpoints}</strong>
             </div>
 
             <div className="stat status">
-
-              <span>
-                STATUS
-              </span>
-
-              <strong>
-                ONLINE
-              </strong>
-
+              <span>STATUS</span>
+              <strong>ONLINE</strong>
             </div>
-
           </div>
-
         </section>
 
-        {/* SEARCH */}
-
         <section className="search-section">
-
           <div className="search-box">
-
-            <span>
-              ⌕
-            </span>
+            <span>⌕</span>
 
             <input
               value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="SEARCH ENDPOINT / CATEGORY..."
             />
 
             {search && (
-              <button
-                onClick={() =>
-                  setSearch("")
-                }
-              >
-                ×
-              </button>
+              <button onClick={() => setSearch("")}>×</button>
             )}
-
           </div>
-
         </section>
 
-        {/* CATEGORIES */}
-
         <section className="categories">
+          {filteredCategories.map((category, index) => {
+            const isOpen =
+              openCategory === category.name;
 
-          {filteredCategories.map(
-            (category, index) => {
-
-              const isOpen =
-                openCategory ===
-                category.name;
-
-              return (
-                <article
-                  key={category.name}
-                  id={`category-${category.name.toLowerCase()}`}
-                  className={`category-card ${
-                    isOpen
-                      ? "opened"
-                      : ""
-                  }`}
+            return (
+              <article
+                key={category.name}
+                id={`category-${category.name.toLowerCase()}`}
+                className={`category-card ${
+                  isOpen ? "opened" : ""
+                }`}
+              >
+                <button
+                  className="category-top"
+                  onClick={() =>
+                    setOpenCategory(
+                      isOpen ? null : category.name
+                    )
+                  }
                 >
-
-                  <button
-                    className="category-top"
-                    onClick={() =>
-                      setOpenCategory(
-                        isOpen
-                          ? null
-                          : category.name
-                      )
-                    }
+                  <div
+                    className={`category-icon ${category.color}`}
                   >
+                    {category.icon}
+                  </div>
 
-                    <div
-                      className={`category-icon ${category.color}`}
-                    >
-                      {category.icon}
-                    </div>
+                  <div className="category-info">
+                    <small>
+                      MODULE{" "}
+                      {String(index + 1).padStart(2, "0")}
+                    </small>
 
-                    <div className="category-info">
-
-                      <small>
-                        MODULE{" "}
-                        {String(
-                          index + 1
-                        ).padStart(
-                          2,
-                          "0"
-                        )}
-                      </small>
-
-                      <h2>
-                        {category.name}
-                      </h2>
-
-                      <span>
-                        {
-                          category
-                            .endpoints
-                            .length
-                        }{" "}
-                        ENDPOINTS
-                      </span>
-
-                    </div>
-
-                    <span className="open-label">
-                      {isOpen
-                        ? "CLOSE ↑"
-                        : "OPEN →"}
-                    </span>
-
-                  </button>
-
-                  <div className="category-path">
+                    <h2>{category.name}</h2>
 
                     <span>
-                      PATH
+                      {category.endpoints.length} ENDPOINTS
                     </span>
-
-                    {category.path}
-
                   </div>
 
-                  <div
-                    className={`endpoint-list ${
-                      isOpen
-                        ? "visible"
-                        : ""
-                    }`}
-                  >
+                  <span className="open-label">
+                    {isOpen ? "CLOSE ↑" : "OPEN →"}
+                  </span>
+                </button>
 
-                    {category.endpoints.map(
-                      (endpoint) => (
-                        <EndpointCard
-                          key={
-                            endpoint.path
-                          }
-                          endpoint={
-                            endpoint
-                          }
-                          turnstileReady={
-                            turnstileReady
-                          }
-                        />
-                      )
-                    )}
+                <div className="category-path">
+                  <span>PATH</span>
+                  {category.path}
+                </div>
 
-                  </div>
-
-                </article>
-              );
-            }
-          )}
+                <div
+                  className={`endpoint-list ${
+                    isOpen ? "visible" : ""
+                  }`}
+                >
+                  {category.endpoints.map((endpoint) => (
+                    <EndpointCard
+                      key={endpoint.path}
+                      endpoint={endpoint}
+                    />
+                  ))}
+                </div>
+              </article>
+            );
+          })}
 
           {!filteredCategories.length && (
             <div className="empty">
-              <strong>
-                ENDPOINT NOT FOUND
-              </strong>
-
-              <span>
-                Try another keyword.
-              </span>
+              <strong>ENDPOINT NOT FOUND</strong>
+              <span>Try another keyword.</span>
             </div>
           )}
-
         </section>
-
       </main>
-
-      {/* FLOATING ROBOT */}
 
       <button
         className="floating-robot"
         onClick={openWhatsApp}
         aria-label="Contact WhatsApp"
       >
-
         <div className="robot-face">
-
           <span className="robot-eye left" />
           <span className="robot-eye right" />
 
@@ -1082,119 +956,224 @@ export default function App() {
             <i />
             <i />
           </div>
-
         </div>
 
         <span className="robot-dot" />
-
       </button>
+    </div>
+  );
+}
 
+/* =========================================================
+   INITIAL TURNSTILE GATE
+========================================================= */
+
+function TurnstileGate({ ready, onVerified }) {
+  const widgetRef = React.useRef(null);
+  const widgetIdRef = React.useRef(null);
+  const [error, setError] = useState("");
+  const [checking, setChecking] = useState(false);
+
+  useEffect(() => {
+    if (
+      !ready ||
+      !window.turnstile ||
+      !widgetRef.current ||
+      widgetIdRef.current !== null
+    ) {
+      return;
+    }
+
+    const siteKey =
+      import.meta.env.VITE_TURNSTILE_SITE_KEY;
+
+    if (!siteKey) {
+      setError(
+        "VITE_TURNSTILE_SITE_KEY belum dikonfigurasi di Vercel."
+      );
+      return;
+    }
+
+    try {
+      widgetIdRef.current = window.turnstile.render(
+        widgetRef.current,
+        {
+          sitekey: siteKey,
+          theme: "dark",
+
+          callback: async (token) => {
+            setError("");
+            setChecking(true);
+
+            try {
+              const verify = await fetch(
+                "/api/verify-turnstile",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ token }),
+                }
+              );
+
+              const data = await verify.json();
+
+              if (!verify.ok || !data.success) {
+                throw new Error(
+                  data.message ||
+                    "Verifikasi Cloudflare gagal."
+                );
+              }
+
+              onVerified();
+            } catch (err) {
+              setError(
+                err.message ||
+                  "Verifikasi gagal. Silakan coba lagi."
+              );
+
+              try {
+                window.turnstile.reset(
+                  widgetIdRef.current
+                );
+              } catch {}
+            } finally {
+              setChecking(false);
+            }
+          },
+
+          "expired-callback": () => {
+            setError(
+              "Verifikasi kedaluwarsa. Silakan ulangi."
+            );
+          },
+
+          "error-callback": () => {
+            setError(
+              "Cloudflare Turnstile gagal dimuat. Periksa koneksi dan hostname."
+            );
+          },
+        }
+      );
+    } catch (err) {
+      console.error(err);
+      setError(
+        "Turnstile tidak dapat dijalankan."
+      );
+    }
+
+    return () => {
+      try {
+        if (
+          window.turnstile &&
+          widgetIdRef.current !== null
+        ) {
+          window.turnstile.remove(
+            widgetIdRef.current
+          );
+        }
+      } catch {}
+
+      widgetIdRef.current = null;
+    };
+  }, [ready, onVerified]);
+
+  return (
+    <div className="verification-screen">
+      <div className="verification-grid" />
+      <div className="verification-glow verification-glow-one" />
+      <div className="verification-glow verification-glow-two" />
+
+      <div className="verification-card">
+        <div className="verification-brand">
+          <div className="verification-logo">
+            D
+          </div>
+
+          <div>
+            <strong>DIN API🔥</strong>
+            <span>ROBOT SYSTEM</span>
+          </div>
+        </div>
+
+        <div className="verification-line" />
+
+        <div className="verification-icon">
+          ◉
+        </div>
+
+        <span className="verification-eyebrow">
+          SECURITY CHECK
+        </span>
+
+        <h1>VERIFY ACCESS</h1>
+
+        <p>
+          Selesaikan verifikasi Cloudflare terlebih
+          dahulu untuk masuk ke DIN API.
+        </p>
+
+        <div className="verification-status">
+          <span className={checking ? "checking" : ""} />
+          {checking
+            ? "VERIFYING..."
+            : "WAITING FOR VERIFICATION"}
+        </div>
+
+        <div className="turnstile-gate-widget">
+          {ready ? (
+            <div ref={widgetRef} />
+          ) : (
+            <div className="turnstile-loading">
+              MEMUAT CLOUDFLARE...
+            </div>
+          )}
+        </div>
+
+        {error && (
+          <div className="verification-error">
+            <b>!</b>
+            <span>{error}</span>
+          </div>
+        )}
+
+        <small className="verification-note">
+          Your connection is protected by Cloudflare
+          Turnstile.
+        </small>
+      </div>
     </div>
   );
 }
 
 /* =========================================================
    ENDPOINT CARD
+   Turnstile hanya dilakukan sekali saat website dibuka.
 ========================================================= */
 
-function EndpointCard({
-  endpoint,
-  turnstileReady,
-}) {
-  const [expanded, setExpanded] =
-    useState(false);
+function EndpointCard({ endpoint }) {
+  const [expanded, setExpanded] = useState(false);
+  const [values, setValues] = useState({});
+  const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const [values, setValues] =
-    useState({});
-
-  const [response, setResponse] =
-    useState(null);
-
-  const [loading, setLoading] =
-    useState(false);
-
-  const [turnstileToken, setTurnstileToken] =
-    useState("");
-
-  const widgetRef =
-    React.useRef(null);
-
-  const updateValue = (
-    name,
-    value
-  ) => {
+  const updateValue = (name, value) => {
     setValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  useEffect(() => {
-    if (
-      !expanded ||
-      !turnstileReady ||
-      !widgetRef.current ||
-      !window.turnstile ||
-      turnstileToken
-    ) {
-      return;
-    }
-
-    try {
-      widgetRef.current.innerHTML = "";
-
-      window.turnstile.render(
-        widgetRef.current,
-        {
-          sitekey:
-            TURNSTILE_SITE_KEY,
-
-          theme: "dark",
-
-          callback: (token) => {
-            setTurnstileToken(
-              token
-            );
-          },
-
-          "expired-callback": () => {
-            setTurnstileToken("");
-          },
-
-          "error-callback": () => {
-            setTurnstileToken("");
-          },
-        }
-      );
-    } catch (error) {
-      console.error(
-        "Turnstile:",
-        error
-      );
-    }
-  }, [
-    expanded,
-    turnstileReady,
-    turnstileToken,
-  ]);
-
   const execute = async () => {
-
     setLoading(true);
     setResponse(null);
 
     try {
-
-      if (!turnstileToken) {
-        throw new Error(
-          "Selesaikan verifikasi Cloudflare terlebih dahulu."
-        );
-      }
-
       for (const param of endpoint.params) {
         if (
           param.required &&
-          !values[param.name]?.trim()
+          !String(values[param.name] || "").trim()
         ) {
           throw new Error(
             `${param.label} wajib diisi.`
@@ -1202,56 +1181,18 @@ function EndpointCard({
         }
       }
 
-      /* VERIFY TURNSTILE */
+      const query = new URLSearchParams();
 
-      const verify = await fetch(
-        "/api/verify-turnstile",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            token:
-              turnstileToken,
-          }),
+      endpoint.params.forEach((param) => {
+        const value = values[param.name];
+
+        if (
+          value !== undefined &&
+          value !== ""
+        ) {
+          query.append(param.name, value);
         }
-      );
-
-      const verifyData =
-        await verify.json();
-
-      if (
-        !verify.ok ||
-        !verifyData.success
-      ) {
-        throw new Error(
-          "Verifikasi Cloudflare gagal."
-        );
-      }
-
-      /* API REQUEST */
-
-      const query =
-        new URLSearchParams();
-
-      endpoint.params.forEach(
-        (param) => {
-          const value =
-            values[param.name];
-
-          if (
-            value !== undefined &&
-            value !== ""
-          ) {
-            query.append(
-              param.name,
-              value
-            );
-          }
-        }
-      );
+      });
 
       const url =
         endpoint.path +
@@ -1259,176 +1200,100 @@ function EndpointCard({
           ? `?${query.toString()}`
           : "");
 
-      const res =
-        await fetch(url);
+      const res = await fetch(url);
 
       const contentType =
-        res.headers.get(
-          "content-type"
-        ) || "";
+        res.headers.get("content-type") || "";
 
       let data;
 
       if (
-        contentType.includes(
-          "application/json"
-        )
+        contentType.includes("application/json")
       ) {
         data = await res.json();
       } else {
         data = {
           success: res.ok,
           status: res.status,
-          response:
-            await res.text(),
+          response: await res.text(),
         };
       }
 
       setResponse(data);
-
     } catch (error) {
-
       setResponse({
         success: false,
         message:
           error.message ||
           "Request failed.",
       });
-
     } finally {
-
       setLoading(false);
-
-      setTurnstileToken("");
-
-      if (
-        window.turnstile &&
-        widgetRef.current
-      ) {
-        try {
-          window.turnstile.reset();
-        } catch {}
-      }
     }
   };
 
   return (
     <div className="endpoint">
-
       <button
         className="endpoint-header"
-        onClick={() =>
-          setExpanded(
-            !expanded
-          )
-        }
+        onClick={() => setExpanded(!expanded)}
       >
-
         <div className="method">
           {endpoint.method}
         </div>
 
         <div className="endpoint-main">
-
-          <strong>
-            {endpoint.name}
-          </strong>
-
-          <span>
-            {endpoint.path}
-          </span>
-
+          <strong>{endpoint.name}</strong>
+          <span>{endpoint.path}</span>
         </div>
 
         <span className="endpoint-chevron">
-          {expanded
-            ? "−"
-            : "+"}
+          {expanded ? "−" : "+"}
         </span>
-
       </button>
 
       {expanded && (
         <div className="endpoint-body">
-
           <p className="endpoint-description">
             {endpoint.description}
           </p>
 
-          {endpoint.params.length >
-            0 && (
+          {endpoint.params.length > 0 && (
             <div className="params">
+              {endpoint.params.map((param) => (
+                <label
+                  className="param"
+                  key={param.name}
+                >
+                  <div className="param-label">
+                    <span>{param.label}</span>
 
-              {endpoint.params.map(
-                (param) => (
-                  <label
-                    className="param"
-                    key={
-                      param.name
+                    {param.required && (
+                      <small>REQUIRED</small>
+                    )}
+                  </div>
+
+                  <input
+                    value={
+                      values[param.name] || ""
                     }
-                  >
-
-                    <div className="param-label">
-
-                      <span>
-                        {
-                          param.label
-                        }
-                      </span>
-
-                      {param.required && (
-                        <small>
-                          REQUIRED
-                        </small>
-                      )}
-
-                    </div>
-
-                    <input
-                      value={
-                        values[
-                          param.name
-                        ] || ""
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        updateValue(
-                          param.name,
-                          e.target.value
-                        )
-                      }
-                      placeholder={
-                        param.placeholder
-                      }
-                    />
-
-                  </label>
-                )
-              )}
-
+                    onChange={(e) =>
+                      updateValue(
+                        param.name,
+                        e.target.value
+                      )
+                    }
+                    placeholder={param.placeholder}
+                  />
+                </label>
+              ))}
             </div>
           )}
-
-          {/* TURNSTILE */}
-
-          <div className="turnstile-area">
-
-            <div
-              ref={
-                widgetRef
-              }
-            />
-
-          </div>
 
           <button
             className="execute-button"
             onClick={execute}
-            disabled={
-              loading ||
-              !turnstileToken
-            }
+            disabled={loading}
           >
             {loading
               ? "EXECUTING..."
@@ -1444,10 +1309,8 @@ function EndpointCard({
               )}
             </pre>
           )}
-
         </div>
       )}
-
     </div>
   );
 }
