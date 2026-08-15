@@ -12,6 +12,40 @@ const TURNSTILE_SITE_KEY =
 ========================================================= */
 
 const API_CATEGORIES = [
+{
+  name: "Flixier AI Image",
+  method: "GET",
+  path: "/api/ai/flixier",
+  description: "Generate image menggunakan Flixier AI",
+  params: [
+    {
+      name: "prompt",
+      label: "Prompt",
+      placeholder: "futuristic warrior cat",
+      required: true,
+    },
+    {
+      name: "style",
+      label: "Style",
+      placeholder: "cinematic",
+      required: false,
+    },
+    {
+      name: "negative",
+      label: "Negative Prompt",
+      placeholder: "blur",
+      required: false,
+    },
+    {
+      name: "ratio",
+      label: "Aspect Ratio",
+      placeholder: "2:3",
+      required: false,
+    },
+  ],
+},
+
+   
   {
     name: "AI",
     icon: "✦",
