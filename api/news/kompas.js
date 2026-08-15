@@ -9,31 +9,41 @@ export default async function handler(req, res) {
     "Content-Type"
   );
 
+  // OPTIONS
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
+  // METHOD
   if (req.method !== "GET") {
     return res.status(405).json({
       creator: "DINSTORE",
+      source: "Kompas",
       status: false,
       message: "Method not allowed"
     });
   }
 
   try {
-    const response = await fetch(
-      "https://api.azbry.com/api/news/kompas"
-    );
+    // API SUMBER
+    const api =
+      "https://api.azbry.com/api/news/kompas";
+
+    const response = await fetch(api);
 
     if (!response.ok) {
-      throw new Error(
-        `DINSTORE HTTP ${response.status}`
-      );
+      return res.status(502).json({
+        creator: "DINSTORE",
+        source: "Kompas",
+        status: false,
+        message: "Gagal mengambil data Kompas",
+        error: `HTTP ${response.status}`
+      });
     }
 
     const data = await response.json();
 
+    // RESPONSE BERHASIL
     return res.status(200).json({
       creator: "DINSTORE",
       source: "Kompas",
@@ -42,10 +52,10 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error("KOMPAS API ERROR:", error);
-
+    // ERROR
     return res.status(500).json({
       creator: "DINSTORE",
+      source: "Kompas",
       status: false,
       message: "Gagal mengambil data Kompas",
       error: error.message
