@@ -1,15 +1,20 @@
-import axios from "axios";
-import https from "https";
+/*
+ * Created by : febry.is-a.dev
+ * GitHub     : vandebry10-star
+ * Date       : 15-08-2026
+ *
+ * Do not remove the creator's watermark.
+ */
 
-const agent = new https.Agent({
-  rejectUnauthorized: false
-});
+import axios from "axios";
 
 const sleep = (ms) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
 class FlixierAI {
   constructor() {
+    this.cookieJar = {};
+
     this.headers = {
       accept: "*/*",
       "accept-language": "id-ID,id;q=0.9",
@@ -19,95 +24,122 @@ class FlixierAI {
       pragma: "no-cache",
       referer: "https://flixier.com/",
       "user-agent":
-        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 Chrome/131.0.0.0 Mobile Safari/537.36",
-      cookie: "",
-      "x-xsrf-token": ""
+        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 Chrome/131.0.0.0 Mobile Safari/537.36"
     };
   }
 
-  parseCookies(cookieString = "") {
-    return cookieString.split(";").reduce((cookies, cookie) => {
-      const [name, ...parts] = cookie.trim().split("=");
-
-      if (name) {
-        cookies[name] = parts.join("=");
-      }
-
-      return cookies;
-    }, {});
-  }
-
-  serializeCookies(cookies) {
-    return Object.entries(cookies)
-      .map(([name, value]) => `${name}=${value}`)
+  getCookieHeader() {
+    return Object.entries(this.cookieJar)
+      .map(([key, value]) => `${key}=${value}`)
       .join("; ");
   }
 
-  updateCookies(setCookies) {
-    if (!setCookies?.length) return;
+  updateCookies(setCookies = []) {
+    if (!Array.isArray(setCookies)) return;
 
-    const cookies = this.parseCookies(this.headers.cookie);
+    for (const cookie of setCookies) {
+      const firstPart = cookie.split(";")[0];
 
-    for (const item of setCookies) {
-      const first = item.split(";")[0];
-      const index = first.indexOf("=");
+      const separator = firstPart.indexOf("=");
 
-      if (index === -1) continue;
+      if (separator === -1) continue;
 
-      const name = first.slice(0, index).trim();
-      const value = first.slice(index + 1).trim();
+      const name = firstPart
+        .slice(0, separator)
+        .trim();
+
+      const value = firstPart
+        .slice(separator + 1)
+        .trim();
 
       if (name) {
-        cookies[name] = value;
+        this.cookieJar[name] = value;
       }
     }
+  }
 
-    this.headers.cookie = this.serializeCookies(cookies);
+  getHeaders(extra = {}) {
+    const headers = {
+      ...this.headers,
+      ...extra
+    };
 
-    if (cookies["XSRF-TOKEN"]) {
+    const cookie = this.getCookieHeader();
+
+    if (cookie) {
+      headers.cookie = cookie;
+    }
+
+    if (this.cookieJar["XSRF-TOKEN"]) {
       try {
-        this.headers["x-xsrf-token"] =
-          decodeURIComponent(cookies["XSRF-TOKEN"]);
+        headers["x-xsrf-token"] =
+          decodeURIComponent(
+            this.cookieJar["XSRF-TOKEN"]
+          );
       } catch {
-        this.headers["x-xsrf-token"] = cookies["XSRF-TOKEN"];
+        headers["x-xsrf-token"] =
+          this.cookieJar["XSRF-TOKEN"];
       }
     }
+
+    return headers;
   }
 
   async fetchCookie() {
-    const response = await axios.get(
-      "https://flixier.com/ai/ai-image-generator/ai-cartoon-generator",
-      {
-        httpsAgent: agent,
-        timeout: 30000,
-        headers: {
-          ...this.headers,
-          accept: "application/json, text/plain, */*"
-        }
-      }
-    );
+    try {
+      const response = await axios.get(
+        "https://flixier.com/ai/ai-image-generator/ai-cartoon-generator",
+        {
+          timeout: 15000,
 
-    this.updateCookies(response.headers["set-cookie"]);
+          headers: this.getHeaders({
+            accept:
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+          })
+        }
+      );
+
+      this.updateCookies(
+        response.headers["set-cookie"] || []
+      );
+
+      return true;
+    } catch (error) {
+      throw new Error(
+        `Flixier initial request failed: ${this.formatAxiosError(error)}`
+      );
+    }
   }
 
   async registerAnonymous() {
-    const response = await axios.post(
-      "https://api.flixier.com/api/register/anonymous",
-      {
-        remember: true
-      },
-      {
-        httpsAgent: agent,
-        timeout: 30000,
-        headers: {
-          ...this.headers,
-          accept: "application/json, text/plain, */*",
-          "content-type": "application/json"
-        }
-      }
-    );
+    try {
+      const response = await axios.post(
+        "https://api.flixier.com/api/register/anonymous",
+        {
+          remember: true
+        },
+        {
+          timeout: 15000,
 
-    this.updateCookies(response.headers["set-cookie"]);
+          headers: this.getHeaders({
+            accept:
+              "application/json, text/plain, */*",
+            "content-type":
+              "application/json"
+          })
+        }
+      );
+
+      this.updateCookies(
+        response.headers["set-cookie"] || []
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        `Flixier anonymous registration failed: ${this.formatAxiosError(error)}`
+      );
+    }
   }
 
   async createPrediction({
@@ -116,44 +148,99 @@ class FlixierAI {
     style,
     ratio
   }) {
-    const response = await axios.post(
-      "https://api.flixier.com/api/predictions/text-to-image",
-      {
-        prompt,
-        negative_prompt: negative,
-        service: "stability",
-        style_preset: style,
-        aspect_ratio: ratio
-      },
-      {
-        httpsAgent: agent,
-        timeout: 60000,
-        headers: {
-          ...this.headers,
-          accept: "application/json, text/plain, */*",
-          "content-type": "application/json"
+    try {
+      const response = await axios.post(
+        "https://api.flixier.com/api/predictions/text-to-image",
+
+        {
+          prompt,
+          negative_prompt: negative,
+          service: "stability",
+          style_preset: style,
+          aspect_ratio: ratio
+        },
+
+        {
+          timeout: 30000,
+
+          headers: this.getHeaders({
+            accept:
+              "application/json, text/plain, */*",
+            "content-type":
+              "application/json"
+          })
         }
-      }
-    );
+      );
 
-    this.updateCookies(response.headers["set-cookie"]);
+      this.updateCookies(
+        response.headers["set-cookie"] || []
+      );
 
-    return response.data;
+      return response.data;
+
+    } catch (error) {
+      throw new Error(
+        `Flixier prediction failed: ${this.formatAxiosError(error)}`
+      );
+    }
   }
 
-  async getPrediction(id) {
-    const response = await axios.get(
-      `https://api.flixier.com/api/predictions/${encodeURIComponent(id)}`,
-      {
-        httpsAgent: agent,
-        timeout: 30000,
-        headers: this.headers
+  async getPrediction(predictionId) {
+    try {
+      const response = await axios.get(
+        `https://api.flixier.com/api/predictions/${encodeURIComponent(
+          predictionId
+        )}`,
+
+        {
+          timeout: 15000,
+
+          headers: this.getHeaders({
+            accept:
+              "application/json, text/plain, */*"
+          })
+        }
+      );
+
+      this.updateCookies(
+        response.headers["set-cookie"] || []
+      );
+
+      return response.data;
+
+    } catch (error) {
+      throw new Error(
+        `Flixier status request failed: ${this.formatAxiosError(error)}`
+      );
+    }
+  }
+
+  formatAxiosError(error) {
+    if (!error) {
+      return "Unknown error";
+    }
+
+    if (error.response) {
+      const status = error.response.status;
+
+      let data = error.response.data;
+
+      if (typeof data === "object") {
+        try {
+          data = JSON.stringify(data);
+        } catch {
+          data = "Unknown response";
+        }
       }
-    );
 
-    this.updateCookies(response.headers["set-cookie"]);
+      return `HTTP ${status}: ${data}`;
+    }
 
-    return response.data;
+    if (error.code) {
+      return `${error.code}: ${error.message}`;
+    }
+
+    return error.message || "Unknown error";
   }
 
   async generateImage({
@@ -163,36 +250,70 @@ class FlixierAI {
     ratio = "2:3"
   }) {
     if (!prompt) {
-      throw new Error("Prompt is required");
+      throw new Error("Prompt is required.");
     }
 
+    /*
+     * 1. Get initial cookies
+     */
+
     await this.fetchCookie();
+
+    /*
+     * 2. Anonymous session
+     */
+
     await this.registerAnonymous();
 
-    const prediction = await this.createPrediction({
-      prompt,
-      negative,
-      style,
-      ratio
-    });
+    /*
+     * 3. Create prediction
+     */
 
-    const predictionId = prediction?.id;
+    const prediction =
+      await this.createPrediction({
+        prompt,
+        negative,
+        style,
+        ratio
+      });
+
+    const predictionId =
+      prediction?.id;
 
     if (!predictionId) {
       throw new Error(
-        "Prediction ID tidak ditemukan dari Flixier."
+        "Flixier tidak memberikan prediction ID."
       );
     }
 
+    /*
+     * 4. Poll status
+     *
+     * Jangan terlalu lama karena Vercel
+     * mempunyai batas waktu Function.
+     */
+
     let task = null;
 
-    // Maksimal sekitar 2 menit
-    for (let i = 0; i < 40; i++) {
-      task = await this.getPrediction(predictionId);
+    const maxAttempts = 20;
+
+    for (
+      let attempt = 0;
+      attempt < maxAttempts;
+      attempt++
+    ) {
+      task =
+        await this.getPrediction(
+          predictionId
+        );
+
+      const status =
+        String(task?.status || "")
+          .toUpperCase();
 
       if (
-        task?.status === "COMPLETED" ||
-        task?.status === "FAILED"
+        status === "COMPLETED" ||
+        status === "FAILED"
       ) {
         break;
       }
@@ -201,20 +322,66 @@ class FlixierAI {
     }
 
     if (!task) {
-      throw new Error("Gagal mendapatkan status prediction.");
-    }
-
-    if (task.status === "FAILED") {
       throw new Error(
-        task.error || "Image generation failed."
+        "Tidak mendapatkan response prediction."
       );
     }
 
-    if (task.status !== "COMPLETED") {
+    const finalStatus =
+      String(task.status || "")
+        .toUpperCase();
+
+    /*
+     * 5. Failed
+     */
+
+    if (finalStatus === "FAILED") {
       throw new Error(
-        "Generation timeout. Silakan coba lagi."
+        task.error ||
+        "Flixier gagal membuat gambar."
       );
     }
+
+    /*
+     * 6. Still processing
+     */
+
+    if (finalStatus !== "COMPLETED") {
+      return {
+        status: "PROCESSING",
+        prediction_id: predictionId,
+        prompt,
+        style,
+        message:
+          "Gambar masih diproses. Silakan cek prediction_id kembali."
+      };
+    }
+
+    /*
+     * 7. Get output URL
+     */
+
+    const asset =
+      task.output_asset || {};
+
+    const versions =
+      asset.versions || {};
+
+    const origin =
+      versions.origin || {};
+
+    const watermark =
+      versions.render_watermark || {};
+
+    const imageUrl =
+      task.output_url ||
+      watermark.url ||
+      origin.url ||
+      null;
+
+    const thumb =
+      asset.thumb ||
+      null;
 
     return {
       status: "COMPLETED",
@@ -227,26 +394,22 @@ class FlixierAI {
         task.input?.style_preset ||
         style,
 
-      url:
-        task.output_url ||
-        task.output_asset?.versions?.render_watermark?.url ||
-        null,
+      url: imageUrl,
 
-      thumb:
-        task.output_asset?.thumb ||
-        null,
+      thumb,
 
       resolution: {
         width:
-          task.output_asset?.versions?.origin?.width ||
+          origin.width ||
           null,
 
         height:
-          task.output_asset?.versions?.origin?.height ||
+          origin.height ||
           null
       },
 
-      prediction_id: predictionId
+      prediction_id:
+        predictionId
     };
   }
 }
@@ -254,25 +417,19 @@ class FlixierAI {
 
 /*
 |--------------------------------------------------------------------------
-| VERCEL API HANDLER
+| VERCEL SERVERLESS FUNCTION
 |--------------------------------------------------------------------------
-|
-| GET:
-| /api/ai/flixier?prompt=futuristic+warrior+cat&style=cinematic
-|
-| POST:
-| {
-|   "prompt": "futuristic warrior cat",
-|   "style": "cinematic",
-|   "negative": "blur",
-|   "ratio": "2:3"
-| }
-|
 */
 
-export default async function handler(req, res) {
+export default async function handler(
+  req,
+  res
+) {
 
-  // CORS
+  /*
+   * CORS
+   */
+
   res.setHeader(
     "Access-Control-Allow-Origin",
     "*"
@@ -280,7 +437,7 @@ export default async function handler(req, res) {
 
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS"
+    "GET,POST,OPTIONS"
   );
 
   res.setHeader(
@@ -288,22 +445,38 @@ export default async function handler(req, res) {
     "Content-Type, x-api-key"
   );
 
+  /*
+   * OPTIONS
+   */
+
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
-  if (!["GET", "POST"].includes(req.method)) {
+  /*
+   * Method
+   */
+
+  if (
+    req.method !== "GET" &&
+    req.method !== "POST"
+  ) {
     return res.status(405).json({
       success: false,
-      message: "Method not allowed"
+      message:
+        "Method not allowed"
     });
   }
 
   try {
 
+    /*
+     * Get parameters
+     */
+
     const params =
       req.method === "GET"
-        ? req.query
+        ? req.query || {}
         : req.body || {};
 
     const prompt =
@@ -326,35 +499,51 @@ export default async function handler(req, res) {
         ? params.ratio.trim()
         : "2:3";
 
+    /*
+     * Validate prompt
+     */
+
     if (!prompt) {
       return res.status(400).json({
         success: false,
-        message: "Prompt wajib diisi.",
-        example: {
-          prompt: "futuristic warrior cat",
-          style: "cinematic",
-          negative: "blur",
-          ratio: "2:3"
-        }
+        message:
+          "Parameter prompt wajib diisi.",
+
+        example:
+          "/api/ai/flixier?prompt=futuristic%20warrior%20cat&style=cinematic"
       });
     }
 
-    // Batasi input
+    /*
+     * Prompt limit
+     */
+
     if (prompt.length > 1000) {
       return res.status(400).json({
         success: false,
-        message: "Prompt maksimal 1000 karakter."
+        message:
+          "Prompt maksimal 1000 karakter."
       });
     }
 
-    const ai = new FlixierAI();
+    /*
+     * Generate
+     */
 
-    const result = await ai.generateImage({
-      prompt,
-      negative,
-      style,
-      ratio
-    });
+    const ai =
+      new FlixierAI();
+
+    const result =
+      await ai.generateImage({
+        prompt,
+        negative,
+        style,
+        ratio
+      });
+
+    /*
+     * Success
+     */
 
     return res.status(200).json({
       success: true,
@@ -366,18 +555,25 @@ export default async function handler(req, res) {
   } catch (error) {
 
     console.error(
-      "FLIXIER API ERROR:",
-      error?.response?.data || error.message
+      "FLIXIER ERROR:",
+      error
     );
+
+    /*
+     * Error response
+     */
 
     return res.status(500).json({
       success: false,
+      service: "Flixier AI",
+
       message:
-        error?.response?.data?.message ||
         error?.message ||
         "Internal Server Error"
     });
   }
 }
 
-export { FlixierAI };
+export {
+  FlixierAI
+};
