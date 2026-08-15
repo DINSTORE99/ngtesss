@@ -448,6 +448,14 @@ const API_CATEGORIES = [
         description: "Get latest news.",
         params: [],
       },
+      
+  {
+    name: "Detik News",
+    method: "GET",
+    path: "/api/news/detik",
+    description: "Mengambil berita terbaru dari Detik.com",
+    params: [],
+  }, 
       {
         name: "Search News",
         method: "GET",
