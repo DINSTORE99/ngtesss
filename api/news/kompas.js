@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   }
 
   // ================================
-  // METHOD CHECK
+  // METHOD
   // ================================
   if (req.method !== "GET") {
     return res.status(405).json({
@@ -33,15 +33,14 @@ export default async function handler(req, res) {
 
   try {
     // ================================
-    // API SUMBER
+    // SOURCE API
     // ================================
-    const api =
-      "https://api.azbry.com/api/news/kompas";
-
-    const response = await fetch(api);
+    const response = await fetch(
+      "https://api.azbry.com/api/news/kompas"
+    );
 
     // ================================
-    // CHECK RESPONSE
+    // SOURCE HTTP ERROR
     // ================================
     if (!response.ok) {
       return res.status(502).json({
@@ -49,25 +48,24 @@ export default async function handler(req, res) {
         source: "Kompas",
         status: false,
         message: "Gagal mengambil data Kompas",
-        error: `HTTP ${response.status}`
+        error: `Source API HTTP ${response.status}`
       });
     }
 
     // ================================
-    // PARSE JSON
+    // JSON
     // ================================
     const data = await response.json();
 
     // ================================
-    // SOURCE ERROR
+    // SOURCE RETURN ERROR
     // ================================
     if (data?.status !== true) {
       return res.status(502).json({
         creator: "DINSTORE",
         source: "Kompas",
         status: false,
-        message: "API Kompas mengembalikan status gagal",
-        result: data?.result || null
+        message: "API Kompas sedang tidak tersedia"
       });
     }
 
@@ -83,7 +81,7 @@ export default async function handler(req, res) {
 
   } catch (error) {
     // ================================
-    // ERROR
+    // INTERNAL ERROR
     // ================================
     console.error(
       "DINSTORE KOMPAS ERROR:",
@@ -94,7 +92,7 @@ export default async function handler(req, res) {
       creator: "DINSTORE",
       source: "Kompas",
       status: false,
-      message: "Gagal mengambil data Kompas",
+      message: "Terjadi kesalahan pada DINSTORE",
       error: error?.message || "Internal Server Error"
     });
   }
