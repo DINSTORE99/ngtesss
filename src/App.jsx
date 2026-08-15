@@ -5,7 +5,7 @@ import "./style.css";
 ========================================================= */
 
 const TURNSTILE_SITE_KEY =
-  import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAAEQ0IZqJbyW59Tiw";
+  import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAAEQ0naw15xO5xJRM";
 
 /* =========================================================
    API DATA
