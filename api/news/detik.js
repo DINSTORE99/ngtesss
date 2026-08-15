@@ -1,79 +1,61 @@
-const executeEndpoint = async (endpoint, values) => {
-  setTesterLoading(true);
-  setTesterResponse(null);
-  setTesterError("");
+import axios from "axios";
+
+export default async function handler(req, res) {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "*"
+  );
+
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, OPTIONS"
+  );
+
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  if (req.method !== "GET") {
+    return res.status(405).json({
+      success: false,
+      message: "Method not allowed",
+    });
+  }
 
   try {
-    const query = new URLSearchParams();
-
-    Object.entries(values || {}).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== "") {
-        query.set(key, value);
+    const response = await axios.get(
+      "https://api.azbry.com/api/news/detik",
+      {
+        timeout: 30000,
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "DINSTORE-API/1.0",
+        },
       }
-    });
+    );
 
-    // =========================================
-    // API REQUEST
-    // =========================================
-
-    const url =
-      endpoint.path +
-      (query.toString()
-        ? `?${query.toString()}`
-        : "");
-
-    const response = await fetch(url, {
-      method: endpoint.method || "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
-    const contentType =
-      response.headers.get("content-type") || "";
-
-    let data;
-
-    if (contentType.includes("application/json")) {
-      data = await response.json();
-    } else {
-      data = await response.text();
-    }
-
-    if (!response.ok) {
-      throw new Error(
-        data?.message ||
-          data?.error ||
-          `HTTP ${response.status}`
-      );
-    }
-
-    // =========================================
-    // RESPONSE
-    // =========================================
-
-    if (
-      endpoint.path === "/api/news/detik"
-    ) {
-      setTesterResponse({
-        type: "detik",
-        data,
-      });
-    } else {
-      setTesterResponse({
-        type: "json",
-        data,
-      });
-    }
+    return res.status(200).json(
+      response.data
+    );
 
   } catch (error) {
-    console.error(error);
-
-    setTesterError(
-      error?.message ||
-        "Gagal menjalankan API."
+    console.error(
+      "DETIK API ERROR:",
+      error?.response?.data ||
+        error.message
     );
-  } finally {
-    setTesterLoading(false);
+
+    return res.status(500).json({
+      success: false,
+      message:
+        error?.response?.data?.message ||
+        error?.message ||
+        "Gagal mengambil berita Detik.",
+    });
   }
-};
+}
