@@ -285,7 +285,21 @@ const API_CATEGORIES = [
       },
     ],
   },
-
+{
+  name: "DramaBox Downloader",
+  method: "GET",
+  path: "/api/download/dramabox",
+  description: "Download video dan mengambil data DramaBox",
+  params: [
+    {
+      name: "url",
+      label: "URL DramaBox",
+      placeholder: "https://dramabox.com/...",
+      required: true,
+    },
+  ],
+},
+   
   {
     name: "FUN",
     icon: "🎮",
