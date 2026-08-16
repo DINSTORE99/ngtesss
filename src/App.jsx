@@ -800,7 +800,8 @@ export default function App() {
   }
 
   return (
-{/* =========================
+    <div className="app">
+       {/* =========================
     UJI COBA POPUP
 ========================= */}
 
@@ -859,11 +860,6 @@ export default function App() {
     </div>
   </div>
 )}
-
-
-
-     
-    <div className="app">
       <div className="grid-background" />
 
       <div className="robot-decoration robot-one">
