@@ -801,7 +801,61 @@ export default function App() {
 
   return (
     <div className="app">
-      
+      {/* POPUP UJI COBA */}
+    {showDevPopup && (
+      <div className="dev-popup-overlay">
+        <div className="dev-popup">
+
+          <button
+            className="dev-popup-close"
+            onClick={() => setShowDevPopup(false)}
+          >
+            ×
+          </button>
+
+          <div className="dev-popup-header">
+            <div className="dev-popup-icon">
+              🚧
+            </div>
+
+            <div>
+              <h2>DINSTORE API</h2>
+              <p>Website masih dalam pengembangan</p>
+            </div>
+          </div>
+
+          <div className="dev-popup-status">
+            <span />
+            DEVELOPMENT 50%
+          </div>
+
+          <div className="dev-popup-progress">
+            <div className="dev-popup-progress-bar">
+              <div className="dev-popup-progress-fill" />
+            </div>
+
+            <div className="dev-popup-progress-info">
+              <span>Progress Website</span>
+              <b>50%</b>
+            </div>
+          </div>
+
+          <p className="dev-popup-text">
+            Website ini masih dalam tahap pengembangan.
+            Beberapa fitur mungkin masih mengalami perubahan
+            atau belum tersedia.
+          </p>
+
+          <button
+            className="dev-popup-button"
+            onClick={() => setShowDevPopup(false)}
+          >
+            LANJUTKAN
+          </button>
+
+        </div>
+      </div>
+    )}
       <div className="grid-background" />
 
       <div className="robot-decoration robot-one">
