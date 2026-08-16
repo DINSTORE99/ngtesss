@@ -2010,6 +2010,10 @@ button {
    DEVELOPMENT POPUP
 ========================================= */
 
+/* =========================================
+   DEVELOPMENT POPUP
+========================================= */
+
 .dev-popup-overlay {
   position: fixed;
   inset: 0;
@@ -2021,134 +2025,155 @@ button {
 
   padding: 20px;
 
-  background: rgba(3, 2, 8, .78);
+  background: rgba(5, 3, 12, 0.72);
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  animation: devOverlay .3s ease;
+  animation: devOverlayIn 0.3s ease;
 }
 
 .dev-popup {
   position: relative;
 
-  width: min(430px, 100%);
+  width: 100%;
+  max-width: 460px;
 
-  padding: 26px;
+  padding: 28px;
 
-  border: 1px solid rgba(120, 80, 255, .35);
-  border-radius: 25px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 24px;
 
   background:
     radial-gradient(
       circle at top right,
-      rgba(120, 50, 255, .18),
-      transparent 45%
+      rgba(124, 58, 237, 0.18),
+      transparent 40%
     ),
     linear-gradient(
       145deg,
-      #180c27,
-      #09050f
+      rgba(25, 15, 45, 0.98),
+      rgba(10, 7, 20, 0.98)
     );
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, .7),
-    0 0 45px rgba(120, 50, 255, .2);
+    0 25px 80px rgba(0, 0, 0, 0.65),
+    0 0 50px rgba(124, 58, 237, 0.12);
 
-  animation: devPopup .4s cubic-bezier(.2,.8,.2,1);
+  color: #fff;
+
+  animation: devPopupIn 0.35s cubic-bezier(.2,.8,.2,1);
 }
+
+/* CLOSE */
 
 .dev-popup-close {
   position: absolute;
-
   top: 14px;
   right: 14px;
 
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
 
-  border: 1px solid rgba(255,255,255,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 50%;
 
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,0.06);
 
-  color: #85808d;
+  color: rgba(255,255,255,0.55);
 
-  font-size: 25px;
+  font-size: 27px;
+  line-height: 1;
 
   cursor: pointer;
 
-  transition: .2s;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .dev-popup-close:hover {
-  color: white;
-  background: rgba(255,255,255,.13);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
   transform: rotate(90deg);
 }
+
+/* HEADER */
 
 .dev-popup-header {
   display: flex;
   align-items: center;
+  gap: 16px;
 
-  gap: 15px;
-
-  padding-right: 35px;
+  padding-right: 45px;
 }
 
 .dev-popup-icon {
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
 
   flex-shrink: 0;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  border: 1px solid rgba(98,245,174,.25);
-  border-radius: 18px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 17px;
 
-  background: rgba(98,245,174,.05);
+  background: rgba(124, 58, 237, 0.12);
 
-  font-size: 29px;
+  font-size: 28px;
+
+  box-shadow:
+    inset 0 0 20px rgba(124, 58, 237, 0.08),
+    0 0 25px rgba(124, 58, 237, 0.08);
 }
 
 .dev-popup-header h2 {
-  margin: 0 0 6px;
+  margin: 0 0 5px;
 
-  color: #b78cff;
-
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 800;
+  letter-spacing: 0.5px;
+
+  color: #ffffff;
 }
 
 .dev-popup-header p {
   margin: 0;
 
-  color: #827889;
+  color: rgba(255,255,255,0.55);
 
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
+  font-weight: 500;
 }
+
+/* STATUS */
 
 .dev-popup-status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 
-  margin-top: 22px;
+  margin-top: 24px;
   padding: 8px 13px;
 
-  border: 1px solid rgba(98,245,174,.2);
+  border: 1px solid rgba(34, 197, 94, 0.25);
   border-radius: 999px;
 
-  background: rgba(98,245,174,.06);
+  background: rgba(34, 197, 94, 0.08);
 
-  color: #62f5ae;
+  color: #4ade80;
 
-  font-family: "Space Mono", monospace;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
 }
 
 .dev-popup-status span {
@@ -2157,31 +2182,28 @@ button {
 
   border-radius: 50%;
 
-  background: #62f5ae;
+  background: #22c55e;
 
-  box-shadow: 0 0 10px #62f5ae;
+  box-shadow: 0 0 10px rgba(34,197,94,0.8);
+
+  animation: devPulse 1.5s infinite;
 }
+
+/* PROGRESS */
 
 .dev-popup-progress {
   margin-top: 22px;
-
-  padding: 17px;
-
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 15px;
-
-  background: rgba(255,255,255,.025);
 }
 
 .dev-popup-progress-bar {
   width: 100%;
-  height: 8px;
+  height: 9px;
 
   overflow: hidden;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,0.08);
 }
 
 .dev-popup-progress-fill {
@@ -2192,79 +2214,95 @@ button {
 
   background: linear-gradient(
     90deg,
-    #7438ff,
-    #b78cff
+    #7c3aed,
+    #a855f7,
+    #c084fc
   );
 
-  box-shadow:
-    0 0 15px rgba(140,70,255,.6);
+  box-shadow: 0 0 18px rgba(168,85,247,0.5);
+
+  animation: devProgress 1s ease-out;
 }
 
 .dev-popup-progress-info {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   margin-top: 10px;
 
-  color: #706978;
-
-  font-family: "Space Mono", monospace;
-  font-size: 9px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.48);
 }
 
 .dev-popup-progress-info b {
-  color: #b78cff;
+  color: #c084fc;
+  font-size: 13px;
 }
+
+/* TEXT */
 
 .dev-popup-text {
-  margin: 18px 0 0;
+  margin: 22px 0 0;
 
-  color: #77707d;
+  color: rgba(255,255,255,0.62);
 
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
 }
+
+/* BUTTON */
 
 .dev-popup-button {
   width: 100%;
 
-  height: 50px;
-
-  margin-top: 20px;
+  margin-top: 24px;
+  padding: 14px 18px;
 
   border: 0;
-  border-radius: 13px;
+  border-radius: 14px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #7135ff,
-      #a55dff
-    );
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #9333ea
+  );
 
-  color: white;
+  color: #fff;
 
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
-
-  letter-spacing: 1px;
+  letter-spacing: 0.6px;
 
   cursor: pointer;
 
   box-shadow:
-    0 10px 25px rgba(115,50,255,.25);
+    0 10px 25px rgba(124,58,237,0.25);
 
-  transition: .2s;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 }
 
 .dev-popup-button:hover {
   transform: translateY(-2px);
 
+  filter: brightness(1.08);
+
   box-shadow:
-    0 14px 30px rgba(115,50,255,.4);
+    0 14px 30px rgba(124,58,237,0.35);
 }
 
-@keyframes devOverlay {
+.dev-popup-button:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes devOverlayIn {
   from {
     opacity: 0;
   }
@@ -2274,35 +2312,86 @@ button {
   }
 }
 
-@keyframes devPopup {
+@keyframes devPopupIn {
   from {
     opacity: 0;
-    transform: scale(.93) translateY(15px);
+    transform: translateY(20px) scale(0.96);
   }
 
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-@media (max-width: 480px) {
+@keyframes devProgress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 50%;
+  }
+}
+
+@keyframes devPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .dev-popup-overlay {
+    padding: 16px;
+  }
+
   .dev-popup {
-    padding: 23px 20px;
-    border-radius: 23px;
+    max-width: 100%;
+
+    padding: 24px 20px;
+
+    border-radius: 22px;
   }
 
   .dev-popup-icon {
-    width: 55px;
-    height: 55px;
+    width: 52px;
+    height: 52px;
+
+    border-radius: 15px;
+
     font-size: 25px;
   }
 
+  .dev-popup-header {
+    gap: 13px;
+  }
+
   .dev-popup-header h2 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .dev-popup-header p {
-    font-size: 11px;
+    font-size: 13px;
+  }
+
+  .dev-popup-text {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .dev-popup-button {
+    padding: 13px 16px;
   }
 }
