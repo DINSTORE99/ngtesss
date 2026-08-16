@@ -843,8 +843,8 @@ const [showDevPopup, setShowDevPopup] = useState(true);
 
           <p className="dev-popup-text">
             Website ini masih dalam tahap pengembangan.
-            Beberapa fitur mungkin masih mengalami perubahan
-            atau belum tersedia.
+            Beberapa api mungkin masih mengalami perubahan
+            atau belum bisa di pake.
           </p>
 
           <button
