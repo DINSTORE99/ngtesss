@@ -2009,10 +2009,9 @@ button {
 /* =========================================
    DEVELOPMENT POPUP
 ========================================= */
-
 /* =========================================
-   DEVELOPMENT POPUP
-========================================= */
+   DINSTORE - DEVELOPMENT POPUP
+   ========================================= */
 
 .dev-popup-overlay {
   position: fixed;
@@ -2025,44 +2024,32 @@ button {
 
   padding: 20px;
 
-  background: rgba(5, 3, 12, 0.72);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  animation: devOverlayIn 0.3s ease;
+  animation: devOverlayIn 0.25s ease;
 }
 
 .dev-popup {
   position: relative;
 
   width: 100%;
-  max-width: 460px;
+  max-width: 430px;
 
-  padding: 28px;
+  padding: 26px;
 
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  border-radius: 24px;
-
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(124, 58, 237, 0.18),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(25, 15, 45, 0.98),
-      rgba(10, 7, 20, 0.98)
-    );
+  background: #0f1115;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.65),
-    0 0 50px rgba(124, 58, 237, 0.12);
+    0 25px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
 
   color: #fff;
 
-  animation: devPopupIn 0.35s cubic-bezier(.2,.8,.2,1);
+  animation: devPopupIn 0.3s cubic-bezier(.2,.8,.2,1);
 }
 
 /* CLOSE */
@@ -2072,21 +2059,20 @@ button {
   top: 14px;
   right: 14px;
 
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
 
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.04);
+  color: #9ca3af;
 
-  color: rgba(255,255,255,0.55);
-
-  font-size: 27px;
+  font-size: 23px;
   line-height: 1;
 
   cursor: pointer;
@@ -2098,9 +2084,9 @@ button {
 }
 
 .dev-popup-close:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.09);
   color: #fff;
-  transform: rotate(90deg);
+  transform: scale(1.05);
 }
 
 /* HEADER */
@@ -2108,14 +2094,14 @@ button {
 .dev-popup-header {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 
-  padding-right: 45px;
+  padding-right: 35px;
 }
 
 .dev-popup-icon {
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
 
   flex-shrink: 0;
 
@@ -2123,57 +2109,55 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  border-radius: 17px;
+  border-radius: 14px;
 
-  background: rgba(124, 58, 237, 0.12);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.18);
 
-  font-size: 28px;
-
-  box-shadow:
-    inset 0 0 20px rgba(124, 58, 237, 0.08),
-    0 0 25px rgba(124, 58, 237, 0.08);
+  font-size: 24px;
 }
 
 .dev-popup-header h2 {
-  margin: 0 0 5px;
+  margin: 0;
 
-  font-size: 21px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 
-  color: #ffffff;
+  color: #fff;
 }
 
 .dev-popup-header p {
-  margin: 0;
+  margin: 5px 0 0;
 
-  color: rgba(255,255,255,0.55);
+  color: #8b919d;
 
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 /* STATUS */
 
 .dev-popup-status {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
 
-  margin-top: 24px;
-  padding: 8px 13px;
+  width: fit-content;
 
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  border-radius: 999px;
+  margin-top: 22px;
+  padding: 7px 10px;
 
-  background: rgba(34, 197, 94, 0.08);
+  border-radius: 8px;
 
-  color: #4ade80;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
+  color: #aeb4bf;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .dev-popup-status span {
@@ -2182,28 +2166,28 @@ button {
 
   border-radius: 50%;
 
-  background: #22c55e;
+  background: #f59e0b;
 
-  box-shadow: 0 0 10px rgba(34,197,94,0.8);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
 
-  animation: devPulse 1.5s infinite;
+  animation: devPulse 1.6s infinite;
 }
 
 /* PROGRESS */
 
 .dev-popup-progress {
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .dev-popup-progress-bar {
   width: 100%;
-  height: 9px;
+  height: 7px;
 
   overflow: hidden;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .dev-popup-progress-fill {
@@ -2212,16 +2196,11 @@ button {
 
   border-radius: inherit;
 
-  background: linear-gradient(
-    90deg,
-    #7c3aed,
-    #a855f7,
-    #c084fc
-  );
+  background: #f59e0b;
 
-  box-shadow: 0 0 18px rgba(168,85,247,0.5);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
 
-  animation: devProgress 1s ease-out;
+  animation: devProgress 0.8s ease;
 }
 
 .dev-popup-progress-info {
@@ -2229,25 +2208,28 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 10px;
+  margin-top: 9px;
 
   font-size: 12px;
-  color: rgba(255,255,255,0.48);
+}
+
+.dev-popup-progress-info span {
+  color: #777e8a;
 }
 
 .dev-popup-progress-info b {
-  color: #c084fc;
-  font-size: 13px;
+  color: #d1d5db;
+  font-weight: 600;
 }
 
 /* TEXT */
 
 .dev-popup-text {
-  margin: 22px 0 0;
+  margin: 19px 0 0;
 
-  color: rgba(255,255,255,0.62);
+  color: #858c98;
 
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -2256,51 +2238,37 @@ button {
 .dev-popup-button {
   width: 100%;
 
-  margin-top: 24px;
-  padding: 14px 18px;
+  margin-top: 22px;
+  padding: 12px 16px;
 
-  border: 0;
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #9333ea
-  );
-
-  color: #fff;
+  background: #fff;
+  color: #0b0d10;
 
   font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+  font-weight: 700;
 
   cursor: pointer;
 
-  box-shadow:
-    0 10px 25px rgba(124,58,237,0.25);
-
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
+    opacity 0.2s ease;
 }
 
 .dev-popup-button:hover {
-  transform: translateY(-2px);
-
-  filter: brightness(1.08);
-
-  box-shadow:
-    0 14px 30px rgba(124,58,237,0.35);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .dev-popup-button:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 /* =========================================
    ANIMATION
-========================================= */
+   ========================================= */
 
 @keyframes devOverlayIn {
   from {
@@ -2315,7 +2283,7 @@ button {
 @keyframes devPopupIn {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.96);
+    transform: translateY(15px) scale(0.97);
   }
 
   to {
@@ -2338,60 +2306,49 @@ button {
   0%,
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 
   50% {
-    opacity: 0.5;
-    transform: scale(0.75);
+    opacity: 0.35;
   }
 }
 
 /* =========================================
    MOBILE
-========================================= */
+   ========================================= */
 
-@media (max-width: 600px) {
-
+@media (max-width: 480px) {
   .dev-popup-overlay {
     padding: 16px;
   }
 
   .dev-popup {
     max-width: 100%;
-
-    padding: 24px 20px;
-
-    border-radius: 22px;
-  }
-
-  .dev-popup-icon {
-    width: 52px;
-    height: 52px;
-
-    border-radius: 15px;
-
-    font-size: 25px;
+    padding: 22px;
+    border-radius: 16px;
   }
 
   .dev-popup-header {
-    gap: 13px;
+    gap: 12px;
+  }
+
+  .dev-popup-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 21px;
   }
 
   .dev-popup-header h2 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .dev-popup-header p {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .dev-popup-text {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.65;
-  }
-
-  .dev-popup-button {
-    padding: 13px 16px;
   }
 }
