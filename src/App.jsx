@@ -682,7 +682,8 @@ export default function App() {
   const [openCategory, setOpenCategory] = useState(null);
   const [turnstileReady, setTurnstileReady] = useState(false);
   const [verified, setVerified] = useState(false);
-
+   /// tess
+const [showDevPopup, setShowDevPopup] = useState(true);
   const totalEndpoints = API_CATEGORIES.reduce(
     (total, category) => total + category.endpoints.length,
     0
