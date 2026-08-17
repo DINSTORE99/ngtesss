@@ -16,39 +16,37 @@ const API_CATEGORIES = [
    AI
 ========================================================= */
   {
-  name: "AI DuckAI",
+  name: "AI Duckai",
   method: "GET",
   path: "/api/ai/duckai",
-  description:
-    "Chat with DuckAI using various AI models via query parameters.",
+  description: "Chat with DuckAI using various AI models.",
   params: [
     {
       name: "message",
-      label: "Message",
+      label: "MESSAGE",
       placeholder: "What is the meaning of life?",
-      required: true,
+      required: true
     },
     {
       name: "model",
-      label: "Model",
+      label: "MODEL",
       type: "select",
-      required: false,
+      default: "gpt-4o-mini",
       options: [
         "gpt-4o-mini",
         "claude-3-5-haiku-latest",
         "meta-llama/Llama-4-Scout-17B-16E-Instruct",
         "mistralai/Mistral-Small-24B-Instruct-2501",
         "openai/gpt-oss-120b",
-        "gpt-5-mini",
+        "gpt-5-mini"
       ],
-      default: "gpt-4o-mini",
+      required: false
     },
     {
       name: "systemPrompt",
-      label: "System Prompt",
+      label: "SYSTEMPROMPT",
       placeholder: "You are a helpful assistant.",
-      required: false,
-      default: "You are a helpful assistant.",
+      required: false
     },
   ],
 },
