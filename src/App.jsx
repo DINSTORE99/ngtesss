@@ -1388,91 +1388,62 @@ function EndpointCard({ endpoint }) {
     }
   };
 return (
-  <div className="endpoint">
-    <button
-      className="endpoint-header"
-      onClick={() => setExpanded(!expanded)}
-    >
-      <div className="method">
-        {endpoint.method}
-      </div>
+<div className="endpoint">
+<button
+className="endpoint-header"
+onClick={() => setExpanded(!expanded)}
+>
+<div className="method">
+{endpoint.method}
+</div>
 
-      <div className="endpoint-main">
-        <strong>{endpoint.name}</strong>
-        <span>{endpoint.path}</span>
-      </div>
+<div className="endpoint-main">  
+      <strong>{endpoint.name}</strong>  
+      <span>{endpoint.path}</span>  
+    </div>  
 
-      <span className="endpoint-chevron">
-        {expanded ? "−" : "+"}
-      </span>
-    </button>
+    <span className="endpoint-chevron">  
+      {expanded ? "−" : "+"}  
+    </span>  
+  </button>  
 
-    {expanded && (
-      <div className="endpoint-body">
-        <p className="endpoint-description">
-          {endpoint.description}
-        </p>
+  {expanded && (  
+    <div className="endpoint-body">  
+      <p className="endpoint-description">  
+        {endpoint.description}  
+      </p>  
 
-        {endpoint.params.length > 0 && (
-          <div className="params">
-            {endpoint.params.map((param) => (
-              <label
-                className="param"
-                key={param.name}
-              >
-                <div className="param-label">
-                  <span>{param.label}</span>
+      {endpoint.params.length > 0 && (  
+        <div className="params">  
+          {endpoint.params.map((param) => (  
+            <label  
+              className="param"  
+              key={param.name}  
+            >  
+              <div className="param-label">  
+                <span>{param.label}</span>  
 
-                  {param.required && (
-                    <small>REQUIRED</small>
-                  )}
-                </div>
+                {param.required && (  
+                  <small>REQUIRED</small>  
+                )}  
+              </div>  
 
-                {param.type === "select" ? (
-                  <select
-                    value={
-                      values[param.name] ??
-                      param.default ??
-                      ""
-                    }
-                    onChange={(e) =>
-                      updateValue(
-                        param.name,
-                        e.target.value
-                      )
-                    }
-                  >
-                    <option value="">
-                      Select...
-                    </option>
-
-                    {param.options?.map((option) => (
-                      <option
-                        key={option}
-                        value={option}
-                      >
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    value={
-                      values[param.name] || ""
-                    }
-                    onChange={(e) =>
-                      updateValue(
-                        param.name,
-                        e.target.value
-                      )
-                    }
-                    placeholder={param.placeholder}  
-                  />  
-                </label>  
-              ))}  
-            </div>  
-          )}  
-  
+              <input  
+                value={  
+                  values[param.name] || ""  
+                }  
+                onChange={(e) =>  
+                  updateValue(  
+                    param.name,  
+                    e.target.value  
+                  )  
+                }  
+                placeholder={param.placeholder}  
+              />  
+            </label>  
+          ))}  
+        </div>  
+      )}
 
           <button
             className="execute-button"
