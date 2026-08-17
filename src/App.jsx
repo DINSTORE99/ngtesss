@@ -16,37 +16,42 @@ const API_CATEGORIES = [
    AI
 ========================================================= */
   {
-  name: "AI",
-  icon: "✦",
-  color: "mint",
-  path: "/docs/ai",
-  endpoints: [
+  name: "AI DuckAI",
+  method: "GET",
+  path: "/api/ai/duckai",
+  description:
+    "Chat with DuckAI using various AI models via query parameters.",
+  params: [
     {
-      name: "AI DuckAI",
-      method: "GET",
-      path: "/api/ai/duckai",
-      description: "Chat with DuckAI using various AI models via query parameters.",
-      params: [
-        {
-          name: "message",
-          label: "Message",
-          placeholder: "What is the meaning of life?",
-          required: true,
-        },
-        {
-          name: "model",
-          label: "Model",
-          placeholder: "gpt-4o-mini",
-          required: false,
-        },
-        {
-          name: "systemPrompt",
-          label: "System Prompt",
-          placeholder: "You are a helpful assistant.",
-          required: false,
-        },
-      ],
+      name: "message",
+      label: "Message",
+      placeholder: "What is the meaning of life?",
+      required: true,
     },
+    {
+      name: "model",
+      label: "Model",
+      type: "select",
+      required: false,
+      options: [
+        "gpt-4o-mini",
+        "claude-3-5-haiku-latest",
+        "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "mistralai/Mistral-Small-24B-Instruct-2501",
+        "openai/gpt-oss-120b",
+        "gpt-5-mini",
+      ],
+      default: "gpt-4o-mini",
+    },
+    {
+      name: "systemPrompt",
+      label: "System Prompt",
+      placeholder: "You are a helpful assistant.",
+      required: false,
+      default: "You are a helpful assistant.",
+    },
+  ],
+},
       {
   name: "Flixier AI Image",
   method: "GET",
@@ -1384,48 +1389,75 @@ function EndpointCard({ endpoint }) {
       setLoading(false);
     }
   };
+return (
+  <div className="endpoint">
+    <button
+      className="endpoint-header"
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="method">
+        {endpoint.method}
+      </div>
 
-  return (
-    <div className="endpoint">
-      <button
-        className="endpoint-header"
-        onClick={() => setExpanded(!expanded)}
-      >
-        <div className="method">
-          {endpoint.method}
-        </div>
+      <div className="endpoint-main">
+        <strong>{endpoint.name}</strong>
+        <span>{endpoint.path}</span>
+      </div>
 
-        <div className="endpoint-main">
-          <strong>{endpoint.name}</strong>
-          <span>{endpoint.path}</span>
-        </div>
+      <span className="endpoint-chevron">
+        {expanded ? "−" : "+"}
+      </span>
+    </button>
 
-        <span className="endpoint-chevron">
-          {expanded ? "−" : "+"}
-        </span>
-      </button>
+    {expanded && (
+      <div className="endpoint-body">
+        <p className="endpoint-description">
+          {endpoint.description}
+        </p>
 
-      {expanded && (
-        <div className="endpoint-body">
-          <p className="endpoint-description">
-            {endpoint.description}
-          </p>
+        {endpoint.params.length > 0 && (
+          <div className="params">
+            {endpoint.params.map((param) => (
+              <label
+                className="param"
+                key={param.name}
+              >
+                <div className="param-label">
+                  <span>{param.label}</span>
 
-          {endpoint.params.length > 0 && (
-            <div className="params">
-              {endpoint.params.map((param) => (
-                <label
-                  className="param"
-                  key={param.name}
-                >
-                  <div className="param-label">
-                    <span>{param.label}</span>
+                  {param.required && (
+                    <small>REQUIRED</small>
+                  )}
+                </div>
 
-                    {param.required && (
-                      <small>REQUIRED</small>
-                    )}
-                  </div>
+                {param.type === "select" ? (
+                  <select
+                    value={
+                      values[param.name] ??
+                      param.default ??
+                      ""
+                    }
+                    onChange={(e) =>
+                      updateValue(
+                        param.name,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option value="">
+                      Select...
+                    </option>
 
+                    {param.options?.map((option) => (
+                      <option
+                        key={option}
+                        value={option}
+                      >
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
                   <input
                     value={
                       values[param.name] || ""
@@ -1436,12 +1468,13 @@ function EndpointCard({ endpoint }) {
                         e.target.value
                       )
                     }
-                    placeholder={param.placeholder}
-                  />
-                </label>
-              ))}
-            </div>
-          )}
+                    placeholder={param.placeholder}  
+                  />  
+                </label>  
+              ))}  
+            </div>  
+          )}  
+  
 
           <button
             className="execute-button"
