@@ -15,7 +15,7 @@ const API_CATEGORIES = [
    /* =========================================================
    AI
 ========================================================= */
-  {
+{
   name: "AI Duckai",
   method: "GET",
   path: "/api/ai/duckai",
@@ -25,7 +25,7 @@ const API_CATEGORIES = [
       name: "message",
       label: "MESSAGE",
       placeholder: "What is the meaning of life?",
-      required: true
+      required: true,
     },
     {
       name: "model",
@@ -38,15 +38,15 @@ const API_CATEGORIES = [
         "meta-llama/Llama-4-Scout-17B-16E-Instruct",
         "mistralai/Mistral-Small-24B-Instruct-2501",
         "openai/gpt-oss-120b",
-        "gpt-5-mini"
+        "gpt-5-mini",
       ],
-      required: false
+      required: false,
     },
     {
       name: "systemPrompt",
       label: "SYSTEMPROMPT",
       placeholder: "You are a helpful assistant.",
-      required: false
+      required: false,
     },
   ],
 },
