@@ -1305,7 +1305,6 @@ function TurnstileGate({ ready, onVerified }) {
 }
 /*======================================================
    ENDPOINT CARD
-   Turnstile hanya dilakukan sekali saat website dibuka.
 ========================================================= */
 
 function EndpointCard({ endpoint }) {
@@ -1326,6 +1325,10 @@ function EndpointCard({ endpoint }) {
     setResponse(null);
 
     try {
+      // ==============================
+      // CHECK REQUIRED PARAMETER
+      // ==============================
+
       for (const param of endpoint.params) {
         if (
           param.required &&
@@ -1337,15 +1340,19 @@ function EndpointCard({ endpoint }) {
         }
       }
 
+      // ==============================
+      // BUILD QUERY
+      // ==============================
+
       const query = new URLSearchParams();
 
       endpoint.params.forEach((param) => {
-        const value = values[param.name];
+        const value =
+          values[param.name] ??
+          param.default ??
+          "";
 
-        if (
-          value !== undefined &&
-          value !== ""
-        ) {
+        if (value !== "") {
           query.append(param.name, value);
         }
       });
@@ -1355,6 +1362,10 @@ function EndpointCard({ endpoint }) {
         (query.toString()
           ? `?${query.toString()}`
           : "");
+
+      // ==============================
+      // REQUEST
+      // ==============================
 
       const res = await fetch(url);
 
@@ -1387,63 +1398,145 @@ function EndpointCard({ endpoint }) {
       setLoading(false);
     }
   };
-return (
-<div className="endpoint">
-<button
-className="endpoint-header"
-onClick={() => setExpanded(!expanded)}
->
-<div className="method">
-{endpoint.method}
-</div>
 
-<div className="endpoint-main">  
-      <strong>{endpoint.name}</strong>  
-      <span>{endpoint.path}</span>  
-    </div>  
+  return (
+    <div className="endpoint">
 
-    <span className="endpoint-chevron">  
-      {expanded ? "−" : "+"}  
-    </span>  
-  </button>  
+      {/* ==============================
+          ENDPOINT HEADER
+      ============================== */}
 
-  {expanded && (  
-    <div className="endpoint-body">  
-      <p className="endpoint-description">  
-        {endpoint.description}  
-      </p>  
+      <button
+        className="endpoint-header"
+        onClick={() =>
+          setExpanded(!expanded)
+        }
+      >
+        <div className="method">
+          {endpoint.method}
+        </div>
 
-      {endpoint.params.length > 0 && (  
-        <div className="params">  
-          {endpoint.params.map((param) => (  
-            <label  
-              className="param"  
-              key={param.name}  
-            >  
-              <div className="param-label">  
-                <span>{param.label}</span>  
+        <div className="endpoint-main">
+          <strong>
+            {endpoint.name}
+          </strong>
 
-                {param.required && (  
-                  <small>REQUIRED</small>  
-                )}  
-              </div>  
+          <span>
+            {endpoint.path}
+          </span>
+        </div>
 
-              <input  
-                value={  
-                  values[param.name] || ""  
-                }  
-                onChange={(e) =>  
-                  updateValue(  
-                    param.name,  
-                    e.target.value  
-                  )  
-                }  
-                placeholder={param.placeholder}  
-              />  
-            </label>  
-          ))}  
-        </div>  
-      )}
+        <span className="endpoint-chevron">
+          {expanded ? "−" : "+"}
+        </span>
+      </button>
+
+      {/* ==============================
+          ENDPOINT BODY
+      ============================== */}
+
+      {expanded && (
+        <div className="endpoint-body">
+
+          <p className="endpoint-description">
+            {endpoint.description}
+          </p>
+
+          {/* ==============================
+              PARAMETERS
+          ============================== */}
+
+          {endpoint.params?.length > 0 && (
+            <div className="params">
+
+              {endpoint.params.map((param) => (
+                <label
+                  className="param"
+                  key={param.name}
+                >
+
+                  <div className="param-label">
+                    <span>
+                      {param.label}
+                    </span>
+
+                    {param.required && (
+                      <small>
+                        REQUIRED
+                      </small>
+                    )}
+                  </div>
+
+                  {/* ==========================
+                      SELECT PARAMETER
+                  ========================== */}
+
+                  {param.type === "select" ? (
+                    <select
+                      value={
+                        values[param.name] ??
+                        param.default ??
+                        ""
+                      }
+                      onChange={(e) =>
+                        updateValue(
+                          param.name,
+                          e.target.value
+                        )
+                      }
+                    >
+
+                      <option value="">
+                        Select...
+                      </option>
+
+                      {param.options?.map(
+                        (option) => (
+                          <option
+                            key={option}
+                            value={option}
+                          >
+                            {option}
+                          </option>
+                        )
+                      )}
+
+                    </select>
+
+                  ) : (
+
+                    /* ==========================
+                       NORMAL INPUT
+                    ========================== */
+
+                    <input
+                      value={
+                        values[param.name] ??
+                        param.default ??
+                        ""
+                      }
+                      onChange={(e) =>
+                        updateValue(
+                          param.name,
+                          e.target.value
+                        )
+                      }
+                      placeholder={
+                        param.placeholder
+                      }
+                    />
+
+                  )}
+
+                </label>
+              ))}
+
+            </div>
+          )}
+
+          {/* ==============================
+              EXECUTE BUTTON
+          ============================== */}
 
           <button
             className="execute-button"
@@ -1455,6 +1548,10 @@ onClick={() => setExpanded(!expanded)}
               : "EXECUTE →"}
           </button>
 
+          {/* ==============================
+              RESPONSE
+          ============================== */}
+
           {response && (
             <pre className="response">
               {JSON.stringify(
@@ -1464,6 +1561,7 @@ onClick={() => setExpanded(!expanded)}
               )}
             </pre>
           )}
+
         </div>
       )}
     </div>
