@@ -16,31 +16,37 @@ const API_CATEGORIES = [
    AI
 ========================================================= */
   {
-    name: "AI",
-    icon: "✦",
-    color: "mint",
-    path: "/docs/ai",
-    endpoints: [
-      {
-        name: "AI Aiko",
-        method: "GET",
-        path: "/api/ai/aiko",
-        description: "AI chat assistant.",
-        params: [
-          {
-            name: "q",
-            label: "Prompt",
-            placeholder: "Halo, apa kabar?",
-            required: true,
-          },
-          {
-            name: "reset",
-            label: "Reset",
-            placeholder: "false",
-            required: false,
-          },
-        ],
-      },
+  name: "AI",
+  icon: "✦",
+  color: "mint",
+  path: "/docs/ai",
+  endpoints: [
+    {
+      name: "AI DuckAI",
+      method: "GET",
+      path: "/api/ai/duckai",
+      description: "Chat with DuckAI using various AI models via query parameters.",
+      params: [
+        {
+          name: "message",
+          label: "Message",
+          placeholder: "What is the meaning of life?",
+          required: true,
+        },
+        {
+          name: "model",
+          label: "Model",
+          placeholder: "gpt-4o-mini",
+          required: false,
+        },
+        {
+          name: "systemPrompt",
+          label: "System Prompt",
+          placeholder: "You are a helpful assistant.",
+          required: false,
+        },
+      ],
+    },
       {
   name: "Flixier AI Image",
   method: "GET",
