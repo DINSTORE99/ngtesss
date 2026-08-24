@@ -28,42 +28,39 @@ export default async function handler(req, res) {
       });
     }
 
-    const apiUrl =
+    const upstream =
       `https://api.neosoft.best/api/tools/checker-ban-wa?number=${encodeURIComponent(phone)}`;
 
-    const response = await fetch(apiUrl);
+    const response = await fetch(upstream);
 
     const contentType =
       response.headers.get("content-type") || "";
 
-    let data;
-
-    if (contentType.includes("application/json")) {
-      data = await response.json();
-    } else {
+    if (!contentType.includes("application/json")) {
       const text = await response.text();
 
       return res.status(502).json({
         status: false,
         creator: "DINSTORE",
-        message: "API upstream mengembalikan response bukan JSON.",
+        message: "API upstream tidak mengembalikan JSON.",
         response: text,
       });
     }
 
-    // Semua response dibuat menjadi milik DINSTORE
+    const data = await response.json();
+
     return res.status(response.ok ? 200 : response.status).json({
       status: data?.status ?? response.ok,
       creator: "DINSTORE",
       result: data?.result ?? null,
     });
   } catch (error) {
-    console.error("CHECKER BAN WA ERROR:", error);
+    console.error(error);
 
     return res.status(500).json({
       status: false,
       creator: "DINSTORE",
-      message: "Terjadi kesalahan pada server DINSTORE.",
+      message: "Server DINSTORE mengalami error.",
       error: error.message,
     });
   }
