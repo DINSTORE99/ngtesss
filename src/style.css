@@ -3172,3 +3172,478 @@ button {
     font-size: 12px;
   }
 }
+/* =========================================================
+   API RESPONSE PANEL
+   TAMBAHAN SAJA - JANGAN HAPUS CSS LAMA
+========================================================= */
+
+/* Container hasil request */
+.api-response-panel {
+  margin-top: 18px;
+  width: 100%;
+  overflow: hidden;
+
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 12px;
+
+  background: #070b13;
+}
+
+/* =========================================================
+   RESPONSE TOP BAR
+========================================================= */
+
+.response-toolbar {
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 14px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.response-tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  height: 54px;
+}
+
+.response-tab {
+  position: relative;
+
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+}
+
+.response-tab:hover {
+  color: #94a3b8;
+}
+
+.response-tab.active {
+  color: #3b82f6;
+}
+
+.response-tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 2px;
+
+  background: #2563eb;
+}
+
+/* =========================================================
+   RESPONSE RIGHT INFO
+========================================================= */
+
+.response-info {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.response-copy {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.response-copy:hover {
+  color: #fff;
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* =========================================================
+   STATUS 200 OK
+========================================================= */
+
+.response-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #22c55e;
+
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.response-status::before {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow: 0 0 9px rgba(34, 197, 94, 0.6);
+}
+
+/* Error status */
+.response-status.error {
+  color: #ef4444;
+}
+
+.response-status.error::before {
+  background: #ef4444;
+  box-shadow: 0 0 9px rgba(239, 68, 68, 0.6);
+}
+
+/* =========================================================
+   PING / RESPONSE TIME
+========================================================= */
+
+.response-time {
+  color: #64748b;
+
+  font-family: monospace;
+  font-size: 11px;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RESPONSE CONTENT
+========================================================= */
+
+.response-content {
+  width: 100%;
+
+  padding: 18px;
+
+  overflow-x: auto;
+
+  background: #070b13;
+}
+
+.response-content pre {
+  margin: 0;
+
+  color: #86efac;
+
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+.response-preview {
+  min-height: 100px;
+
+  padding: 18px;
+
+  color: #86efac;
+
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================================================
+   HEADERS
+========================================================= */
+
+.response-headers {
+  padding: 16px 18px;
+}
+
+.response-header-row {
+  display: grid;
+
+  grid-template-columns: 180px 1fr;
+
+  gap: 16px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.response-header-row:last-child {
+  border-bottom: 0;
+}
+
+.response-header-name {
+  color: #3b82f6;
+
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.response-header-value {
+  min-width: 0;
+
+  color: #64748b;
+
+  font-family: monospace;
+  font-size: 11px;
+
+  word-break: break-all;
+}
+
+/* =========================================================
+   CURL
+========================================================= */
+
+.response-curl {
+  position: relative;
+
+  padding: 18px;
+
+  background: #070b13;
+}
+
+.response-curl pre {
+  margin: 0;
+
+  padding: 0;
+
+  color: #94a3b8;
+
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================================================
+   EMPTY RESPONSE
+========================================================= */
+
+.response-empty {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #475569;
+
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* =========================================================
+   OLD .response
+   Supaya response lama kamu juga ikut rapi
+========================================================= */
+
+.endpoint .response {
+  width: 100%;
+
+  margin-top: 18px;
+  padding: 18px;
+
+  overflow-x: auto;
+
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 12px;
+
+  background: #070b13;
+
+  color: #86efac;
+
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.015);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .response-toolbar {
+    min-height: 50px;
+
+    padding: 0 12px;
+  }
+
+  .response-tabs {
+    gap: 17px;
+
+    height: 50px;
+  }
+
+  .response-tab {
+    height: 50px;
+
+    font-size: 10px;
+  }
+
+  .response-info {
+    gap: 9px;
+  }
+
+  .response-copy {
+    width: 30px;
+    height: 30px;
+  }
+
+  .response-status {
+    font-size: 10px;
+  }
+
+  .response-time {
+    font-size: 10px;
+  }
+
+  .response-content,
+  .response-preview,
+  .response-curl {
+    padding: 14px;
+  }
+
+  .response-content pre,
+  .response-preview,
+  .response-curl pre {
+    font-size: 10px;
+    line-height: 1.65;
+  }
+
+  .response-headers {
+    padding: 12px 14px;
+  }
+
+  .response-header-row {
+    grid-template-columns: 1fr;
+
+    gap: 5px;
+
+    padding: 10px 0;
+  }
+
+  .response-header-name {
+    font-size: 10px;
+  }
+
+  .response-header-value {
+    font-size: 10px;
+  }
+
+  .endpoint .response {
+    padding: 14px;
+
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .response-tabs {
+    gap: 12px;
+  }
+
+  .response-info {
+    gap: 7px;
+  }
+
+  .response-time {
+    display: none;
+  }
+
+  .response-status {
+    font-size: 9px;
+  }
+
+  .response-tab {
+    font-size: 9px;
+  }
+}
