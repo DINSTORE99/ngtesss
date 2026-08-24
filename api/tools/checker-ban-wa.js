@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    // Hanya menerima GET
+    
     if (req.method !== "GET") {
       return res.status(405).json({
         status: false,
