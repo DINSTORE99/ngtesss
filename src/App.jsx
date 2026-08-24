@@ -857,23 +857,19 @@ const API_CATEGORIES = [
       },
 
       {
-        name: "QR Generator",
-        method: "GET",
-        path: "/api/tools/qr",
-        description:
-          "Generate QR code.",
-
-        params: [
-          {
-            name: "text",
-            label: "TEXT",
-            placeholder:
-              "Hello World",
-            required: true,
-          },
-        ],
-      },
-
+  name: "WhatsApp Ban Checker",
+  method: "GET",
+  path: "/api/tools/checker-ban-wa",
+  description: "Check whether a WhatsApp number is blocked/banned.",
+  params: [
+    {
+      name: "number",
+      label: "NUMBER",
+      placeholder: "628123456789",
+      required: true,
+    },
+  ],
+},
       {
         name: "Short URL",
         method: "GET",
