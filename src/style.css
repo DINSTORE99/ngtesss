@@ -2352,3 +2352,309 @@ button {
     line-height: 1.65;
   }
 }
+/* =========================================================
+   ENDPOINT FORM
+========================================================= */
+
+.endpoint-body {
+  padding: 32px;
+}
+
+.endpoint-description {
+  margin: 0 0 30px;
+  color: #9aa3a1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* PARAMETER */
+
+.params {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.param {
+  display: block;
+  width: 100%;
+}
+
+.param-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.param-label span {
+  color: #dce3e1;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+
+.param-label small {
+  color: #ff6b8a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .8px;
+}
+
+/* INPUT */
+
+.param input,
+.param select {
+  width: 100%;
+  min-height: 56px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+
+  background: #080f0f;
+  color: #e8eeee;
+
+  padding: 0 18px;
+
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.param input::placeholder {
+  color: #6e7775;
+}
+
+.param input:focus,
+.param select:focus {
+  border-color: #42e6a4;
+  background: #0a1312;
+  box-shadow: 0 0 0 3px rgba(66,230,164,.10);
+}
+
+/* =========================================================
+   CUSTOM SELECT
+========================================================= */
+
+.param select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+
+  padding-right: 48px;
+
+  background-color: #080f0f;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8d9996 50%),
+    linear-gradient(135deg, #8d9996 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 21px) 24px,
+    calc(100% - 15px) 24px;
+
+  background-size:
+    6px 6px,
+    6px 6px;
+
+  background-repeat: no-repeat;
+}
+
+.param select option {
+  background: #101818;
+  color: #e8eeee;
+}
+
+/* =========================================================
+   EXECUTE BUTTON
+========================================================= */
+
+.execute-button {
+  width: 100%;
+  min-height: 58px;
+
+  border: 1px solid #42e6a4;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    135deg,
+    #20c986,
+    #13a96d
+  );
+
+  color: #04100c;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .8px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px rgba(30,210,139,.15);
+
+  transition:
+    transform .15s ease,
+    box-shadow .2s ease,
+    opacity .2s ease;
+}
+
+.execute-button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 14px 35px rgba(30,210,139,.22);
+}
+
+.execute-button:active {
+  transform: translateY(0);
+}
+
+.execute-button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
+
+.clear-button {
+  width: 100%;
+  height: 42px;
+
+  margin-top: 10px;
+
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+
+  background: transparent;
+  color: #687370;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.clear-button:hover {
+  color: #dce3e1;
+  border-color: rgba(66,230,164,.35);
+  background: rgba(66,230,164,.04);
+}
+
+/* =========================================================
+   REQUEST RESULT
+========================================================= */
+
+.request-result {
+  margin-top: 28px;
+}
+
+.request-title {
+  margin-bottom: 10px;
+
+  color: #dce3e1;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.request-url {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 16px;
+
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+
+  background: #070c0c;
+
+  color: #7f8986;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.response {
+  width: 100%;
+  box-sizing: border-box;
+
+  margin: 14px 0 0;
+  padding: 18px;
+
+  border: 1px solid rgba(66,230,164,.12);
+  border-radius: 14px;
+
+  background: #050a0a;
+
+  color: #b9c5c1;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .endpoint-body {
+    padding: 24px 20px;
+  }
+
+  .endpoint-description {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .param input,
+  .param select {
+    min-height: 54px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+
+  .execute-button {
+    min-height: 56px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  .request-url,
+  .response {
+    font-size: 12px;
+  }
+}
