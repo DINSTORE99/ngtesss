@@ -837,7 +837,22 @@ const API_CATEGORIES = [
     path: "/docs/tools",
 
     endpoints: [
-
+{
+  name: "WhatsApp Ban Checker",
+  method: "GET",
+  path: "/api/tools/checker-ban-wa",
+  category: "TOOLS",
+  description: "Check whether a WhatsApp number is blocked/banned.",
+  params: [
+    {
+      name: "number",
+      label: "NUMBER",
+      type: "text",
+      placeholder: "628123456789",
+      required: true,
+    },
+  ],
+},
       {
         name: "Domain Info",
         method: "GET",
