@@ -856,20 +856,7 @@ const API_CATEGORIES = [
         ],
       },
 
-      {
-  name: "WhatsApp Ban Checker",
-  method: "GET",
-  path: "/api/tools/checker-ban-wa",
-  description: "Check whether a WhatsApp number is blocked/banned.",
-  params: [
-    {
-      name: "number",
-      label: "NUMBER",
-      placeholder: "628123456789",
-      required: true,
-    },
-  ],
-},
+      
       {
         name: "Short URL",
         method: "GET",
