@@ -15,27 +15,43 @@ const TURNSTILE_SITE_KEY =
   import.meta.env.VITE_TURNSTILE_SITE_KEY ||
   "0x4AAAAAAEPIh3nGXRyGDzYt";
 
+/*
+  Kalau API dan website berada di domain yang sama:
+  VITE_API_BASE_URL tidak perlu diisi.
+
+  Kalau API berbeda domain:
+  VITE_API_BASE_URL=https://api.siputzz.my.id
+*/
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "";
+
+
 /* =========================================================
    API DATA
 ========================================================= */
 
 const API_CATEGORIES = [
-  /* =========================================================
+
+  /* =======================================================
      AI
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "AI",
     icon: "✦",
-    color: "mint",
+    color: "blue",
     path: "/docs/ai",
 
     endpoints: [
+
       {
         name: "AI Duckai",
         method: "GET",
         path: "/api/ai/duckai",
         description:
           "Chat with DuckAI using various AI models.",
+
         params: [
           {
             name: "message",
@@ -44,11 +60,13 @@ const API_CATEGORIES = [
               "What is the meaning of life?",
             required: true,
           },
+
           {
             name: "model",
             label: "MODEL",
             type: "select",
             default: "gpt-4o-mini",
+
             options: [
               "gpt-4o-mini",
               "claude-3-5-haiku-latest",
@@ -57,8 +75,10 @@ const API_CATEGORIES = [
               "openai/gpt-oss-120b",
               "gpt-5-mini",
             ],
+
             required: false,
           },
+
           {
             name: "systemPrompt",
             label: "SYSTEMPROMPT",
@@ -75,6 +95,7 @@ const API_CATEGORIES = [
         path: "/api/ai/flixier",
         description:
           "Generate image menggunakan Flixier AI.",
+
         params: [
           {
             name: "prompt",
@@ -83,18 +104,21 @@ const API_CATEGORIES = [
               "futuristic warrior cat",
             required: true,
           },
+
           {
             name: "style",
             label: "STYLE",
             placeholder: "cinematic",
             required: false,
           },
+
           {
             name: "negative",
             label: "NEGATIVE PROMPT",
             placeholder: "blur",
             required: false,
           },
+
           {
             name: "ratio",
             label: "ASPECT RATIO",
@@ -110,6 +134,7 @@ const API_CATEGORIES = [
         path: "/api/ai/lyricsgen",
         description:
           "Generate lyrics menggunakan AI.",
+
         params: [
           {
             name: "theme",
@@ -117,18 +142,21 @@ const API_CATEGORIES = [
             placeholder: "persahabatan",
             required: true,
           },
+
           {
             name: "genre",
             label: "GENRE",
             placeholder: "pop",
             required: false,
           },
+
           {
             name: "emotion",
             label: "EMOTION",
             placeholder: "happy",
             required: false,
           },
+
           {
             name: "lang",
             label: "LANGUAGE",
@@ -144,6 +172,7 @@ const API_CATEGORIES = [
         path: "/api/tools/aicoder",
         description:
           "Generate source code menggunakan AI.",
+
         params: [
           {
             name: "prompt",
@@ -161,6 +190,7 @@ const API_CATEGORIES = [
         path: "/api/ai/chat",
         description:
           "General AI chat endpoint.",
+
         params: [
           {
             name: "q",
@@ -174,9 +204,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      ADMIN
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "ADMIN",
     icon: "◇",
@@ -184,6 +216,7 @@ const API_CATEGORIES = [
     path: "/docs/admin",
 
     endpoints: [
+
       {
         name: "Admin Status",
         method: "GET",
@@ -213,9 +246,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      CACHE
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "CACHE",
     icon: "▣",
@@ -223,12 +258,14 @@ const API_CATEGORIES = [
     path: "/docs/cache",
 
     endpoints: [
+
       {
         name: "Cache Get",
         method: "GET",
         path: "/api/cache/get",
         description:
           "Get cached data.",
+
         params: [
           {
             name: "key",
@@ -250,9 +287,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      DOWNLOAD
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "DOWNLOAD",
     icon: "⇩",
@@ -260,12 +299,14 @@ const API_CATEGORIES = [
     path: "/docs/download",
 
     endpoints: [
+
       {
         name: "TikTok Downloader",
         method: "GET",
         path: "/api/download/tiktok",
         description:
           "Download video TikTok.",
+
         params: [
           {
             name: "url",
@@ -283,6 +324,7 @@ const API_CATEGORIES = [
         path: "/api/download/instagram",
         description:
           "Download Instagram media.",
+
         params: [
           {
             name: "url",
@@ -300,6 +342,7 @@ const API_CATEGORIES = [
         path: "/api/download/capcut",
         description:
           "Download CapCut media.",
+
         params: [
           {
             name: "url",
@@ -317,6 +360,7 @@ const API_CATEGORIES = [
         path: "/api/download/facebook",
         description:
           "Download Facebook media.",
+
         params: [
           {
             name: "url",
@@ -334,6 +378,7 @@ const API_CATEGORIES = [
         path: "/api/download/mediafire",
         description:
           "Download MediaFire files.",
+
         params: [
           {
             name: "url",
@@ -351,6 +396,7 @@ const API_CATEGORIES = [
         path: "/api/download/dramabox",
         description:
           "Download video dan mengambil data DramaBox.",
+
         params: [
           {
             name: "url",
@@ -368,6 +414,7 @@ const API_CATEGORIES = [
         path: "/api/download/pinterest",
         description:
           "Download Pinterest media.",
+
         params: [
           {
             name: "url",
@@ -381,9 +428,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      FUN
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "FUN",
     icon: "🎮",
@@ -391,6 +440,7 @@ const API_CATEGORIES = [
     path: "/docs/fun",
 
     endpoints: [
+
       {
         name: "Truth",
         method: "GET",
@@ -420,9 +470,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      LEADERBOARD
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "LEADERBOARD",
     icon: "🏆",
@@ -441,9 +493,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      LIBRARY
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "LIBRARY",
     icon: "▤",
@@ -451,12 +505,14 @@ const API_CATEGORIES = [
     path: "/docs/library",
 
     endpoints: [
+
       {
         name: "Books",
         method: "GET",
         path: "/api/library/books",
         description:
           "Search library books.",
+
         params: [
           {
             name: "q",
@@ -474,6 +530,7 @@ const API_CATEGORIES = [
         path: "/api/library/anime",
         description:
           "Search anime library.",
+
         params: [
           {
             name: "q",
@@ -491,6 +548,7 @@ const API_CATEGORIES = [
         path: "/api/library/movies",
         description:
           "Search movie library.",
+
         params: [
           {
             name: "q",
@@ -504,9 +562,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      MAKER
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "MAKER",
     icon: "🎨",
@@ -514,12 +574,14 @@ const API_CATEGORIES = [
     path: "/docs/maker",
 
     endpoints: [
+
       {
         name: "QR Maker",
         method: "GET",
         path: "/api/maker/qr",
         description:
           "Generate QR code.",
+
         params: [
           {
             name: "text",
@@ -537,6 +599,7 @@ const API_CATEGORIES = [
         path: "/api/maker/logo",
         description:
           "Generate logo.",
+
         params: [
           {
             name: "text",
@@ -550,9 +613,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      NEWS
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "NEWS",
     icon: "▤",
@@ -560,6 +625,7 @@ const API_CATEGORIES = [
     path: "/docs/news",
 
     endpoints: [
+
       {
         name: "Latest News",
         method: "GET",
@@ -593,6 +659,7 @@ const API_CATEGORIES = [
         path: "/api/news/search",
         description:
           "Search news.",
+
         params: [
           {
             name: "q",
@@ -606,9 +673,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      RANDOM
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "RANDOM",
     icon: "◆",
@@ -616,6 +685,7 @@ const API_CATEGORIES = [
     path: "/docs/random",
 
     endpoints: [
+
       {
         name: "Random Image",
         method: "GET",
@@ -631,18 +701,21 @@ const API_CATEGORIES = [
         path: "/api/random/number",
         description:
           "Generate random number.",
+
         params: [
           {
             name: "min",
             label: "MINIMUM",
-            placeholder: "1",
+            placeholder:
+              "1",
             required: false,
           },
 
           {
             name: "max",
             label: "MAXIMUM",
-            placeholder: "100",
+            placeholder:
+              "100",
             required: false,
           },
         ],
@@ -650,9 +723,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      SEARCH
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "SEARCH",
     icon: "⌕",
@@ -660,12 +735,14 @@ const API_CATEGORIES = [
     path: "/docs/search",
 
     endpoints: [
+
       {
         name: "Google Search",
         method: "GET",
         path: "/api/search/google",
         description:
           "Search Google.",
+
         params: [
           {
             name: "q",
@@ -683,6 +760,7 @@ const API_CATEGORIES = [
         path: "/api/search/youtube",
         description:
           "Search YouTube.",
+
         params: [
           {
             name: "q",
@@ -696,9 +774,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      STALK
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "STALK",
     icon: "◉",
@@ -706,12 +786,14 @@ const API_CATEGORIES = [
     path: "/docs/stalk",
 
     endpoints: [
+
       {
         name: "TikTok Stalk",
         method: "GET",
         path: "/api/stalk/tiktok",
         description:
           "Get public TikTok profile information.",
+
         params: [
           {
             name: "username",
@@ -729,6 +811,7 @@ const API_CATEGORIES = [
         path: "/api/stalk/instagram",
         description:
           "Get public Instagram profile information.",
+
         params: [
           {
             name: "username",
@@ -742,9 +825,11 @@ const API_CATEGORIES = [
     ],
   },
 
-  /* =========================================================
+
+  /* =======================================================
      TOOLS
-  ========================================================= */
+  ======================================================= */
+
   {
     name: "TOOLS",
     icon: "⌘",
@@ -752,12 +837,14 @@ const API_CATEGORIES = [
     path: "/docs/tools",
 
     endpoints: [
+
       {
         name: "Domain Info",
         method: "GET",
         path: "/api/tools/domaininfo",
         description:
           "Check domain information.",
+
         params: [
           {
             name: "domain",
@@ -775,6 +862,7 @@ const API_CATEGORIES = [
         path: "/api/tools/qr",
         description:
           "Generate QR code.",
+
         params: [
           {
             name: "text",
@@ -792,6 +880,7 @@ const API_CATEGORIES = [
         path: "/api/tools/shorturl",
         description:
           "Shorten URL.",
+
         params: [
           {
             name: "url",
@@ -806,11 +895,74 @@ const API_CATEGORIES = [
   },
 ];
 
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function buildUrl(path, values = {}) {
+  const query = new URLSearchParams();
+
+  Object.entries(values).forEach(
+    ([key, value]) => {
+      if (
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+      ) {
+        query.append(key, String(value));
+      }
+    }
+  );
+
+  const base =
+    API_BASE_URL.replace(/\/+$/, "");
+
+  const cleanPath =
+    path.startsWith("/")
+      ? path
+      : `/${path}`;
+
+  return (
+    base +
+    cleanPath +
+    (query.toString()
+      ? `?${query.toString()}`
+      : "")
+  );
+}
+
+
+function makeCurl(url, method = "GET") {
+  return `curl -X ${method} "${url}"`;
+}
+
+
+function formatResponse(data) {
+  if (
+    typeof data === "string"
+  ) {
+    return data;
+  }
+
+  try {
+    return JSON.stringify(
+      data,
+      null,
+      2
+    );
+  } catch {
+    return String(data);
+  }
+}
+
+
 /* =========================================================
    APP
 ========================================================= */
 
 export default function App() {
+
   const [menuOpen, setMenuOpen] =
     useState(false);
 
@@ -829,19 +981,21 @@ export default function App() {
   const [showDevPopup, setShowDevPopup] =
     useState(true);
 
+
   const totalEndpoints =
     API_CATEGORIES.reduce(
       (total, category) =>
-        total +
-        category.endpoints.length,
+        total + category.endpoints.length,
       0
     );
 
+
   /* =======================================================
-     LOAD TURNSTILE
+     TURNSTILE SCRIPT
   ======================================================= */
 
   useEffect(() => {
+
     if (window.turnstile) {
       setTurnstileReady(true);
       return;
@@ -857,6 +1011,7 @@ export default function App() {
       document.createElement("script");
 
     if (!existing) {
+
       script.src =
         "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
@@ -866,9 +1021,8 @@ export default function App() {
       document.head.appendChild(script);
     }
 
-    const onLoad = () => {
+    const onLoad = () =>
       setTurnstileReady(true);
-    };
 
     if (window.turnstile) {
       setTurnstileReady(true);
@@ -885,7 +1039,9 @@ export default function App() {
         onLoad
       );
     };
+
   }, []);
+
 
   /* =======================================================
      SEARCH
@@ -893,6 +1049,7 @@ export default function App() {
 
   const filteredCategories =
     useMemo(() => {
+
       const keyword =
         search.trim().toLowerCase();
 
@@ -902,6 +1059,7 @@ export default function App() {
 
       return API_CATEGORIES
         .map((category) => {
+
           const categoryMatch =
             category.name
               .toLowerCase()
@@ -935,35 +1093,37 @@ export default function App() {
           return null;
         })
         .filter(Boolean);
+
     }, [search]);
+
 
   /* =======================================================
      NAVIGATION
   ======================================================= */
 
-  const scrollToCategory = (
-    name
-  ) => {
-    setMenuOpen(false);
+  const scrollToCategory =
+    (name) => {
 
-    setTimeout(() => {
-      const element =
-        document.getElementById(
-          `category-${name.toLowerCase()}`
-        );
+      setMenuOpen(false);
 
-      element?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 150);
-  };
+      setTimeout(() => {
 
-  /* =======================================================
-     WHATSAPP
-  ======================================================= */
+        const element =
+          document.getElementById(
+            `category-${name.toLowerCase()}`
+          );
+
+        element?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+      }, 150);
+    };
+
 
   const openWhatsApp = () => {
+
     window.open(
       "https://wa.me/6287776581216",
       "_blank",
@@ -971,11 +1131,13 @@ export default function App() {
     );
   };
 
+
   /* =======================================================
-     VERIFICATION
+     TURNSTILE GATE
   ======================================================= */
 
   if (!verified) {
+
     return (
       <TurnstileGate
         ready={turnstileReady}
@@ -986,18 +1148,19 @@ export default function App() {
     );
   }
 
+
   /* =======================================================
      MAIN
   ======================================================= */
 
   return (
+
     <div className="app">
 
-      {/* ===================================================
-          DEVELOPMENT POPUP
-      =================================================== */}
+      {/* DEVELOPMENT POPUP */}
 
       {showDevPopup && (
+
         <div className="dev-popup-overlay">
 
           <div className="dev-popup">
@@ -1018,44 +1181,64 @@ export default function App() {
               </div>
 
               <div>
+
                 <h2>
                   DINSTORE API
                 </h2>
 
                 <p>
-                  Website masih dalam pengembangan
+                  Website masih dalam
+                  pengembangan
                 </p>
+
               </div>
 
             </div>
 
+
             <div className="dev-popup-status">
+
               <span />
+
               DEVELOPMENT 50%
+
             </div>
+
 
             <div className="dev-popup-progress">
 
               <div className="dev-popup-progress-bar">
+
                 <div className="dev-popup-progress-fill" />
+
               </div>
 
+
               <div className="dev-popup-progress-info">
+
                 <span>
                   Progress Website
                 </span>
 
-                <b>50%</b>
+                <b>
+                  50%
+                </b>
+
               </div>
 
             </div>
 
+
             <p className="dev-popup-text">
-              Website ini masih dalam tahap
-              pengembangan. Beberapa API mungkin
-              masih mengalami perubahan atau belum
-              bisa digunakan.
+
+              Website ini masih dalam
+              tahap pengembangan.
+              Beberapa API mungkin
+              masih mengalami perubahan
+              atau belum bisa digunakan.
+
             </p>
+
 
             <button
               className="dev-popup-button"
@@ -1069,23 +1252,25 @@ export default function App() {
           </div>
 
         </div>
+
       )}
+
 
       <div className="grid-background" />
 
-      {/* ===================================================
-          ROBOT
-      =================================================== */}
+
+      {/* ROBOT */}
 
       <div className="robot-decoration robot-one">
+
         <span />
         <span />
         <span />
+
       </div>
 
-      {/* ===================================================
-          HEADER
-      =================================================== */}
+
+      {/* HEADER */}
 
       <header className="header">
 
@@ -1098,10 +1283,13 @@ export default function App() {
             }
             aria-label="Open menu"
           >
+
             <span />
             <span />
             <span />
+
           </button>
+
 
           <div className="brand">
 
@@ -1110,6 +1298,7 @@ export default function App() {
             </div>
 
             <div>
+
               <strong>
                 DINSTORE
               </strong>
@@ -1117,22 +1306,26 @@ export default function App() {
               <small>
                 API SYSTEM
               </small>
+
             </div>
 
           </div>
 
+
           <div className="header-status">
+
             <span />
+
             ONLINE
+
           </div>
 
         </div>
 
       </header>
 
-      {/* ===================================================
-          OVERLAY
-      =================================================== */}
+
+      {/* OVERLAY */}
 
       <div
         className={`nav-overlay ${
@@ -1143,9 +1336,8 @@ export default function App() {
         }
       />
 
-      {/* ===================================================
-          SIDE NAV
-      =================================================== */}
+
+      {/* SIDE NAV */}
 
       <aside
         className={`side-nav ${
@@ -1156,6 +1348,7 @@ export default function App() {
         <div className="side-nav-header">
 
           <div>
+
             <span className="nav-label">
               NAVIGATION
             </span>
@@ -1163,7 +1356,9 @@ export default function App() {
             <h2>
               DINSTORE API
             </h2>
+
           </div>
+
 
           <button
             className="close-button"
@@ -1176,26 +1371,41 @@ export default function App() {
 
         </div>
 
+
         <div className="nav-items">
 
           <button
             className="nav-item home"
             onClick={() => {
+
               setMenuOpen(false);
 
               window.scrollTo({
                 top: 0,
                 behavior: "smooth",
               });
+
             }}
           >
-            <span>⌂</span>
-            <b>HOME</b>
-            <small>00</small>
+
+            <span>
+              ⌂
+            </span>
+
+            <b>
+              HOME
+            </b>
+
+            <small>
+              00
+            </small>
+
           </button>
+
 
           {API_CATEGORIES.map(
             (category, index) => (
+
               <button
                 className="nav-item"
                 key={category.name}
@@ -1219,16 +1429,17 @@ export default function App() {
                 </b>
 
                 <small>
-                  {String(
-                    index + 1
-                  ).padStart(2, "0")}
+                  {String(index + 1)
+                    .padStart(2, "0")}
                 </small>
 
               </button>
+
             )
           )}
 
         </div>
+
 
         <div className="side-footer">
 
@@ -1244,15 +1455,13 @@ export default function App() {
 
       </aside>
 
-      {/* ===================================================
-          MAIN
-      =================================================== */}
+
+      {/* MAIN */}
 
       <main className="main">
 
-        {/* =================================================
-            HERO
-        ================================================= */}
+
+        {/* HERO */}
 
         <section className="hero">
 
@@ -1263,7 +1472,6 @@ export default function App() {
             <div className="machine-core">
 
               <div className="eye eye-left" />
-
               <div className="eye eye-right" />
 
               <div className="machine-mouth" />
@@ -1272,10 +1480,15 @@ export default function App() {
 
           </div>
 
+
           <div className="terminal-badge">
+
             <span />
+
             TERMINAL ACTIVE
+
           </div>
+
 
           <div className="hero-title">
 
@@ -1289,14 +1502,20 @@ export default function App() {
 
           </div>
 
+
           <p className="hero-description">
-            A comprehensive and user friendly
-            API solution for modern applications.
+
+            A comprehensive and user
+            friendly API solution for
+            modern applications.
+
           </p>
+
 
           <div className="stats">
 
             <div className="stat">
+
               <span>
                 CATEGORIES
               </span>
@@ -1304,9 +1523,12 @@ export default function App() {
               <strong>
                 {API_CATEGORIES.length}
               </strong>
+
             </div>
 
+
             <div className="stat green">
+
               <span>
                 ENDPOINTS
               </span>
@@ -1314,9 +1536,12 @@ export default function App() {
               <strong>
                 {totalEndpoints}
               </strong>
+
             </div>
 
+
             <div className="stat status">
+
               <span>
                 STATUS
               </span>
@@ -1324,15 +1549,15 @@ export default function App() {
               <strong>
                 ONLINE
               </strong>
+
             </div>
 
           </div>
 
         </section>
 
-        {/* =================================================
-            SEARCH
-        ================================================= */}
+
+        {/* SEARCH */}
 
         <section className="search-section">
 
@@ -1341,6 +1566,7 @@ export default function App() {
             <span>
               ⌕
             </span>
+
 
             <input
               value={search}
@@ -1352,7 +1578,9 @@ export default function App() {
               placeholder="SEARCH ENDPOINT / CATEGORY..."
             />
 
+
             {search && (
+
               <button
                 onClick={() =>
                   setSearch("")
@@ -1360,15 +1588,15 @@ export default function App() {
               >
                 ×
               </button>
+
             )}
 
           </div>
 
         </section>
 
-        {/* =================================================
-            CATEGORIES
-        ================================================= */}
+
+        {/* CATEGORIES */}
 
         <section className="categories">
 
@@ -1379,7 +1607,9 @@ export default function App() {
                 openCategory ===
                 category.name;
 
+
               return (
+
                 <article
                   key={category.name}
                   id={`category-${category.name.toLowerCase()}`}
@@ -1402,45 +1632,55 @@ export default function App() {
                   >
 
                     <div
-                      className={`category-icon ${category.color}`}
+                      className={`category-icon ${
+                        category.color
+                      }`}
                     >
                       {category.icon}
                     </div>
 
+
                     <div className="category-info">
 
                       <small>
+
                         MODULE{" "}
-                        {String(
-                          index + 1
-                        ).padStart(
-                          2,
-                          "0"
-                        )}
+
+                        {String(index + 1)
+                          .padStart(
+                            2,
+                            "0"
+                          )}
+
                       </small>
+
 
                       <h2>
                         {category.name}
                       </h2>
 
+
                       <span>
-                        {
-                          category
-                            .endpoints
-                            .length
-                        }{" "}
-                        ENDPOINTS
+
+                        {category.endpoints.length}
+
+                        {" "}ENDPOINTS
+
                       </span>
 
                     </div>
 
+
                     <span className="open-label">
+
                       {isOpen
                         ? "CLOSE ↑"
                         : "OPEN →"}
+
                     </span>
 
                   </button>
+
 
                   <div className="category-path">
 
@@ -1452,6 +1692,7 @@ export default function App() {
 
                   </div>
 
+
                   <div
                     className={`endpoint-list ${
                       isOpen
@@ -1462,6 +1703,7 @@ export default function App() {
 
                     {category.endpoints.map(
                       (endpoint) => (
+
                         <EndpointCard
                           key={
                             endpoint.path
@@ -1470,17 +1712,21 @@ export default function App() {
                             endpoint
                           }
                         />
+
                       )
                     )}
 
                   </div>
 
                 </article>
+
               );
             }
           )}
 
+
           {!filteredCategories.length && (
+
             <div className="empty">
 
               <strong>
@@ -1492,15 +1738,15 @@ export default function App() {
               </span>
 
             </div>
+
           )}
 
         </section>
 
       </main>
 
-      {/* ===================================================
-          WHATSAPP BUTTON
-      =================================================== */}
+
+      {/* FLOATING WHATSAPP */}
 
       <button
         className="floating-robot"
@@ -1514,13 +1760,17 @@ export default function App() {
 
           <span className="robot-eye right" />
 
+
           <div className="robot-mouth">
+
             <i />
             <i />
             <i />
+
           </div>
 
         </div>
+
 
         <span className="robot-dot" />
 
@@ -1530,14 +1780,16 @@ export default function App() {
   );
 }
 
+
 /* =========================================================
-   TURNSTILE GATE
+   TURNSTILE
 ========================================================= */
 
 function TurnstileGate({
   ready,
   onVerified,
 }) {
+
   const widgetRef =
     useRef(null);
 
@@ -1550,7 +1802,9 @@ function TurnstileGate({
   const [checking, setChecking] =
     useState(false);
 
+
   useEffect(() => {
+
     if (
       !ready ||
       !window.turnstile ||
@@ -1560,30 +1814,43 @@ function TurnstileGate({
       return;
     }
 
-    if (!TURNSTILE_SITE_KEY) {
+
+    const siteKey =
+      import.meta.env
+        .VITE_TURNSTILE_SITE_KEY;
+
+
+    if (!siteKey) {
+
       setError(
-        "VITE_TURNSTILE_SITE_KEY belum dikonfigurasi."
+        "VITE_TURNSTILE_SITE_KEY belum dikonfigurasi di Vercel."
       );
 
       return;
     }
 
+
     try {
+
       widgetIdRef.current =
         window.turnstile.render(
           widgetRef.current,
           {
-            sitekey:
-              TURNSTILE_SITE_KEY,
+
+            sitekey: siteKey,
 
             theme: "dark",
 
+
             callback:
               async (token) => {
+
                 setError("");
                 setChecking(true);
 
+
                 try {
+
                   const verify =
                     await fetch(
                       "/api/verify-turnstile",
@@ -1596,44 +1863,29 @@ function TurnstileGate({
                             "application/json",
                         },
 
-                        body: JSON.stringify({
-                          token,
-                        }),
+                        body:
+                          JSON.stringify({
+                            token,
+                          }),
                       }
                     );
 
-                  const contentType =
-                    verify.headers.get(
-                      "content-type"
-                    ) || "";
 
-                  let data;
+                  const data =
+                    await verify.json();
 
-                  if (
-                    contentType.includes(
-                      "application/json"
-                    )
-                  ) {
-                    data =
-                      await verify.json();
-                  } else {
-                    data = {
-                      success:
-                        verify.ok,
-                      message:
-                        await verify.text(),
-                    };
-                  }
 
                   if (
                     !verify.ok ||
                     !data.success
                   ) {
+
                     throw new Error(
                       data.message ||
                         "Verifikasi Cloudflare gagal."
                     );
                   }
+
 
                   onVerified();
 
@@ -1641,65 +1893,90 @@ function TurnstileGate({
 
                   setError(
                     err.message ||
-                      "Verifikasi gagal. Silakan coba lagi."
+                      "Verifikasi gagal."
                   );
 
+
                   try {
+
                     window.turnstile.reset(
                       widgetIdRef.current
                     );
+
                   } catch {}
 
                 } finally {
+
                   setChecking(false);
+
                 }
               },
 
+
             "expired-callback":
               () => {
+
                 setError(
                   "Verifikasi kedaluwarsa. Silakan ulangi."
                 );
+
               },
+
 
             "error-callback":
               () => {
+
                 setError(
-                  "Cloudflare Turnstile gagal dimuat. Periksa koneksi dan hostname."
+                  "Cloudflare Turnstile gagal dimuat."
                 );
+
               },
+
           }
         );
 
     } catch (err) {
+
       console.error(err);
 
       setError(
         "Turnstile tidak dapat dijalankan."
       );
+
     }
 
+
     return () => {
+
       try {
+
         if (
           window.turnstile &&
           widgetIdRef.current !== null
         ) {
+
           window.turnstile.remove(
             widgetIdRef.current
           );
+
         }
+
       } catch {}
+
 
       widgetIdRef.current =
         null;
+
     };
+
   }, [
     ready,
     onVerified,
   ]);
 
+
   return (
+
     <div className="verification-screen">
 
       <div className="verification-grid" />
@@ -1708,6 +1985,7 @@ function TurnstileGate({
 
       <div className="verification-glow verification-glow-two" />
 
+
       <div className="verification-card">
 
         <div className="verification-brand">
@@ -1715,6 +1993,7 @@ function TurnstileGate({
           <div className="verification-logo">
             D
           </div>
+
 
           <div>
 
@@ -1730,24 +2009,33 @@ function TurnstileGate({
 
         </div>
 
+
         <div className="verification-line" />
+
 
         <div className="verification-icon">
           ◉
         </div>
 
+
         <span className="verification-eyebrow">
           SECURITY CHECK
         </span>
+
 
         <h1>
           VERIFY ACCESS
         </h1>
 
+
         <p>
-          Selesaikan verifikasi Cloudflare
-          terlebih dahulu untuk masuk ke DIN API.
+
+          Selesaikan verifikasi
+          Cloudflare terlebih dahulu
+          untuk masuk ke DIN API.
+
         </p>
+
 
         <div className="verification-status">
 
@@ -1765,19 +2053,30 @@ function TurnstileGate({
 
         </div>
 
+
         <div className="turnstile-gate-widget">
 
           {ready ? (
-            <div ref={widgetRef} />
+
+            <div
+              ref={widgetRef}
+            />
+
           ) : (
+
             <div className="turnstile-loading">
+
               MEMUAT CLOUDFLARE...
+
             </div>
+
           )}
 
         </div>
 
+
         {error && (
+
           <div className="verification-error">
 
             <b>
@@ -1789,47 +2088,73 @@ function TurnstileGate({
             </span>
 
           </div>
+
         )}
 
+
         <small className="verification-note">
-          Your connection is protected by
-          Cloudflare Turnstile.
+
+          Your connection is protected
+          by Cloudflare Turnstile.
+
         </small>
 
       </div>
 
     </div>
+
   );
 }
 
+
 /* =========================================================
    ENDPOINT CARD
+   FITUR:
+   - GET / POST
+   - REQUEST PARAMETER
+   - EXECUTE
+   - CLEAR
+   - PREVIEW
+   - HEADERS
+   - CURL
+   - STATUS
+   - PING / LATENCY
+   - COPY CURL
+   - COPY RESPONSE
 ========================================================= */
 
 function EndpointCard({
   endpoint,
 }) {
+
   const [expanded, setExpanded] =
     useState(false);
 
   const [values, setValues] =
     useState(() => {
+
       const initial = {};
 
       endpoint.params.forEach(
         (param) => {
+
           if (
             param.default !==
             undefined
           ) {
+
             initial[param.name] =
               param.default;
+
           }
+
         }
       );
 
       return initial;
+
     });
+
 
   const [response, setResponse] =
     useState(null);
@@ -1837,160 +2162,373 @@ function EndpointCard({
   const [loading, setLoading] =
     useState(false);
 
-  /* =======================================================
-     UPDATE INPUT
-  ======================================================= */
+  const [activeTab, setActiveTab] =
+    useState("preview");
+
+  const [latency, setLatency] =
+    useState(null);
+
+  const [statusCode, setStatusCode] =
+    useState(null);
+
+  const [statusText, setStatusText] =
+    useState("");
+
+  const [responseHeaders, setResponseHeaders] =
+    useState({});
+
+  const [requestUrl, setRequestUrl] =
+    useState(
+      buildUrl(
+        endpoint.path,
+        {}
+      )
+    );
+
 
   const updateValue = (
     name,
     value
   ) => {
+
     setValues((prev) => ({
       ...prev,
       [name]: value,
     }));
+
   };
 
+
   /* =======================================================
-     EXECUTE REQUEST
+     CLEAR
+  ======================================================= */
+
+  const clearRequest = () => {
+
+    const initial = {};
+
+    endpoint.params.forEach(
+      (param) => {
+
+        if (
+          param.default !==
+          undefined
+        ) {
+
+          initial[param.name] =
+            param.default;
+
+        }
+
+      }
+    );
+
+
+    setValues(initial);
+
+    setResponse(null);
+
+    setLatency(null);
+
+    setStatusCode(null);
+
+    setStatusText("");
+
+    setResponseHeaders({});
+
+    setRequestUrl(
+      buildUrl(
+        endpoint.path,
+        {}
+      )
+    );
+
+    setActiveTab("preview");
+
+  };
+
+
+  /* =======================================================
+     EXECUTE
   ======================================================= */
 
   const execute = async () => {
+
     setLoading(true);
+
     setResponse(null);
 
+    setLatency(null);
+
+    setStatusCode(null);
+
+    setStatusText("");
+
+    setResponseHeaders({});
+
+
     try {
-      /* REQUIRED VALIDATION */
+
+      /* REQUIRED CHECK */
 
       for (
         const param of endpoint.params
       ) {
+
         if (
           param.required &&
           !String(
-            values[param.name] || ""
+            values[param.name] ||
+              ""
           ).trim()
         ) {
+
           throw new Error(
             `${param.label} wajib diisi.`
           );
+
         }
+
       }
 
-      /* QUERY */
-
-      const query =
-        new URLSearchParams();
-
-      endpoint.params.forEach(
-        (param) => {
-          const value =
-            values[param.name];
-
-          if (
-            value !== undefined &&
-            value !== null &&
-            String(value) !== ""
-          ) {
-            query.append(
-              param.name,
-              String(value)
-            );
-          }
-        }
-      );
 
       /* URL */
 
       const url =
-        endpoint.path +
-        (query.toString()
-          ? `?${query.toString()}`
-          : "");
+        buildUrl(
+          endpoint.path,
+          values
+        );
 
-      /* REQUEST */
+
+      setRequestUrl(url);
+
+
+      /*
+        performance.now()
+        digunakan untuk menghitung
+        ping / latency request.
+      */
+
+      const start =
+        performance.now();
+
 
       const res =
-        await fetch(url);
+        await fetch(
+          url,
+          {
+            method:
+              endpoint.method ||
+              "GET",
 
-      /* RESPONSE TYPE */
+            headers: {
+              Accept:
+                "application/json",
+            },
+          }
+        );
+
+
+      const end =
+        performance.now();
+
+
+      const requestTime =
+        Math.round(
+          end - start
+        );
+
+
+      setLatency(
+        requestTime
+      );
+
+
+      setStatusCode(
+        res.status
+      );
+
+
+      setStatusText(
+        res.statusText ||
+          ""
+      );
+
+
+      /* RESPONSE HEADERS */
+
+      const headers = {};
+
+      res.headers.forEach(
+        (value, key) => {
+
+          headers[key] =
+            value;
+
+        }
+      );
+
+      setResponseHeaders(
+        headers
+      );
+
+
+      /* RESPONSE BODY */
 
       const contentType =
         res.headers.get(
           "content-type"
         ) || "";
 
+
       let data;
+
 
       if (
         contentType.includes(
           "application/json"
         )
       ) {
+
         data =
           await res.json();
+
       } else {
-        data = {
-          success:
-            res.ok,
 
-          status:
-            res.status,
+        const text =
+          await res.text();
 
-          response:
-            await res.text(),
-        };
+        try {
+
+          data =
+            JSON.parse(text);
+
+        } catch {
+
+          data = {
+            success:
+              res.ok,
+
+            status:
+              res.status,
+
+            response:
+              text,
+          };
+
+        }
+
       }
+
 
       setResponse(data);
 
+      setActiveTab(
+        "preview"
+      );
+
     } catch (error) {
+
+      const message =
+        error?.message ||
+        "Request failed.";
+
 
       setResponse({
         success: false,
-
-        message:
-          error.message ||
-          "Request failed.",
+        message,
       });
 
+
+      setStatusCode(
+        0
+      );
+
+
+      setStatusText(
+        "ERROR"
+      );
+
+
+      setActiveTab(
+        "preview"
+      );
+
     } finally {
+
       setLoading(false);
+
     }
+
   };
 
-  /* =======================================================
-     CLEAR
-  ======================================================= */
 
-  const clearValues = () => {
-    const initial = {};
-
-    endpoint.params.forEach(
-      (param) => {
-        if (
-          param.default !==
-          undefined
-        ) {
-          initial[param.name] =
-            param.default;
-        }
-      }
+  const curl =
+    makeCurl(
+      requestUrl,
+      endpoint.method ||
+        "GET"
     );
 
-    setValues(initial);
-    setResponse(null);
+
+  const copyText = async (
+    text
+  ) => {
+
+    try {
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+    } catch {
+
+      const textarea =
+        document.createElement(
+          "textarea"
+        );
+
+      textarea.value =
+        text;
+
+      document.body.appendChild(
+        textarea
+      );
+
+      textarea.select();
+
+      document.execCommand(
+        "copy"
+      );
+
+      textarea.remove();
+
+    }
+
   };
 
-  /* =======================================================
-     RENDER
-  ======================================================= */
+
+  const statusLabel =
+    statusCode
+      ? `${statusCode} ${
+          statusText || ""
+        }`
+      : "—";
+
 
   return (
-    <div className="endpoint">
+
+    <div
+      className={`endpoint ${
+        expanded
+          ? "endpoint-open"
+          : ""
+      }`}
+    >
 
       {/* =================================================
-          HEADER
+          ENDPOINT HEADER
       ================================================= */}
 
       <button
@@ -2003,8 +2541,12 @@ function EndpointCard({
       >
 
         <div className="method">
-          {endpoint.method}
+
+          {endpoint.method ||
+            "GET"}
+
         </div>
+
 
         <div className="endpoint-main">
 
@@ -2018,265 +2560,456 @@ function EndpointCard({
 
         </div>
 
+
         <span className="endpoint-chevron">
+
           {expanded
             ? "−"
             : "+"}
+
         </span>
 
       </button>
+
 
       {/* =================================================
           BODY
       ================================================= */}
 
       {expanded && (
+
         <div className="endpoint-body">
 
           {/* DESCRIPTION */}
 
           <p className="endpoint-description">
+
             {endpoint.description}
+
           </p>
 
-          {/* PARAMS */}
 
-          {endpoint.params.length >
-            0 && (
-            <div className="params">
+          {/* METHOD */}
 
-              {endpoint.params.map(
-                (param) => (
-                  <label
-                    className="param"
-                    key={
-                      param.name
-                    }
-                  >
-
-                    <div className="param-label">
-
-                      <span>
-                        {
-                          param.label
-                        }
-                      </span>
-
-                      {param.required && (
-                        <small>
-                          REQUIRED
-                        </small>
-                      )}
-
-                    </div>
-
-                    {/* SELECT */}
-
-                    {param.type ===
-                    "select" ? (
-
-                      <select
-                        value={
-                          values[
-                            param.name
-                          ] ??
-                          param.default ??
-                          ""
-                        }
-                        onChange={(
-                          e
-                        ) =>
-                          updateValue(
-                            param.name,
-                            e.target
-                              .value
-                          )
-                        }
-                      >
-
-                        <option value="">
-                          Select...
-                        </option>
-
-                        {(
-                          param.options ||
-                          []
-                        ).map(
-                          (
-                            option
-                          ) => (
-                            <option
-                              key={
-                                option
-                              }
-                              value={
-                                option
-                              }
-                            >
-                              {
-                                option
-                              }
-                            </option>
-                          )
-                        )}
-
-                      </select>
-
-                    ) : (
-
-                      /* INPUT */
-
-                      <input
-                        value={
-                          values[
-                            param.name
-                          ] ??
-                          ""
-                        }
-                        onChange={(
-                          e
-                        ) =>
-                          updateValue(
-                            param.name,
-                            e.target
-                              .value
-                          )
-                        }
-                        placeholder={
-                          param.placeholder
-                        }
-                      />
-
-                    )}
-
-                  </label>
-                )
-              )}
-
-            </div>
-          )}
-
-          {/* =================================================
-              ACTION BUTTONS
-          ================================================= */}
-
-          <div className="endpoint-actions">
+          <div className="request-methods">
 
             <button
-              className="execute-button"
-              onClick={execute}
-              disabled={loading}
+              className="request-method active"
+              type="button"
             >
-              {loading
-                ? "EXECUTING..."
-                : "EXECUTE REQUEST →"}
+              GET
             </button>
 
+
             <button
-              className="clear-button"
-              onClick={
-                clearValues
-              }
-              disabled={loading}
+              className="request-method disabled"
+              type="button"
+              disabled
             >
-              CLEAR
+              POST
             </button>
 
           </div>
 
-          {/* =================================================
-              REQUEST PREVIEW
-          ================================================= */}
 
-          {Object.keys(values)
-            .length > 0 && (
-            <div className="request-preview">
+          {/* REQUEST PARAMETERS */}
 
-              <div className="response-title">
-                REQUEST
+          {endpoint.params.length >
+            0 && (
+
+            <div className="request-section">
+
+              <div className="request-title">
+
+                REQUEST PARAMETERS
+
               </div>
 
-              <code>
-                {endpoint.path}
-                {(() => {
-                  const q =
-                    new URLSearchParams();
 
-                  Object.entries(
-                    values
-                  ).forEach(
-                    ([key, value]) => {
-                      if (
-                        value !==
-                          undefined &&
-                        value !==
-                          null &&
-                        String(
-                          value
-                        ) !== ""
-                      ) {
-                        q.append(
-                          key,
-                          String(
-                            value
-                          )
-                        );
+              <div className="params">
+
+                {endpoint.params.map(
+                  (param) => (
+
+                    <label
+                      className="param"
+                      key={
+                        param.name
                       }
-                    }
-                  );
+                    >
 
-                  return q.toString()
-                    ? `?${q.toString()}`
-                    : "";
-                })()}
-              </code>
+                      <div className="param-label">
+
+                        <span>
+                          {param.label}
+                        </span>
+
+
+                        {param.required && (
+
+                          <small>
+                            *
+                          </small>
+
+                        )}
+
+                      </div>
+
+
+                      {param.type ===
+                      "select" ? (
+
+                        <select
+                          value={
+                            values[
+                              param.name
+                            ] ??
+                            param.default ??
+                            ""
+                          }
+                          onChange={(e) =>
+                            updateValue(
+                              param.name,
+                              e.target.value
+                            )
+                          }
+                        >
+
+                          {param.options?.map(
+                            (option) => (
+
+                              <option
+                                key={
+                                  option
+                                }
+                                value={
+                                  option
+                                }
+                              >
+                                {option}
+                              </option>
+
+                            )
+                          )}
+
+                        </select>
+
+                      ) : (
+
+                        <input
+                          value={
+                            values[
+                              param.name
+                            ] || ""
+                          }
+                          onChange={(e) =>
+                            updateValue(
+                              param.name,
+                              e.target.value
+                            )
+                          }
+                          placeholder={
+                            param.placeholder ||
+                            ""
+                          }
+                        />
+
+                      )}
+
+                    </label>
+
+                  )
+                )}
+
+              </div>
 
             </div>
+
           )}
 
+
           {/* =================================================
-              RESPONSE
+              EXECUTE
           ================================================= */}
 
-          {response !== null && (
-            <div className="response-card">
+          <button
+            className="execute-button"
+            onClick={execute}
+            disabled={loading}
+          >
 
-              <div className="response-header">
+            {loading
+              ? "EXECUTING REQUEST..."
+              : "EXECUTE REQUEST →"}
 
-                <span>
-                  RESPONSE
-                </span>
+          </button>
 
-                <span
-                  className={
-                    response.success ===
-                    false
-                      ? "response-error"
-                      : "response-success"
-                  }
+
+          {/* =================================================
+              CLEAR
+          ================================================= */}
+
+          <button
+            className="clear-button"
+            type="button"
+            onClick={clearRequest}
+          >
+            CLEAR
+          </button>
+
+
+          {/* =================================================
+              REQUEST INFO
+          ================================================= */}
+
+          <div className="request-preview-line">
+
+            <span>
+              REQUEST
+            </span>
+
+            <code>
+              {requestUrl}
+            </code>
+
+          </div>
+
+
+          {/* =================================================
+              RESPONSE PANEL
+          ================================================= */}
+
+          {(response ||
+            loading) && (
+
+            <div className="response-panel">
+
+              {/* RESPONSE HEADER */}
+
+              <div className="response-top">
+
+                <div className="response-tabs">
+
+                  <button
+                    className={
+                      activeTab ===
+                      "preview"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "preview"
+                      )
+                    }
+                  >
+                    PREVIEW
+                  </button>
+
+
+                  <button
+                    className={
+                      activeTab ===
+                      "headers"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "headers"
+                      )
+                    }
+                  >
+                    HEADERS
+                  </button>
+
+
+                  <button
+                    className={
+                      activeTab ===
+                      "curl"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "curl"
+                      )
+                    }
+                  >
+                    CURL
+                  </button>
+
+                </div>
+
+
+                <button
+                  className="copy-button"
+                  onClick={() => {
+
+                    if (
+                      activeTab ===
+                      "curl"
+                    ) {
+
+                      copyText(
+                        curl
+                      );
+
+                    } else if (
+                      activeTab ===
+                      "headers"
+                    ) {
+
+                      copyText(
+                        JSON.stringify(
+                          responseHeaders,
+                          null,
+                          2
+                        )
+                      );
+
+                    } else {
+
+                      copyText(
+                        formatResponse(
+                          response
+                        )
+                      );
+
+                    }
+
+                  }}
+                  title="Copy"
                 >
-                  {response.success ===
-                  false
-                    ? "ERROR"
-                    : "200 OK"}
-                </span>
+                  ▣
+                </button>
+
+
+                <div className="response-status">
+
+                  <span
+                    className={
+                      statusCode >=
+                      200 &&
+                      statusCode <
+                        300
+                        ? "success"
+                        : "error"
+                    }
+                  >
+                    {statusLabel}
+                  </span>
+
+
+                  {latency !==
+                    null && (
+
+                    <small>
+                      {latency}ms
+                    </small>
+
+                  )}
+
+                </div>
 
               </div>
 
-              <pre className="response">
-                {JSON.stringify(
-                  response,
-                  null,
-                  2
-                )}
-              </pre>
+
+              {/* =================================================
+                  PREVIEW
+              ================================================= */}
+
+              {activeTab ===
+                "preview" && (
+
+                <pre className="response">
+
+                  {loading
+                    ? "Loading..."
+                    : formatResponse(
+                        response
+                      )}
+
+                </pre>
+
+              )}
+
+
+              {/* =================================================
+                  HEADERS
+              ================================================= */}
+
+              {activeTab ===
+                "headers" && (
+
+                <div className="headers-view">
+
+                  {Object.keys(
+                    responseHeaders
+                  ).length ===
+                  0 ? (
+
+                    <div className="headers-empty">
+                      No response headers.
+                    </div>
+
+                  ) : (
+
+                    Object.entries(
+                      responseHeaders
+                    ).map(
+                      ([key, value]) => (
+
+                        <div
+                          className="header-row"
+                          key={key}
+                        >
+
+                          <strong>
+                            {key}:
+                          </strong>
+
+                          <span>
+                            {value}
+                          </span>
+
+                        </div>
+
+                      )
+                    )
+
+                  )}
+
+                </div>
+
+              )}
+
+
+              {/* =================================================
+                  CURL
+              ================================================= */}
+
+              {activeTab ===
+                "curl" && (
+
+                <pre className="curl-view">
+
+                  {curl}
+
+                </pre>
+
+              )}
 
             </div>
+
           )}
 
         </div>
+
       )}
 
     </div>
+
   );
 }
