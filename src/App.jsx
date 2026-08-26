@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./style.css";
 /* ========================================================
-   CONFI
+   CONFIG
 ========================================================= */
 
 const TURNSTILE_SITE_KEY =
@@ -1620,4 +1620,3 @@ function EndpointCard({ endpoint }) {
     </div>
   );
 }
-
