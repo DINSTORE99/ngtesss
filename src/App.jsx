@@ -18,7 +18,6 @@ const TURNSTILE_SITE_KEY =
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "";
 
-
 /* =========================================================
    API DATA
 ========================================================= */
@@ -34,8 +33,7 @@ const API_CATEGORIES = [
         name: "AI Duckai",
         method: "GET",
         path: "/api/ai/duckai",
-        description:
-          "Chat with DuckAI using various AI models.",
+        description: "Chat with DuckAI using various AI models.",
         params: [
           {
             name: "message",
@@ -61,8 +59,7 @@ const API_CATEGORIES = [
           {
             name: "systemPrompt",
             label: "SYSTEMPROMPT",
-            placeholder:
-              "You are a helpful assistant.",
+            placeholder: "You are a helpful assistant.",
             required: false,
           },
         ],
@@ -72,14 +69,12 @@ const API_CATEGORIES = [
         name: "Flixier AI Image",
         method: "GET",
         path: "/api/ai/flixier",
-        description:
-          "Generate image menggunakan Flixier AI.",
+        description: "Generate image menggunakan Flixier AI.",
         params: [
           {
             name: "prompt",
             label: "PROMPT",
-            placeholder:
-              "futuristic warrior cat",
+            placeholder: "futuristic warrior cat",
             required: true,
           },
           {
@@ -107,8 +102,7 @@ const API_CATEGORIES = [
         name: "AI Lyrics Generator",
         method: "GET",
         path: "/api/ai/lyricsgen",
-        description:
-          "Generate lyrics menggunakan AI.",
+        description: "Generate lyrics menggunakan AI.",
         params: [
           {
             name: "theme",
@@ -141,14 +135,12 @@ const API_CATEGORIES = [
         name: "AI Coder",
         method: "GET",
         path: "/api/tools/aicoder",
-        description:
-          "Generate source code menggunakan AI.",
+        description: "Generate source code menggunakan AI.",
         params: [
           {
             name: "prompt",
             label: "PROMPT",
-            placeholder:
-              "buat landing page modern",
+            placeholder: "buat landing page modern",
             required: true,
           },
         ],
@@ -158,14 +150,12 @@ const API_CATEGORIES = [
         name: "AI Chat",
         method: "GET",
         path: "/api/ai/chat",
-        description:
-          "General AI chat endpoint.",
+        description: "General AI chat endpoint.",
         params: [
           {
             name: "q",
             label: "QUESTION",
-            placeholder:
-              "Jelaskan JavaScript",
+            placeholder: "Jelaskan JavaScript",
             required: true,
           },
         ],
@@ -183,24 +173,21 @@ const API_CATEGORIES = [
         name: "Admin Status",
         method: "GET",
         path: "/api/admin/status",
-        description:
-          "Check API admin status.",
+        description: "Check API admin status.",
         params: [],
       },
       {
         name: "Admin Info",
         method: "GET",
         path: "/api/admin/info",
-        description:
-          "Get admin information.",
+        description: "Get admin information.",
         params: [],
       },
       {
         name: "Server Status",
         method: "GET",
         path: "/api/admin/server",
-        description:
-          "Check server status.",
+        description: "Check server status.",
         params: [],
       },
     ],
@@ -216,8 +203,7 @@ const API_CATEGORIES = [
         name: "Cache Get",
         method: "GET",
         path: "/api/cache/get",
-        description:
-          "Get cached data.",
+        description: "Get cached data.",
         params: [
           {
             name: "key",
@@ -231,8 +217,7 @@ const API_CATEGORIES = [
         name: "Cache Clear",
         method: "GET",
         path: "/api/cache/clear",
-        description:
-          "Clear cache.",
+        description: "Clear cache.",
         params: [],
       },
     ],
@@ -248,14 +233,12 @@ const API_CATEGORIES = [
         name: "TikTok Downloader",
         method: "GET",
         path: "/api/download/tiktok",
-        description:
-          "Download video TikTok.",
+        description: "Download video TikTok.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://vt.tiktok.com/...",
+            placeholder: "https://vt.tiktok.com/...",
             required: true,
           },
         ],
@@ -265,14 +248,12 @@ const API_CATEGORIES = [
         name: "Instagram Downloader",
         method: "GET",
         path: "/api/download/instagram",
-        description:
-          "Download Instagram media.",
+        description: "Download Instagram media.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://instagram.com/...",
+            placeholder: "https://instagram.com/...",
             required: true,
           },
         ],
@@ -282,14 +263,12 @@ const API_CATEGORIES = [
         name: "CapCut Downloader",
         method: "GET",
         path: "/api/download/capcut",
-        description:
-          "Download CapCut media.",
+        description: "Download CapCut media.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://www.capcut.com/...",
+            placeholder: "https://www.capcut.com/...",
             required: true,
           },
         ],
@@ -299,14 +278,12 @@ const API_CATEGORIES = [
         name: "Facebook Downloader",
         method: "GET",
         path: "/api/download/facebook",
-        description:
-          "Download Facebook media.",
+        description: "Download Facebook media.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://facebook.com/...",
+            placeholder: "https://facebook.com/...",
             required: true,
           },
         ],
@@ -316,14 +293,12 @@ const API_CATEGORIES = [
         name: "MediaFire Downloader",
         method: "GET",
         path: "/api/download/mediafire",
-        description:
-          "Download MediaFire files.",
+        description: "Download MediaFire files.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://mediafire.com/...",
+            placeholder: "https://mediafire.com/...",
             required: true,
           },
         ],
@@ -339,8 +314,7 @@ const API_CATEGORIES = [
           {
             name: "url",
             label: "URL DRAMABOX",
-            placeholder:
-              "https://dramabox.com/...",
+            placeholder: "https://dramabox.com/...",
             required: true,
           },
         ],
@@ -350,14 +324,12 @@ const API_CATEGORIES = [
         name: "Pinterest Downloader",
         method: "GET",
         path: "/api/download/pinterest",
-        description:
-          "Download Pinterest media.",
+        description: "Download Pinterest media.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://pinterest.com/...",
+            placeholder: "https://pinterest.com/...",
             required: true,
           },
         ],
@@ -375,24 +347,21 @@ const API_CATEGORIES = [
         name: "Truth",
         method: "GET",
         path: "/api/fun/truth",
-        description:
-          "Random truth question.",
+        description: "Random truth question.",
         params: [],
       },
       {
         name: "Dare",
         method: "GET",
         path: "/api/fun/dare",
-        description:
-          "Random dare challenge.",
+        description: "Random dare challenge.",
         params: [],
       },
       {
         name: "Joke",
         method: "GET",
         path: "/api/fun/joke",
-        description:
-          "Generate random joke.",
+        description: "Generate random joke.",
         params: [],
       },
     ],
@@ -408,8 +377,7 @@ const API_CATEGORIES = [
         name: "Leaderboard",
         method: "GET",
         path: "/api/leaderboard",
-        description:
-          "Get leaderboard data.",
+        description: "Get leaderboard data.",
         params: [],
       },
     ],
@@ -425,14 +393,12 @@ const API_CATEGORIES = [
         name: "Books",
         method: "GET",
         path: "/api/library/books",
-        description:
-          "Search library books.",
+        description: "Search library books.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "javascript",
+            placeholder: "javascript",
             required: true,
           },
         ],
@@ -442,14 +408,12 @@ const API_CATEGORIES = [
         name: "Anime",
         method: "GET",
         path: "/api/library/anime",
-        description:
-          "Search anime library.",
+        description: "Search anime library.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "naruto",
+            placeholder: "naruto",
             required: true,
           },
         ],
@@ -459,14 +423,12 @@ const API_CATEGORIES = [
         name: "Movies",
         method: "GET",
         path: "/api/library/movies",
-        description:
-          "Search movie library.",
+        description: "Search movie library.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "avengers",
+            placeholder: "avengers",
             required: true,
           },
         ],
@@ -484,14 +446,12 @@ const API_CATEGORIES = [
         name: "QR Maker",
         method: "GET",
         path: "/api/maker/qr",
-        description:
-          "Generate QR code.",
+        description: "Generate QR code.",
         params: [
           {
             name: "text",
             label: "TEXT",
-            placeholder:
-              "Hello World",
+            placeholder: "Hello World",
             required: true,
           },
         ],
@@ -501,14 +461,12 @@ const API_CATEGORIES = [
         name: "Logo Maker",
         method: "GET",
         path: "/api/maker/logo",
-        description:
-          "Generate logo.",
+        description: "Generate logo.",
         params: [
           {
             name: "text",
             label: "TEXT",
-            placeholder:
-              "DINSTORE",
+            placeholder: "DINSTORE",
             required: true,
           },
         ],
@@ -526,8 +484,7 @@ const API_CATEGORIES = [
         name: "Latest News",
         method: "GET",
         path: "/api/news/latest",
-        description:
-          "Get latest news.",
+        description: "Get latest news.",
         params: [],
       },
 
@@ -553,14 +510,12 @@ const API_CATEGORIES = [
         name: "Search News",
         method: "GET",
         path: "/api/news/search",
-        description:
-          "Search news.",
+        description: "Search news.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "teknologi",
+            placeholder: "teknologi",
             required: true,
           },
         ],
@@ -578,8 +533,7 @@ const API_CATEGORIES = [
         name: "Random Image",
         method: "GET",
         path: "/api/random/image",
-        description:
-          "Get random image.",
+        description: "Get random image.",
         params: [],
       },
 
@@ -587,21 +541,18 @@ const API_CATEGORIES = [
         name: "Random Number",
         method: "GET",
         path: "/api/random/number",
-        description:
-          "Generate random number.",
+        description: "Generate random number.",
         params: [
           {
             name: "min",
             label: "MINIMUM",
-            placeholder:
-              "1",
+            placeholder: "1",
             required: false,
           },
           {
             name: "max",
             label: "MAXIMUM",
-            placeholder:
-              "100",
+            placeholder: "100",
             required: false,
           },
         ],
@@ -619,14 +570,12 @@ const API_CATEGORIES = [
         name: "Google Search",
         method: "GET",
         path: "/api/search/google",
-        description:
-          "Search Google.",
+        description: "Search Google.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "DINSTORE API",
+            placeholder: "DINSTORE API",
             required: true,
           },
         ],
@@ -636,14 +585,12 @@ const API_CATEGORIES = [
         name: "YouTube Search",
         method: "GET",
         path: "/api/search/youtube",
-        description:
-          "Search YouTube.",
+        description: "Search YouTube.",
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder:
-              "music",
+            placeholder: "music",
             required: true,
           },
         ],
@@ -667,8 +614,7 @@ const API_CATEGORIES = [
           {
             name: "username",
             label: "USERNAME",
-            placeholder:
-              "username",
+            placeholder: "username",
             required: true,
           },
         ],
@@ -684,8 +630,7 @@ const API_CATEGORIES = [
           {
             name: "username",
             label: "USERNAME",
-            placeholder:
-              "username",
+            placeholder: "username",
             required: true,
           },
         ],
@@ -711,8 +656,7 @@ const API_CATEGORIES = [
             name: "number",
             label: "NUMBER",
             type: "text",
-            placeholder:
-              "628123456789",
+            placeholder: "628123456789",
             required: true,
           },
         ],
@@ -722,14 +666,12 @@ const API_CATEGORIES = [
         name: "Domain Info",
         method: "GET",
         path: "/api/tools/domaininfo",
-        description:
-          "Check domain information.",
+        description: "Check domain information.",
         params: [
           {
             name: "domain",
             label: "DOMAIN",
-            placeholder:
-              "domainmu.com",
+            placeholder: "domainmu.com",
             required: true,
           },
         ],
@@ -739,14 +681,12 @@ const API_CATEGORIES = [
         name: "Short URL",
         method: "GET",
         path: "/api/tools/shorturl",
-        description:
-          "Shorten URL.",
+        description: "Shorten URL.",
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder:
-              "https://example.com",
+            placeholder: "https://example.com",
             required: true,
           },
         ],
@@ -755,7 +695,6 @@ const API_CATEGORIES = [
   },
 ];
 
-
 /* =========================================================
    HELPERS
 ========================================================= */
@@ -763,488 +702,329 @@ const API_CATEGORIES = [
 function buildUrl(path, values = {}) {
   const query = new URLSearchParams();
 
-  Object.entries(values).forEach(
-    ([key, value]) => {
-      if (
-        value !== undefined &&
-        value !== null &&
-        String(value).trim() !== ""
-      ) {
-        query.append(
-          key,
-          String(value)
-        );
-      }
+  Object.entries(values).forEach(([key, value]) => {
+    if (
+      value !== undefined &&
+      value !== null &&
+      String(value).trim() !== ""
+    ) {
+      query.append(key, String(value));
     }
-  );
+  });
 
-  const base =
-    API_BASE_URL.replace(
-      /\/+$/,
-      ""
-    );
+  const base = API_BASE_URL.replace(/\/+$/, "");
 
-  const cleanPath =
-    path.startsWith("/")
-      ? path
-      : `/${path}`;
+  const cleanPath = path.startsWith("/")
+    ? path
+    : `/${path}`;
 
   return (
     base +
     cleanPath +
-    (
-      query.toString()
-        ? `?${query.toString()}`
-        : ""
-    )
+    (query.toString()
+      ? `?${query.toString()}`
+      : "")
   );
 }
 
-
-function makeCurl(
-  url,
-  method = "GET"
-) {
+function makeCurl(url, method = "GET") {
   return `curl -X ${method} "${url}"`;
 }
 
-
 function formatResponse(data) {
-  if (
-    typeof data === "string"
-  ) {
+  if (typeof data === "string") {
     return data;
   }
 
   try {
-    return JSON.stringify(
-      data,
-      null,
-      2
-    );
+    return JSON.stringify(data, null, 2);
   } catch {
     return String(data);
   }
 }
 
-
-function getInitialValues(endpoint) {
-  const values = {};
-
-  endpoint.params?.forEach(
-    (param) => {
-      values[param.name] =
-        param.default || "";
-    }
-  );
-
-  return values;
-}
-
-
 /* =========================================================
    PARTICLE BACKGROUND
 ========================================================= */
 
-function SquareParticles({
-  count = 55,
-}) {
-  const particles = useMemo(
-    () => {
-      return Array.from(
-        {
-          length: count,
-        },
-        (_, index) => ({
-          id: index,
-
-          size:
-            Math.floor(
-              Math.random() * 7
-            ) + 3,
-
-          left:
-            Math.random() * 100,
-
-          top:
-            Math.random() * 100,
-
-          delay:
-            Math.random() * 8,
-
-          duration:
-            Math.floor(
-              Math.random() * 12
-            ) + 8,
-
-          opacity:
-            (
-              Math.random() *
-                0.45 +
-              0.12
-            ).toFixed(2),
-
-          drift:
-            Math.floor(
-              Math.random() * 100
-            ) - 50,
-        })
-      );
-    },
-    [count]
-  );
+function Particles() {
+  const particles = useMemo(() => {
+    return Array.from({ length: 70 }, (_, index) => ({
+      id: index,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.floor(Math.random() * 4) + 2,
+      delay: Math.random() * 8,
+      duration: Math.floor(Math.random() * 15) + 10,
+    }));
+  }, []);
 
   return (
-    <div
-      className="particle-layer"
-      aria-hidden="true"
-    >
-      {particles.map(
-        (particle) => (
-          <span
-            key={particle.id}
-            className="square-particle"
-            style={{
-              "--particle-size":
-                `${particle.size}px`,
-
-              "--particle-left":
-                `${particle.left}%`,
-
-              "--particle-top":
-                `${particle.top}%`,
-
-              "--particle-delay":
-                `${particle.delay}s`,
-
-              "--particle-duration":
-                `${particle.duration}s`,
-
-              "--particle-opacity":
-                particle.opacity,
-
-              "--particle-drift":
-                `${particle.drift}px`,
-            }}
-          />
-        )
-      )}
+    <div className="particles" aria-hidden="true">
+      {particles.map((particle) => (
+        <span
+          key={particle.id}
+          className="particle-square"
+          style={{
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            animationDelay: `${particle.delay}s`,
+            animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
     </div>
   );
 }
-
-
-/* =========================================================
-   BACKGROUND EFFECTS
-========================================================= */
-
-function BackgroundEffects() {
-  return (
-    <>
-      <div
-        className="background-grid"
-        aria-hidden="true"
-      />
-
-      <div
-        className="background-glow background-glow-one"
-        aria-hidden="true"
-      />
-
-      <div
-        className="background-glow background-glow-two"
-        aria-hidden="true"
-      />
-
-      <SquareParticles />
-    </>
-  );
-}
-
 
 /* =========================================================
    APP
 ========================================================= */
 
 export default function App() {
-  const [menuOpen, setMenuOpen] =
-    useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const [search, setSearch] =
-    useState("");
+  const [search, setSearch] = useState("");
 
-  const [openCategory, setOpenCategory] =
-    useState(
-      API_CATEGORIES[0]?.name ||
-        null
-    );
+  const [openCategory, setOpenCategory] = useState("AI");
 
   const [selectedEndpoint, setSelectedEndpoint] =
-    useState(
-      API_CATEGORIES[0]
-        ?.endpoints?.[0] ||
-        null
-    );
+    useState(API_CATEGORIES[0].endpoints[0]);
 
-  const [values, setValues] =
-    useState({});
+  const [values, setValues] = useState({});
 
-  const [response, setResponse] =
-    useState(null);
+  const [response, setResponse] = useState(null);
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  const [copied, setCopied] =
-    useState("");
+  const [copied, setCopied] = useState("");
+
+  const [activeTab, setActiveTab] = useState("response");
+
+  const [showDevPopup, setShowDevPopup] = useState(true);
 
   const [turnstileReady, setTurnstileReady] =
     useState(false);
 
-  const [verified, setVerified] =
-    useState(false);
+  const [verified, setVerified] = useState(false);
 
-  const [showDevPopup, setShowDevPopup] =
-    useState(false);
-
-  const [activeTab, setActiveTab] =
-    useState("tester");
-
-  const turnstileRef =
-    useRef(null);
+  const turnstileRef = useRef(null);
 
   const totalEndpoints =
     API_CATEGORIES.reduce(
       (total, category) =>
-        total +
-        category.endpoints.length,
+        total + category.endpoints.length,
       0
     );
-
 
   /* =======================================================
      TURNSTILE
   ======================================================= */
 
   useEffect(() => {
-    if (
-      window.turnstile
-    ) {
+    if (window.turnstile) {
       setTurnstileReady(true);
       return;
     }
 
-    const existing =
-      document.querySelector(
-        'script[src*="challenges.cloudflare.com/turnstile"]'
+    const existing = document.querySelector(
+      'script[src*="challenges.cloudflare.com/turnstile"]'
+    );
+
+    if (existing) {
+      existing.addEventListener("load", () =>
+        setTurnstileReady(true)
       );
 
-    const script =
-      existing ||
-      document.createElement(
-        "script"
-      );
-
-    if (!existing) {
-      script.src =
-        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-
-      script.async = true;
-      script.defer = true;
-
-      document.head.appendChild(
-        script
-      );
+      return;
     }
 
-    const handleLoad = () => {
+    const script = document.createElement("script");
+
+    script.src =
+      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
       setTurnstileReady(true);
     };
 
-    script.addEventListener(
-      "load",
-      handleLoad
-    );
+    document.head.appendChild(script);
 
     return () => {
-      script.removeEventListener(
-        "load",
-        handleLoad
-      );
+      script.onload = null;
     };
   }, []);
 
-
   useEffect(() => {
     if (
-      !turnstileReady ||
-      !turnstileRef.current ||
-      !window.turnstile
+      turnstileReady &&
+      turnstileRef.current &&
+      window.turnstile &&
+      !verified
     ) {
-      return;
+      try {
+        window.turnstile.render(
+          turnstileRef.current,
+          {
+            sitekey: TURNSTILE_SITE_KEY,
+
+            callback: () => {
+              setVerified(true);
+            },
+
+            "expired-callback": () => {
+              setVerified(false);
+            },
+
+            "error-callback": () => {
+              setVerified(false);
+            },
+          }
+        );
+      } catch {
+        // Turnstile gagal render tidak membuat aplikasi crash.
+      }
     }
-
-    try {
-      window.turnstile.render(
-        turnstileRef.current,
-        {
-          sitekey:
-            TURNSTILE_SITE_KEY,
-
-          theme: "dark",
-
-          callback: () => {
-            setVerified(true);
-          },
-
-          "expired-callback": () => {
-            setVerified(false);
-          },
-
-          "error-callback": () => {
-            setVerified(false);
-          },
-        }
-      );
-    } catch {
-      // Turnstile gagal render
-    }
-  }, [turnstileReady]);
-
-
-  /* =======================================================
-     SELECT ENDPOINT
-  ======================================================= */
-
-  function selectEndpoint(
-    endpoint,
-    categoryName
-  ) {
-    setSelectedEndpoint(
-      endpoint
-    );
-
-    setOpenCategory(
-      categoryName
-    );
-
-    setValues(
-      getInitialValues(endpoint)
-    );
-
-    setResponse(null);
-    setError("");
-    setCopied("");
-    setActiveTab("tester");
-
-    setMenuOpen(false);
-
-    setTimeout(() => {
-      document
-        .querySelector(
-          ".docs-main"
-        )
-        ?.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-    }, 50);
-  }
-
-
-  /* =======================================================
-     VALUES
-  ======================================================= */
-
-  function updateValue(
-    name,
-    value
-  ) {
-    setValues((current) => ({
-      ...current,
-      [name]: value,
-    }));
-  }
-
-
-  /* =======================================================
-     URL
-  ======================================================= */
-
-  const requestUrl =
-    selectedEndpoint
-      ? buildUrl(
-          selectedEndpoint.path,
-          values
-        )
-      : "";
-
-
-  const curlCommand =
-    selectedEndpoint
-      ? makeCurl(
-          requestUrl,
-          selectedEndpoint.method
-        )
-      : "";
-
+  }, [turnstileReady, verified]);
 
   /* =======================================================
      SEARCH
   ======================================================= */
 
-  const filteredCategories =
-    useMemo(() => {
-      const keyword =
-        search
-          .trim()
-          .toLowerCase();
+  const filteredCategories = useMemo(() => {
+    const keyword = search.trim().toLowerCase();
 
-      if (!keyword) {
-        return API_CATEGORIES;
-      }
+    if (!keyword) {
+      return API_CATEGORIES;
+    }
 
-      return API_CATEGORIES
-        .map((category) => {
-          const endpoints =
-            category.endpoints.filter(
-              (endpoint) =>
-                endpoint.name
-                  .toLowerCase()
-                  .includes(keyword) ||
-                endpoint.path
-                  .toLowerCase()
-                  .includes(keyword) ||
-                endpoint.description
-                  .toLowerCase()
-                  .includes(keyword)
+    return API_CATEGORIES
+      .map((category) => {
+        const categoryMatch =
+          category.name
+            .toLowerCase()
+            .includes(keyword);
+
+        const endpoints =
+          category.endpoints.filter((endpoint) => {
+            return (
+              endpoint.name
+                .toLowerCase()
+                .includes(keyword) ||
+              endpoint.path
+                .toLowerCase()
+                .includes(keyword) ||
+              endpoint.description
+                .toLowerCase()
+                .includes(keyword)
             );
+          });
 
-          if (
-            category.name
-              .toLowerCase()
-              .includes(keyword)
-          ) {
-            return category;
-          }
+        if (categoryMatch) {
+          return category;
+        }
 
-          if (
-            endpoints.length
-          ) {
-            return {
-              ...category,
-              endpoints,
-            };
-          }
+        if (endpoints.length > 0) {
+          return {
+            ...category,
+            endpoints,
+          };
+        }
 
-          return null;
-        })
-        .filter(Boolean);
-    }, [search]);
+        return null;
+      })
+      .filter(Boolean);
+  }, [search]);
 
+  /* =======================================================
+     SELECT ENDPOINT
+  ======================================================= */
+
+  function selectEndpoint(category, endpoint) {
+    setSelectedEndpoint({
+      ...endpoint,
+      category: category.name,
+    });
+
+    const defaults = {};
+
+    endpoint.params?.forEach((param) => {
+      if (param.default !== undefined) {
+        defaults[param.name] = param.default;
+      }
+    });
+
+    setValues(defaults);
+
+    setResponse(null);
+    setError("");
+    setActiveTab("response");
+
+    setMenuOpen(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  /* =======================================================
+     INPUT
+  ======================================================= */
+
+  function updateValue(name, value) {
+    setValues((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+  }
+
+  /* =======================================================
+     URL
+  ======================================================= */
+
+  const requestUrl = useMemo(() => {
+    if (!selectedEndpoint) {
+      return "";
+    }
+
+    return buildUrl(
+      selectedEndpoint.path,
+      values
+    );
+  }, [selectedEndpoint, values]);
+
+  const curlCode = useMemo(() => {
+    return makeCurl(
+      requestUrl,
+      selectedEndpoint?.method || "GET"
+    );
+  }, [requestUrl, selectedEndpoint]);
+
+  /* =======================================================
+     COPY
+  ======================================================= */
+
+  async function copyText(text, type = "text") {
+    try {
+      await navigator.clipboard.writeText(text);
+
+      setCopied(type);
+
+      setTimeout(() => {
+        setCopied("");
+      }, 1800);
+    } catch {
+      setError("Gagal menyalin ke clipboard.");
+    }
+  }
 
   /* =======================================================
      TEST API
@@ -1257,121 +1037,124 @@ export default function App() {
 
     setError("");
     setResponse(null);
+
+    /* Required validation */
+
+    const missing = [];
+
+    selectedEndpoint.params?.forEach((param) => {
+      if (
+        param.required &&
+        !String(values[param.name] || "").trim()
+      ) {
+        missing.push(param.label || param.name);
+      }
+    });
+
+    if (missing.length > 0) {
+      setError(
+        `Field wajib diisi: ${missing.join(", ")}`
+      );
+
+      return;
+    }
+
     setLoading(true);
 
+    const startedAt = performance.now();
+
     try {
-      const url =
-        buildUrl(
-          selectedEndpoint.path,
-          values
-        );
+      const url = buildUrl(
+        selectedEndpoint.path,
+        values
+      );
 
-      const started =
-        performance.now();
-
-      const res =
-        await fetch(url, {
-          method:
-            selectedEndpoint.method,
-          headers: {
-            Accept:
-              "application/json, text/plain, */*",
-          },
-        });
-
-      const elapsed =
-        Math.round(
-          performance.now() -
-            started
-        );
+      const res = await fetch(url, {
+        method: selectedEndpoint.method || "GET",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+        },
+      });
 
       const contentType =
-        res.headers.get(
-          "content-type"
-        ) || "";
+        res.headers.get("content-type") || "";
 
       let data;
 
-      if (
-        contentType.includes(
-          "application/json"
-        )
-      ) {
-        data =
-          await res.json();
+      if (contentType.includes("application/json")) {
+        data = await res.json();
       } else {
-        data =
-          await res.text();
+        data = await res.text();
       }
 
+      const duration =
+        Math.round(performance.now() - startedAt);
+
       setResponse({
-        status:
-          res.status,
+        status: res.status,
         ok: res.ok,
-        time:
-          elapsed,
-        type:
-          contentType ||
-          "unknown",
+        duration,
         data,
+        url,
       });
 
-      setActiveTab(
-        "response"
-      );
+      setActiveTab("response");
     } catch (err) {
       setError(
         err?.message ||
-          "Request failed."
-      );
-
-      setActiveTab(
-        "response"
+          "Request gagal. Periksa URL API dan koneksi server."
       );
     } finally {
       setLoading(false);
     }
   }
 
-
   /* =======================================================
-     COPY
+     KEYBOARD
   ======================================================= */
 
-  async function copyText(
-    text,
-    type = "text"
-  ) {
-    try {
-      await navigator.clipboard.writeText(
-        text
-      );
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+        event.preventDefault();
 
-      setCopied(type);
+        document
+          .querySelector(".docs-search-input")
+          ?.focus();
+      }
 
-      setTimeout(() => {
-        setCopied("");
-      }, 1600);
-    } catch {
-      setCopied("");
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
     }
-  }
 
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, []);
 
   /* =======================================================
-     SCROLL
+     NAVIGATION
   ======================================================= */
 
   function scrollToDocs() {
     document
-      .querySelector(
-        ".docs-main"
-      )
+      .querySelector(".docs-content")
       ?.scrollIntoView({
         behavior: "smooth",
       });
   }
-
 
   /* =======================================================
      RENDER
@@ -1384,37 +1167,25 @@ export default function App() {
           BACKGROUND
       =================================================== */}
 
-      <BackgroundEffects />
+      <Particles />
 
+      <div className="background-grid" />
 
-      {/* ===================================================
-          MOBILE OVERLAY
-      =================================================== */}
-
-      {menuOpen && (
-        <div
-          className="mobile-overlay"
-          onClick={() =>
-            setMenuOpen(false)
-          }
-        />
-      )}
-
+      <div className="background-glow glow-one" />
+      <div className="background-glow glow-two" />
 
       {/* ===================================================
-          NAVBAR
+          HEADER
       =================================================== */}
 
-      <header className="topbar">
+      <header className="top-header">
 
-        <div className="topbar-left">
+        <div className="header-left">
 
           <button
             className="mobile-menu-button"
             onClick={() =>
-              setMenuOpen(
-                !menuOpen
-              )
+              setMenuOpen(!menuOpen)
             }
             aria-label="Menu"
           >
@@ -1423,79 +1194,62 @@ export default function App() {
             <span />
           </button>
 
-          <div className="brand">
-
+          <div
+            className="brand"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+          >
             <div className="brand-logo">
-              <span>◆</span>
+              D
             </div>
 
             <div className="brand-text">
-              <strong>
-                DIN API
-              </strong>
-
-              <small>
-                Developer Platform
-              </small>
+              <strong>DIN API</strong>
+              <span>Developer Platform</span>
             </div>
-
           </div>
 
         </div>
 
+        <div className="header-center">
 
-        <div className="topbar-center">
-
-          <div className="global-search">
+          <div className="search-box">
 
             <span className="search-icon">
               ⌕
             </span>
 
             <input
+              className="docs-search-input"
               value={search}
               onChange={(event) =>
-                setSearch(
-                  event.target.value
-                )
+                setSearch(event.target.value)
               }
               placeholder="Search endpoints..."
             />
 
-            {search && (
-              <button
-                className="search-clear"
-                onClick={() =>
-                  setSearch("")
-                }
-              >
-                ×
-              </button>
-            )}
-
-            <kbd>
-              /
-            </kbd>
+            <kbd>Ctrl K</kbd>
 
           </div>
 
         </div>
 
+        <div className="header-right">
 
-        <div className="topbar-right">
-
-          <div className="api-status">
+          <div className="status-pill">
             <span className="status-dot" />
-            <span>
-              API Online
-            </span>
+            API ONLINE
           </div>
 
           <a
             href="https://github.com/"
             target="_blank"
             rel="noreferrer"
-            className="top-link"
+            className="header-link"
           >
             GitHub
           </a>
@@ -1504,222 +1258,189 @@ export default function App() {
 
       </header>
 
-
       {/* ===================================================
           LAYOUT
       =================================================== */}
 
       <div className="docs-layout">
 
-
         {/* =================================================
             SIDEBAR
         ================================================= */}
 
         <aside
-          className={`sidebar ${
-            menuOpen
-              ? "sidebar-open"
-              : ""
+          className={`docs-sidebar ${
+            menuOpen ? "sidebar-open" : ""
           }`}
         >
 
-          <div className="sidebar-header">
+          <div className="sidebar-top">
 
-            <div>
-              <span className="sidebar-label">
-                DOCUMENTATION
-              </span>
-
-              <h2>
-                API Reference
-              </h2>
+            <div className="sidebar-title">
+              DOCUMENTATION
             </div>
 
-            <button
-              className="sidebar-close"
-              onClick={() =>
-                setMenuOpen(false)
-              }
-            >
-              ×
-            </button>
+            <div className="sidebar-subtitle">
+              API REFERENCE
+            </div>
 
           </div>
 
+          <div className="sidebar-scroll">
 
-          <div className="sidebar-stats">
+            <button
+              className="overview-button"
+              onClick={() => {
+                setSearch("");
+                setMenuOpen(false);
 
-            <div>
-              <strong>
-                {API_CATEGORIES.length}
-              </strong>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              <span className="overview-icon">
+                ◈
+              </span>
 
               <span>
-                Categories
+                Overview
               </span>
+            </button>
+
+            <div className="category-list">
+
+              {filteredCategories.map(
+                (category) => {
+
+                  const isOpen =
+                    openCategory ===
+                    category.name;
+
+                  return (
+                    <div
+                      className="category"
+                      key={category.name}
+                    >
+
+                      <button
+                        className={`category-button ${
+                          isOpen
+                            ? "active"
+                            : ""
+                        }`}
+                        onClick={() => {
+                          setOpenCategory(
+                            isOpen
+                              ? null
+                              : category.name
+                          );
+                        }}
+                      >
+
+                        <span
+                          className={`category-icon ${category.color}`}
+                        >
+                          {category.icon}
+                        </span>
+
+                        <span className="category-name">
+                          {category.name}
+                        </span>
+
+                        <span className="category-count">
+                          {
+                            category.endpoints
+                              .length
+                          }
+                        </span>
+
+                        <span
+                          className={`category-arrow ${
+                            isOpen
+                              ? "rotate"
+                              : ""
+                          }`}
+                        >
+                          ›
+                        </span>
+
+                      </button>
+
+                      {isOpen && (
+                        <div className="endpoint-list">
+
+                          {category.endpoints.map(
+                            (endpoint) => {
+
+                              const active =
+                                selectedEndpoint
+                                  ?.path ===
+                                endpoint.path;
+
+                              return (
+                                <button
+                                  key={
+                                    endpoint.path
+                                  }
+                                  className={`endpoint-button ${
+                                    active
+                                      ? "selected"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    selectEndpoint(
+                                      category,
+                                      endpoint
+                                    )
+                                  }
+                                >
+
+                                  <span
+                                    className={`method-dot ${category.color}`}
+                                  />
+
+                                  <span className="endpoint-name">
+                                    {
+                                      endpoint.name
+                                    }
+                                  />
+
+                                </button>
+                              );
+                            }
+                          )}
+
+                        </div>
+                      )}
+
+                    </div>
+                  );
+                }
+              )}
+
             </div>
 
-            <div>
+          </div>
+
+          <div className="sidebar-bottom">
+
+            <div className="sidebar-stat">
+              <span>ENDPOINTS</span>
               <strong>
                 {totalEndpoints}
               </strong>
-
-              <span>
-                Endpoints
-              </span>
             </div>
 
-          </div>
-
-
-          <nav className="category-list">
-
-            {filteredCategories.length ===
-              0 && (
-              <div className="no-results">
-                <span>
-                  ⌕
-                </span>
-
-                <p>
-                  Endpoint tidak ditemukan
-                </p>
-              </div>
-            )}
-
-
-            {filteredCategories.map(
-              (category) => {
-                const isOpen =
-                  openCategory ===
-                  category.name;
-
-                return (
-                  <div
-                    className="category-group"
-                    key={category.name}
-                  >
-
-                    <button
-                      className={`category-button ${
-                        isOpen
-                          ? "category-active"
-                          : ""
-                      }`}
-                      onClick={() =>
-                        setOpenCategory(
-                          isOpen
-                            ? null
-                            : category.name
-                        )
-                      }
-                    >
-
-                      <span
-                        className={`category-icon category-${category.color}`}
-                      >
-                        {category.icon}
-                      </span>
-
-                      <span className="category-name">
-                        {category.name}
-                      </span>
-
-                      <span className="category-count">
-                        {
-                          category
-                            .endpoints
-                            .length
-                        }
-                      </span>
-
-                      <span
-                        className={`category-arrow ${
-                          isOpen
-                            ? "arrow-open"
-                            : ""
-                        }`}
-                      >
-                        ›
-                      </span>
-
-                    </button>
-
-
-                    {isOpen && (
-                      <div className="endpoint-list">
-
-                        {category.endpoints.map(
-                          (endpoint) => {
-                            const active =
-                              selectedEndpoint ===
-                              endpoint;
-
-                            return (
-                              <button
-                                key={
-                                  endpoint.path
-                                }
-                                className={`endpoint-nav ${
-                                  active
-                                    ? "endpoint-nav-active"
-                                    : ""
-                                }`}
-                                onClick={() =>
-                                  selectEndpoint(
-                                    endpoint,
-                                    category.name
-                                  )
-                                }
-                              >
-
-                                <span className="endpoint-method">
-                                  {endpoint.method}
-                                </span>
-
-                                <span className="endpoint-nav-name">
-                                  {
-                                    endpoint.name
-                                  }
-                                />
-
-                              </button>
-                            );
-                          }
-                        )}
-
-                      </div>
-                    )}
-
-                  </div>
-                );
-              }
-            )}
-
-          </nav>
-
-
-          <div className="sidebar-footer">
-
-            <div className="sidebar-footer-icon">
-              ⚡
-            </div>
-
-            <div>
-              <strong>
-                DIN API
-              </strong>
-
-              <span>
-                Fast & Reliable API
-              </span>
+            <div className="sidebar-stat">
+              <span>VERSION</span>
+              <strong>v2</strong>
             </div>
 
           </div>
 
         </aside>
-
 
         {/* =================================================
             MAIN
@@ -1727,92 +1448,171 @@ export default function App() {
 
         <main className="docs-main">
 
-          {selectedEndpoint ? (
-            <>
+          {/* =================================================
+              HERO
+          ================================================= */}
 
-              {/* =========================================
-                  HERO
-              ========================================= */}
+          <section className="hero-section">
 
-              <section className="endpoint-hero">
+            <div className="hero-badge">
+              <span className="hero-badge-dot" />
+              DIN API V2
+            </div>
 
-                <div className="breadcrumb">
-                  <span>
-                    Docs
-                  </span>
+            <h1>
+              Powerful APIs.
+              <br />
 
-                  <span>
-                    /
-                  </span>
+              <span>
+                Built for developers.
+              </span>
+            </h1>
 
-                  <span>
-                    {openCategory}
-                  </span>
+            <p>
+              Simple, fast, and reliable API
+              endpoints for your next project.
+              Explore the documentation and
+              test every endpoint directly.
+            </p>
 
-                  <span>
-                    /
-                  </span>
+            <div className="hero-actions">
 
-                  <strong>
-                    {
-                      selectedEndpoint.name
-                    }
-                  </strong>
+              <button
+                className="primary-button"
+                onClick={scrollToDocs}
+              >
+                <span>Explore API</span>
+                <span>→</span>
+              </button>
+
+              <button
+                className="secondary-button"
+                onClick={() =>
+                  copyText(
+                    API_BASE_URL ||
+                      window.location.origin,
+                    "base"
+                  )
+                }
+              >
+                {copied === "base"
+                  ? "Copied!"
+                  : "Copy Base URL"}
+              </button>
+
+            </div>
+
+            <div className="hero-stats">
+
+              <div className="hero-stat">
+                <strong>
+                  {API_CATEGORIES.length}
+                </strong>
+                <span>
+                  Categories
+                </span>
+              </div>
+
+              <div className="hero-stat">
+                <strong>
+                  {totalEndpoints}
+                </strong>
+                <span>
+                  Endpoints
+                </span>
+              </div>
+
+              <div className="hero-stat">
+                <strong>
+                  99.9%
+                </strong>
+                <span>
+                  Uptime Target
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+          {/* =================================================
+              API TESTER
+          ================================================= */}
+
+          <section
+            className="docs-content"
+            id="api-tester"
+          >
+
+            <div className="section-heading">
+
+              <div>
+
+                <div className="eyebrow">
+                  API REFERENCE
                 </div>
 
+                <h2>
+                  {selectedEndpoint?.name ||
+                    "Select an endpoint"}
+                </h2>
 
-                <div className="endpoint-title-row">
+                <p>
+                  {selectedEndpoint?.description ||
+                    "Choose an endpoint from the sidebar."}
+                </p>
 
-                  <div className="endpoint-title">
+              </div>
 
-                    <div className="large-method">
-                      {
-                        selectedEndpoint.method
-                      }
-                    </div>
+              {selectedEndpoint && (
+                <div className="endpoint-badge">
+                  <span>
+                    {selectedEndpoint.method}
+                  </span>
 
-                    <div>
-
-                      <h1>
-                        {
-                          selectedEndpoint.name
-                        }
-                      </h1>
-
-                      <p>
-                        {
-                          selectedEndpoint.description
-                        }
-                      </p>
-
-                    </div>
-
-                  </div>
-
+                  <code>
+                    {selectedEndpoint.path}
+                  </code>
                 </div>
+              )}
 
+            </div>
 
-                {/* =======================================
-                    URL BAR
-                ======================================= */}
+            {/* =================================================
+                REQUEST CARD
+            ================================================= */}
 
-                <div className="request-url-card">
+            {selectedEndpoint && (
+              <div className="tester-card">
 
-                  <div className="url-info">
+                <div className="card-header">
 
-                    <span className="url-method">
-                      {
-                        selectedEndpoint.method
-                      }
+                  <div>
+                    <span className="card-kicker">
+                      REQUEST
                     </span>
 
-                    <code>
-                      {
-                        selectedEndpoint.path
-                      }
-                    </code>
-
+                    <h3>
+                      Test this endpoint
+                    </h3>
                   </div>
+
+                  <span className="live-badge">
+                    LIVE
+                  </span>
+
+                </div>
+
+                <div className="request-url">
+
+                  <span className="url-method">
+                    {selectedEndpoint.method}
+                  </span>
+
+                  <code>
+                    {requestUrl ||
+                      selectedEndpoint.path}
+                  </code>
 
                   <button
                     className="copy-button"
@@ -1824,838 +1624,455 @@ export default function App() {
                     }
                   >
                     {copied === "url"
-                      ? "✓ Copied"
-                      : "Copy URL"}
+                      ? "✓"
+                      : "Copy"}
                   </button>
 
                 </div>
 
-              </section>
+                {selectedEndpoint.params?.length >
+                  0 ? (
+                  <div className="params-area">
 
-
-              {/* =========================================
-                  CONTENT GRID
-              ========================================= */}
-
-              <section className="content-grid">
-
-
-                {/* =======================================
-                    TESTER
-                ======================================= */}
-
-                <div className="tester-card">
-
-                  <div className="card-header">
-
-                    <div>
-
-                      <span className="card-kicker">
-                        API TESTER
-                      </span>
-
-                      <h2>
-                        Test Endpoint
-                      </h2>
-
+                    <div className="params-title">
+                      QUERY PARAMETERS
                     </div>
 
-                    <div className="live-badge">
-                      <span />
-                      LIVE
-                    </div>
+                    <div className="params-grid">
 
-                  </div>
+                      {selectedEndpoint.params.map(
+                        (param) => {
 
+                          const value =
+                            values[
+                              param.name
+                            ] ??
+                            param.default ??
+                            "";
 
-                  {/* TABS */}
-
-                  <div className="tester-tabs">
-
-                    <button
-                      className={
-                        activeTab ===
-                        "tester"
-                          ? "tab-active"
-                          : ""
-                      }
-                      onClick={() =>
-                        setActiveTab(
-                          "tester"
-                        )
-                      }
-                    >
-                      Request
-                    </button>
-
-                    <button
-                      className={
-                        activeTab ===
-                        "response"
-                          ? "tab-active"
-                          : ""
-                      }
-                      onClick={() =>
-                        setActiveTab(
-                          "response"
-                        )
-                      }
-                    >
-                      Response
-                    </button>
-
-                  </div>
-
-
-                  {activeTab ===
-                    "tester" && (
-                    <div className="tester-body">
-
-                      {/* =================================
-                          PARAMETERS
-                      ================================= */}
-
-                      {selectedEndpoint
-                        .params
-                        ?.length >
-                      0 ? (
-                        <div className="parameters-section">
-
-                          <div className="section-heading">
-
-                            <div>
-                              <span>
-                                QUERY PARAMETERS
-                              </span>
-
-                              <small>
-                                Isi parameter untuk request
-                              </small>
-                            </div>
-
-                            <span className="parameter-count">
-                              {
-                                selectedEndpoint
-                                  .params
-                                  .length
+                          return (
+                            <div
+                              className="param-field"
+                              key={
+                                param.name
                               }
-                            </span>
+                            >
 
-                          </div>
-
-
-                          <div className="parameter-list">
-
-                            {selectedEndpoint.params.map(
-                              (param) => (
-                                <div
-                                  className="parameter-row"
-                                  key={
+                              <label>
+                                <span>
+                                  {
+                                    param.label ||
                                     param.name
                                   }
+                                </span>
+
+                                {param.required && (
+                                  <b>
+                                    REQUIRED
+                                  </b>
+                                )}
+                              </label>
+
+                              {param.type ===
+                                "select" ? (
+                                <select
+                                  value={
+                                    value
+                                  }
+                                  onChange={(
+                                    event
+                                  ) =>
+                                    updateValue(
+                                      param.name,
+                                      event.target
+                                        .value
+                                    )
+                                  }
                                 >
-
-                                  <div className="parameter-label">
-
-                                    <label>
-                                      {
-                                        param.label ||
-                                        param.name
-                                      }
-                                    </label>
-
-                                    <code>
-                                      {
-                                        param.name
-                                      }
-                                    </code>
-
-                                    {param.required && (
-                                      <span className="required">
-                                        Required
-                                      </span>
-                                    )}
-
-                                  </div>
-
-
-                                  {param.type ===
-                                    "select" ? (
-                                    <select
-                                      value={
-                                        values[
-                                          param.name
-                                        ] ??
-                                        param.default ??
-                                        ""
-                                      }
-                                      onChange={(
-                                        event
-                                      ) =>
-                                        updateValue(
-                                          param.name,
-                                          event
-                                            .target
-                                            .value
-                                        )
-                                      }
-                                    >
-
-                                      {param.options?.map(
-                                        (option) => (
-                                          <option
-                                            key={
-                                              option
-                                            }
-                                            value={
-                                              option
-                                            }
-                                          >
-                                            {
-                                              option
-                                            }
-                                          </option>
-                                        )
-                                      )}
-
-                                    </select>
-                                  ) : (
-                                    <input
-                                      type={
-                                        param.type ||
-                                        "text"
-                                      }
-                                      value={
-                                        values[
-                                          param.name
-                                        ] ??
-                                        ""
-                                      }
-                                      onChange={(
-                                        event
-                                      ) =>
-                                        updateValue(
-                                          param.name,
-                                          event
-                                            .target
-                                            .value
-                                        )
-                                      }
-                                      placeholder={
-                                        param.placeholder ||
-                                        `Enter ${param.name}`
-                                      }
-                                    />
+                                  {param.options?.map(
+                                    (option) => (
+                                      <option
+                                        value={
+                                          option
+                                        }
+                                        key={
+                                          option
+                                        }
+                                      >
+                                        {
+                                          option
+                                        }
+                                      </option>
+                                    )
                                   )}
-
-                                </div>
-                              )
-                            )}
-
-                          </div>
-
-                        </div>
-                      ) : (
-                        <div className="no-params">
-
-                          <div className="no-params-icon">
-                            ✓
-                          </div>
-
-                          <div>
-                            <strong>
-                              No parameters required
-                            </strong>
-
-                            <span>
-                              Endpoint ini dapat langsung
-                              dijalankan.
-                            </span>
-                          </div>
-
-                        </div>
-                      )}
-
-
-                      {/* =================================
-                          TURNSTILE
-                      ================================= */}
-
-                      <div className="security-box">
-
-                        <div className="security-icon">
-                          ◈
-                        </div>
-
-                        <div className="security-content">
-
-                          <strong>
-                            Security Verification
-                          </strong>
-
-                          <span>
-                            Verify sebelum menjalankan
-                            request.
-                          </span>
-
-                          <div
-                            ref={
-                              turnstileRef
-                            }
-                            className="turnstile-container"
-                          />
-
-                          {!turnstileReady && (
-                            <small>
-                              Memuat verification...
-                            </small>
-                          )}
-
-                        </div>
-
-                        <div
-                          className={`verify-status ${
-                            verified
-                              ? "verified"
-                              : ""
-                          }`}
-                        >
-                          {verified
-                            ? "✓"
-                            : "○"}
-                        </div>
-
-                      </div>
-
-
-                      {/* =================================
-                          RUN BUTTON
-                      ================================= */}
-
-                      <button
-                        className="run-button"
-                        onClick={
-                          testApi
-                        }
-                        disabled={
-                          loading ||
-                          !selectedEndpoint
-                        }
-                      >
-
-                        {loading ? (
-                          <>
-                            <span className="button-spinner" />
-                            Sending Request...
-                          </>
-                        ) : (
-                          <>
-                            <span>
-                              ▶
-                            </span>
-                            Send Request
-                          </>
-                        )}
-
-                      </button>
-
-                    </div>
-                  )}
-
-
-                  {/* =======================================
-                      RESPONSE
-                  ======================================= */}
-
-                  {activeTab ===
-                    "response" && (
-                    <div className="response-container">
-
-                      {loading && (
-                        <div className="response-loading">
-
-                          <span className="big-spinner" />
-
-                          <strong>
-                            Request sedang diproses...
-                          </strong>
-
-                          <small>
-                            Menunggu response dari server
-                          </small>
-
-                        </div>
-                      )}
-
-
-                      {!loading &&
-                        !response &&
-                        !error && (
-                          <div className="empty-response">
-
-                            <div className="empty-response-icon">
-                              {`{ }`}
-                            </div>
-
-                            <strong>
-                              Belum ada response
-                            </strong>
-
-                            <span>
-                              Jalankan endpoint untuk
-                              melihat hasil response.
-                            </span>
-
-                          </div>
-                        )}
-
-
-                      {!loading &&
-                        error && (
-                          <div className="error-response">
-
-                            <div className="response-status response-error">
-                              ERROR
-                            </div>
-
-                            <pre>
-                              {error}
-                            </pre>
-
-                          </div>
-                        )}
-
-
-                      {!loading &&
-                        response && (
-                          <div className="response-result">
-
-                            <div className="response-top">
-
-                              <div className="response-status-row">
-
-                                <span
-                                  className={`response-status ${
-                                    response.ok
-                                      ? "response-success"
-                                      : "response-error"
-                                  }`}
-                                >
-                                  {response.status}
-                                </span>
-
-                                <strong>
-                                  {
-                                    response.ok
-                                      ? "Request successful"
-                                      : "Request failed"
+                                </select>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={
+                                    value
                                   }
-                                </strong>
-
-                              </div>
-
-                              <div className="response-meta">
-
-                                <span>
-                                  ⚡{" "}
-                                  {
-                                    response.time
-                                  } ms
-                                </span>
-
-                                <span>
-                                  {
-                                    response.type
+                                  placeholder={
+                                    param.placeholder ||
+                                    ""
                                   }
-                                </span>
-
-                              </div>
-
-                            </div>
-
-
-                            <div className="response-code">
-
-                              <div className="code-header">
-
-                                <span>
-                                  RESPONSE
-                                </span>
-
-                                <button
-                                  onClick={() =>
-                                    copyText(
-                                      formatResponse(
-                                        response.data
-                                      ),
-                                      "response"
+                                  onChange={(
+                                    event
+                                  ) =>
+                                    updateValue(
+                                      param.name,
+                                      event.target
+                                        .value
                                     )
                                   }
-                                >
-                                  {copied ===
-                                  "response"
-                                    ? "✓ Copied"
-                                    : "Copy"}
-                                </button>
+                                />
+                              )}
 
-                              </div>
-
-                              <pre>
-                                <code>
+                              {param.placeholder && (
+                                <small>
+                                  Example:{" "}
                                   {
-                                    formatResponse(
-                                      response.data
-                                    )
+                                    param.placeholder
                                   }
-                                </code>
-                              </pre>
+                                </small>
+                              )}
 
                             </div>
-
-                          </div>
-                        )}
+                          );
+                        }
+                      )}
 
                     </div>
-                  )}
+
+                  </div>
+                ) : (
+                  <div className="no-params">
+                    <span>✓</span>
+                    This endpoint does not
+                    require parameters.
+                  </div>
+                )}
+
+                {/* TURNSTILE */}
+
+                <div className="security-box">
+
+                  <div className="security-icon">
+                    ◈
+                  </div>
+
+                  <div className="security-text">
+                    <strong>
+                      Security verification
+                    </strong>
+
+                    <span>
+                      Complete verification
+                      before testing the API.
+                    </span>
+                  </div>
+
+                  <div
+                    ref={turnstileRef}
+                    className="turnstile-container"
+                  />
 
                 </div>
 
+                {error && (
+                  <div className="error-box">
+                    <span>!</span>
+                    {error}
+                  </div>
+                )}
 
-                {/* =========================================
-                    RIGHT PANEL
-                ========================================= */}
+                <button
+                  className="test-button"
+                  onClick={testApi}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span className="spinner" />
+                      Sending request...
+                    </>
+                  ) : (
+                    <>
+                      <span>▶</span>
+                      Send Request
+                    </>
+                  )}
+                </button>
 
-                <div className="side-content">
+              </div>
+            )}
 
+            {/* =================================================
+                RESPONSE
+            ================================================= */}
 
-                  {/* =======================================
-                      REQUEST PREVIEW
-                  ======================================= */}
+            {response && (
+              <div className="response-card">
 
-                  <div className="preview-card">
+                <div className="response-header">
 
-                    <div className="preview-header">
+                  <div>
 
-                      <div>
-                        <span>
-                          REQUEST
-                        </span>
+                    <span className="card-kicker">
+                      RESPONSE
+                    </span>
 
-                        <strong>
-                          Preview
-                        </strong>
-                      </div>
+                    <h3>
+                      API Response
+                    </h3>
+
+                  </div>
+
+                  <div className="response-meta">
+
+                    <span
+                      className={
+                        response.ok
+                          ? "response-success"
+                          : "response-error"
+                      }
+                    >
+                      {response.status}
+                    </span>
+
+                    <span>
+                      {response.duration}ms
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <div className="response-tabs">
+
+                  <button
+                    className={
+                      activeTab === "response"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "response"
+                      )
+                    }
+                  >
+                    Response
+                  </button>
+
+                  <button
+                    className={
+                      activeTab === "curl"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab("curl")
+                    }
+                  >
+                    cURL
+                  </button>
+
+                </div>
+
+                {activeTab === "response" && (
+                  <div className="code-container">
+
+                    <div className="code-toolbar">
+
+                      <span>
+                        JSON / TEXT
+                      </span>
 
                       <button
                         onClick={() =>
                           copyText(
-                            curlCommand,
-                            "curl"
+                            formatResponse(
+                              response.data
+                            ),
+                            "response"
                           )
                         }
                       >
                         {copied ===
-                        "curl"
-                          ? "✓"
+                        "response"
+                          ? "Copied!"
                           : "Copy"}
                       </button>
 
                     </div>
 
-
-                    <div className="code-window">
-
-                      <div className="window-bar">
-
-                        <span className="window-dot" />
-                        <span className="window-dot" />
-                        <span className="window-dot" />
-
-                        <small>
-                          curl
-                        </small>
-
-                      </div>
-
-                      <pre>
-                        <code>
-                          <span className="code-command">
-                            curl
-                          </span>{" "}
-                          -X{" "}
-                          <span className="code-method">
-                            {
-                              selectedEndpoint.method
-                            }
-                          </span>{" "}
-                          <span className="code-url">
-                            "{requestUrl}"
-                          </span>
-                        </code>
-                      </pre>
-
-                    </div>
+                    <pre>
+                      <code>
+                        {formatResponse(
+                          response.data
+                        )}
+                      </code>
+                    </pre>
 
                   </div>
+                )}
 
+                {activeTab === "curl" && (
+                  <div className="code-container">
 
-                  {/* =======================================
-                      ENDPOINT INFO
-                  ======================================= */}
+                    <div className="code-toolbar">
 
-                  <div className="info-card">
-
-                    <div className="info-card-header">
                       <span>
-                        ENDPOINT INFO
+                        CURL
                       </span>
-                    </div>
 
-                    <div className="info-list">
-
-                      <div>
-                        <span>
-                          Method
-                        </span>
-
-                        <strong className="info-get">
-                          {
-                            selectedEndpoint.method
-                          }
-                        </strong>
-                      </div>
-
-                      <div>
-                        <span>
-                          Path
-                        </span>
-
-                        <code>
-                          {
-                            selectedEndpoint.path
-                          }
-                        </code>
-                      </div>
-
-                      <div>
-                        <span>
-                          Parameters
-                        </span>
-
-                        <strong>
-                          {
-                            selectedEndpoint
-                              .params
-                              ?.length ||
-                            0
-                          }
-                        </strong>
-                      </div>
-
-                      <div>
-                        <span>
-                          Response
-                        </span>
-
-                        <strong>
-                          JSON
-                        </strong>
-                      </div>
+                      <button
+                        onClick={() =>
+                          copyText(
+                            curlCode,
+                            "curl"
+                          )
+                        }
+                      >
+                        {copied === "curl"
+                          ? "Copied!"
+                          : "Copy"}
+                      </button>
 
                     </div>
 
-                  </div>
-
-
-                  {/* =======================================
-                      QUICK START
-                  ======================================= */}
-
-                  <div className="quick-card">
-
-                    <div className="quick-icon">
-                      ⚡
-                    </div>
-
-                    <div>
-
-                      <strong>
-                        Quick Start
-                      </strong>
-
-                      <p>
-                        Isi parameter lalu klik
-                        <b>
-                          {" "}
-                          Send Request
-                        </b>{" "}
-                        untuk mencoba API.
-                      </p>
-
-                    </div>
+                    <pre>
+                      <code>
+                        {curlCode}
+                      </code>
+                    </pre>
 
                   </div>
+                )}
 
-                </div>
+              </div>
+            )}
 
-              </section>
+            {/* =================================================
+                QUICK ENDPOINTS
+            ================================================= */}
 
+            <section className="quick-section">
 
-              {/* =========================================
-                  API BASE URL
-              ========================================= */}
+              <div className="section-heading small">
 
-              <section className="base-url-section">
+                <div>
 
-                <div className="base-url-icon">
-                  ◉
-                </div>
-
-                <div className="base-url-content">
-
-                  <span>
-                    API BASE URL
-                  </span>
-
-                  <code>
-                    {
-                      API_BASE_URL ||
-                      window.location.origin
-                    }
-                  </code>
-
-                </div>
-
-                <button
-                  onClick={() =>
-                    copyText(
-                      API_BASE_URL ||
-                        window.location.origin,
-                      "base"
-                    )
-                  }
-                >
-                  {copied ===
-                  "base"
-                    ? "✓ Copied"
-                    : "Copy"}
-                </button>
-
-              </section>
-
-
-              {/* =========================================
-                  FOOTER
-              ========================================= */}
-
-              <footer className="docs-footer">
-
-                <div className="footer-brand">
-
-                  <div className="footer-logo">
-                    ◆
+                  <div className="eyebrow">
+                    BROWSE
                   </div>
 
-                  <div>
-                    <strong>
-                      DIN API
-                    </strong>
-
-                    <span>
-                      Powerful API for developers.
-                    </span>
-                  </div>
+                  <h2>
+                    All endpoints
+                  </h2>
 
                 </div>
 
-                <div className="footer-right">
-
-                  <span>
-                    ©{" "}
-                    {new Date().getFullYear()}{" "}
-                    DIN API
-                  </span>
-
-                  <span className="footer-separator">
-                    •
-                  </span>
-
-                  <span>
-                    Built for developers
-                  </span>
-
-                </div>
-
-              </footer>
-
-            </>
-          ) : (
-
-            /* =============================================
-               EMPTY STATE
-            ============================================= */
-
-            <div className="empty-app">
-
-              <div className="empty-app-icon">
-                ◆
               </div>
 
-              <h1>
-                DIN API
-              </h1>
+              <div className="endpoint-cards">
 
-              <p>
-                Pilih endpoint dari sidebar
-                untuk mulai.
-              </p>
+                {API_CATEGORIES.map(
+                  (category) => (
+                    <div
+                      className="endpoint-category-card"
+                      key={category.name}
+                    >
 
-              <button
-                onClick={() =>
-                  selectEndpoint(
-                    API_CATEGORIES[0]
-                      .endpoints[0],
-                    API_CATEGORIES[0]
-                      .name
+                      <div className="mini-category">
+
+                        <span
+                          className={`category-icon ${category.color}`}
+                        >
+                          {category.icon}
+                        </span>
+
+                        <div>
+
+                          <strong>
+                            {category.name}
+                          </strong>
+
+                          <span>
+                            {
+                              category.endpoints
+                                .length
+                            }{" "}
+                            endpoints
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                      <div className="mini-endpoints">
+
+                        {category.endpoints
+                          .slice(0, 5)
+                          .map(
+                            (endpoint) => (
+                              <button
+                                key={
+                                  endpoint.path
+                                }
+                                onClick={() =>
+                                  selectEndpoint(
+                                    category,
+                                    endpoint
+                                  )
+                                }
+                              >
+                                <span>
+                                  {
+                                    endpoint
+                                      .method
+                                  }
+                                </span>
+
+                                <code>
+                                  {
+                                    endpoint.path
+                                  }
+                                </code>
+
+                                <b>
+                                  →
+                                </b>
+                              </button>
+                            )
+                          )}
+
+                      </div>
+
+                    </div>
                   )
-                }
-              >
-                Explore API
-              </button>
+                )}
 
-            </div>
+              </div>
 
-          )}
+            </section>
+
+          </section>
 
         </main>
 
       </div>
 
-
-      {/* ===================================================
+      {/* =====================================================
           DEVELOPER POPUP
-      =================================================== */}
+      ===================================================== */}
 
       {showDevPopup && (
-        <div className="developer-popup">
-
-          <div className="developer-popup-icon">
-            ⚡
-          </div>
-
-          <div className="developer-popup-content">
-
-            <strong>
-              DIN API
-            </strong>
-
-            <span>
-              API siap digunakan.
-            </span>
-
-          </div>
+        <div className="dev-popup">
 
           <button
+            className="popup-close"
             onClick={() =>
               setShowDevPopup(false)
             }
@@ -2663,7 +2080,37 @@ export default function App() {
             ×
           </button>
 
+          <div className="popup-icon">
+            ✦
+          </div>
+
+          <div className="popup-content">
+
+            <strong>
+              DIN API V2
+            </strong>
+
+            <span>
+              Developer documentation is
+              ready to use.
+            </span>
+
+          </div>
+
         </div>
+      )}
+
+      {/* =====================================================
+          MOBILE OVERLAY
+      ===================================================== */}
+
+      {menuOpen && (
+        <div
+          className="mobile-overlay"
+          onClick={() =>
+            setMenuOpen(false)
+          }
+        />
       )}
 
     </div>
