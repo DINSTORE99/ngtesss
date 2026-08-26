@@ -15,14 +15,6 @@ const TURNSTILE_SITE_KEY =
   import.meta.env.VITE_TURNSTILE_SITE_KEY ||
   "0x4AAAAAAEPIh3nGXRyGDzYt";
 
-/*
-  Kalau API dan website berada di domain yang sama:
-  VITE_API_BASE_URL tidak perlu diisi.
-
-  Kalau API berbeda domain:
-  VITE_API_BASE_URL=https://api.siputzz.my.id
-*/
-
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "";
 
@@ -32,41 +24,30 @@ const API_BASE_URL =
 ========================================================= */
 
 const API_CATEGORIES = [
-
-  /* =======================================================
-     AI
-  ======================================================= */
-
   {
     name: "AI",
     icon: "✦",
     color: "blue",
     path: "/docs/ai",
-
     endpoints: [
-
       {
         name: "AI Duckai",
         method: "GET",
         path: "/api/ai/duckai",
         description:
           "Chat with DuckAI using various AI models.",
-
         params: [
           {
             name: "message",
             label: "MESSAGE",
-            placeholder:
-              "What is the meaning of life?",
+            placeholder: "What is the meaning of life?",
             required: true,
           },
-
           {
             name: "model",
             label: "MODEL",
             type: "select",
             default: "gpt-4o-mini",
-
             options: [
               "gpt-4o-mini",
               "claude-3-5-haiku-latest",
@@ -75,10 +56,8 @@ const API_CATEGORIES = [
               "openai/gpt-oss-120b",
               "gpt-5-mini",
             ],
-
             required: false,
           },
-
           {
             name: "systemPrompt",
             label: "SYSTEMPROMPT",
@@ -95,7 +74,6 @@ const API_CATEGORIES = [
         path: "/api/ai/flixier",
         description:
           "Generate image menggunakan Flixier AI.",
-
         params: [
           {
             name: "prompt",
@@ -104,21 +82,18 @@ const API_CATEGORIES = [
               "futuristic warrior cat",
             required: true,
           },
-
           {
             name: "style",
             label: "STYLE",
             placeholder: "cinematic",
             required: false,
           },
-
           {
             name: "negative",
             label: "NEGATIVE PROMPT",
             placeholder: "blur",
             required: false,
           },
-
           {
             name: "ratio",
             label: "ASPECT RATIO",
@@ -134,7 +109,6 @@ const API_CATEGORIES = [
         path: "/api/ai/lyricsgen",
         description:
           "Generate lyrics menggunakan AI.",
-
         params: [
           {
             name: "theme",
@@ -142,21 +116,18 @@ const API_CATEGORIES = [
             placeholder: "persahabatan",
             required: true,
           },
-
           {
             name: "genre",
             label: "GENRE",
             placeholder: "pop",
             required: false,
           },
-
           {
             name: "emotion",
             label: "EMOTION",
             placeholder: "happy",
             required: false,
           },
-
           {
             name: "lang",
             label: "LANGUAGE",
@@ -172,7 +143,6 @@ const API_CATEGORIES = [
         path: "/api/tools/aicoder",
         description:
           "Generate source code menggunakan AI.",
-
         params: [
           {
             name: "prompt",
@@ -190,7 +160,6 @@ const API_CATEGORIES = [
         path: "/api/ai/chat",
         description:
           "General AI chat endpoint.",
-
         params: [
           {
             name: "q",
@@ -204,19 +173,12 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     ADMIN
-  ======================================================= */
-
   {
     name: "ADMIN",
     icon: "◇",
     color: "red",
     path: "/docs/admin",
-
     endpoints: [
-
       {
         name: "Admin Status",
         method: "GET",
@@ -225,7 +187,6 @@ const API_CATEGORIES = [
           "Check API admin status.",
         params: [],
       },
-
       {
         name: "Admin Info",
         method: "GET",
@@ -234,7 +195,6 @@ const API_CATEGORIES = [
           "Get admin information.",
         params: [],
       },
-
       {
         name: "Server Status",
         method: "GET",
@@ -246,26 +206,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     CACHE
-  ======================================================= */
-
   {
     name: "CACHE",
     icon: "▣",
     color: "cyan",
     path: "/docs/cache",
-
     endpoints: [
-
       {
         name: "Cache Get",
         method: "GET",
         path: "/api/cache/get",
         description:
           "Get cached data.",
-
         params: [
           {
             name: "key",
@@ -275,7 +227,6 @@ const API_CATEGORIES = [
           },
         ],
       },
-
       {
         name: "Cache Clear",
         method: "GET",
@@ -287,26 +238,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     DOWNLOAD
-  ======================================================= */
-
   {
     name: "DOWNLOAD",
     icon: "⇩",
     color: "blue",
     path: "/docs/download",
-
     endpoints: [
-
       {
         name: "TikTok Downloader",
         method: "GET",
         path: "/api/download/tiktok",
         description:
           "Download video TikTok.",
-
         params: [
           {
             name: "url",
@@ -324,7 +267,6 @@ const API_CATEGORIES = [
         path: "/api/download/instagram",
         description:
           "Download Instagram media.",
-
         params: [
           {
             name: "url",
@@ -342,7 +284,6 @@ const API_CATEGORIES = [
         path: "/api/download/capcut",
         description:
           "Download CapCut media.",
-
         params: [
           {
             name: "url",
@@ -360,7 +301,6 @@ const API_CATEGORIES = [
         path: "/api/download/facebook",
         description:
           "Download Facebook media.",
-
         params: [
           {
             name: "url",
@@ -378,7 +318,6 @@ const API_CATEGORIES = [
         path: "/api/download/mediafire",
         description:
           "Download MediaFire files.",
-
         params: [
           {
             name: "url",
@@ -396,7 +335,6 @@ const API_CATEGORIES = [
         path: "/api/download/dramabox",
         description:
           "Download video dan mengambil data DramaBox.",
-
         params: [
           {
             name: "url",
@@ -414,7 +352,6 @@ const API_CATEGORIES = [
         path: "/api/download/pinterest",
         description:
           "Download Pinterest media.",
-
         params: [
           {
             name: "url",
@@ -428,19 +365,12 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     FUN
-  ======================================================= */
-
   {
     name: "FUN",
     icon: "🎮",
     color: "pink",
     path: "/docs/fun",
-
     endpoints: [
-
       {
         name: "Truth",
         method: "GET",
@@ -449,7 +379,6 @@ const API_CATEGORIES = [
           "Random truth question.",
         params: [],
       },
-
       {
         name: "Dare",
         method: "GET",
@@ -458,7 +387,6 @@ const API_CATEGORIES = [
           "Random dare challenge.",
         params: [],
       },
-
       {
         name: "Joke",
         method: "GET",
@@ -470,17 +398,11 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     LEADERBOARD
-  ======================================================= */
-
   {
     name: "LEADERBOARD",
     icon: "🏆",
     color: "yellow",
     path: "/docs/leaderboard",
-
     endpoints: [
       {
         name: "Leaderboard",
@@ -493,26 +415,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     LIBRARY
-  ======================================================= */
-
   {
     name: "LIBRARY",
     icon: "▤",
     color: "orange",
     path: "/docs/library",
-
     endpoints: [
-
       {
         name: "Books",
         method: "GET",
         path: "/api/library/books",
         description:
           "Search library books.",
-
         params: [
           {
             name: "q",
@@ -530,7 +444,6 @@ const API_CATEGORIES = [
         path: "/api/library/anime",
         description:
           "Search anime library.",
-
         params: [
           {
             name: "q",
@@ -548,7 +461,6 @@ const API_CATEGORIES = [
         path: "/api/library/movies",
         description:
           "Search movie library.",
-
         params: [
           {
             name: "q",
@@ -562,26 +474,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     MAKER
-  ======================================================= */
-
   {
     name: "MAKER",
     icon: "🎨",
     color: "purple",
     path: "/docs/maker",
-
     endpoints: [
-
       {
         name: "QR Maker",
         method: "GET",
         path: "/api/maker/qr",
         description:
           "Generate QR code.",
-
         params: [
           {
             name: "text",
@@ -599,7 +503,6 @@ const API_CATEGORIES = [
         path: "/api/maker/logo",
         description:
           "Generate logo.",
-
         params: [
           {
             name: "text",
@@ -613,19 +516,12 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     NEWS
-  ======================================================= */
-
   {
     name: "NEWS",
     icon: "▤",
     color: "cyan",
     path: "/docs/news",
-
     endpoints: [
-
       {
         name: "Latest News",
         method: "GET",
@@ -659,7 +555,6 @@ const API_CATEGORIES = [
         path: "/api/news/search",
         description:
           "Search news.",
-
         params: [
           {
             name: "q",
@@ -673,19 +568,12 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     RANDOM
-  ======================================================= */
-
   {
     name: "RANDOM",
     icon: "◆",
     color: "violet",
     path: "/docs/random",
-
     endpoints: [
-
       {
         name: "Random Image",
         method: "GET",
@@ -701,7 +589,6 @@ const API_CATEGORIES = [
         path: "/api/random/number",
         description:
           "Generate random number.",
-
         params: [
           {
             name: "min",
@@ -710,7 +597,6 @@ const API_CATEGORIES = [
               "1",
             required: false,
           },
-
           {
             name: "max",
             label: "MAXIMUM",
@@ -723,26 +609,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     SEARCH
-  ======================================================= */
-
   {
     name: "SEARCH",
     icon: "⌕",
     color: "green",
     path: "/docs/search",
-
     endpoints: [
-
       {
         name: "Google Search",
         method: "GET",
         path: "/api/search/google",
         description:
           "Search Google.",
-
         params: [
           {
             name: "q",
@@ -760,7 +638,6 @@ const API_CATEGORIES = [
         path: "/api/search/youtube",
         description:
           "Search YouTube.",
-
         params: [
           {
             name: "q",
@@ -774,26 +651,18 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     STALK
-  ======================================================= */
-
   {
     name: "STALK",
     icon: "◉",
     color: "pink",
     path: "/docs/stalk",
-
     endpoints: [
-
       {
         name: "TikTok Stalk",
         method: "GET",
         path: "/api/stalk/tiktok",
         description:
           "Get public TikTok profile information.",
-
         params: [
           {
             name: "username",
@@ -811,7 +680,6 @@ const API_CATEGORIES = [
         path: "/api/stalk/instagram",
         description:
           "Get public Instagram profile information.",
-
         params: [
           {
             name: "username",
@@ -825,41 +693,37 @@ const API_CATEGORIES = [
     ],
   },
 
-
-  /* =======================================================
-     TOOLS
-  ======================================================= */
-
   {
     name: "TOOLS",
     icon: "⌘",
     color: "orange",
     path: "/docs/tools",
-
     endpoints: [
-{
-  name: "WhatsApp Ban Checker",
-  method: "GET",
-  path: "/api/tools/checker-ban-wa",
-  category: "TOOLS",
-  description: "Check whether a WhatsApp number is blocked/banned.",
-  params: [
-    {
-      name: "number",
-      label: "NUMBER",
-      type: "text",
-      placeholder: "628123456789",
-      required: true,
-    },
-  ],
-},
+      {
+        name: "WhatsApp Ban Checker",
+        method: "GET",
+        path: "/api/tools/checker-ban-wa",
+        category: "TOOLS",
+        description:
+          "Check whether a WhatsApp number is blocked/banned.",
+        params: [
+          {
+            name: "number",
+            label: "NUMBER",
+            type: "text",
+            placeholder:
+              "628123456789",
+            required: true,
+          },
+        ],
+      },
+
       {
         name: "Domain Info",
         method: "GET",
         path: "/api/tools/domaininfo",
         description:
           "Check domain information.",
-
         params: [
           {
             name: "domain",
@@ -871,14 +735,12 @@ const API_CATEGORIES = [
         ],
       },
 
-      
       {
         name: "Short URL",
         method: "GET",
         path: "/api/tools/shorturl",
         description:
           "Shorten URL.",
-
         params: [
           {
             name: "url",
@@ -908,13 +770,19 @@ function buildUrl(path, values = {}) {
         value !== null &&
         String(value).trim() !== ""
       ) {
-        query.append(key, String(value));
+        query.append(
+          key,
+          String(value)
+        );
       }
     }
   );
 
   const base =
-    API_BASE_URL.replace(/\/+$/, "");
+    API_BASE_URL.replace(
+      /\/+$/,
+      ""
+    );
 
   const cleanPath =
     path.startsWith("/")
@@ -924,14 +792,19 @@ function buildUrl(path, values = {}) {
   return (
     base +
     cleanPath +
-    (query.toString()
-      ? `?${query.toString()}`
-      : "")
+    (
+      query.toString()
+        ? `?${query.toString()}`
+        : ""
+    )
   );
 }
 
 
-function makeCurl(url, method = "GET") {
+function makeCurl(
+  url,
+  method = "GET"
+) {
   return `curl -X ${method} "${url}"`;
 }
 
@@ -955,12 +828,145 @@ function formatResponse(data) {
 }
 
 
+function getInitialValues(endpoint) {
+  const values = {};
+
+  endpoint.params?.forEach(
+    (param) => {
+      values[param.name] =
+        param.default || "";
+    }
+  );
+
+  return values;
+}
+
+
+/* =========================================================
+   PARTICLE BACKGROUND
+========================================================= */
+
+function SquareParticles({
+  count = 55,
+}) {
+  const particles = useMemo(
+    () => {
+      return Array.from(
+        {
+          length: count,
+        },
+        (_, index) => ({
+          id: index,
+
+          size:
+            Math.floor(
+              Math.random() * 7
+            ) + 3,
+
+          left:
+            Math.random() * 100,
+
+          top:
+            Math.random() * 100,
+
+          delay:
+            Math.random() * 8,
+
+          duration:
+            Math.floor(
+              Math.random() * 12
+            ) + 8,
+
+          opacity:
+            (
+              Math.random() *
+                0.45 +
+              0.12
+            ).toFixed(2),
+
+          drift:
+            Math.floor(
+              Math.random() * 100
+            ) - 50,
+        })
+      );
+    },
+    [count]
+  );
+
+  return (
+    <div
+      className="particle-layer"
+      aria-hidden="true"
+    >
+      {particles.map(
+        (particle) => (
+          <span
+            key={particle.id}
+            className="square-particle"
+            style={{
+              "--particle-size":
+                `${particle.size}px`,
+
+              "--particle-left":
+                `${particle.left}%`,
+
+              "--particle-top":
+                `${particle.top}%`,
+
+              "--particle-delay":
+                `${particle.delay}s`,
+
+              "--particle-duration":
+                `${particle.duration}s`,
+
+              "--particle-opacity":
+                particle.opacity,
+
+              "--particle-drift":
+                `${particle.drift}px`,
+            }}
+          />
+        )
+      )}
+    </div>
+  );
+}
+
+
+/* =========================================================
+   BACKGROUND EFFECTS
+========================================================= */
+
+function BackgroundEffects() {
+  return (
+    <>
+      <div
+        className="background-grid"
+        aria-hidden="true"
+      />
+
+      <div
+        className="background-glow background-glow-one"
+        aria-hidden="true"
+      />
+
+      <div
+        className="background-glow background-glow-two"
+        aria-hidden="true"
+      />
+
+      <SquareParticles />
+    </>
+  );
+}
+
+
 /* =========================================================
    APP
 ========================================================= */
 
 export default function App() {
-
   const [menuOpen, setMenuOpen] =
     useState(false);
 
@@ -968,7 +974,32 @@ export default function App() {
     useState("");
 
   const [openCategory, setOpenCategory] =
+    useState(
+      API_CATEGORIES[0]?.name ||
+        null
+    );
+
+  const [selectedEndpoint, setSelectedEndpoint] =
+    useState(
+      API_CATEGORIES[0]
+        ?.endpoints?.[0] ||
+        null
+    );
+
+  const [values, setValues] =
+    useState({});
+
+  const [response, setResponse] =
     useState(null);
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [error, setError] =
+    useState("");
+
+  const [copied, setCopied] =
+    useState("");
 
   const [turnstileReady, setTurnstileReady] =
     useState(false);
@@ -977,24 +1008,31 @@ export default function App() {
     useState(false);
 
   const [showDevPopup, setShowDevPopup] =
-    useState(true);
+    useState(false);
 
+  const [activeTab, setActiveTab] =
+    useState("tester");
+
+  const turnstileRef =
+    useRef(null);
 
   const totalEndpoints =
     API_CATEGORIES.reduce(
       (total, category) =>
-        total + category.endpoints.length,
+        total +
+        category.endpoints.length,
       0
     );
 
 
   /* =======================================================
-     TURNSTILE SCRIPT
+     TURNSTILE
   ======================================================= */
 
   useEffect(() => {
-
-    if (window.turnstile) {
+    if (
+      window.turnstile
+    ) {
       setTurnstileReady(true);
       return;
     }
@@ -1006,39 +1044,152 @@ export default function App() {
 
     const script =
       existing ||
-      document.createElement("script");
+      document.createElement(
+        "script"
+      );
 
     if (!existing) {
-
       script.src =
         "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
       script.async = true;
       script.defer = true;
 
-      document.head.appendChild(script);
-    }
-
-    const onLoad = () =>
-      setTurnstileReady(true);
-
-    if (window.turnstile) {
-      setTurnstileReady(true);
-    } else {
-      script.addEventListener(
-        "load",
-        onLoad
+      document.head.appendChild(
+        script
       );
     }
 
-    return () => {
-      script.removeEventListener?.(
-        "load",
-        onLoad
-      );
+    const handleLoad = () => {
+      setTurnstileReady(true);
     };
 
+    script.addEventListener(
+      "load",
+      handleLoad
+    );
+
+    return () => {
+      script.removeEventListener(
+        "load",
+        handleLoad
+      );
+    };
   }, []);
+
+
+  useEffect(() => {
+    if (
+      !turnstileReady ||
+      !turnstileRef.current ||
+      !window.turnstile
+    ) {
+      return;
+    }
+
+    try {
+      window.turnstile.render(
+        turnstileRef.current,
+        {
+          sitekey:
+            TURNSTILE_SITE_KEY,
+
+          theme: "dark",
+
+          callback: () => {
+            setVerified(true);
+          },
+
+          "expired-callback": () => {
+            setVerified(false);
+          },
+
+          "error-callback": () => {
+            setVerified(false);
+          },
+        }
+      );
+    } catch {
+      // Turnstile gagal render
+    }
+  }, [turnstileReady]);
+
+
+  /* =======================================================
+     SELECT ENDPOINT
+  ======================================================= */
+
+  function selectEndpoint(
+    endpoint,
+    categoryName
+  ) {
+    setSelectedEndpoint(
+      endpoint
+    );
+
+    setOpenCategory(
+      categoryName
+    );
+
+    setValues(
+      getInitialValues(endpoint)
+    );
+
+    setResponse(null);
+    setError("");
+    setCopied("");
+    setActiveTab("tester");
+
+    setMenuOpen(false);
+
+    setTimeout(() => {
+      document
+        .querySelector(
+          ".docs-main"
+        )
+        ?.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+    }, 50);
+  }
+
+
+  /* =======================================================
+     VALUES
+  ======================================================= */
+
+  function updateValue(
+    name,
+    value
+  ) {
+    setValues((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  }
+
+
+  /* =======================================================
+     URL
+  ======================================================= */
+
+  const requestUrl =
+    selectedEndpoint
+      ? buildUrl(
+          selectedEndpoint.path,
+          values
+        )
+      : "";
+
+
+  const curlCommand =
+    selectedEndpoint
+      ? makeCurl(
+          requestUrl,
+          selectedEndpoint.method
+        )
+      : "";
 
 
   /* =======================================================
@@ -1047,9 +1198,10 @@ export default function App() {
 
   const filteredCategories =
     useMemo(() => {
-
       const keyword =
-        search.trim().toLowerCase();
+        search
+          .trim()
+          .toLowerCase();
 
       if (!keyword) {
         return API_CATEGORIES;
@@ -1057,12 +1209,6 @@ export default function App() {
 
       return API_CATEGORIES
         .map((category) => {
-
-          const categoryMatch =
-            category.name
-              .toLowerCase()
-              .includes(keyword);
-
           const endpoints =
             category.endpoints.filter(
               (endpoint) =>
@@ -1077,11 +1223,17 @@ export default function App() {
                   .includes(keyword)
             );
 
-          if (categoryMatch) {
+          if (
+            category.name
+              .toLowerCase()
+              .includes(keyword)
+          ) {
             return category;
           }
 
-          if (endpoints.length) {
+          if (
+            endpoints.length
+          ) {
             return {
               ...category,
               endpoints,
@@ -1091,1923 +1243,1429 @@ export default function App() {
           return null;
         })
         .filter(Boolean);
-
     }, [search]);
 
 
   /* =======================================================
-     NAVIGATION
+     TEST API
   ======================================================= */
 
-  const scrollToCategory =
-    (name) => {
-
-      setMenuOpen(false);
-
-      setTimeout(() => {
-
-        const element =
-          document.getElementById(
-            `category-${name.toLowerCase()}`
-          );
-
-        element?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-
-      }, 150);
-    };
-
-
-  const openWhatsApp = () => {
-
-    window.open(
-      "https://wa.me/6287776581216",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
-
-
-  /* =======================================================
-     TURNSTILE GATE
-  ======================================================= */
-
-  if (!verified) {
-
-    return (
-      <TurnstileGate
-        ready={turnstileReady}
-        onVerified={() =>
-          setVerified(true)
-        }
-      />
-    );
-  }
-
-
-  /* =======================================================
-     MAIN
-  ======================================================= */
-
-  return (
-
-    <div className="app">
-
-      {/* DEVELOPMENT POPUP */}
-
-      {showDevPopup && (
-
-        <div className="dev-popup-overlay">
-
-          <div className="dev-popup">
-
-            <button
-              className="dev-popup-close"
-              onClick={() =>
-                setShowDevPopup(false)
-              }
-            >
-              ×
-            </button>
-
-            <div className="dev-popup-header">
-
-              <div className="dev-popup-icon">
-                🚧
-              </div>
-
-              <div>
-
-                <h2>
-                  DINSTORE API
-                </h2>
-
-                <p>
-                  Website masih dalam
-                  pengembangan
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div className="dev-popup-status">
-
-              <span />
-
-              DEVELOPMENT 50%
-
-            </div>
-
-
-            <div className="dev-popup-progress">
-
-              <div className="dev-popup-progress-bar">
-
-                <div className="dev-popup-progress-fill" />
-
-              </div>
-
-
-              <div className="dev-popup-progress-info">
-
-                <span>
-                  Progress Website
-                </span>
-
-                <b>
-                  50%
-                </b>
-
-              </div>
-
-            </div>
-
-
-            <p className="dev-popup-text">
-
-              Website ini masih dalam
-              tahap pengembangan.
-              Beberapa API mungkin
-              masih mengalami perubahan
-              atau belum bisa digunakan.
-
-            </p>
-
-
-            <button
-              className="dev-popup-button"
-              onClick={() =>
-                setShowDevPopup(false)
-              }
-            >
-              LANJUTKAN
-            </button>
-
-          </div>
-
-        </div>
-
-      )}
-
-
-      <div className="grid-background" />
-
-
-      {/* ROBOT */}
-
-      <div className="robot-decoration robot-one">
-
-        <span />
-        <span />
-        <span />
-
-      </div>
-
-
-      {/* HEADER */}
-
-      <header className="header">
-
-        <div className="header-inner">
-
-          <button
-            className="menu-button"
-            onClick={() =>
-              setMenuOpen(true)
-            }
-            aria-label="Open menu"
-          >
-
-            <span />
-            <span />
-            <span />
-
-          </button>
-
-
-          <div className="brand">
-
-            <div className="brand-core">
-              D
-            </div>
-
-            <div>
-
-              <strong>
-                DINSTORE
-              </strong>
-
-              <small>
-                API SYSTEM
-              </small>
-
-            </div>
-
-          </div>
-
-
-          <div className="header-status">
-
-            <span />
-
-            ONLINE
-
-          </div>
-
-        </div>
-
-      </header>
-
-
-      {/* OVERLAY */}
-
-      <div
-        className={`nav-overlay ${
-          menuOpen ? "show" : ""
-        }`}
-        onClick={() =>
-          setMenuOpen(false)
-        }
-      />
-
-
-      {/* SIDE NAV */}
-
-      <aside
-        className={`side-nav ${
-          menuOpen ? "open" : ""
-        }`}
-      >
-
-        <div className="side-nav-header">
-
-          <div>
-
-            <span className="nav-label">
-              NAVIGATION
-            </span>
-
-            <h2>
-              DINSTORE API
-            </h2>
-
-          </div>
-
-
-          <button
-            className="close-button"
-            onClick={() =>
-              setMenuOpen(false)
-            }
-          >
-            ×
-          </button>
-
-        </div>
-
-
-        <div className="nav-items">
-
-          <button
-            className="nav-item home"
-            onClick={() => {
-
-              setMenuOpen(false);
-
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-
-            }}
-          >
-
-            <span>
-              ⌂
-            </span>
-
-            <b>
-              HOME
-            </b>
-
-            <small>
-              00
-            </small>
-
-          </button>
-
-
-          {API_CATEGORIES.map(
-            (category, index) => (
-
-              <button
-                className="nav-item"
-                key={category.name}
-                onClick={() =>
-                  scrollToCategory(
-                    category.name
-                  )
-                }
-              >
-
-                <span
-                  className={
-                    category.color
-                  }
-                >
-                  {category.icon}
-                </span>
-
-                <b>
-                  {category.name}
-                </b>
-
-                <small>
-                  {String(index + 1)
-                    .padStart(2, "0")}
-                </small>
-
-              </button>
-
-            )
-          )}
-
-        </div>
-
-
-        <div className="side-footer">
-
-          <span>
-            SYSTEM STATUS
-          </span>
-
-          <strong>
-            ● OPERATIONAL
-          </strong>
-
-        </div>
-
-      </aside>
-
-
-      {/* MAIN */}
-
-      <main className="main">
-
-
-        {/* HERO */}
-
-        <section className="hero">
-
-          <div className="hero-machine">
-
-            <div className="machine-ring" />
-
-            <div className="machine-core">
-
-              <div className="eye eye-left" />
-              <div className="eye eye-right" />
-
-              <div className="machine-mouth" />
-
-            </div>
-
-          </div>
-
-
-          <div className="terminal-badge">
-
-            <span />
-
-            TERMINAL ACTIVE
-
-          </div>
-
-
-          <div className="hero-title">
-
-            <h1>
-              DINSTORE
-            </h1>
-
-            <span>
-              3.0.0
-            </span>
-
-          </div>
-
-
-          <p className="hero-description">
-
-            A comprehensive and user
-            friendly API solution for
-            modern applications.
-
-          </p>
-
-
-          <div className="stats">
-
-            <div className="stat">
-
-              <span>
-                CATEGORIES
-              </span>
-
-              <strong>
-                {API_CATEGORIES.length}
-              </strong>
-
-            </div>
-
-
-            <div className="stat green">
-
-              <span>
-                ENDPOINTS
-              </span>
-
-              <strong>
-                {totalEndpoints}
-              </strong>
-
-            </div>
-
-
-            <div className="stat status">
-
-              <span>
-                STATUS
-              </span>
-
-              <strong>
-                ONLINE
-              </strong>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
-        {/* SEARCH */}
-
-        <section className="search-section">
-
-          <div className="search-box">
-
-            <span>
-              ⌕
-            </span>
-
-
-            <input
-              value={search}
-              onChange={(e) =>
-                setSearch(
-                  e.target.value
-                )
-              }
-              placeholder="SEARCH ENDPOINT / CATEGORY..."
-            />
-
-
-            {search && (
-
-              <button
-                onClick={() =>
-                  setSearch("")
-                }
-              >
-                ×
-              </button>
-
-            )}
-
-          </div>
-
-        </section>
-
-
-        {/* CATEGORIES */}
-
-        <section className="categories">
-
-          {filteredCategories.map(
-            (category, index) => {
-
-              const isOpen =
-                openCategory ===
-                category.name;
-
-
-              return (
-
-                <article
-                  key={category.name}
-                  id={`category-${category.name.toLowerCase()}`}
-                  className={`category-card ${
-                    isOpen
-                      ? "opened"
-                      : ""
-                  }`}
-                >
-
-                  <button
-                    className="category-top"
-                    onClick={() =>
-                      setOpenCategory(
-                        isOpen
-                          ? null
-                          : category.name
-                      )
-                    }
-                  >
-
-                    <div
-                      className={`category-icon ${
-                        category.color
-                      }`}
-                    >
-                      {category.icon}
-                    </div>
-
-
-                    <div className="category-info">
-
-                      <small>
-
-                        MODULE{" "}
-
-                        {String(index + 1)
-                          .padStart(
-                            2,
-                            "0"
-                          )}
-
-                      </small>
-
-
-                      <h2>
-                        {category.name}
-                      </h2>
-
-
-                      <span>
-
-                        {category.endpoints.length}
-
-                        {" "}ENDPOINTS
-
-                      </span>
-
-                    </div>
-
-
-                    <span className="open-label">
-
-                      {isOpen
-                        ? "CLOSE ↑"
-                        : "OPEN →"}
-
-                    </span>
-
-                  </button>
-
-
-                  <div className="category-path">
-
-                    <span>
-                      PATH
-                    </span>
-
-                    {category.path}
-
-                  </div>
-
-
-                  <div
-                    className={`endpoint-list ${
-                      isOpen
-                        ? "visible"
-                        : ""
-                    }`}
-                  >
-
-                    {category.endpoints.map(
-                      (endpoint) => (
-
-                        <EndpointCard
-                          key={
-                            endpoint.path
-                          }
-                          endpoint={
-                            endpoint
-                          }
-                        />
-
-                      )
-                    )}
-
-                  </div>
-
-                </article>
-
-              );
-            }
-          )}
-
-
-          {!filteredCategories.length && (
-
-            <div className="empty">
-
-              <strong>
-                ENDPOINT NOT FOUND
-              </strong>
-
-              <span>
-                Try another keyword.
-              </span>
-
-            </div>
-
-          )}
-
-        </section>
-
-      </main>
-
-
-      {/* FLOATING WHATSAPP */}
-
-      <button
-        className="floating-robot"
-        onClick={openWhatsApp}
-        aria-label="Contact WhatsApp"
-      >
-
-        <div className="robot-face">
-
-          <span className="robot-eye left" />
-
-          <span className="robot-eye right" />
-
-
-          <div className="robot-mouth">
-
-            <i />
-            <i />
-            <i />
-
-          </div>
-
-        </div>
-
-
-        <span className="robot-dot" />
-
-      </button>
-
-    </div>
-  );
-}
-
-
-/* =========================================================
-   TURNSTILE
-========================================================= */
-
-function TurnstileGate({
-  ready,
-  onVerified,
-}) {
-
-  const widgetRef =
-    useRef(null);
-
-  const widgetIdRef =
-    useRef(null);
-
-  const [error, setError] =
-    useState("");
-
-  const [checking, setChecking] =
-    useState(false);
-
-
-  useEffect(() => {
-
-    if (
-      !ready ||
-      !window.turnstile ||
-      !widgetRef.current ||
-      widgetIdRef.current !== null
-    ) {
+  async function testApi() {
+    if (!selectedEndpoint) {
       return;
     }
 
-
-    const siteKey =
-      import.meta.env
-        .VITE_TURNSTILE_SITE_KEY;
-
-
-    if (!siteKey) {
-
-      setError(
-        "VITE_TURNSTILE_SITE_KEY belum dikonfigurasi di Vercel."
-      );
-
-      return;
-    }
-
-
-    try {
-
-      widgetIdRef.current =
-        window.turnstile.render(
-          widgetRef.current,
-          {
-
-            sitekey: siteKey,
-
-            theme: "dark",
-
-
-            callback:
-              async (token) => {
-
-                setError("");
-                setChecking(true);
-
-
-                try {
-
-                  const verify =
-                    await fetch(
-                      "/api/verify-turnstile",
-                      {
-                        method:
-                          "POST",
-
-                        headers: {
-                          "Content-Type":
-                            "application/json",
-                        },
-
-                        body:
-                          JSON.stringify({
-                            token,
-                          }),
-                      }
-                    );
-
-
-                  const data =
-                    await verify.json();
-
-
-                  if (
-                    !verify.ok ||
-                    !data.success
-                  ) {
-
-                    throw new Error(
-                      data.message ||
-                        "Verifikasi Cloudflare gagal."
-                    );
-                  }
-
-
-                  onVerified();
-
-                } catch (err) {
-
-                  setError(
-                    err.message ||
-                      "Verifikasi gagal."
-                  );
-
-
-                  try {
-
-                    window.turnstile.reset(
-                      widgetIdRef.current
-                    );
-
-                  } catch {}
-
-                } finally {
-
-                  setChecking(false);
-
-                }
-              },
-
-
-            "expired-callback":
-              () => {
-
-                setError(
-                  "Verifikasi kedaluwarsa. Silakan ulangi."
-                );
-
-              },
-
-
-            "error-callback":
-              () => {
-
-                setError(
-                  "Cloudflare Turnstile gagal dimuat."
-                );
-
-              },
-
-          }
-        );
-
-    } catch (err) {
-
-      console.error(err);
-
-      setError(
-        "Turnstile tidak dapat dijalankan."
-      );
-
-    }
-
-
-    return () => {
-
-      try {
-
-        if (
-          window.turnstile &&
-          widgetIdRef.current !== null
-        ) {
-
-          window.turnstile.remove(
-            widgetIdRef.current
-          );
-
-        }
-
-      } catch {}
-
-
-      widgetIdRef.current =
-        null;
-
-    };
-
-  }, [
-    ready,
-    onVerified,
-  ]);
-
-
-  return (
-
-    <div className="verification-screen">
-
-      <div className="verification-grid" />
-
-      <div className="verification-glow verification-glow-one" />
-
-      <div className="verification-glow verification-glow-two" />
-
-
-      <div className="verification-card">
-
-        <div className="verification-brand">
-
-          <div className="verification-logo">
-            D
-          </div>
-
-
-          <div>
-
-            <strong>
-              DIN API🔥
-            </strong>
-
-            <span>
-              API SYSTEM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div className="verification-line" />
-
-
-        <div className="verification-icon">
-          ◉
-        </div>
-
-
-        <span className="verification-eyebrow">
-          SECURITY CHECK
-        </span>
-
-
-        <h1>
-          VERIFY ACCESS
-        </h1>
-
-
-        <p>
-
-          Selesaikan verifikasi
-          Cloudflare terlebih dahulu
-          untuk masuk ke DIN API.
-
-        </p>
-
-
-        <div className="verification-status">
-
-          <span
-            className={
-              checking
-                ? "checking"
-                : ""
-            }
-          />
-
-          {checking
-            ? "VERIFYING..."
-            : "WAITING FOR VERIFICATION"}
-
-        </div>
-
-
-        <div className="turnstile-gate-widget">
-
-          {ready ? (
-
-            <div
-              ref={widgetRef}
-            />
-
-          ) : (
-
-            <div className="turnstile-loading">
-
-              MEMUAT CLOUDFLARE...
-
-            </div>
-
-          )}
-
-        </div>
-
-
-        {error && (
-
-          <div className="verification-error">
-
-            <b>
-              !
-            </b>
-
-            <span>
-              {error}
-            </span>
-
-          </div>
-
-        )}
-
-
-        <small className="verification-note">
-
-          Your connection is protected
-          by Cloudflare Turnstile.
-
-        </small>
-
-      </div>
-
-    </div>
-
-  );
-}
-
-
-/* =========================================================
-   ENDPOINT CARD
-   FITUR:
-   - GET / POST
-   - REQUEST PARAMETER
-   - EXECUTE
-   - CLEAR
-   - PREVIEW
-   - HEADERS
-   - CURL
-   - STATUS
-   - PING / LATENCY
-   - COPY CURL
-   - COPY RESPONSE
-========================================================= */
-
-function EndpointCard({
-  endpoint,
-}) {
-
-  const [expanded, setExpanded] =
-    useState(false);
-
-  const [values, setValues] =
-    useState(() => {
-
-      const initial = {};
-
-      endpoint.params.forEach(
-        (param) => {
-
-          if (
-            param.default !==
-            undefined
-          ) {
-
-            initial[param.name] =
-              param.default;
-
-          }
-
-        }
-      );
-
-      return initial;
-
-    });
-
-
-  const [response, setResponse] =
-    useState(null);
-
-  const [loading, setLoading] =
-    useState(false);
-
-  const [activeTab, setActiveTab] =
-    useState("preview");
-
-  const [latency, setLatency] =
-    useState(null);
-
-  const [statusCode, setStatusCode] =
-    useState(null);
-
-  const [statusText, setStatusText] =
-    useState("");
-
-  const [responseHeaders, setResponseHeaders] =
-    useState({});
-
-  const [requestUrl, setRequestUrl] =
-    useState(
-      buildUrl(
-        endpoint.path,
-        {}
-      )
-    );
-
-
-  const updateValue = (
-    name,
-    value
-  ) => {
-
-    setValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-  };
-
-
-  /* =======================================================
-     CLEAR
-  ======================================================= */
-
-  const clearRequest = () => {
-
-    const initial = {};
-
-    endpoint.params.forEach(
-      (param) => {
-
-        if (
-          param.default !==
-          undefined
-        ) {
-
-          initial[param.name] =
-            param.default;
-
-        }
-
-      }
-    );
-
-
-    setValues(initial);
-
+    setError("");
     setResponse(null);
-
-    setLatency(null);
-
-    setStatusCode(null);
-
-    setStatusText("");
-
-    setResponseHeaders({});
-
-    setRequestUrl(
-      buildUrl(
-        endpoint.path,
-        {}
-      )
-    );
-
-    setActiveTab("preview");
-
-  };
-
-
-  /* =======================================================
-     EXECUTE
-  ======================================================= */
-
-  const execute = async () => {
-
     setLoading(true);
 
-    setResponse(null);
-
-    setLatency(null);
-
-    setStatusCode(null);
-
-    setStatusText("");
-
-    setResponseHeaders({});
-
-
     try {
-
-      /* REQUIRED CHECK */
-
-      for (
-        const param of endpoint.params
-      ) {
-
-        if (
-          param.required &&
-          !String(
-            values[param.name] ||
-              ""
-          ).trim()
-        ) {
-
-          throw new Error(
-            `${param.label} wajib diisi.`
-          );
-
-        }
-
-      }
-
-
-      /* URL */
-
       const url =
         buildUrl(
-          endpoint.path,
+          selectedEndpoint.path,
           values
         );
 
-
-      setRequestUrl(url);
-
-
-      /*
-        performance.now()
-        digunakan untuk menghitung
-        ping / latency request.
-      */
-
-      const start =
+      const started =
         performance.now();
-
 
       const res =
-        await fetch(
-          url,
-          {
-            method:
-              endpoint.method ||
-              "GET",
+        await fetch(url, {
+          method:
+            selectedEndpoint.method,
+          headers: {
+            Accept:
+              "application/json, text/plain, */*",
+          },
+        });
 
-            headers: {
-              Accept:
-                "application/json",
-            },
-          }
-        );
-
-
-      const end =
-        performance.now();
-
-
-      const requestTime =
+      const elapsed =
         Math.round(
-          end - start
+          performance.now() -
+            started
         );
-
-
-      setLatency(
-        requestTime
-      );
-
-
-      setStatusCode(
-        res.status
-      );
-
-
-      setStatusText(
-        res.statusText ||
-          ""
-      );
-
-
-      /* RESPONSE HEADERS */
-
-      const headers = {};
-
-      res.headers.forEach(
-        (value, key) => {
-
-          headers[key] =
-            value;
-
-        }
-      );
-
-      setResponseHeaders(
-        headers
-      );
-
-
-      /* RESPONSE BODY */
 
       const contentType =
         res.headers.get(
           "content-type"
         ) || "";
 
-
       let data;
-
 
       if (
         contentType.includes(
           "application/json"
         )
       ) {
-
         data =
           await res.json();
-
       } else {
-
-        const text =
+        data =
           await res.text();
-
-        try {
-
-          data =
-            JSON.parse(text);
-
-        } catch {
-
-          data = {
-            success:
-              res.ok,
-
-            status:
-              res.status,
-
-            response:
-              text,
-          };
-
-        }
-
       }
 
-
-      setResponse(data);
-
-      setActiveTab(
-        "preview"
-      );
-
-    } catch (error) {
-
-      const message =
-        error?.message ||
-        "Request failed.";
-
-
       setResponse({
-        success: false,
-        message,
+        status:
+          res.status,
+        ok: res.ok,
+        time:
+          elapsed,
+        type:
+          contentType ||
+          "unknown",
+        data,
       });
 
-
-      setStatusCode(
-        0
+      setActiveTab(
+        "response"
       );
-
-
-      setStatusText(
-        "ERROR"
+    } catch (err) {
+      setError(
+        err?.message ||
+          "Request failed."
       );
-
 
       setActiveTab(
-        "preview"
+        "response"
       );
-
     } finally {
-
       setLoading(false);
-
     }
-
-  };
-
-
-  const curl =
-    makeCurl(
-      requestUrl,
-      endpoint.method ||
-        "GET"
-    );
+  }
 
 
-  const copyText = async (
-    text
-  ) => {
+  /* =======================================================
+     COPY
+  ======================================================= */
 
+  async function copyText(
+    text,
+    type = "text"
+  ) {
     try {
-
       await navigator.clipboard.writeText(
         text
       );
 
+      setCopied(type);
+
+      setTimeout(() => {
+        setCopied("");
+      }, 1600);
     } catch {
-
-      const textarea =
-        document.createElement(
-          "textarea"
-        );
-
-      textarea.value =
-        text;
-
-      document.body.appendChild(
-        textarea
-      );
-
-      textarea.select();
-
-      document.execCommand(
-        "copy"
-      );
-
-      textarea.remove();
-
+      setCopied("");
     }
+  }
 
-  };
+
+  /* =======================================================
+     SCROLL
+  ======================================================= */
+
+  function scrollToDocs() {
+    document
+      .querySelector(
+        ".docs-main"
+      )
+      ?.scrollIntoView({
+        behavior: "smooth",
+      });
+  }
 
 
-  const statusLabel =
-    statusCode
-      ? `${statusCode} ${
-          statusText || ""
-        }`
-      : "—";
-
+  /* =======================================================
+     RENDER
+  ======================================================= */
 
   return (
+    <div className="app">
 
-    <div
-      className={`endpoint ${
-        expanded
-          ? "endpoint-open"
-          : ""
-      }`}
-    >
+      {/* ===================================================
+          BACKGROUND
+      =================================================== */}
 
-      {/* =================================================
-          ENDPOINT HEADER
-      ================================================= */}
+      <BackgroundEffects />
 
-      <button
-        className="endpoint-header"
-        onClick={() =>
-          setExpanded(
-            !expanded
-          )
-        }
-      >
 
-        <div className="method">
+      {/* ===================================================
+          MOBILE OVERLAY
+      =================================================== */}
 
-          {endpoint.method ||
-            "GET"}
+      {menuOpen && (
+        <div
+          className="mobile-overlay"
+          onClick={() =>
+            setMenuOpen(false)
+          }
+        />
+      )}
+
+
+      {/* ===================================================
+          NAVBAR
+      =================================================== */}
+
+      <header className="topbar">
+
+        <div className="topbar-left">
+
+          <button
+            className="mobile-menu-button"
+            onClick={() =>
+              setMenuOpen(
+                !menuOpen
+              )
+            }
+            aria-label="Menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <div className="brand">
+
+            <div className="brand-logo">
+              <span>◆</span>
+            </div>
+
+            <div className="brand-text">
+              <strong>
+                DIN API
+              </strong>
+
+              <small>
+                Developer Platform
+              </small>
+            </div>
+
+          </div>
 
         </div>
 
 
-        <div className="endpoint-main">
+        <div className="topbar-center">
 
-          <strong>
-            {endpoint.name}
-          </strong>
+          <div className="global-search">
 
-          <span>
-            {endpoint.path}
-          </span>
+            <span className="search-icon">
+              ⌕
+            </span>
+
+            <input
+              value={search}
+              onChange={(event) =>
+                setSearch(
+                  event.target.value
+                )
+              }
+              placeholder="Search endpoints..."
+            />
+
+            {search && (
+              <button
+                className="search-clear"
+                onClick={() =>
+                  setSearch("")
+                }
+              >
+                ×
+              </button>
+            )}
+
+            <kbd>
+              /
+            </kbd>
+
+          </div>
 
         </div>
 
 
-        <span className="endpoint-chevron">
+        <div className="topbar-right">
 
-          {expanded
-            ? "−"
-            : "+"}
+          <div className="api-status">
+            <span className="status-dot" />
+            <span>
+              API Online
+            </span>
+          </div>
 
-        </span>
+          <a
+            href="https://github.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="top-link"
+          >
+            GitHub
+          </a>
 
-      </button>
+        </div>
 
-
-      {/* =================================================
-          BODY
-      ================================================= */}
-
-      {expanded && (
-
-        <div className="endpoint-body">
-
-          {/* DESCRIPTION */}
-
-          <p className="endpoint-description">
-
-            {endpoint.description}
-
-          </p>
+      </header>
 
 
-          {/* METHOD */}
+      {/* ===================================================
+          LAYOUT
+      =================================================== */}
 
-          <div className="request-methods">
+      <div className="docs-layout">
+
+
+        {/* =================================================
+            SIDEBAR
+        ================================================= */}
+
+        <aside
+          className={`sidebar ${
+            menuOpen
+              ? "sidebar-open"
+              : ""
+          }`}
+        >
+
+          <div className="sidebar-header">
+
+            <div>
+              <span className="sidebar-label">
+                DOCUMENTATION
+              </span>
+
+              <h2>
+                API Reference
+              </h2>
+            </div>
 
             <button
-              className="request-method active"
-              type="button"
+              className="sidebar-close"
+              onClick={() =>
+                setMenuOpen(false)
+              }
             >
-              GET
-            </button>
-
-
-            <button
-              className="request-method disabled"
-              type="button"
-              disabled
-            >
-              POST
+              ×
             </button>
 
           </div>
 
 
-          {/* REQUEST PARAMETERS */}
+          <div className="sidebar-stats">
 
-          {endpoint.params.length >
-            0 && (
+            <div>
+              <strong>
+                {API_CATEGORIES.length}
+              </strong>
 
-            <div className="request-section">
+              <span>
+                Categories
+              </span>
+            </div>
 
-              <div className="request-title">
+            <div>
+              <strong>
+                {totalEndpoints}
+              </strong>
 
-                REQUEST PARAMETERS
+              <span>
+                Endpoints
+              </span>
+            </div>
 
+          </div>
+
+
+          <nav className="category-list">
+
+            {filteredCategories.length ===
+              0 && (
+              <div className="no-results">
+                <span>
+                  ⌕
+                </span>
+
+                <p>
+                  Endpoint tidak ditemukan
+                </p>
               </div>
+            )}
 
 
-              <div className="params">
+            {filteredCategories.map(
+              (category) => {
+                const isOpen =
+                  openCategory ===
+                  category.name;
 
-                {endpoint.params.map(
-                  (param) => (
+                return (
+                  <div
+                    className="category-group"
+                    key={category.name}
+                  >
 
-                    <label
-                      className="param"
-                      key={
-                        param.name
+                    <button
+                      className={`category-button ${
+                        isOpen
+                          ? "category-active"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        setOpenCategory(
+                          isOpen
+                            ? null
+                            : category.name
+                        )
                       }
                     >
 
-                      <div className="param-label">
+                      <span
+                        className={`category-icon category-${category.color}`}
+                      >
+                        {category.icon}
+                      </span>
 
-                        <span>
-                          {param.label}
-                        </span>
+                      <span className="category-name">
+                        {category.name}
+                      </span>
+
+                      <span className="category-count">
+                        {
+                          category
+                            .endpoints
+                            .length
+                        }
+                      </span>
+
+                      <span
+                        className={`category-arrow ${
+                          isOpen
+                            ? "arrow-open"
+                            : ""
+                        }`}
+                      >
+                        ›
+                      </span>
+
+                    </button>
 
 
-                        {param.required && (
+                    {isOpen && (
+                      <div className="endpoint-list">
 
-                          <small>
-                            *
-                          </small>
+                        {category.endpoints.map(
+                          (endpoint) => {
+                            const active =
+                              selectedEndpoint ===
+                              endpoint;
 
+                            return (
+                              <button
+                                key={
+                                  endpoint.path
+                                }
+                                className={`endpoint-nav ${
+                                  active
+                                    ? "endpoint-nav-active"
+                                    : ""
+                                }`}
+                                onClick={() =>
+                                  selectEndpoint(
+                                    endpoint,
+                                    category.name
+                                  )
+                                }
+                              >
+
+                                <span className="endpoint-method">
+                                  {endpoint.method}
+                                </span>
+
+                                <span className="endpoint-nav-name">
+                                  {
+                                    endpoint.name
+                                  }
+                                />
+
+                              </button>
+                            );
+                          }
                         )}
+
+                      </div>
+                    )}
+
+                  </div>
+                );
+              }
+            )}
+
+          </nav>
+
+
+          <div className="sidebar-footer">
+
+            <div className="sidebar-footer-icon">
+              ⚡
+            </div>
+
+            <div>
+              <strong>
+                DIN API
+              </strong>
+
+              <span>
+                Fast & Reliable API
+              </span>
+            </div>
+
+          </div>
+
+        </aside>
+
+
+        {/* =================================================
+            MAIN
+        ================================================= */}
+
+        <main className="docs-main">
+
+          {selectedEndpoint ? (
+            <>
+
+              {/* =========================================
+                  HERO
+              ========================================= */}
+
+              <section className="endpoint-hero">
+
+                <div className="breadcrumb">
+                  <span>
+                    Docs
+                  </span>
+
+                  <span>
+                    /
+                  </span>
+
+                  <span>
+                    {openCategory}
+                  </span>
+
+                  <span>
+                    /
+                  </span>
+
+                  <strong>
+                    {
+                      selectedEndpoint.name
+                    }
+                  </strong>
+                </div>
+
+
+                <div className="endpoint-title-row">
+
+                  <div className="endpoint-title">
+
+                    <div className="large-method">
+                      {
+                        selectedEndpoint.method
+                      }
+                    </div>
+
+                    <div>
+
+                      <h1>
+                        {
+                          selectedEndpoint.name
+                        }
+                      </h1>
+
+                      <p>
+                        {
+                          selectedEndpoint.description
+                        }
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                {/* =======================================
+                    URL BAR
+                ======================================= */}
+
+                <div className="request-url-card">
+
+                  <div className="url-info">
+
+                    <span className="url-method">
+                      {
+                        selectedEndpoint.method
+                      }
+                    </span>
+
+                    <code>
+                      {
+                        selectedEndpoint.path
+                      }
+                    </code>
+
+                  </div>
+
+                  <button
+                    className="copy-button"
+                    onClick={() =>
+                      copyText(
+                        requestUrl,
+                        "url"
+                      )
+                    }
+                  >
+                    {copied === "url"
+                      ? "✓ Copied"
+                      : "Copy URL"}
+                  </button>
+
+                </div>
+
+              </section>
+
+
+              {/* =========================================
+                  CONTENT GRID
+              ========================================= */}
+
+              <section className="content-grid">
+
+
+                {/* =======================================
+                    TESTER
+                ======================================= */}
+
+                <div className="tester-card">
+
+                  <div className="card-header">
+
+                    <div>
+
+                      <span className="card-kicker">
+                        API TESTER
+                      </span>
+
+                      <h2>
+                        Test Endpoint
+                      </h2>
+
+                    </div>
+
+                    <div className="live-badge">
+                      <span />
+                      LIVE
+                    </div>
+
+                  </div>
+
+
+                  {/* TABS */}
+
+                  <div className="tester-tabs">
+
+                    <button
+                      className={
+                        activeTab ===
+                        "tester"
+                          ? "tab-active"
+                          : ""
+                      }
+                      onClick={() =>
+                        setActiveTab(
+                          "tester"
+                        )
+                      }
+                    >
+                      Request
+                    </button>
+
+                    <button
+                      className={
+                        activeTab ===
+                        "response"
+                          ? "tab-active"
+                          : ""
+                      }
+                      onClick={() =>
+                        setActiveTab(
+                          "response"
+                        )
+                      }
+                    >
+                      Response
+                    </button>
+
+                  </div>
+
+
+                  {activeTab ===
+                    "tester" && (
+                    <div className="tester-body">
+
+                      {/* =================================
+                          PARAMETERS
+                      ================================= */}
+
+                      {selectedEndpoint
+                        .params
+                        ?.length >
+                      0 ? (
+                        <div className="parameters-section">
+
+                          <div className="section-heading">
+
+                            <div>
+                              <span>
+                                QUERY PARAMETERS
+                              </span>
+
+                              <small>
+                                Isi parameter untuk request
+                              </small>
+                            </div>
+
+                            <span className="parameter-count">
+                              {
+                                selectedEndpoint
+                                  .params
+                                  .length
+                              }
+                            </span>
+
+                          </div>
+
+
+                          <div className="parameter-list">
+
+                            {selectedEndpoint.params.map(
+                              (param) => (
+                                <div
+                                  className="parameter-row"
+                                  key={
+                                    param.name
+                                  }
+                                >
+
+                                  <div className="parameter-label">
+
+                                    <label>
+                                      {
+                                        param.label ||
+                                        param.name
+                                      }
+                                    </label>
+
+                                    <code>
+                                      {
+                                        param.name
+                                      }
+                                    </code>
+
+                                    {param.required && (
+                                      <span className="required">
+                                        Required
+                                      </span>
+                                    )}
+
+                                  </div>
+
+
+                                  {param.type ===
+                                    "select" ? (
+                                    <select
+                                      value={
+                                        values[
+                                          param.name
+                                        ] ??
+                                        param.default ??
+                                        ""
+                                      }
+                                      onChange={(
+                                        event
+                                      ) =>
+                                        updateValue(
+                                          param.name,
+                                          event
+                                            .target
+                                            .value
+                                        )
+                                      }
+                                    >
+
+                                      {param.options?.map(
+                                        (option) => (
+                                          <option
+                                            key={
+                                              option
+                                            }
+                                            value={
+                                              option
+                                            }
+                                          >
+                                            {
+                                              option
+                                            }
+                                          </option>
+                                        )
+                                      )}
+
+                                    </select>
+                                  ) : (
+                                    <input
+                                      type={
+                                        param.type ||
+                                        "text"
+                                      }
+                                      value={
+                                        values[
+                                          param.name
+                                        ] ??
+                                        ""
+                                      }
+                                      onChange={(
+                                        event
+                                      ) =>
+                                        updateValue(
+                                          param.name,
+                                          event
+                                            .target
+                                            .value
+                                        )
+                                      }
+                                      placeholder={
+                                        param.placeholder ||
+                                        `Enter ${param.name}`
+                                      }
+                                    />
+                                  )}
+
+                                </div>
+                              )
+                            )}
+
+                          </div>
+
+                        </div>
+                      ) : (
+                        <div className="no-params">
+
+                          <div className="no-params-icon">
+                            ✓
+                          </div>
+
+                          <div>
+                            <strong>
+                              No parameters required
+                            </strong>
+
+                            <span>
+                              Endpoint ini dapat langsung
+                              dijalankan.
+                            </span>
+                          </div>
+
+                        </div>
+                      )}
+
+
+                      {/* =================================
+                          TURNSTILE
+                      ================================= */}
+
+                      <div className="security-box">
+
+                        <div className="security-icon">
+                          ◈
+                        </div>
+
+                        <div className="security-content">
+
+                          <strong>
+                            Security Verification
+                          </strong>
+
+                          <span>
+                            Verify sebelum menjalankan
+                            request.
+                          </span>
+
+                          <div
+                            ref={
+                              turnstileRef
+                            }
+                            className="turnstile-container"
+                          />
+
+                          {!turnstileReady && (
+                            <small>
+                              Memuat verification...
+                            </small>
+                          )}
+
+                        </div>
+
+                        <div
+                          className={`verify-status ${
+                            verified
+                              ? "verified"
+                              : ""
+                          }`}
+                        >
+                          {verified
+                            ? "✓"
+                            : "○"}
+                        </div>
 
                       </div>
 
 
-                      {param.type ===
-                      "select" ? (
+                      {/* =================================
+                          RUN BUTTON
+                      ================================= */}
 
-                        <select
-                          value={
-                            values[
-                              param.name
-                            ] ??
-                            param.default ??
-                            ""
-                          }
-                          onChange={(e) =>
-                            updateValue(
-                              param.name,
-                              e.target.value
-                            )
-                          }
-                        >
+                      <button
+                        className="run-button"
+                        onClick={
+                          testApi
+                        }
+                        disabled={
+                          loading ||
+                          !selectedEndpoint
+                        }
+                      >
 
-                          {param.options?.map(
-                            (option) => (
+                        {loading ? (
+                          <>
+                            <span className="button-spinner" />
+                            Sending Request...
+                          </>
+                        ) : (
+                          <>
+                            <span>
+                              ▶
+                            </span>
+                            Send Request
+                          </>
+                        )}
 
-                              <option
-                                key={
-                                  option
-                                }
-                                value={
-                                  option
-                                }
-                              >
-                                {option}
-                              </option>
+                      </button>
 
-                            )
-                          )}
+                    </div>
+                  )}
 
-                        </select>
 
-                      ) : (
+                  {/* =======================================
+                      RESPONSE
+                  ======================================= */}
 
-                        <input
-                          value={
-                            values[
-                              param.name
-                            ] || ""
-                          }
-                          onChange={(e) =>
-                            updateValue(
-                              param.name,
-                              e.target.value
-                            )
-                          }
-                          placeholder={
-                            param.placeholder ||
-                            ""
-                          }
-                        />
+                  {activeTab ===
+                    "response" && (
+                    <div className="response-container">
 
+                      {loading && (
+                        <div className="response-loading">
+
+                          <span className="big-spinner" />
+
+                          <strong>
+                            Request sedang diproses...
+                          </strong>
+
+                          <small>
+                            Menunggu response dari server
+                          </small>
+
+                        </div>
                       )}
 
-                    </label>
 
-                  )
-                )}
+                      {!loading &&
+                        !response &&
+                        !error && (
+                          <div className="empty-response">
 
+                            <div className="empty-response-icon">
+                              {`{ }`}
+                            </div>
+
+                            <strong>
+                              Belum ada response
+                            </strong>
+
+                            <span>
+                              Jalankan endpoint untuk
+                              melihat hasil response.
+                            </span>
+
+                          </div>
+                        )}
+
+
+                      {!loading &&
+                        error && (
+                          <div className="error-response">
+
+                            <div className="response-status response-error">
+                              ERROR
+                            </div>
+
+                            <pre>
+                              {error}
+                            </pre>
+
+                          </div>
+                        )}
+
+
+                      {!loading &&
+                        response && (
+                          <div className="response-result">
+
+                            <div className="response-top">
+
+                              <div className="response-status-row">
+
+                                <span
+                                  className={`response-status ${
+                                    response.ok
+                                      ? "response-success"
+                                      : "response-error"
+                                  }`}
+                                >
+                                  {response.status}
+                                </span>
+
+                                <strong>
+                                  {
+                                    response.ok
+                                      ? "Request successful"
+                                      : "Request failed"
+                                  }
+                                </strong>
+
+                              </div>
+
+                              <div className="response-meta">
+
+                                <span>
+                                  ⚡{" "}
+                                  {
+                                    response.time
+                                  } ms
+                                </span>
+
+                                <span>
+                                  {
+                                    response.type
+                                  }
+                                </span>
+
+                              </div>
+
+                            </div>
+
+
+                            <div className="response-code">
+
+                              <div className="code-header">
+
+                                <span>
+                                  RESPONSE
+                                </span>
+
+                                <button
+                                  onClick={() =>
+                                    copyText(
+                                      formatResponse(
+                                        response.data
+                                      ),
+                                      "response"
+                                    )
+                                  }
+                                >
+                                  {copied ===
+                                  "response"
+                                    ? "✓ Copied"
+                                    : "Copy"}
+                                </button>
+
+                              </div>
+
+                              <pre>
+                                <code>
+                                  {
+                                    formatResponse(
+                                      response.data
+                                    )
+                                  }
+                                </code>
+                              </pre>
+
+                            </div>
+
+                          </div>
+                        )}
+
+                    </div>
+                  )}
+
+                </div>
+
+
+                {/* =========================================
+                    RIGHT PANEL
+                ========================================= */}
+
+                <div className="side-content">
+
+
+                  {/* =======================================
+                      REQUEST PREVIEW
+                  ======================================= */}
+
+                  <div className="preview-card">
+
+                    <div className="preview-header">
+
+                      <div>
+                        <span>
+                          REQUEST
+                        </span>
+
+                        <strong>
+                          Preview
+                        </strong>
+                      </div>
+
+                      <button
+                        onClick={() =>
+                          copyText(
+                            curlCommand,
+                            "curl"
+                          )
+                        }
+                      >
+                        {copied ===
+                        "curl"
+                          ? "✓"
+                          : "Copy"}
+                      </button>
+
+                    </div>
+
+
+                    <div className="code-window">
+
+                      <div className="window-bar">
+
+                        <span className="window-dot" />
+                        <span className="window-dot" />
+                        <span className="window-dot" />
+
+                        <small>
+                          curl
+                        </small>
+
+                      </div>
+
+                      <pre>
+                        <code>
+                          <span className="code-command">
+                            curl
+                          </span>{" "}
+                          -X{" "}
+                          <span className="code-method">
+                            {
+                              selectedEndpoint.method
+                            }
+                          </span>{" "}
+                          <span className="code-url">
+                            "{requestUrl}"
+                          </span>
+                        </code>
+                      </pre>
+
+                    </div>
+
+                  </div>
+
+
+                  {/* =======================================
+                      ENDPOINT INFO
+                  ======================================= */}
+
+                  <div className="info-card">
+
+                    <div className="info-card-header">
+                      <span>
+                        ENDPOINT INFO
+                      </span>
+                    </div>
+
+                    <div className="info-list">
+
+                      <div>
+                        <span>
+                          Method
+                        </span>
+
+                        <strong className="info-get">
+                          {
+                            selectedEndpoint.method
+                          }
+                        </strong>
+                      </div>
+
+                      <div>
+                        <span>
+                          Path
+                        </span>
+
+                        <code>
+                          {
+                            selectedEndpoint.path
+                          }
+                        </code>
+                      </div>
+
+                      <div>
+                        <span>
+                          Parameters
+                        </span>
+
+                        <strong>
+                          {
+                            selectedEndpoint
+                              .params
+                              ?.length ||
+                            0
+                          }
+                        </strong>
+                      </div>
+
+                      <div>
+                        <span>
+                          Response
+                        </span>
+
+                        <strong>
+                          JSON
+                        </strong>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  {/* =======================================
+                      QUICK START
+                  ======================================= */}
+
+                  <div className="quick-card">
+
+                    <div className="quick-icon">
+                      ⚡
+                    </div>
+
+                    <div>
+
+                      <strong>
+                        Quick Start
+                      </strong>
+
+                      <p>
+                        Isi parameter lalu klik
+                        <b>
+                          {" "}
+                          Send Request
+                        </b>{" "}
+                        untuk mencoba API.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </section>
+
+
+              {/* =========================================
+                  API BASE URL
+              ========================================= */}
+
+              <section className="base-url-section">
+
+                <div className="base-url-icon">
+                  ◉
+                </div>
+
+                <div className="base-url-content">
+
+                  <span>
+                    API BASE URL
+                  </span>
+
+                  <code>
+                    {
+                      API_BASE_URL ||
+                      window.location.origin
+                    }
+                  </code>
+
+                </div>
+
+                <button
+                  onClick={() =>
+                    copyText(
+                      API_BASE_URL ||
+                        window.location.origin,
+                      "base"
+                    )
+                  }
+                >
+                  {copied ===
+                  "base"
+                    ? "✓ Copied"
+                    : "Copy"}
+                </button>
+
+              </section>
+
+
+              {/* =========================================
+                  FOOTER
+              ========================================= */}
+
+              <footer className="docs-footer">
+
+                <div className="footer-brand">
+
+                  <div className="footer-logo">
+                    ◆
+                  </div>
+
+                  <div>
+                    <strong>
+                      DIN API
+                    </strong>
+
+                    <span>
+                      Powerful API for developers.
+                    </span>
+                  </div>
+
+                </div>
+
+                <div className="footer-right">
+
+                  <span>
+                    ©{" "}
+                    {new Date().getFullYear()}{" "}
+                    DIN API
+                  </span>
+
+                  <span className="footer-separator">
+                    •
+                  </span>
+
+                  <span>
+                    Built for developers
+                  </span>
+
+                </div>
+
+              </footer>
+
+            </>
+          ) : (
+
+            /* =============================================
+               EMPTY STATE
+            ============================================= */
+
+            <div className="empty-app">
+
+              <div className="empty-app-icon">
+                ◆
               </div>
+
+              <h1>
+                DIN API
+              </h1>
+
+              <p>
+                Pilih endpoint dari sidebar
+                untuk mulai.
+              </p>
+
+              <button
+                onClick={() =>
+                  selectEndpoint(
+                    API_CATEGORIES[0]
+                      .endpoints[0],
+                    API_CATEGORIES[0]
+                      .name
+                  )
+                }
+              >
+                Explore API
+              </button>
 
             </div>
 
           )}
 
+        </main>
 
-          {/* =================================================
-              EXECUTE
-          ================================================= */}
-
-          <button
-            className="execute-button"
-            onClick={execute}
-            disabled={loading}
-          >
-
-            {loading
-              ? "EXECUTING REQUEST..."
-              : "EXECUTE REQUEST →"}
-
-          </button>
+      </div>
 
 
-          {/* =================================================
-              CLEAR
-          ================================================= */}
+      {/* ===================================================
+          DEVELOPER POPUP
+      =================================================== */}
 
-          <button
-            className="clear-button"
-            type="button"
-            onClick={clearRequest}
-          >
-            CLEAR
-          </button>
+      {showDevPopup && (
+        <div className="developer-popup">
 
+          <div className="developer-popup-icon">
+            ⚡
+          </div>
 
-          {/* =================================================
-              REQUEST INFO
-          ================================================= */}
+          <div className="developer-popup-content">
 
-          <div className="request-preview-line">
+            <strong>
+              DIN API
+            </strong>
 
             <span>
-              REQUEST
+              API siap digunakan.
             </span>
-
-            <code>
-              {requestUrl}
-            </code>
 
           </div>
 
-
-          {/* =================================================
-              RESPONSE PANEL
-          ================================================= */}
-
-          {(response ||
-            loading) && (
-
-            <div className="response-panel">
-
-              {/* RESPONSE HEADER */}
-
-              <div className="response-top">
-
-                <div className="response-tabs">
-
-                  <button
-                    className={
-                      activeTab ===
-                      "preview"
-                        ? "active"
-                        : ""
-                    }
-                    onClick={() =>
-                      setActiveTab(
-                        "preview"
-                      )
-                    }
-                  >
-                    PREVIEW
-                  </button>
-
-
-                  <button
-                    className={
-                      activeTab ===
-                      "headers"
-                        ? "active"
-                        : ""
-                    }
-                    onClick={() =>
-                      setActiveTab(
-                        "headers"
-                      )
-                    }
-                  >
-                    HEADERS
-                  </button>
-
-
-                  <button
-                    className={
-                      activeTab ===
-                      "curl"
-                        ? "active"
-                        : ""
-                    }
-                    onClick={() =>
-                      setActiveTab(
-                        "curl"
-                      )
-                    }
-                  >
-                    CURL
-                  </button>
-
-                </div>
-
-
-                <button
-                  className="copy-button"
-                  onClick={() => {
-
-                    if (
-                      activeTab ===
-                      "curl"
-                    ) {
-
-                      copyText(
-                        curl
-                      );
-
-                    } else if (
-                      activeTab ===
-                      "headers"
-                    ) {
-
-                      copyText(
-                        JSON.stringify(
-                          responseHeaders,
-                          null,
-                          2
-                        )
-                      );
-
-                    } else {
-
-                      copyText(
-                        formatResponse(
-                          response
-                        )
-                      );
-
-                    }
-
-                  }}
-                  title="Copy"
-                >
-                  ▣
-                </button>
-
-
-                <div className="response-status">
-
-                  <span
-                    className={
-                      statusCode >=
-                      200 &&
-                      statusCode <
-                        300
-                        ? "success"
-                        : "error"
-                    }
-                  >
-                    {statusLabel}
-                  </span>
-
-
-                  {latency !==
-                    null && (
-
-                    <small>
-                      {latency}ms
-                    </small>
-
-                  )}
-
-                </div>
-
-              </div>
-
-
-              {/* =================================================
-                  PREVIEW
-              ================================================= */}
-
-              {activeTab ===
-                "preview" && (
-
-                <pre className="response">
-
-                  {loading
-                    ? "Loading..."
-                    : formatResponse(
-                        response
-                      )}
-
-                </pre>
-
-              )}
-
-
-              {/* =================================================
-                  HEADERS
-              ================================================= */}
-
-              {activeTab ===
-                "headers" && (
-
-                <div className="headers-view">
-
-                  {Object.keys(
-                    responseHeaders
-                  ).length ===
-                  0 ? (
-
-                    <div className="headers-empty">
-                      No response headers.
-                    </div>
-
-                  ) : (
-
-                    Object.entries(
-                      responseHeaders
-                    ).map(
-                      ([key, value]) => (
-
-                        <div
-                          className="header-row"
-                          key={key}
-                        >
-
-                          <strong>
-                            {key}:
-                          </strong>
-
-                          <span>
-                            {value}
-                          </span>
-
-                        </div>
-
-                      )
-                    )
-
-                  )}
-
-                </div>
-
-              )}
-
-
-              {/* =================================================
-                  CURL
-              ================================================= */}
-
-              {activeTab ===
-                "curl" && (
-
-                <pre className="curl-view">
-
-                  {curl}
-
-                </pre>
-
-              )}
-
-            </div>
-
-          )}
+          <button
+            onClick={() =>
+              setShowDevPopup(false)
+            }
+          >
+            ×
+          </button>
 
         </div>
-
       )}
 
     </div>
-
   );
 }
