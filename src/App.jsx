@@ -15,37 +15,58 @@ const TURNSTILE_SITE_KEY =
   import.meta.env.VITE_TURNSTILE_SITE_KEY ||
   "0x4AAAAAAEPIh3nGXRyGDzYt";
 
+/*
+  Kalau API dan website berada di domain yang sama:
+  VITE_API_BASE_URL tidak perlu diisi.
+
+  Kalau API berbeda domain:
+  VITE_API_BASE_URL=https://api.siputzz.my.id
+*/
+
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "";
+
 
 /* =========================================================
    API DATA
 ========================================================= */
 
 const API_CATEGORIES = [
+
+  /* =======================================================
+     AI
+  ======================================================= */
+
   {
     name: "AI",
     icon: "✦",
     color: "blue",
     path: "/docs/ai",
+
     endpoints: [
+
       {
         name: "AI Duckai",
         method: "GET",
         path: "/api/ai/duckai",
-        description: "Chat with DuckAI using various AI models.",
+        description:
+          "Chat with DuckAI using various AI models.",
+
         params: [
           {
             name: "message",
             label: "MESSAGE",
-            placeholder: "What is the meaning of life?",
+            placeholder:
+              "What is the meaning of life?",
             required: true,
           },
+
           {
             name: "model",
             label: "MODEL",
             type: "select",
             default: "gpt-4o-mini",
+
             options: [
               "gpt-4o-mini",
               "claude-3-5-haiku-latest",
@@ -54,12 +75,15 @@ const API_CATEGORIES = [
               "openai/gpt-oss-120b",
               "gpt-5-mini",
             ],
+
             required: false,
           },
+
           {
             name: "systemPrompt",
             label: "SYSTEMPROMPT",
-            placeholder: "You are a helpful assistant.",
+            placeholder:
+              "You are a helpful assistant.",
             required: false,
           },
         ],
@@ -69,26 +93,32 @@ const API_CATEGORIES = [
         name: "Flixier AI Image",
         method: "GET",
         path: "/api/ai/flixier",
-        description: "Generate image menggunakan Flixier AI.",
+        description:
+          "Generate image menggunakan Flixier AI.",
+
         params: [
           {
             name: "prompt",
             label: "PROMPT",
-            placeholder: "futuristic warrior cat",
+            placeholder:
+              "futuristic warrior cat",
             required: true,
           },
+
           {
             name: "style",
             label: "STYLE",
             placeholder: "cinematic",
             required: false,
           },
+
           {
             name: "negative",
             label: "NEGATIVE PROMPT",
             placeholder: "blur",
             required: false,
           },
+
           {
             name: "ratio",
             label: "ASPECT RATIO",
@@ -102,7 +132,9 @@ const API_CATEGORIES = [
         name: "AI Lyrics Generator",
         method: "GET",
         path: "/api/ai/lyricsgen",
-        description: "Generate lyrics menggunakan AI.",
+        description:
+          "Generate lyrics menggunakan AI.",
+
         params: [
           {
             name: "theme",
@@ -110,18 +142,21 @@ const API_CATEGORIES = [
             placeholder: "persahabatan",
             required: true,
           },
+
           {
             name: "genre",
             label: "GENRE",
             placeholder: "pop",
             required: false,
           },
+
           {
             name: "emotion",
             label: "EMOTION",
             placeholder: "happy",
             required: false,
           },
+
           {
             name: "lang",
             label: "LANGUAGE",
@@ -135,12 +170,15 @@ const API_CATEGORIES = [
         name: "AI Coder",
         method: "GET",
         path: "/api/tools/aicoder",
-        description: "Generate source code menggunakan AI.",
+        description:
+          "Generate source code menggunakan AI.",
+
         params: [
           {
             name: "prompt",
             label: "PROMPT",
-            placeholder: "buat landing page modern",
+            placeholder:
+              "buat landing page modern",
             required: true,
           },
         ],
@@ -150,12 +188,15 @@ const API_CATEGORIES = [
         name: "AI Chat",
         method: "GET",
         path: "/api/ai/chat",
-        description: "General AI chat endpoint.",
+        description:
+          "General AI chat endpoint.",
+
         params: [
           {
             name: "q",
             label: "QUESTION",
-            placeholder: "Jelaskan JavaScript",
+            placeholder:
+              "Jelaskan JavaScript",
             required: true,
           },
         ],
@@ -163,47 +204,68 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     ADMIN
+  ======================================================= */
+
   {
     name: "ADMIN",
     icon: "◇",
     color: "red",
     path: "/docs/admin",
+
     endpoints: [
+
       {
         name: "Admin Status",
         method: "GET",
         path: "/api/admin/status",
-        description: "Check API admin status.",
+        description:
+          "Check API admin status.",
         params: [],
       },
+
       {
         name: "Admin Info",
         method: "GET",
         path: "/api/admin/info",
-        description: "Get admin information.",
+        description:
+          "Get admin information.",
         params: [],
       },
+
       {
         name: "Server Status",
         method: "GET",
         path: "/api/admin/server",
-        description: "Check server status.",
+        description:
+          "Check server status.",
         params: [],
       },
     ],
   },
+
+
+  /* =======================================================
+     CACHE
+  ======================================================= */
 
   {
     name: "CACHE",
     icon: "▣",
     color: "cyan",
     path: "/docs/cache",
+
     endpoints: [
+
       {
         name: "Cache Get",
         method: "GET",
         path: "/api/cache/get",
-        description: "Get cached data.",
+        description:
+          "Get cached data.",
+
         params: [
           {
             name: "key",
@@ -213,32 +275,44 @@ const API_CATEGORIES = [
           },
         ],
       },
+
       {
         name: "Cache Clear",
         method: "GET",
         path: "/api/cache/clear",
-        description: "Clear cache.",
+        description:
+          "Clear cache.",
         params: [],
       },
     ],
   },
+
+
+  /* =======================================================
+     DOWNLOAD
+  ======================================================= */
 
   {
     name: "DOWNLOAD",
     icon: "⇩",
     color: "blue",
     path: "/docs/download",
+
     endpoints: [
+
       {
         name: "TikTok Downloader",
         method: "GET",
         path: "/api/download/tiktok",
-        description: "Download video TikTok.",
+        description:
+          "Download video TikTok.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://vt.tiktok.com/...",
+            placeholder:
+              "https://vt.tiktok.com/...",
             required: true,
           },
         ],
@@ -248,12 +322,15 @@ const API_CATEGORIES = [
         name: "Instagram Downloader",
         method: "GET",
         path: "/api/download/instagram",
-        description: "Download Instagram media.",
+        description:
+          "Download Instagram media.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://instagram.com/...",
+            placeholder:
+              "https://instagram.com/...",
             required: true,
           },
         ],
@@ -263,12 +340,15 @@ const API_CATEGORIES = [
         name: "CapCut Downloader",
         method: "GET",
         path: "/api/download/capcut",
-        description: "Download CapCut media.",
+        description:
+          "Download CapCut media.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://www.capcut.com/...",
+            placeholder:
+              "https://www.capcut.com/...",
             required: true,
           },
         ],
@@ -278,12 +358,15 @@ const API_CATEGORIES = [
         name: "Facebook Downloader",
         method: "GET",
         path: "/api/download/facebook",
-        description: "Download Facebook media.",
+        description:
+          "Download Facebook media.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://facebook.com/...",
+            placeholder:
+              "https://facebook.com/...",
             required: true,
           },
         ],
@@ -293,12 +376,15 @@ const API_CATEGORIES = [
         name: "MediaFire Downloader",
         method: "GET",
         path: "/api/download/mediafire",
-        description: "Download MediaFire files.",
+        description:
+          "Download MediaFire files.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://mediafire.com/...",
+            placeholder:
+              "https://mediafire.com/...",
             required: true,
           },
         ],
@@ -310,11 +396,13 @@ const API_CATEGORIES = [
         path: "/api/download/dramabox",
         description:
           "Download video dan mengambil data DramaBox.",
+
         params: [
           {
             name: "url",
             label: "URL DRAMABOX",
-            placeholder: "https://dramabox.com/...",
+            placeholder:
+              "https://dramabox.com/...",
             required: true,
           },
         ],
@@ -324,12 +412,15 @@ const API_CATEGORIES = [
         name: "Pinterest Downloader",
         method: "GET",
         path: "/api/download/pinterest",
-        description: "Download Pinterest media.",
+        description:
+          "Download Pinterest media.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://pinterest.com/...",
+            placeholder:
+              "https://pinterest.com/...",
             required: true,
           },
         ],
@@ -337,68 +428,97 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     FUN
+  ======================================================= */
+
   {
     name: "FUN",
     icon: "🎮",
     color: "pink",
     path: "/docs/fun",
+
     endpoints: [
+
       {
         name: "Truth",
         method: "GET",
         path: "/api/fun/truth",
-        description: "Random truth question.",
+        description:
+          "Random truth question.",
         params: [],
       },
+
       {
         name: "Dare",
         method: "GET",
         path: "/api/fun/dare",
-        description: "Random dare challenge.",
+        description:
+          "Random dare challenge.",
         params: [],
       },
+
       {
         name: "Joke",
         method: "GET",
         path: "/api/fun/joke",
-        description: "Generate random joke.",
+        description:
+          "Generate random joke.",
         params: [],
       },
     ],
   },
+
+
+  /* =======================================================
+     LEADERBOARD
+  ======================================================= */
 
   {
     name: "LEADERBOARD",
     icon: "🏆",
     color: "yellow",
     path: "/docs/leaderboard",
+
     endpoints: [
       {
         name: "Leaderboard",
         method: "GET",
         path: "/api/leaderboard",
-        description: "Get leaderboard data.",
+        description:
+          "Get leaderboard data.",
         params: [],
       },
     ],
   },
+
+
+  /* =======================================================
+     LIBRARY
+  ======================================================= */
 
   {
     name: "LIBRARY",
     icon: "▤",
     color: "orange",
     path: "/docs/library",
+
     endpoints: [
+
       {
         name: "Books",
         method: "GET",
         path: "/api/library/books",
-        description: "Search library books.",
+        description:
+          "Search library books.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "javascript",
+            placeholder:
+              "javascript",
             required: true,
           },
         ],
@@ -408,12 +528,15 @@ const API_CATEGORIES = [
         name: "Anime",
         method: "GET",
         path: "/api/library/anime",
-        description: "Search anime library.",
+        description:
+          "Search anime library.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "naruto",
+            placeholder:
+              "naruto",
             required: true,
           },
         ],
@@ -423,12 +546,15 @@ const API_CATEGORIES = [
         name: "Movies",
         method: "GET",
         path: "/api/library/movies",
-        description: "Search movie library.",
+        description:
+          "Search movie library.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "avengers",
+            placeholder:
+              "avengers",
             required: true,
           },
         ],
@@ -436,22 +562,32 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     MAKER
+  ======================================================= */
+
   {
     name: "MAKER",
     icon: "🎨",
     color: "purple",
     path: "/docs/maker",
+
     endpoints: [
+
       {
         name: "QR Maker",
         method: "GET",
         path: "/api/maker/qr",
-        description: "Generate QR code.",
+        description:
+          "Generate QR code.",
+
         params: [
           {
             name: "text",
             label: "TEXT",
-            placeholder: "Hello World",
+            placeholder:
+              "Hello World",
             required: true,
           },
         ],
@@ -461,12 +597,15 @@ const API_CATEGORIES = [
         name: "Logo Maker",
         method: "GET",
         path: "/api/maker/logo",
-        description: "Generate logo.",
+        description:
+          "Generate logo.",
+
         params: [
           {
             name: "text",
             label: "TEXT",
-            placeholder: "DINSTORE",
+            placeholder:
+              "DINSTORE",
             required: true,
           },
         ],
@@ -474,17 +613,25 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     NEWS
+  ======================================================= */
+
   {
     name: "NEWS",
     icon: "▤",
     color: "cyan",
     path: "/docs/news",
+
     endpoints: [
+
       {
         name: "Latest News",
         method: "GET",
         path: "/api/news/latest",
-        description: "Get latest news.",
+        description:
+          "Get latest news.",
         params: [],
       },
 
@@ -510,12 +657,15 @@ const API_CATEGORIES = [
         name: "Search News",
         method: "GET",
         path: "/api/news/search",
-        description: "Search news.",
+        description:
+          "Search news.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "teknologi",
+            placeholder:
+              "teknologi",
             required: true,
           },
         ],
@@ -523,17 +673,25 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     RANDOM
+  ======================================================= */
+
   {
     name: "RANDOM",
     icon: "◆",
     color: "violet",
     path: "/docs/random",
+
     endpoints: [
+
       {
         name: "Random Image",
         method: "GET",
         path: "/api/random/image",
-        description: "Get random image.",
+        description:
+          "Get random image.",
         params: [],
       },
 
@@ -541,18 +699,23 @@ const API_CATEGORIES = [
         name: "Random Number",
         method: "GET",
         path: "/api/random/number",
-        description: "Generate random number.",
+        description:
+          "Generate random number.",
+
         params: [
           {
             name: "min",
             label: "MINIMUM",
-            placeholder: "1",
+            placeholder:
+              "1",
             required: false,
           },
+
           {
             name: "max",
             label: "MAXIMUM",
-            placeholder: "100",
+            placeholder:
+              "100",
             required: false,
           },
         ],
@@ -560,22 +723,32 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     SEARCH
+  ======================================================= */
+
   {
     name: "SEARCH",
     icon: "⌕",
     color: "green",
     path: "/docs/search",
+
     endpoints: [
+
       {
         name: "Google Search",
         method: "GET",
         path: "/api/search/google",
-        description: "Search Google.",
+        description:
+          "Search Google.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "DINSTORE API",
+            placeholder:
+              "DINSTORE API",
             required: true,
           },
         ],
@@ -585,12 +758,15 @@ const API_CATEGORIES = [
         name: "YouTube Search",
         method: "GET",
         path: "/api/search/youtube",
-        description: "Search YouTube.",
+        description:
+          "Search YouTube.",
+
         params: [
           {
             name: "q",
             label: "QUERY",
-            placeholder: "music",
+            placeholder:
+              "music",
             required: true,
           },
         ],
@@ -598,23 +774,32 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     STALK
+  ======================================================= */
+
   {
     name: "STALK",
     icon: "◉",
     color: "pink",
     path: "/docs/stalk",
+
     endpoints: [
+
       {
         name: "TikTok Stalk",
         method: "GET",
         path: "/api/stalk/tiktok",
         description:
           "Get public TikTok profile information.",
+
         params: [
           {
             name: "username",
             label: "USERNAME",
-            placeholder: "username",
+            placeholder:
+              "username",
             required: true,
           },
         ],
@@ -626,11 +811,13 @@ const API_CATEGORIES = [
         path: "/api/stalk/instagram",
         description:
           "Get public Instagram profile information.",
+
         params: [
           {
             name: "username",
             label: "USERNAME",
-            placeholder: "username",
+            placeholder:
+              "username",
             required: true,
           },
         ],
@@ -638,55 +825,66 @@ const API_CATEGORIES = [
     ],
   },
 
+
+  /* =======================================================
+     TOOLS
+  ======================================================= */
+
   {
     name: "TOOLS",
     icon: "⌘",
     color: "orange",
     path: "/docs/tools",
-    endpoints: [
-      {
-        name: "WhatsApp Ban Checker",
-        method: "GET",
-        path: "/api/tools/checker-ban-wa",
-        category: "TOOLS",
-        description:
-          "Check whether a WhatsApp number is blocked/banned.",
-        params: [
-          {
-            name: "number",
-            label: "NUMBER",
-            type: "text",
-            placeholder: "628123456789",
-            required: true,
-          },
-        ],
-      },
 
+    endpoints: [
+{
+  name: "WhatsApp Ban Checker",
+  method: "GET",
+  path: "/api/tools/checker-ban-wa",
+  category: "TOOLS",
+  description: "Check whether a WhatsApp number is blocked/banned.",
+  params: [
+    {
+      name: "number",
+      label: "NUMBER",
+      type: "text",
+      placeholder: "628123456789",
+      required: true,
+    },
+  ],
+},
       {
         name: "Domain Info",
         method: "GET",
         path: "/api/tools/domaininfo",
-        description: "Check domain information.",
+        description:
+          "Check domain information.",
+
         params: [
           {
             name: "domain",
             label: "DOMAIN",
-            placeholder: "domainmu.com",
+            placeholder:
+              "domainmu.com",
             required: true,
           },
         ],
       },
 
+      
       {
         name: "Short URL",
         method: "GET",
         path: "/api/tools/shorturl",
-        description: "Shorten URL.",
+        description:
+          "Shorten URL.",
+
         params: [
           {
             name: "url",
             label: "URL",
-            placeholder: "https://example.com",
+            placeholder:
+              "https://example.com",
             required: true,
           },
         ],
@@ -695,6 +893,7 @@ const API_CATEGORIES = [
   },
 ];
 
+
 /* =========================================================
    HELPERS
 ========================================================= */
@@ -702,21 +901,25 @@ const API_CATEGORIES = [
 function buildUrl(path, values = {}) {
   const query = new URLSearchParams();
 
-  Object.entries(values).forEach(([key, value]) => {
-    if (
-      value !== undefined &&
-      value !== null &&
-      String(value).trim() !== ""
-    ) {
-      query.append(key, String(value));
+  Object.entries(values).forEach(
+    ([key, value]) => {
+      if (
+        value !== undefined &&
+        value !== null &&
+        String(value).trim() !== ""
+      ) {
+        query.append(key, String(value));
+      }
     }
-  });
+  );
 
-  const base = API_BASE_URL.replace(/\/+$/, "");
+  const base =
+    API_BASE_URL.replace(/\/+$/, "");
 
-  const cleanPath = path.startsWith("/")
-    ? path
-    : `/${path}`;
+  const cleanPath =
+    path.startsWith("/")
+      ? path
+      : `/${path}`;
 
   return (
     base +
@@ -727,92 +930,55 @@ function buildUrl(path, values = {}) {
   );
 }
 
+
 function makeCurl(url, method = "GET") {
   return `curl -X ${method} "${url}"`;
 }
 
+
 function formatResponse(data) {
-  if (typeof data === "string") {
+  if (
+    typeof data === "string"
+  ) {
     return data;
   }
 
   try {
-    return JSON.stringify(data, null, 2);
+    return JSON.stringify(
+      data,
+      null,
+      2
+    );
   } catch {
     return String(data);
   }
 }
 
-/* =========================================================
-   PARTICLE BACKGROUND
-========================================================= */
-
-function Particles() {
-  const particles = useMemo(() => {
-    return Array.from({ length: 70 }, (_, index) => ({
-      id: index,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      size: Math.floor(Math.random() * 4) + 2,
-      delay: Math.random() * 8,
-      duration: Math.floor(Math.random() * 15) + 10,
-    }));
-  }, []);
-
-  return (
-    <div className="particles" aria-hidden="true">
-      {particles.map((particle) => (
-        <span
-          key={particle.id}
-          className="particle-square"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            animationDelay: `${particle.delay}s`,
-            animationDuration: `${particle.duration}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
 
 /* =========================================================
    APP
 ========================================================= */
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
-  const [search, setSearch] = useState("");
+  const [menuOpen, setMenuOpen] =
+    useState(false);
 
-  const [openCategory, setOpenCategory] = useState("AI");
+  const [search, setSearch] =
+    useState("");
 
-  const [selectedEndpoint, setSelectedEndpoint] =
-    useState(API_CATEGORIES[0].endpoints[0]);
-
-  const [values, setValues] = useState({});
-
-  const [response, setResponse] = useState(null);
-
-  const [loading, setLoading] = useState(false);
-
-  const [error, setError] = useState("");
-
-  const [copied, setCopied] = useState("");
-
-  const [activeTab, setActiveTab] = useState("response");
-
-  const [showDevPopup, setShowDevPopup] = useState(true);
+  const [openCategory, setOpenCategory] =
+    useState(null);
 
   const [turnstileReady, setTurnstileReady] =
     useState(false);
 
-  const [verified, setVerified] = useState(false);
+  const [verified, setVerified] =
+    useState(false);
 
-  const turnstileRef = useRef(null);
+  const [showDevPopup, setShowDevPopup] =
+    useState(true);
+
 
   const totalEndpoints =
     API_CATEGORIES.reduce(
@@ -821,1298 +987,2027 @@ export default function App() {
       0
     );
 
+
   /* =======================================================
-     TURNSTILE
+     TURNSTILE SCRIPT
   ======================================================= */
 
   useEffect(() => {
+
     if (window.turnstile) {
       setTurnstileReady(true);
       return;
     }
 
-    const existing = document.querySelector(
-      'script[src*="challenges.cloudflare.com/turnstile"]'
-    );
-
-    if (existing) {
-      existing.addEventListener("load", () =>
-        setTurnstileReady(true)
+    const existing =
+      document.querySelector(
+        'script[src*="challenges.cloudflare.com/turnstile"]'
       );
 
-      return;
+    const script =
+      existing ||
+      document.createElement("script");
+
+    if (!existing) {
+
+      script.src =
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+      script.async = true;
+      script.defer = true;
+
+      document.head.appendChild(script);
     }
 
-    const script = document.createElement("script");
-
-    script.src =
-      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-
-    script.async = true;
-    script.defer = true;
-
-    script.onload = () => {
+    const onLoad = () =>
       setTurnstileReady(true);
-    };
 
-    document.head.appendChild(script);
+    if (window.turnstile) {
+      setTurnstileReady(true);
+    } else {
+      script.addEventListener(
+        "load",
+        onLoad
+      );
+    }
 
     return () => {
-      script.onload = null;
+      script.removeEventListener?.(
+        "load",
+        onLoad
+      );
     };
+
   }, []);
 
-  useEffect(() => {
-    if (
-      turnstileReady &&
-      turnstileRef.current &&
-      window.turnstile &&
-      !verified
-    ) {
-      try {
-        window.turnstile.render(
-          turnstileRef.current,
-          {
-            sitekey: TURNSTILE_SITE_KEY,
-
-            callback: () => {
-              setVerified(true);
-            },
-
-            "expired-callback": () => {
-              setVerified(false);
-            },
-
-            "error-callback": () => {
-              setVerified(false);
-            },
-          }
-        );
-      } catch {
-        // Turnstile gagal render tidak membuat aplikasi crash.
-      }
-    }
-  }, [turnstileReady, verified]);
 
   /* =======================================================
      SEARCH
   ======================================================= */
 
-  const filteredCategories = useMemo(() => {
-    const keyword = search.trim().toLowerCase();
+  const filteredCategories =
+    useMemo(() => {
 
-    if (!keyword) {
-      return API_CATEGORIES;
-    }
+      const keyword =
+        search.trim().toLowerCase();
 
-    return API_CATEGORIES
-      .map((category) => {
-        const categoryMatch =
-          category.name
-            .toLowerCase()
-            .includes(keyword);
+      if (!keyword) {
+        return API_CATEGORIES;
+      }
 
-        const endpoints =
-          category.endpoints.filter((endpoint) => {
-            return (
-              endpoint.name
-                .toLowerCase()
-                .includes(keyword) ||
-              endpoint.path
-                .toLowerCase()
-                .includes(keyword) ||
-              endpoint.description
-                .toLowerCase()
-                .includes(keyword)
+      return API_CATEGORIES
+        .map((category) => {
+
+          const categoryMatch =
+            category.name
+              .toLowerCase()
+              .includes(keyword);
+
+          const endpoints =
+            category.endpoints.filter(
+              (endpoint) =>
+                endpoint.name
+                  .toLowerCase()
+                  .includes(keyword) ||
+                endpoint.path
+                  .toLowerCase()
+                  .includes(keyword) ||
+                endpoint.description
+                  .toLowerCase()
+                  .includes(keyword)
             );
-          });
 
-        if (categoryMatch) {
-          return category;
-        }
+          if (categoryMatch) {
+            return category;
+          }
 
-        if (endpoints.length > 0) {
-          return {
-            ...category,
-            endpoints,
-          };
-        }
+          if (endpoints.length) {
+            return {
+              ...category,
+              endpoints,
+            };
+          }
 
-        return null;
-      })
-      .filter(Boolean);
-  }, [search]);
+          return null;
+        })
+        .filter(Boolean);
 
-  /* =======================================================
-     SELECT ENDPOINT
-  ======================================================= */
+    }, [search]);
 
-  function selectEndpoint(category, endpoint) {
-    setSelectedEndpoint({
-      ...endpoint,
-      category: category.name,
-    });
-
-    const defaults = {};
-
-    endpoint.params?.forEach((param) => {
-      if (param.default !== undefined) {
-        defaults[param.name] = param.default;
-      }
-    });
-
-    setValues(defaults);
-
-    setResponse(null);
-    setError("");
-    setActiveTab("response");
-
-    setMenuOpen(false);
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
-
-  /* =======================================================
-     INPUT
-  ======================================================= */
-
-  function updateValue(name, value) {
-    setValues((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
-  }
-
-  /* =======================================================
-     URL
-  ======================================================= */
-
-  const requestUrl = useMemo(() => {
-    if (!selectedEndpoint) {
-      return "";
-    }
-
-    return buildUrl(
-      selectedEndpoint.path,
-      values
-    );
-  }, [selectedEndpoint, values]);
-
-  const curlCode = useMemo(() => {
-    return makeCurl(
-      requestUrl,
-      selectedEndpoint?.method || "GET"
-    );
-  }, [requestUrl, selectedEndpoint]);
-
-  /* =======================================================
-     COPY
-  ======================================================= */
-
-  async function copyText(text, type = "text") {
-    try {
-      await navigator.clipboard.writeText(text);
-
-      setCopied(type);
-
-      setTimeout(() => {
-        setCopied("");
-      }, 1800);
-    } catch {
-      setError("Gagal menyalin ke clipboard.");
-    }
-  }
-
-  /* =======================================================
-     TEST API
-  ======================================================= */
-
-  async function testApi() {
-    if (!selectedEndpoint) {
-      return;
-    }
-
-    setError("");
-    setResponse(null);
-
-    /* Required validation */
-
-    const missing = [];
-
-    selectedEndpoint.params?.forEach((param) => {
-      if (
-        param.required &&
-        !String(values[param.name] || "").trim()
-      ) {
-        missing.push(param.label || param.name);
-      }
-    });
-
-    if (missing.length > 0) {
-      setError(
-        `Field wajib diisi: ${missing.join(", ")}`
-      );
-
-      return;
-    }
-
-    setLoading(true);
-
-    const startedAt = performance.now();
-
-    try {
-      const url = buildUrl(
-        selectedEndpoint.path,
-        values
-      );
-
-      const res = await fetch(url, {
-        method: selectedEndpoint.method || "GET",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-        },
-      });
-
-      const contentType =
-        res.headers.get("content-type") || "";
-
-      let data;
-
-      if (contentType.includes("application/json")) {
-        data = await res.json();
-      } else {
-        data = await res.text();
-      }
-
-      const duration =
-        Math.round(performance.now() - startedAt);
-
-      setResponse({
-        status: res.status,
-        ok: res.ok,
-        duration,
-        data,
-        url,
-      });
-
-      setActiveTab("response");
-    } catch (err) {
-      setError(
-        err?.message ||
-          "Request gagal. Periksa URL API dan koneksi server."
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  /* =======================================================
-     KEYBOARD
-  ======================================================= */
-
-  useEffect(() => {
-    function handleKeyDown(event) {
-      if (
-        (event.ctrlKey || event.metaKey) &&
-        event.key.toLowerCase() === "k"
-      ) {
-        event.preventDefault();
-
-        document
-          .querySelector(".docs-search-input")
-          ?.focus();
-      }
-
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
-    }
-
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
-
-    return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-    };
-  }, []);
 
   /* =======================================================
      NAVIGATION
   ======================================================= */
 
-  function scrollToDocs() {
-    document
-      .querySelector(".docs-content")
-      ?.scrollIntoView({
-        behavior: "smooth",
-      });
-  }
+  const scrollToCategory =
+    (name) => {
+
+      setMenuOpen(false);
+
+      setTimeout(() => {
+
+        const element =
+          document.getElementById(
+            `category-${name.toLowerCase()}`
+          );
+
+        element?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+      }, 150);
+    };
+
+
+  const openWhatsApp = () => {
+
+    window.open(
+      "https://wa.me/6287776581216",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
 
   /* =======================================================
-     RENDER
+     TURNSTILE GATE
+  ======================================================= */
+
+  if (!verified) {
+
+    return (
+      <TurnstileGate
+        ready={turnstileReady}
+        onVerified={() =>
+          setVerified(true)
+        }
+      />
+    );
+  }
+
+
+  /* =======================================================
+     MAIN
   ======================================================= */
 
   return (
+
     <div className="app">
 
-      {/* ===================================================
-          BACKGROUND
-      =================================================== */}
+      {/* DEVELOPMENT POPUP */}
 
-      <Particles />
+      {showDevPopup && (
 
-      <div className="background-grid" />
+        <div className="dev-popup-overlay">
 
-      <div className="background-glow glow-one" />
-      <div className="background-glow glow-two" />
+          <div className="dev-popup">
 
-      {/* ===================================================
-          HEADER
-      =================================================== */}
+            <button
+              className="dev-popup-close"
+              onClick={() =>
+                setShowDevPopup(false)
+              }
+            >
+              ×
+            </button>
 
-      <header className="top-header">
+            <div className="dev-popup-header">
 
-        <div className="header-left">
+              <div className="dev-popup-icon">
+                🚧
+              </div>
+
+              <div>
+
+                <h2>
+                  DINSTORE API
+                </h2>
+
+                <p>
+                  Website masih dalam
+                  pengembangan
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div className="dev-popup-status">
+
+              <span />
+
+              DEVELOPMENT 50%
+
+            </div>
+
+
+            <div className="dev-popup-progress">
+
+              <div className="dev-popup-progress-bar">
+
+                <div className="dev-popup-progress-fill" />
+
+              </div>
+
+
+              <div className="dev-popup-progress-info">
+
+                <span>
+                  Progress Website
+                </span>
+
+                <b>
+                  50%
+                </b>
+
+              </div>
+
+            </div>
+
+
+            <p className="dev-popup-text">
+
+              Website ini masih dalam
+              tahap pengembangan.
+              Beberapa API mungkin
+              masih mengalami perubahan
+              atau belum bisa digunakan.
+
+            </p>
+
+
+            <button
+              className="dev-popup-button"
+              onClick={() =>
+                setShowDevPopup(false)
+              }
+            >
+              LANJUTKAN
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
+
+
+      <div className="grid-background" />
+
+
+      {/* ROBOT */}
+
+      <div className="robot-decoration robot-one">
+
+        <span />
+        <span />
+        <span />
+
+      </div>
+
+
+      {/* HEADER */}
+
+      <header className="header">
+
+        <div className="header-inner">
 
           <button
-            className="mobile-menu-button"
+            className="menu-button"
             onClick={() =>
-              setMenuOpen(!menuOpen)
+              setMenuOpen(true)
             }
-            aria-label="Menu"
+            aria-label="Open menu"
           >
+
             <span />
             <span />
             <span />
+
           </button>
 
-          <div
-            className="brand"
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              })
-            }
-          >
-            <div className="brand-logo">
+
+          <div className="brand">
+
+            <div className="brand-core">
               D
             </div>
 
-            <div className="brand-text">
-              <strong>DIN API</strong>
-              <span>Developer Platform</span>
+            <div>
+
+              <strong>
+                DINSTORE
+              </strong>
+
+              <small>
+                API SYSTEM
+              </small>
+
             </div>
-          </div>
-
-        </div>
-
-        <div className="header-center">
-
-          <div className="search-box">
-
-            <span className="search-icon">
-              ⌕
-            </span>
-
-            <input
-              className="docs-search-input"
-              value={search}
-              onChange={(event) =>
-                setSearch(event.target.value)
-              }
-              placeholder="Search endpoints..."
-            />
-
-            <kbd>Ctrl K</kbd>
 
           </div>
 
-        </div>
 
-        <div className="header-right">
+          <div className="header-status">
 
-          <div className="status-pill">
-            <span className="status-dot" />
-            API ONLINE
+            <span />
+
+            ONLINE
+
           </div>
-
-          <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="header-link"
-          >
-            GitHub
-          </a>
 
         </div>
 
       </header>
 
-      {/* ===================================================
-          LAYOUT
-      =================================================== */}
 
-      <div className="docs-layout">
+      {/* OVERLAY */}
 
-        {/* =================================================
-            SIDEBAR
-        ================================================= */}
+      <div
+        className={`nav-overlay ${
+          menuOpen ? "show" : ""
+        }`}
+        onClick={() =>
+          setMenuOpen(false)
+        }
+      />
 
-        <aside
-          className={`docs-sidebar ${
-            menuOpen ? "sidebar-open" : ""
-          }`}
-        >
 
-          <div className="sidebar-top">
+      {/* SIDE NAV */}
 
-            <div className="sidebar-title">
-              DOCUMENTATION
-            </div>
+      <aside
+        className={`side-nav ${
+          menuOpen ? "open" : ""
+        }`}
+      >
 
-            <div className="sidebar-subtitle">
-              API REFERENCE
-            </div>
+        <div className="side-nav-header">
 
-          </div>
+          <div>
 
-          <div className="sidebar-scroll">
+            <span className="nav-label">
+              NAVIGATION
+            </span>
 
-            <button
-              className="overview-button"
-              onClick={() => {
-                setSearch("");
-                setMenuOpen(false);
-
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                });
-              }}
-            >
-              <span className="overview-icon">
-                ◈
-              </span>
-
-              <span>
-                Overview
-              </span>
-            </button>
-
-            <div className="category-list">
-
-              {filteredCategories.map(
-                (category) => {
-
-                  const isOpen =
-                    openCategory ===
-                    category.name;
-
-                  return (
-                    <div
-                      className="category"
-                      key={category.name}
-                    >
-
-                      <button
-                        className={`category-button ${
-                          isOpen
-                            ? "active"
-                            : ""
-                        }`}
-                        onClick={() => {
-                          setOpenCategory(
-                            isOpen
-                              ? null
-                              : category.name
-                          );
-                        }}
-                      >
-
-                        <span
-                          className={`category-icon ${category.color}`}
-                        >
-                          {category.icon}
-                        </span>
-
-                        <span className="category-name">
-                          {category.name}
-                        </span>
-
-                        <span className="category-count">
-                          {
-                            category.endpoints
-                              .length
-                          }
-                        </span>
-
-                        <span
-                          className={`category-arrow ${
-                            isOpen
-                              ? "rotate"
-                              : ""
-                          }`}
-                        >
-                          ›
-                        </span>
-
-                      </button>
-
-                      {isOpen && (
-                        <div className="endpoint-list">
-
-                          {category.endpoints.map(
-                            (endpoint) => {
-
-                              const active =
-                                selectedEndpoint
-                                  ?.path ===
-                                endpoint.path;
-
-                              return (
-                                <button
-                                  key={
-                                    endpoint.path
-                                  }
-                                  className={`endpoint-button ${
-                                    active
-                                      ? "selected"
-                                      : ""
-                                  }`}
-                                  onClick={() =>
-                                    selectEndpoint(
-                                      category,
-                                      endpoint
-                                    )
-                                  }
-                                >
-
-                                  <span
-                                    className={`method-dot ${category.color}`}
-                                  />
-
-                                  <span className="endpoint-name">
-                                    {
-                                      endpoint.name
-                                    }
-                                  />
-
-                                </button>
-                              );
-                            }
-                          )}
-
-                        </div>
-                      )}
-
-                    </div>
-                  );
-                }
-              )}
-
-            </div>
+            <h2>
+              DINSTORE API
+            </h2>
 
           </div>
 
-          <div className="sidebar-bottom">
-
-            <div className="sidebar-stat">
-              <span>ENDPOINTS</span>
-              <strong>
-                {totalEndpoints}
-              </strong>
-            </div>
-
-            <div className="sidebar-stat">
-              <span>VERSION</span>
-              <strong>v2</strong>
-            </div>
-
-          </div>
-
-        </aside>
-
-        {/* =================================================
-            MAIN
-        ================================================= */}
-
-        <main className="docs-main">
-
-          {/* =================================================
-              HERO
-          ================================================= */}
-
-          <section className="hero-section">
-
-            <div className="hero-badge">
-              <span className="hero-badge-dot" />
-              DIN API V2
-            </div>
-
-            <h1>
-              Powerful APIs.
-              <br />
-
-              <span>
-                Built for developers.
-              </span>
-            </h1>
-
-            <p>
-              Simple, fast, and reliable API
-              endpoints for your next project.
-              Explore the documentation and
-              test every endpoint directly.
-            </p>
-
-            <div className="hero-actions">
-
-              <button
-                className="primary-button"
-                onClick={scrollToDocs}
-              >
-                <span>Explore API</span>
-                <span>→</span>
-              </button>
-
-              <button
-                className="secondary-button"
-                onClick={() =>
-                  copyText(
-                    API_BASE_URL ||
-                      window.location.origin,
-                    "base"
-                  )
-                }
-              >
-                {copied === "base"
-                  ? "Copied!"
-                  : "Copy Base URL"}
-              </button>
-
-            </div>
-
-            <div className="hero-stats">
-
-              <div className="hero-stat">
-                <strong>
-                  {API_CATEGORIES.length}
-                </strong>
-                <span>
-                  Categories
-                </span>
-              </div>
-
-              <div className="hero-stat">
-                <strong>
-                  {totalEndpoints}
-                </strong>
-                <span>
-                  Endpoints
-                </span>
-              </div>
-
-              <div className="hero-stat">
-                <strong>
-                  99.9%
-                </strong>
-                <span>
-                  Uptime Target
-                </span>
-              </div>
-
-            </div>
-
-          </section>
-
-          {/* =================================================
-              API TESTER
-          ================================================= */}
-
-          <section
-            className="docs-content"
-            id="api-tester"
-          >
-
-            <div className="section-heading">
-
-              <div>
-
-                <div className="eyebrow">
-                  API REFERENCE
-                </div>
-
-                <h2>
-                  {selectedEndpoint?.name ||
-                    "Select an endpoint"}
-                </h2>
-
-                <p>
-                  {selectedEndpoint?.description ||
-                    "Choose an endpoint from the sidebar."}
-                </p>
-
-              </div>
-
-              {selectedEndpoint && (
-                <div className="endpoint-badge">
-                  <span>
-                    {selectedEndpoint.method}
-                  </span>
-
-                  <code>
-                    {selectedEndpoint.path}
-                  </code>
-                </div>
-              )}
-
-            </div>
-
-            {/* =================================================
-                REQUEST CARD
-            ================================================= */}
-
-            {selectedEndpoint && (
-              <div className="tester-card">
-
-                <div className="card-header">
-
-                  <div>
-                    <span className="card-kicker">
-                      REQUEST
-                    </span>
-
-                    <h3>
-                      Test this endpoint
-                    </h3>
-                  </div>
-
-                  <span className="live-badge">
-                    LIVE
-                  </span>
-
-                </div>
-
-                <div className="request-url">
-
-                  <span className="url-method">
-                    {selectedEndpoint.method}
-                  </span>
-
-                  <code>
-                    {requestUrl ||
-                      selectedEndpoint.path}
-                  </code>
-
-                  <button
-                    className="copy-button"
-                    onClick={() =>
-                      copyText(
-                        requestUrl,
-                        "url"
-                      )
-                    }
-                  >
-                    {copied === "url"
-                      ? "✓"
-                      : "Copy"}
-                  </button>
-
-                </div>
-
-                {selectedEndpoint.params?.length >
-                  0 ? (
-                  <div className="params-area">
-
-                    <div className="params-title">
-                      QUERY PARAMETERS
-                    </div>
-
-                    <div className="params-grid">
-
-                      {selectedEndpoint.params.map(
-                        (param) => {
-
-                          const value =
-                            values[
-                              param.name
-                            ] ??
-                            param.default ??
-                            "";
-
-                          return (
-                            <div
-                              className="param-field"
-                              key={
-                                param.name
-                              }
-                            >
-
-                              <label>
-                                <span>
-                                  {
-                                    param.label ||
-                                    param.name
-                                  }
-                                </span>
-
-                                {param.required && (
-                                  <b>
-                                    REQUIRED
-                                  </b>
-                                )}
-                              </label>
-
-                              {param.type ===
-                                "select" ? (
-                                <select
-                                  value={
-                                    value
-                                  }
-                                  onChange={(
-                                    event
-                                  ) =>
-                                    updateValue(
-                                      param.name,
-                                      event.target
-                                        .value
-                                    )
-                                  }
-                                >
-                                  {param.options?.map(
-                                    (option) => (
-                                      <option
-                                        value={
-                                          option
-                                        }
-                                        key={
-                                          option
-                                        }
-                                      >
-                                        {
-                                          option
-                                        }
-                                      </option>
-                                    )
-                                  )}
-                                </select>
-                              ) : (
-                                <input
-                                  type="text"
-                                  value={
-                                    value
-                                  }
-                                  placeholder={
-                                    param.placeholder ||
-                                    ""
-                                  }
-                                  onChange={(
-                                    event
-                                  ) =>
-                                    updateValue(
-                                      param.name,
-                                      event.target
-                                        .value
-                                    )
-                                  }
-                                />
-                              )}
-
-                              {param.placeholder && (
-                                <small>
-                                  Example:{" "}
-                                  {
-                                    param.placeholder
-                                  }
-                                </small>
-                              )}
-
-                            </div>
-                          );
-                        }
-                      )}
-
-                    </div>
-
-                  </div>
-                ) : (
-                  <div className="no-params">
-                    <span>✓</span>
-                    This endpoint does not
-                    require parameters.
-                  </div>
-                )}
-
-                {/* TURNSTILE */}
-
-                <div className="security-box">
-
-                  <div className="security-icon">
-                    ◈
-                  </div>
-
-                  <div className="security-text">
-                    <strong>
-                      Security verification
-                    </strong>
-
-                    <span>
-                      Complete verification
-                      before testing the API.
-                    </span>
-                  </div>
-
-                  <div
-                    ref={turnstileRef}
-                    className="turnstile-container"
-                  />
-
-                </div>
-
-                {error && (
-                  <div className="error-box">
-                    <span>!</span>
-                    {error}
-                  </div>
-                )}
-
-                <button
-                  className="test-button"
-                  onClick={testApi}
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <span className="spinner" />
-                      Sending request...
-                    </>
-                  ) : (
-                    <>
-                      <span>▶</span>
-                      Send Request
-                    </>
-                  )}
-                </button>
-
-              </div>
-            )}
-
-            {/* =================================================
-                RESPONSE
-            ================================================= */}
-
-            {response && (
-              <div className="response-card">
-
-                <div className="response-header">
-
-                  <div>
-
-                    <span className="card-kicker">
-                      RESPONSE
-                    </span>
-
-                    <h3>
-                      API Response
-                    </h3>
-
-                  </div>
-
-                  <div className="response-meta">
-
-                    <span
-                      className={
-                        response.ok
-                          ? "response-success"
-                          : "response-error"
-                      }
-                    >
-                      {response.status}
-                    </span>
-
-                    <span>
-                      {response.duration}ms
-                    </span>
-
-                  </div>
-
-                </div>
-
-                <div className="response-tabs">
-
-                  <button
-                    className={
-                      activeTab === "response"
-                        ? "active"
-                        : ""
-                    }
-                    onClick={() =>
-                      setActiveTab(
-                        "response"
-                      )
-                    }
-                  >
-                    Response
-                  </button>
-
-                  <button
-                    className={
-                      activeTab === "curl"
-                        ? "active"
-                        : ""
-                    }
-                    onClick={() =>
-                      setActiveTab("curl")
-                    }
-                  >
-                    cURL
-                  </button>
-
-                </div>
-
-                {activeTab === "response" && (
-                  <div className="code-container">
-
-                    <div className="code-toolbar">
-
-                      <span>
-                        JSON / TEXT
-                      </span>
-
-                      <button
-                        onClick={() =>
-                          copyText(
-                            formatResponse(
-                              response.data
-                            ),
-                            "response"
-                          )
-                        }
-                      >
-                        {copied ===
-                        "response"
-                          ? "Copied!"
-                          : "Copy"}
-                      </button>
-
-                    </div>
-
-                    <pre>
-                      <code>
-                        {formatResponse(
-                          response.data
-                        )}
-                      </code>
-                    </pre>
-
-                  </div>
-                )}
-
-                {activeTab === "curl" && (
-                  <div className="code-container">
-
-                    <div className="code-toolbar">
-
-                      <span>
-                        CURL
-                      </span>
-
-                      <button
-                        onClick={() =>
-                          copyText(
-                            curlCode,
-                            "curl"
-                          )
-                        }
-                      >
-                        {copied === "curl"
-                          ? "Copied!"
-                          : "Copy"}
-                      </button>
-
-                    </div>
-
-                    <pre>
-                      <code>
-                        {curlCode}
-                      </code>
-                    </pre>
-
-                  </div>
-                )}
-
-              </div>
-            )}
-
-            {/* =================================================
-                QUICK ENDPOINTS
-            ================================================= */}
-
-            <section className="quick-section">
-
-              <div className="section-heading small">
-
-                <div>
-
-                  <div className="eyebrow">
-                    BROWSE
-                  </div>
-
-                  <h2>
-                    All endpoints
-                  </h2>
-
-                </div>
-
-              </div>
-
-              <div className="endpoint-cards">
-
-                {API_CATEGORIES.map(
-                  (category) => (
-                    <div
-                      className="endpoint-category-card"
-                      key={category.name}
-                    >
-
-                      <div className="mini-category">
-
-                        <span
-                          className={`category-icon ${category.color}`}
-                        >
-                          {category.icon}
-                        </span>
-
-                        <div>
-
-                          <strong>
-                            {category.name}
-                          </strong>
-
-                          <span>
-                            {
-                              category.endpoints
-                                .length
-                            }{" "}
-                            endpoints
-                          </span>
-
-                        </div>
-
-                      </div>
-
-                      <div className="mini-endpoints">
-
-                        {category.endpoints
-                          .slice(0, 5)
-                          .map(
-                            (endpoint) => (
-                              <button
-                                key={
-                                  endpoint.path
-                                }
-                                onClick={() =>
-                                  selectEndpoint(
-                                    category,
-                                    endpoint
-                                  )
-                                }
-                              >
-                                <span>
-                                  {
-                                    endpoint
-                                      .method
-                                  }
-                                </span>
-
-                                <code>
-                                  {
-                                    endpoint.path
-                                  }
-                                </code>
-
-                                <b>
-                                  →
-                                </b>
-                              </button>
-                            )
-                          )}
-
-                      </div>
-
-                    </div>
-                  )
-                )}
-
-              </div>
-
-            </section>
-
-          </section>
-
-        </main>
-
-      </div>
-
-      {/* =====================================================
-          DEVELOPER POPUP
-      ===================================================== */}
-
-      {showDevPopup && (
-        <div className="dev-popup">
 
           <button
-            className="popup-close"
+            className="close-button"
             onClick={() =>
-              setShowDevPopup(false)
+              setMenuOpen(false)
             }
           >
             ×
           </button>
 
-          <div className="popup-icon">
-            ✦
+        </div>
+
+
+        <div className="nav-items">
+
+          <button
+            className="nav-item home"
+            onClick={() => {
+
+              setMenuOpen(false);
+
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+
+            }}
+          >
+
+            <span>
+              ⌂
+            </span>
+
+            <b>
+              HOME
+            </b>
+
+            <small>
+              00
+            </small>
+
+          </button>
+
+
+          {API_CATEGORIES.map(
+            (category, index) => (
+
+              <button
+                className="nav-item"
+                key={category.name}
+                onClick={() =>
+                  scrollToCategory(
+                    category.name
+                  )
+                }
+              >
+
+                <span
+                  className={
+                    category.color
+                  }
+                >
+                  {category.icon}
+                </span>
+
+                <b>
+                  {category.name}
+                </b>
+
+                <small>
+                  {String(index + 1)
+                    .padStart(2, "0")}
+                </small>
+
+              </button>
+
+            )
+          )}
+
+        </div>
+
+
+        <div className="side-footer">
+
+          <span>
+            SYSTEM STATUS
+          </span>
+
+          <strong>
+            ● OPERATIONAL
+          </strong>
+
+        </div>
+
+      </aside>
+
+
+      {/* MAIN */}
+
+      <main className="main">
+
+
+        {/* HERO */}
+
+        <section className="hero">
+
+          <div className="hero-machine">
+
+            <div className="machine-ring" />
+
+            <div className="machine-core">
+
+              <div className="eye eye-left" />
+              <div className="eye eye-right" />
+
+              <div className="machine-mouth" />
+
+            </div>
+
           </div>
 
-          <div className="popup-content">
+
+          <div className="terminal-badge">
+
+            <span />
+
+            TERMINAL ACTIVE
+
+          </div>
+
+
+          <div className="hero-title">
+
+            <h1>
+              DINSTORE
+            </h1>
+
+            <span>
+              3.0.0
+            </span>
+
+          </div>
+
+
+          <p className="hero-description">
+
+            A comprehensive and user
+            friendly API solution for
+            modern applications.
+
+          </p>
+
+
+          <div className="stats">
+
+            <div className="stat">
+
+              <span>
+                CATEGORIES
+              </span>
+
+              <strong>
+                {API_CATEGORIES.length}
+              </strong>
+
+            </div>
+
+
+            <div className="stat green">
+
+              <span>
+                ENDPOINTS
+              </span>
+
+              <strong>
+                {totalEndpoints}
+              </strong>
+
+            </div>
+
+
+            <div className="stat status">
+
+              <span>
+                STATUS
+              </span>
+
+              <strong>
+                ONLINE
+              </strong>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* SEARCH */}
+
+        <section className="search-section">
+
+          <div className="search-box">
+
+            <span>
+              ⌕
+            </span>
+
+
+            <input
+              value={search}
+              onChange={(e) =>
+                setSearch(
+                  e.target.value
+                )
+              }
+              placeholder="SEARCH ENDPOINT / CATEGORY..."
+            />
+
+
+            {search && (
+
+              <button
+                onClick={() =>
+                  setSearch("")
+                }
+              >
+                ×
+              </button>
+
+            )}
+
+          </div>
+
+        </section>
+
+
+        {/* CATEGORIES */}
+
+        <section className="categories">
+
+          {filteredCategories.map(
+            (category, index) => {
+
+              const isOpen =
+                openCategory ===
+                category.name;
+
+
+              return (
+
+                <article
+                  key={category.name}
+                  id={`category-${category.name.toLowerCase()}`}
+                  className={`category-card ${
+                    isOpen
+                      ? "opened"
+                      : ""
+                  }`}
+                >
+
+                  <button
+                    className="category-top"
+                    onClick={() =>
+                      setOpenCategory(
+                        isOpen
+                          ? null
+                          : category.name
+                      )
+                    }
+                  >
+
+                    <div
+                      className={`category-icon ${
+                        category.color
+                      }`}
+                    >
+                      {category.icon}
+                    </div>
+
+
+                    <div className="category-info">
+
+                      <small>
+
+                        MODULE{" "}
+
+                        {String(index + 1)
+                          .padStart(
+                            2,
+                            "0"
+                          )}
+
+                      </small>
+
+
+                      <h2>
+                        {category.name}
+                      </h2>
+
+
+                      <span>
+
+                        {category.endpoints.length}
+
+                        {" "}ENDPOINTS
+
+                      </span>
+
+                    </div>
+
+
+                    <span className="open-label">
+
+                      {isOpen
+                        ? "CLOSE ↑"
+                        : "OPEN →"}
+
+                    </span>
+
+                  </button>
+
+
+                  <div className="category-path">
+
+                    <span>
+                      PATH
+                    </span>
+
+                    {category.path}
+
+                  </div>
+
+
+                  <div
+                    className={`endpoint-list ${
+                      isOpen
+                        ? "visible"
+                        : ""
+                    }`}
+                  >
+
+                    {category.endpoints.map(
+                      (endpoint) => (
+
+                        <EndpointCard
+                          key={
+                            endpoint.path
+                          }
+                          endpoint={
+                            endpoint
+                          }
+                        />
+
+                      )
+                    )}
+
+                  </div>
+
+                </article>
+
+              );
+            }
+          )}
+
+
+          {!filteredCategories.length && (
+
+            <div className="empty">
+
+              <strong>
+                ENDPOINT NOT FOUND
+              </strong>
+
+              <span>
+                Try another keyword.
+              </span>
+
+            </div>
+
+          )}
+
+        </section>
+
+      </main>
+
+
+      {/* FLOATING WHATSAPP */}
+
+      <button
+        className="floating-robot"
+        onClick={openWhatsApp}
+        aria-label="Contact WhatsApp"
+      >
+
+        <div className="robot-face">
+
+          <span className="robot-eye left" />
+
+          <span className="robot-eye right" />
+
+
+          <div className="robot-mouth">
+
+            <i />
+            <i />
+            <i />
+
+          </div>
+
+        </div>
+
+
+        <span className="robot-dot" />
+
+      </button>
+
+    </div>
+  );
+}
+
+
+/* =========================================================
+   TURNSTILE
+========================================================= */
+
+function TurnstileGate({
+  ready,
+  onVerified,
+}) {
+
+  const widgetRef =
+    useRef(null);
+
+  const widgetIdRef =
+    useRef(null);
+
+  const [error, setError] =
+    useState("");
+
+  const [checking, setChecking] =
+    useState(false);
+
+
+  useEffect(() => {
+
+    if (
+      !ready ||
+      !window.turnstile ||
+      !widgetRef.current ||
+      widgetIdRef.current !== null
+    ) {
+      return;
+    }
+
+
+    const siteKey =
+      import.meta.env
+        .VITE_TURNSTILE_SITE_KEY;
+
+
+    if (!siteKey) {
+
+      setError(
+        "VITE_TURNSTILE_SITE_KEY belum dikonfigurasi di Vercel."
+      );
+
+      return;
+    }
+
+
+    try {
+
+      widgetIdRef.current =
+        window.turnstile.render(
+          widgetRef.current,
+          {
+
+            sitekey: siteKey,
+
+            theme: "dark",
+
+
+            callback:
+              async (token) => {
+
+                setError("");
+                setChecking(true);
+
+
+                try {
+
+                  const verify =
+                    await fetch(
+                      "/api/verify-turnstile",
+                      {
+                        method:
+                          "POST",
+
+                        headers: {
+                          "Content-Type":
+                            "application/json",
+                        },
+
+                        body:
+                          JSON.stringify({
+                            token,
+                          }),
+                      }
+                    );
+
+
+                  const data =
+                    await verify.json();
+
+
+                  if (
+                    !verify.ok ||
+                    !data.success
+                  ) {
+
+                    throw new Error(
+                      data.message ||
+                        "Verifikasi Cloudflare gagal."
+                    );
+                  }
+
+
+                  onVerified();
+
+                } catch (err) {
+
+                  setError(
+                    err.message ||
+                      "Verifikasi gagal."
+                  );
+
+
+                  try {
+
+                    window.turnstile.reset(
+                      widgetIdRef.current
+                    );
+
+                  } catch {}
+
+                } finally {
+
+                  setChecking(false);
+
+                }
+              },
+
+
+            "expired-callback":
+              () => {
+
+                setError(
+                  "Verifikasi kedaluwarsa. Silakan ulangi."
+                );
+
+              },
+
+
+            "error-callback":
+              () => {
+
+                setError(
+                  "Cloudflare Turnstile gagal dimuat."
+                );
+
+              },
+
+          }
+        );
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError(
+        "Turnstile tidak dapat dijalankan."
+      );
+
+    }
+
+
+    return () => {
+
+      try {
+
+        if (
+          window.turnstile &&
+          widgetIdRef.current !== null
+        ) {
+
+          window.turnstile.remove(
+            widgetIdRef.current
+          );
+
+        }
+
+      } catch {}
+
+
+      widgetIdRef.current =
+        null;
+
+    };
+
+  }, [
+    ready,
+    onVerified,
+  ]);
+
+
+  return (
+
+    <div className="verification-screen">
+
+      <div className="verification-grid" />
+
+      <div className="verification-glow verification-glow-one" />
+
+      <div className="verification-glow verification-glow-two" />
+
+
+      <div className="verification-card">
+
+        <div className="verification-brand">
+
+          <div className="verification-logo">
+            D
+          </div>
+
+
+          <div>
 
             <strong>
-              DIN API V2
+              DIN API🔥
             </strong>
 
             <span>
-              Developer documentation is
-              ready to use.
+              API SYSTEM
             </span>
 
           </div>
 
         </div>
-      )}
 
-      {/* =====================================================
-          MOBILE OVERLAY
-      ===================================================== */}
 
-      {menuOpen && (
-        <div
-          className="mobile-overlay"
-          onClick={() =>
-            setMenuOpen(false)
+        <div className="verification-line" />
+
+
+        <div className="verification-icon">
+          ◉
+        </div>
+
+
+        <span className="verification-eyebrow">
+          SECURITY CHECK
+        </span>
+
+
+        <h1>
+          VERIFY ACCESS
+        </h1>
+
+
+        <p>
+
+          Selesaikan verifikasi
+          Cloudflare terlebih dahulu
+          untuk masuk ke DIN API.
+
+        </p>
+
+
+        <div className="verification-status">
+
+          <span
+            className={
+              checking
+                ? "checking"
+                : ""
+            }
+          />
+
+          {checking
+            ? "VERIFYING..."
+            : "WAITING FOR VERIFICATION"}
+
+        </div>
+
+
+        <div className="turnstile-gate-widget">
+
+          {ready ? (
+
+            <div
+              ref={widgetRef}
+            />
+
+          ) : (
+
+            <div className="turnstile-loading">
+
+              MEMUAT CLOUDFLARE...
+
+            </div>
+
+          )}
+
+        </div>
+
+
+        {error && (
+
+          <div className="verification-error">
+
+            <b>
+              !
+            </b>
+
+            <span>
+              {error}
+            </span>
+
+          </div>
+
+        )}
+
+
+        <small className="verification-note">
+
+          Your connection is protected
+          by Cloudflare Turnstile.
+
+        </small>
+
+      </div>
+
+    </div>
+
+  );
+}
+
+
+/* =========================================================
+   ENDPOINT CARD
+   FITUR:
+   - GET / POST
+   - REQUEST PARAMETER
+   - EXECUTE
+   - CLEAR
+   - PREVIEW
+   - HEADERS
+   - CURL
+   - STATUS
+   - PING / LATENCY
+   - COPY CURL
+   - COPY RESPONSE
+========================================================= */
+
+function EndpointCard({
+  endpoint,
+}) {
+
+  const [expanded, setExpanded] =
+    useState(false);
+
+  const [values, setValues] =
+    useState(() => {
+
+      const initial = {};
+
+      endpoint.params.forEach(
+        (param) => {
+
+          if (
+            param.default !==
+            undefined
+          ) {
+
+            initial[param.name] =
+              param.default;
+
           }
-        />
+
+        }
+      );
+
+      return initial;
+
+    });
+
+
+  const [response, setResponse] =
+    useState(null);
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [activeTab, setActiveTab] =
+    useState("preview");
+
+  const [latency, setLatency] =
+    useState(null);
+
+  const [statusCode, setStatusCode] =
+    useState(null);
+
+  const [statusText, setStatusText] =
+    useState("");
+
+  const [responseHeaders, setResponseHeaders] =
+    useState({});
+
+  const [requestUrl, setRequestUrl] =
+    useState(
+      buildUrl(
+        endpoint.path,
+        {}
+      )
+    );
+
+
+  const updateValue = (
+    name,
+    value
+  ) => {
+
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+  };
+
+
+  /* =======================================================
+     CLEAR
+  ======================================================= */
+
+  const clearRequest = () => {
+
+    const initial = {};
+
+    endpoint.params.forEach(
+      (param) => {
+
+        if (
+          param.default !==
+          undefined
+        ) {
+
+          initial[param.name] =
+            param.default;
+
+        }
+
+      }
+    );
+
+
+    setValues(initial);
+
+    setResponse(null);
+
+    setLatency(null);
+
+    setStatusCode(null);
+
+    setStatusText("");
+
+    setResponseHeaders({});
+
+    setRequestUrl(
+      buildUrl(
+        endpoint.path,
+        {}
+      )
+    );
+
+    setActiveTab("preview");
+
+  };
+
+
+  /* =======================================================
+     EXECUTE
+  ======================================================= */
+
+  const execute = async () => {
+
+    setLoading(true);
+
+    setResponse(null);
+
+    setLatency(null);
+
+    setStatusCode(null);
+
+    setStatusText("");
+
+    setResponseHeaders({});
+
+
+    try {
+
+      /* REQUIRED CHECK */
+
+      for (
+        const param of endpoint.params
+      ) {
+
+        if (
+          param.required &&
+          !String(
+            values[param.name] ||
+              ""
+          ).trim()
+        ) {
+
+          throw new Error(
+            `${param.label} wajib diisi.`
+          );
+
+        }
+
+      }
+
+
+      /* URL */
+
+      const url =
+        buildUrl(
+          endpoint.path,
+          values
+        );
+
+
+      setRequestUrl(url);
+
+
+      /*
+        performance.now()
+        digunakan untuk menghitung
+        ping / latency request.
+      */
+
+      const start =
+        performance.now();
+
+
+      const res =
+        await fetch(
+          url,
+          {
+            method:
+              endpoint.method ||
+              "GET",
+
+            headers: {
+              Accept:
+                "application/json",
+            },
+          }
+        );
+
+
+      const end =
+        performance.now();
+
+
+      const requestTime =
+        Math.round(
+          end - start
+        );
+
+
+      setLatency(
+        requestTime
+      );
+
+
+      setStatusCode(
+        res.status
+      );
+
+
+      setStatusText(
+        res.statusText ||
+          ""
+      );
+
+
+      /* RESPONSE HEADERS */
+
+      const headers = {};
+
+      res.headers.forEach(
+        (value, key) => {
+
+          headers[key] =
+            value;
+
+        }
+      );
+
+      setResponseHeaders(
+        headers
+      );
+
+
+      /* RESPONSE BODY */
+
+      const contentType =
+        res.headers.get(
+          "content-type"
+        ) || "";
+
+
+      let data;
+
+
+      if (
+        contentType.includes(
+          "application/json"
+        )
+      ) {
+
+        data =
+          await res.json();
+
+      } else {
+
+        const text =
+          await res.text();
+
+        try {
+
+          data =
+            JSON.parse(text);
+
+        } catch {
+
+          data = {
+            success:
+              res.ok,
+
+            status:
+              res.status,
+
+            response:
+              text,
+          };
+
+        }
+
+      }
+
+
+      setResponse(data);
+
+      setActiveTab(
+        "preview"
+      );
+
+    } catch (error) {
+
+      const message =
+        error?.message ||
+        "Request failed.";
+
+
+      setResponse({
+        success: false,
+        message,
+      });
+
+
+      setStatusCode(
+        0
+      );
+
+
+      setStatusText(
+        "ERROR"
+      );
+
+
+      setActiveTab(
+        "preview"
+      );
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
+
+  const curl =
+    makeCurl(
+      requestUrl,
+      endpoint.method ||
+        "GET"
+    );
+
+
+  const copyText = async (
+    text
+  ) => {
+
+    try {
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+    } catch {
+
+      const textarea =
+        document.createElement(
+          "textarea"
+        );
+
+      textarea.value =
+        text;
+
+      document.body.appendChild(
+        textarea
+      );
+
+      textarea.select();
+
+      document.execCommand(
+        "copy"
+      );
+
+      textarea.remove();
+
+    }
+
+  };
+
+
+  const statusLabel =
+    statusCode
+      ? `${statusCode} ${
+          statusText || ""
+        }`
+      : "—";
+
+
+  return (
+
+    <div
+      className={`endpoint ${
+        expanded
+          ? "endpoint-open"
+          : ""
+      }`}
+    >
+
+      {/* =================================================
+          ENDPOINT HEADER
+      ================================================= */}
+
+      <button
+        className="endpoint-header"
+        onClick={() =>
+          setExpanded(
+            !expanded
+          )
+        }
+      >
+
+        <div className="method">
+
+          {endpoint.method ||
+            "GET"}
+
+        </div>
+
+
+        <div className="endpoint-main">
+
+          <strong>
+            {endpoint.name}
+          </strong>
+
+          <span>
+            {endpoint.path}
+          </span>
+
+        </div>
+
+
+        <span className="endpoint-chevron">
+
+          {expanded
+            ? "−"
+            : "+"}
+
+        </span>
+
+      </button>
+
+
+      {/* =================================================
+          BODY
+      ================================================= */}
+
+      {expanded && (
+
+        <div className="endpoint-body">
+
+          {/* DESCRIPTION */}
+
+          <p className="endpoint-description">
+
+            {endpoint.description}
+
+          </p>
+
+
+          {/* METHOD */}
+
+          <div className="request-methods">
+
+            <button
+              className="request-method active"
+              type="button"
+            >
+              GET
+            </button>
+
+
+            <button
+              className="request-method disabled"
+              type="button"
+              disabled
+            >
+              POST
+            </button>
+
+          </div>
+
+
+          {/* REQUEST PARAMETERS */}
+
+          {endpoint.params.length >
+            0 && (
+
+            <div className="request-section">
+
+              <div className="request-title">
+
+                REQUEST PARAMETERS
+
+              </div>
+
+
+              <div className="params">
+
+                {endpoint.params.map(
+                  (param) => (
+
+                    <label
+                      className="param"
+                      key={
+                        param.name
+                      }
+                    >
+
+                      <div className="param-label">
+
+                        <span>
+                          {param.label}
+                        </span>
+
+
+                        {param.required && (
+
+                          <small>
+                            *
+                          </small>
+
+                        )}
+
+                      </div>
+
+
+                      {param.type ===
+                      "select" ? (
+
+                        <select
+                          value={
+                            values[
+                              param.name
+                            ] ??
+                            param.default ??
+                            ""
+                          }
+                          onChange={(e) =>
+                            updateValue(
+                              param.name,
+                              e.target.value
+                            )
+                          }
+                        >
+
+                          {param.options?.map(
+                            (option) => (
+
+                              <option
+                                key={
+                                  option
+                                }
+                                value={
+                                  option
+                                }
+                              >
+                                {option}
+                              </option>
+
+                            )
+                          )}
+
+                        </select>
+
+                      ) : (
+
+                        <input
+                          value={
+                            values[
+                              param.name
+                            ] || ""
+                          }
+                          onChange={(e) =>
+                            updateValue(
+                              param.name,
+                              e.target.value
+                            )
+                          }
+                          placeholder={
+                            param.placeholder ||
+                            ""
+                          }
+                        />
+
+                      )}
+
+                    </label>
+
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+          )}
+
+
+          {/* =================================================
+              EXECUTE
+          ================================================= */}
+
+          <button
+            className="execute-button"
+            onClick={execute}
+            disabled={loading}
+          >
+
+            {loading
+              ? "EXECUTING REQUEST..."
+              : "EXECUTE REQUEST →"}
+
+          </button>
+
+
+          {/* =================================================
+              CLEAR
+          ================================================= */}
+
+          <button
+            className="clear-button"
+            type="button"
+            onClick={clearRequest}
+          >
+            CLEAR
+          </button>
+
+
+          {/* =================================================
+              REQUEST INFO
+          ================================================= */}
+
+          <div className="request-preview-line">
+
+            <span>
+              REQUEST
+            </span>
+
+            <code>
+              {requestUrl}
+            </code>
+
+          </div>
+
+
+          {/* =================================================
+              RESPONSE PANEL
+          ================================================= */}
+
+          {(response ||
+            loading) && (
+
+            <div className="response-panel">
+
+              {/* RESPONSE HEADER */}
+
+              <div className="response-top">
+
+                <div className="response-tabs">
+
+                  <button
+                    className={
+                      activeTab ===
+                      "preview"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "preview"
+                      )
+                    }
+                  >
+                    PREVIEW
+                  </button>
+
+
+                  <button
+                    className={
+                      activeTab ===
+                      "headers"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "headers"
+                      )
+                    }
+                  >
+                    HEADERS
+                  </button>
+
+
+                  <button
+                    className={
+                      activeTab ===
+                      "curl"
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() =>
+                      setActiveTab(
+                        "curl"
+                      )
+                    }
+                  >
+                    CURL
+                  </button>
+
+                </div>
+
+
+                <button
+                  className="copy-button"
+                  onClick={() => {
+
+                    if (
+                      activeTab ===
+                      "curl"
+                    ) {
+
+                      copyText(
+                        curl
+                      );
+
+                    } else if (
+                      activeTab ===
+                      "headers"
+                    ) {
+
+                      copyText(
+                        JSON.stringify(
+                          responseHeaders,
+                          null,
+                          2
+                        )
+                      );
+
+                    } else {
+
+                      copyText(
+                        formatResponse(
+                          response
+                        )
+                      );
+
+                    }
+
+                  }}
+                  title="Copy"
+                >
+                  ▣
+                </button>
+
+
+                <div className="response-status">
+
+                  <span
+                    className={
+                      statusCode >=
+                      200 &&
+                      statusCode <
+                        300
+                        ? "success"
+                        : "error"
+                    }
+                  >
+                    {statusLabel}
+                  </span>
+
+
+                  {latency !==
+                    null && (
+
+                    <small>
+                      {latency}ms
+                    </small>
+
+                  )}
+
+                </div>
+
+              </div>
+
+
+              {/* =================================================
+                  PREVIEW
+              ================================================= */}
+
+              {activeTab ===
+                "preview" && (
+
+                <pre className="response">
+
+                  {loading
+                    ? "Loading..."
+                    : formatResponse(
+                        response
+                      )}
+
+                </pre>
+
+              )}
+
+
+              {/* =================================================
+                  HEADERS
+              ================================================= */}
+
+              {activeTab ===
+                "headers" && (
+
+                <div className="headers-view">
+
+                  {Object.keys(
+                    responseHeaders
+                  ).length ===
+                  0 ? (
+
+                    <div className="headers-empty">
+                      No response headers.
+                    </div>
+
+                  ) : (
+
+                    Object.entries(
+                      responseHeaders
+                    ).map(
+                      ([key, value]) => (
+
+                        <div
+                          className="header-row"
+                          key={key}
+                        >
+
+                          <strong>
+                            {key}:
+                          </strong>
+
+                          <span>
+                            {value}
+                          </span>
+
+                        </div>
+
+                      )
+                    )
+
+                  )}
+
+                </div>
+
+              )}
+
+
+              {/* =================================================
+                  CURL
+              ================================================= */}
+
+              {activeTab ===
+                "curl" && (
+
+                <pre className="curl-view">
+
+                  {curl}
+
+                </pre>
+
+              )}
+
+            </div>
+
+          )}
+
+        </div>
+
       )}
 
     </div>
+
   );
 }
